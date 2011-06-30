@@ -1,0 +1,33 @@
+title run smoke test
+c commands controlling continuum =========
+test
+c commands for density & abundances =========
+c commands controlling geometry  =========
+c other commands for details     =========
+c include this in one test to make sure it works
+set continuum shield ferland
+c commands giving the monitors    =========
+c
+c commands controlling output    =========
+c increase precision of all printed wavelengths
+set line precision 6 
+c following will print physical constants used by the code
+print constants
+c print the past to the data directory
+print path 
+c the citation for the current version of the code
+print citation
+c following prints column densities 
+print column density
+save monitors "func_test.asr"
+save continuum "func_test.con"
+save overview "func_test.ovr"
+c func_test.in
+c class function 
+c ========================================
+c 
+
+This runs the smoke test command, which include several asserts.
+The tests the behavior of increasing the number of significant figures
+in printed wavelengths.  
+

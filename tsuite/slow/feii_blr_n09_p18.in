@@ -1,0 +1,110 @@
+title FeII model 
+table agn
+atom feii 
+print lines column
+print lines sort intensity 
+hden 9
+phi(h) 18
+stop column density 23
+iterate convergence 
+//
+// affects appearance of printout
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+//
+// these are to try to speed things up
+init "c84.ini"
+//
+save monitors "feii_blr_n09_p18.asr" last
+save feii lines "feii_blr_n09_p18.lin" last
+save feii continuum units microns "feii_blr_n09_p18.fe2con" last
+save feii column densities "feii_blr_n09_p18.fe2col" last
+save feii relative populations all "feii_blr_n09_p18.lev" last
+save feii relative populations range 0 200 "feii_blr_n09_p18.lv1" last
+save feii relative populations range 201 371 "feii_blr_n09_p18.lv2" last
+save overview "feii_blr_n09_p18.ovr" last
+save dr "feii_blr_n09_p18.dr" last 
+save convergence reason "feii_blr_n09_p18.cvr"
+//
+// strong blr lines
+// >>chng 06 aug 09, from 4.913 to 4.943 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 4.943 to 4.855, Badnell DR
+monitor line luminosity "totl"  1035 4.855 //total of sum of both O VI comp
+//
+monitor line luminosity "totl"  1216 7.214 //total Hydrogen Lyman-alpha 1215.67 
+//
+// >>chng 06 aug 09, from 5.420 to 5.448 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 5.448 to 5.369, Badnell DR
+monitor line luminosity "totl"  1240 5.369 //total of sum of both N V comp
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 5.836 to 5.856
+monitor line luminosity "totl"  1397 5.856 //total of sum of both Si IV comp
+//
+// >>chng 06 aug 09, from 5.498 to 5.517 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 5.517 to 5.572, Badnell DR
+monitor line luminosity "totl"  1402 5.572 //total O IV] 1402 
+//
+// >>chng 06 nov 29, from 6.908 to 6.884, Badnell DR
+monitor line luminosity "totl"  1549 6.884 //total of sum of both C IV comp
+//
+// >>chng 08 mar 17, from 5.738 to 5.776, RP update line overlap
+monitor line luminosity "he 2"  1640 5.776 //total He II Balmer-alpha 1640
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 5.756 to 5.700
+// >>chng 09 feb 23, from 5.7 to 5.727, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "o  3"  1666 5.727 //total O III] 1666
+//
+// >>chng 06 nov 29, from 6.178 to 6.314, Badnell DR
+monitor line luminosity "totl"  1909 6.314 //total of sum of CIII] 1908.73+
+//
+// >>chng 06 nov 29, from 5.734 to 5.766, Badnell DR
+// >>chng 09 feb 23, from 5.766 to 5.791, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1888 5.791 //total of sum of Si III] 1892+
+//
+// >>chng 06 nov 29, from 4.619 to 4.544, Badnell DR
+// >>chng 09 feb 23, from 4.544 to 4.572, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1860 4.572 //total sum of both Al III comp
+//
+// >>chng 04 dec 08, from 5.170 to 5.098, co-ion feedback, check converg
+// >>chng 07 dec 09, from 5.098 to 5.129, cumulative RP changes in iso seq
+// >>chng 08 jul 08, from 5.129 to 5.08 damping wing pump rates
+monitor line luminosity "totl"  2326 5.08 err 0.1 //total C II] 2324.69 + 2328.12
+//
+//total of sum of both Mg II comp
+// >>chng 04 dec 08, from 6.249 to 6.199 co-ion feedback, check converg
+// >>chng 05 oct 29, from 6.199 to 6.215, drift up
+// >>chng 06 nov 29, from 6.215 to 6.181, Badnell DR
+// >>chng 08 oct 18, from 6.181 to 6.131, include Badnell UTA data
+monitor line luminosity "totl"  2798 6.131
+//
+// >>chng 09 jun 15, add this monitor
+monitor line luminosity "Fe2C" 0 5.7
+//
+// >>chng 09 jun 15, add this monitor
+// >>chng 09 jun 16, from 1 to 5.872, add FeII bands
+monitor line luminosity "Fe2b" 2445 5.872
+//
+// >>chng 09 jun 15, add this monitor
+// >>chng 09 jun 16, from 1 to 4.782, add FeII bands
+monitor line luminosity "Fe2b" 4558 4.782
+//
+// >>chng 08 dec 08, from 9 to 6.691, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 6.691 to 15.33, merging newsolvers branch
+// >>chng 09 jan 16, from 15.33 to 15.15 (error 0.03), average of 9 runs
+// >>chng 09 feb 23, from 15.15 to 15.64, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 apr 18, from 15.64 to 14.96, refactor dest esc probs to synch with line cooling routines
+// >>chng 09 jun 11, from 14.96 to 15.56, better approach to outer edge of bounded model
+// >>chng 09 jul 16, from 15.56 to 16.41, reset autocv to 0.2
+monitor itrzn 16.41
+//
+// >>chng 09 jul 16, from 3 to 5, change autocv back to 0.2
+// >>chng 09 aug 01, from 5 to 3, do not check on outward Hb, autocv back to old default
+monitor niter 3 error 0.01
+// 
+// >>chng 08 apr 30, from <280 to 297, H, He topoff change
+// >>chng 08 dec 13, from 297 to 293, merging newsolvers branch
+// >>chng 09 jan 16, from 293 to 294, average of 9 runs
+// >>chng 09 jun 11, from 294 to 311, better approach to outer edge of bounded model
+monitor nzone 311 
+
+This is one of the 5 models that sample the LOC plane.

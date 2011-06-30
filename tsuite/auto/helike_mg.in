@@ -1,0 +1,80 @@
+title he-like magnesium emission
+c
+c commands controlling continuum =========
+laser 250
+ionization -1
+c
+c commands for density & abundances =========
+hden 7
+set dr -12
+element magnesium abundance -2
+element magnesium ionization -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 0 -5
+init file "ism.ini"
+element helium off
+element nitrogen off
+element carbon off
+element neon off
+element silicon off
+element oxygen off
+element sulphur off
+element argon off
+element iron off
+c
+c commands controlling geometry  =========
+stop zone 1
+c
+c other commands for details     =========
+atom he-like levels 10
+atom he-like collapsed levels 20
+constant temper 5
+iterate
+c
+c commands controlling output    =========
+print he-like departure magnesium
+print line faint -2
+save monitors "helike_mg.asr"
+c This is Lyman alpha
+normalize to "Mg11" 9.169A
+c
+c commands giving the monitors    =========
+// >>chng 05 sep 5, wl from 9.166 to 9.169
+// >>chng 10 aug 12, from -20.15 to -24.71, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "Mg11"  9.169A -24.71
+//
+// 9.314A is 2^3S to ground
+// >>chng 05 sep 5, wl from 9.317 to 9.314
+// >>chng 06 aug 18, from 3.05 to 3.286, RP update trans prob 
+monitor line "Mg11"  9.314A 3.286
+//
+// 9.231A is 2^3P to ground
+// >>chng 05 sep 5, wl from 9.232 to 9.231
+// >>chng 06 aug 18, from 1.41 to 1.21 RP update trans prob 
+monitor line "TOTL"  9.231A 1.21
+//
+// 7.851A is 3^1P to ground
+// >>chng 04 may 19, from 0.215 to 0.225, RP update he-like seq
+// >>chng 05 sep 5, wl from 7.850 to 7.851
+monitor line "Mg11"  7.851A 0.225 
+//
+// 50.45A is 3^3P to 2^3S
+// >>chng 05 sep 5, wl from 50.38 to 50.45
+monitor line "Mg11"  50.45A 0.108 
+//
+// 52.71A is 3^3D to 2^3P
+// >>chng 05 sep 5, wl from 52.67 to 52.71
+monitor line "Mg11"  52.71A 0.27
+// 
+// total 2^3P to 2^3S
+monitor line "TOTL"  1025A 0.0184
+// 
+// total 2^3P to 2^3S
+monitor line "Mg11" 997.5A 0.0152
+c 
+c helike_mg.in 
+c class limit 
+c ========================================
+c 
+
+test He-like Mg emission
+
+

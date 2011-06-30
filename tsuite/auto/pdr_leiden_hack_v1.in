@@ -1,0 +1,123 @@
+title Leiden meeting model 5 with hacks
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+c the requested value, so the actual value
+c is half the requested value
+c they want for the model is actually twice the value below
+table draine 5
+extinguish 24
+c
+c commands for density & abundances =========
+c  hydrogen density 
+hden 3.
+grains ism 1.16 no qheat
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+failures 3
+c  use leiden initialization file
+init file="pdr_leiden_hack.ini"
+* element nitrogen on
+* element nitrogen scale -1
+* element silicon on
+* element silicon scale -1
+* element sulphur on
+* element sulphur scale -1
+* element chlorine on
+* element chlorine scale -1
+c  Define the abundance of PAHs so we can reproduce the same photoelectric
+c heating curve as BT94 
+c  We have also scaled the grain abundance to achieve the desired AV/NH ratio 
+* grains PAH no qheat 8
+c
+c commands controlling output    =========
+save leiden lines "pdr_leiden_hack_v1.lin"
+save leiden "pdr_leiden_hack_v1.lei"
+save dr "pdr_leiden_hack_v1.dr" 
+save grain temperature "pdr_leiden_hack_v1.grn"
+save overview "pdr_leiden_hack_v1.ovr"
+save monitors "pdr_leiden_hack_v1.asr"
+c
+c commands giving the monitors    =========
+monitor H2 column density 21.905 error 0.1
+//
+// >>chng 05 mar 21, from 18.016 to 18.055, update chem net
+// >>chng 05 mar 22, from 18.06 to 18.10, NA update CO chem net
+// >>chng 05 aug 11, from 18.10 to 18.03, use UMIST C0 photo for hack
+// >>chng 05 dec 17, from 18.03 to 18.09, NA increase C chemistry
+monitor CO column density 18.09 error 0.1
+//
+// >>chng 05 jul 02, from 17.73 to 17.64, A_V zoning was not exact
+// >>chng 05 aug 24, from 17.64 to 17.50, NA update CO cr ion rate
+// >>chng 10 jun 17, from 17.5 to 17.39, fix botches due to recent dBase cooling changes
+monitor O2 column density 17.39 error 0.1
+//
+// >>chng 05 jul 02, from 16.67 to 16.60, A_V zoning was not exact
+// >>chng 05 aug 03, from 16.60 to 16.55, NA update CO, H chem net
+// >>chng 05 aug 11, from 16.55 to 16.62, use UMIST C0 photo for hack
+// >>chng 05 aug 18, from 16.62 to 16.56, NA introduce further hacks
+// >>chng 05 aug 18, from 16.56 to 16.66, NA add hack to not use C+ - OH rate
+// >>chng 05 aug 24, from 16.66 to 16.60, NA update CO cr ion rate
+// >>chng 05 dec 17, from 16.60 to 16.51, NA increase C chemistry
+// >>chng 10 mar 03, from 16.51 to 16.65, enable all LAMDA and increase max num levels
+// >>chng 10 apr 11, from 16.65 to 16.78, more LAMDA models, add 13CO to chemistry
+// >>chng 10 jun 17, from 16.78 to 17.08, fix botches due to recent dBase cooling changes
+monitor OH column density 17.08 error 0.1
+//
+// >>chng 04 sep 23, from 29.5 to 30.9, slow drift
+// >>chng 04 dec 08, from 30.9 to 33.6, co-ion feedback, check converg
+// >>chng 05 mar 22, from 33.6 to 36.3, NA update CO chem net
+// >>chng 05 mar 25, from 36.3 to 33.5 renorm H pops in level solver
+// >>chng 05 aug 11, from 33.5 to 37.5 use UMIST C0 photo for hack, inc err
+// >>chng 05 dec 17, from 37.5 to 43.7, NA increase C chemistry
+// >>chng 08 apr 10, from 43.7 to 37.3, change default h-like levels, other minor changes
+monitor temperature hydrogen 2 37.3 error 0.1
+// 
+// >>chng 05 apr 28, from 13.5 to 14.1 drift up 
+// >>chng 05 jun 12, from 13.5 to 14.1, CO solidification
+// >>chng 05 aug 18, from 14.12 to 15.70, NA introduce further hacks
+// >>chng 05 dec 17, from 15.7 to 16.6, NA increase C chemistry
+// >>chng 10 apr 11, from 16.6 to 15.54, more LAMDA models, add 13CO to chemistry
+// >>chng 10 jun 17, from 15.54 to 13.13, fix botches due to recent dBase cooling changes
+monitor temperature h2 13.13
+// 
+// >>chng 06 nov 28, add these lines
+monitor line luminosity "C  2" 157.6m -4.721
+//
+// >>chng 06 nov 29, from -6.711 to -6.489, Badnell DR turned on
+// >>chng 10 mar 02, from -6.489 to -6.438, fix botches after CO model switch
+// >>chng 10 jun 17, from -6.438 to -6.537, fix botches due to recent dBase cooling changes
+monitor line luminosity "C  1" 369.7m -6.537
+//
+// >>chng 06 nov 29, from -6.595 to -6.427, Badnell DR turned on
+// >>chng 10 jun 17, from -6.427 to -6.472, fix botches due to recent dBase cooling changes
+monitor line luminosity "C  1" 609.2m -6.472
+//
+monitor line luminosity "O  1" 63.17m -6.150
+//
+monitor line luminosity "O  1" 145.5m -7.623
+// 
+// >>chng 05 mar 26, from 9 to 11, renorm pop2ion in h lev
+// >>chng 05 aug 13, from 11 to 13, chng leiden hacks
+// >>chng 08 dec 08, from 13 to 6.825, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 6.825 to 12.73, merging newsolvers branch
+// >>chng 09 jan 16, from 12.73 to 12.62 (error 0.04), average of 10 runs
+// >>chng 10 mar 14, from 12.62 to 13.06 (error 0.04), average of 10 runs
+monitor itrzn 13.06 
+//
+// >>chng 05 dec 17, from 460 to 490 NA increase C chemistry
+// >>chng 08 dec 08, from 490 to 452, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 452 to 453, average of 10 runs
+// >>chng 10 jun 17, from 453 to 464, fix botches due to recent dBase cooling changes
+monitor nzone 464 error 0.01
+c
+c pdr_leiden_hack_v1.in
+c class pdr 
+c ========================================
+c 
+
+This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+includes hacks to get standard answer.

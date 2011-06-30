@@ -1,0 +1,39 @@
+title test low density limit
+c this and limit_lowdm6 should get same results
+c
+c commands controlling continuum =========
+table agn
+ionization parameter -2
+c
+c commands for density & abundances =========
+hden 0
+abundances old solar 84 
+c
+c commands controlling geometry  =========
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+iterate
+c
+c commands controlling output    =========
+normalize to "H  1" 4861 0.86
+print line sort wavelength range 100 1m
+save monitors last "limit_lowd0.asr"
+save cooling last "limit_lowd0.col"
+save continuum last "limit_lowd0.con"
+c
+c commands giving the monitors    =========
+c all asserts for both sims are in this file
+init file="lowd.dat"
+c
+c limit_lowd0.in
+c class limit 
+c ========================================
+c 
+
+this test case is paired with lowdm6.in
+both tests read in the same set of asserts, those contained in
+the file lowd.dat, and they should get exactly the same answer
+
+this is also the test of the print lines intensity command 

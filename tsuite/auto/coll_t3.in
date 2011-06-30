@@ -1,0 +1,76 @@
+title coronal equilibrium at 10^3 K
+c
+c commands controlling continuum =========
+coronal 3  
+c add component of cosmic rays to drive chemistry 
+cosmic ray background
+c
+c other commands for details     =========
+iterate  
+c
+c commands controlling geometry  =========
+stop column density 15 
+stop temperature off
+c
+c commands for density & abundances =========
+hden 10  
+c
+c other commands for details     =========
+c this sim needs very precise convergence to get a reliable result
+set eden convergence tolerance 1e-4
+c
+c commands controlling output    =========
+save monitors "coll_t3.asr" 
+save overview "coll_t3.ovr" 
+save continuum "coll_t3.con"  units angstroms 
+c
+c commands giving the monitors    =========
+// 
+// >>chng 08 aug 18, from -15.18 to -14.04 add CRs
+// >>chng 10 oct 18, from -14.04 to -14.13, replace faint brems with laser at high-energy limit of code in coronal cmmnd
+// >>chng 10 dec 01, from -14.13 to -13.91, first run in a few weeks, net change
+monitor ionization Hydrogen  2 -13.91 error 0.2
+// 
+// >>chng 08 aug 18, from -7.67 to -7.26 add CRs
+// >>chng 10 dec 01, from -7.26 to -7.113, first run in a few weeks, net change
+monitor ionization Lithium   2 -7.113 error 0.2
+// 
+// >>chng 08 aug 18, from -8.10 to -7.66 add CRs
+// >>chng 09 nov 18, from -7.66 to -7.583, fix stopping criterion
+// >>chng 10 dec 01, from -7.583 to -7.497, first run in a few weeks, net change
+monitor ionization Beryllium 2 -7.497 error 0.2
+// 
+// >>chng 09 nov 18, from -7.49 to -7.414, fix stopping criterion
+// >>chng 10 oct 18, from -7.414 to -7.536, replace faint brems with laser at high-energy limit of code in coronal cmmnd
+// >>chng 10 dec 01, from -7.536 to -7.424, first run in a few weeks, net change
+monitor ionization Boron     2 -7.424 error 0.2
+// 
+// >>chng 08 aug 18, from -6.39 to -5.84 add CRs
+// >>chng 10 dec 01, from -5.84 to -5.732, first run in a few weeks, net change
+monitor ionization Sodium    2 -5.732 error 0.2
+// 
+// >>chng 08 aug 18, from -4.22 to -3.72 add CRs
+// >>chng 08 dec 13, from -3.72 to -3.845, merging newsolvers branch
+// >>chng 09 nov 18, from -3.845 to -4.269, fix stopping criterion
+// >>chng 10 dec 01, from -4.269 to -4.196, first run in a few weeks, net change
+monitor ionization Magnesium 2 -4.196 error 0.2
+// 
+// >>chng 08 aug 18, from -3.92 to -3.34 add CRs
+// >>chng 10 dec 01, from -3.34 to -3.235, first run in a few weeks, net change
+monitor ionization Aluminium 2 -3.235 error 0.1
+// 
+// >>chng 08 aug 18, from 2.05 to 2.61 add CRs
+// >>chng 09 nov 18, from 2.61 to 2.529, fix stopping criterion
+// >>chng 10 dec 01, from 2.529 to 2.62, first run in a few weeks, net change
+monitor eden 2.62 error 0.1
+c
+c coll_t3.in
+c class coronal  
+c ========================================
+
+This tests conditions of collisional equilibrium at low densities.
+This is one of a series of sims coll_t?.in which test ionization
+over a range of temperatures.  This one, unlike the others,
+includes cosmic rays.  Chemistry is important at this low temperature
+and the chemical network will collapse without a source of ionization.
+The cosmic rays provide this source of ionization.

@@ -1,0 +1,131 @@
+title continuous emission from HeI 
+c
+c commands controlling continuum =========
+laser 1.9 ryd
+ionization -1
+c
+c commands for density & abundances =========
+c need high density to supress two-photon emission
+hden 10
+c force high density for electrons, He+ density will be the same
+set eden 12
+c set He/H ratio to 100, He and elec will have same density
+element abundance helium 2
+init "hheonly.ini"
+c
+c commands controlling geometry  =========
+c this thickness will get unit emission when combined with above densities
+stop thickness -24
+c
+c other commands for details     =========
+iterate
+constant temperature 4
+c
+c commands controlling output    =========
+print continuum
+c
+// increase continuum resolution by factor of ten
+set continuum resolution 0.1
+// 
+// print the intensity in the continuum at a set of points,
+// include only the diffuse components in this
+set nFnu diffuse outward, diffuse inward
+print continuum 
+//
+print line faint 1
+print line column
+// 
+save spectrum  "heatomt10.spc" last no title units microns 
+save continuum "heatomt10.con" last no title units microns 
+save diffuse continuum "heatomt10.dif" last no title units microns
+save monitors "heatomt10.asr"
+c
+c commands giving the monitors    =========
+// >>chng 02 may 27, all following to 4.11 micron changed as result
+// of better gaunt factors
+// >> all following, through 2 micron, got fainter by ~10 percent
+// as result of improved brems gaunt factors, better sum over species
+monitor line luminosity "nFnu"  122.4m -26.446
+monitor line luminosity "nFnu"  60.83m -26.215
+monitor line luminosity "nFnu"  41.22m -26.082
+monitor line luminosity "nFnu"  30.87m -25.984
+monitor line luminosity "nFnu"  24.78m -25.901
+monitor line luminosity "nFnu"  24.30m -25.903
+monitor line luminosity "nFnu"  22.83m -25.882
+monitor line luminosity "nFnu"  21.42m -25.861
+monitor line luminosity "nFnu"  21.12m -25.857
+monitor line luminosity "nFnu"  19.62m -25.829
+monitor line luminosity "nFnu"  17.65m -25.791
+monitor line luminosity "nFnu"  17.37m -25.785
+monitor line luminosity "nFnu"  15.69m -25.752
+monitor line luminosity "nFnu"  14.60m -25.723
+monitor line luminosity "nFnu"  12.43m -25.665
+monitor line luminosity "nFnu"  11.40m -25.637
+// 
+// >>chng 07 feb 06, bugfix in r828, from -25.602 to -25.583 
+monitor line luminosity "nFnu"  10.46m -25.583
+// 
+monitor line luminosity "nFnu"  9.480m -25.570
+monitor line luminosity "nFnu"  9.325m -25.565
+// 
+// >>chng 07 feb 06, bugfix in r828, from -25.515 to -25.496 
+monitor line luminosity "nFnu"  8.210m -25.496
+// 
+monitor line luminosity "nFnu"  7.580m -25.490
+monitor line luminosity "nFnu"  7.050m -25.453
+monitor line luminosity "nFnu"  4.114m -25.246
+monitor line luminosity "nFnu"  2.324m -25.071
+// >>chng 02 may 27, end changes in continuum
+// >>chng 02 jun 21, end changes in continuum
+monitor line luminosity "nFnu"  1.643m -24.927
+monitor line luminosity "nFnu"  1.480m -24.923
+monitor line luminosity "nFnu"  1.436m -24.776
+monitor line luminosity "nFnu"  1.119m -24.744
+monitor line luminosity "nFnu"   8330A -24.804
+monitor line luminosity "nFnu"   8079A -24.511
+monitor line luminosity "nFnu"   6210A -24.468
+monitor line luminosity "nFnu"   4885A -24.598
+// >>chng 01 dec 28, nearly all of following reset
+monitor line luminosity "nFnu"   3704A -24.861
+monitor line luminosity "nFnu"   3588A -24.340
+// >>chng 02 apr 16, nearly all of following reset
+monitor line luminosity "nFnu"   2392A -23.998
+monitor line luminosity "nFnu"   2071A -24.278
+monitor line luminosity "nFnu"   2053A -24.298
+monitor line luminosity "nFnu"   1793A -24.619
+monitor line luminosity "nFnu"   1585A -24.968
+monitor line luminosity "nFnu"   1458A -25.237
+monitor line luminosity "nFnu"   1357A -25.491
+monitor line luminosity "nFnu"   1297A -25.661
+monitor line luminosity "nFnu"   1263A -25.766
+monitor line luminosity "nFnu"   1218A -25.911
+monitor line luminosity "nFnu"   1196A -25.984
+monitor line luminosity "nFnu"   1175A -26.059
+monitor line luminosity "nFnu"   1144A -26.172
+// >>chng 09 feb 24, from -26.29 to -26.31, botches due to r2763
+monitor line luminosity "nFnu"   1113A -26.31
+// >>chng 09 feb 24, from -26.32 to -26.35, botches due to r2763
+monitor line luminosity "nFnu"   1103A -26.35
+//
+// >>chng 02 jul 19, from -26.433 to -26.458, better two photon
+// >>chng 05 mar 12, from -26.458 to -26.433, RP merge He-like code
+monitor line luminosity "nFnu"   1074A -26.433 error 0.1
+//
+// >>chng 02 jul 19, from -26.470 to -26.497, better two photon
+// >>chng 05 mar 12, from -26.497 to -26.470, RP merge He-like code
+monitor line luminosity "nFnu"   1064A -26.470 error 0.1
+//
+// >>chng 02 jul 19, from -26.576 to -26.612, better two photon
+// >>chng 05 mar 12, from -26.612 to -26.575, RP merge He-like code
+// >>chng 09 feb 24, from -26.57 to -26.62, botches due to r2763
+monitor line luminosity "nFnu"   1036A -26.62 error 0.1
+//
+c heatomt10.in
+c class limit 
+c ========================================
+c 
+
+This tests continuous emission from the He I atom.
+The laser is used so that the incident continuum
+is not included in the total emission.
+

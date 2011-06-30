@@ -1,0 +1,182 @@
+title FeII model 
+table agn
+print lines column
+print lines sort intensity 
+atom feii 
+hden 13
+phi(h) 22
+stop column density 23
+iterate convergence 
+//
+// affects appearance of printout
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+//
+// these are to try to speed things up
+init "c84.ini"
+//
+save monitors "feii_blr_n13_p22.asr" last
+save convergence reason "feii_blr_n13_p22.cvr"
+save feii continuum units microns "feii_blr_n13_p22.fe2con" last
+save feii lines "feii_blr_n13_p22.lin" last
+save feii populations all "feii_blr_n13_p22.lev" last
+save feii column density "feii_blr_n13_p22.col" last
+save overview "feii_blr_n13_p22.ovr" last
+save dr "feii_blr_n13_p22.dr" last 
+//
+// strong blr lines
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 9.378 to 9.508
+// >>chng 06 aug 09, from 9.508 to 9.529 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 9.529 to 9.432, Badnell DR
+// >>chng 08 mar 17, from 9.432 to 9.379, RP update line overlap
+// >>chng 08 dec 13, from 9.379 to 9.355, merging newsolvers branch
+monitor line luminosity "totl"  1035 9.355 //total of sum of both O VI comp
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 9.690 to 9.717
+// >>chng 07 dec 09, from 9.717 to 9.683, cumulative RP changes in iso seq
+// >>chng 09 feb 23, from 9.683 to 9.712, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1216 9.712 //total Hydrogen Lyman-alpha 1215.67 
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 9.642 to 9.767
+// >>chng 06 nov 29, from 9.767 to 9.718, Badnell DR
+// >>chng 08 mar 17, from 9.718 to 5.667, RP update line overlap
+// >>chng 08 dec 13, from 9.667 to 9.641, merging newsolvers branch
+// >>chng 09 jul 16, from 9.641 to 9.67, change autocv back to 0.2
+monitor line luminosity "totl"  1240 9.67 //total of sum of both N V comp
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 9.554 to 9.610
+// >>chng 07 jan 20, from 9.610 to 9.593, e2 bug
+// >>chng 08 mar 17, from 9.593 to 9.571, RP update line overlap
+monitor line luminosity "totl"  1397 9.571 //total of sum of both Si IV comp
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 8.672 to 8.738
+// >>chng 06 nov 29, from 8.738 to 8.775, Badnell DR
+// >>chng 07 dec 09, from 8.775 to 8.744, cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 8.744 to 8.711, RP update line overlap
+// >>chng 09 feb 23, from 8.711 to 8.745, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1402 8.745  //total O IV] 1402 
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 9.856 to 9.900
+// >>chng 07 jan 20, from 9.900 to 9.876, e2 bug
+// >>chng 08 mar 17, from 9.876 to 9.853, RP update line overlap
+monitor line luminosity "totl"  1549 9.853  //total of sum of both C IV comp
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 9.255 to 9.510
+// >>chng 07 dec 09, from 9.510 to 9.673, cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 9.673 to 9.434, RP update line overlap
+// >>chng 08 aug 02, from 9.434 to 9.426 changes over past month
+// >>chng 08 dec 13, from 9.426 to 9.4, merging newsolvers branch
+monitor line luminosity "he 2"  1640 9.4  //total He II Balmer-alpha 1640
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 8.160 to 8.235
+// >>chng 06 nov 29, from 8.235 to 8.209, Badnell DR
+// >>chng 07 dec 09, from 8.209 to 8.144, cumulative RP changes in iso seq
+// >>chng 08 dec 13, from 8.144 to 8.123, merging newsolvers branch
+monitor line luminosity "o  3"  1666 8.123  //total O III] 1666
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 7.752 to 7.814
+// >>chng 06 nov 29, from 7.814 to 7.932, Badnell DR
+// >>chng 07 dec 09, from 7.932 to 7.882, cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 7.882 to 7.804, RP update line overlap
+monitor line luminosity "totl"  1909 7.804  //total of sum of CIII] 1908.73+
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 8.571 to 8.616
+// >>chng 06 nov 29, from 8.616 to 8.727, Badnell DR
+// >>chng 07 dec 09, from 8.727 to 8.702, cumulative RP changes in iso seq
+// >>chng 08 nov 04, from 8.702 to 8.681, line RT bug fixes (r2429-35)
+monitor line luminosity "totl"  1888 8.681  //total of sum of Si III] 1892+
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 8.968 to 9.006
+// >>chng 06 nov 29, from 9.006 to 8.961, Badnell DR
+// >>chng 07 dec 09, from 8.961 to 8.938, cumulative RP changes in iso seq
+// >>chng 08 dec 13, from 8.938 to 8.917, merging newsolvers branch
+monitor line luminosity "totl"  1860 8.917  //total sum of both Al III comp
+//
+//total C II] 2324.69 + 2328.12
+// >>chng 06 jan 14, from 7.019 to 7.039, drift up
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 7.039 to 7.092
+// >>chng 07 jan 20, from 7.092 to 7.037, e2 bug
+// >>chng 07 aug 09, from 7.037 to 7.016, R1305 update H coll
+// >>chng 07 dec 09, from 7.016 to 6.935, cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 6.935 to 6.851, RP update line overlap
+// >>chng 08 apr 30, from 6.85 to 6.82 H, He topoff change
+monitor line luminosity "totl"  2326 6.8s err 0.1 
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 8.985 to 9.007
+// >>chng 06 nov 29, from 9.007 to 8.971, Badnell DR
+// >>chng 08 oct 18, from 8.971 to 8.944, include Badnell UTA data
+// >>chng 09 feb 23, from 8.944 to 8.919, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  2798 8.919  //total of sum of both Mg II comp
+//
+// >>chng 05 jul 17, from 9.76 to 9.89, first run in 6 mo
+// >>chng 08 mar 17, from 9.89 to 9.84 RP update line overlap
+monitor line luminosity "Fe2b"  2500 9.84 error 0.1
+//
+// >>chng 05 jul 17, from 9.58 to 9.71, first run in 6 mo
+// >>chng 08 mar 17, from 9.71 to 9.71 RP update line overlap
+// >>chng 08 sep 25, from 9.67 to 9.627, remove damper on line pump (r2367)
+monitor line luminosity "Fe2b"  2430 9.627 error 0.1
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 9.328 to 9.460
+// >>chng 06 nov 29, from 9.460 to 9.590, Badnell DR
+// >>chng 08 mar 17, from 9.590 to 9.539, RP update line overlap
+// >>chng 09 feb 23, from 9.539 to 9.505, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "C  3"   977 9.505
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 9.181 to 9.224
+// >>chng 07 jan 20, from 9.224 to 9.243, e2 bug
+// >>chng 07 aug 09, from 9.243 to 9.211, R1305 update H coll
+// >>chng 07 dec 31, from 9.211 to 9.47 RP changes?? inc err
+// >>chng 08 nov 04, from 9.47 to 9.25, line RT bug fixes (r2429-35)
+// >>chng 09 jul 06, from 9.25 to 9.369, botches resulting from r3095
+monitor line luminosity "He 1" 584.3 9.369 error 0.1
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 9.255 to 9.510
+// >>chng 07 dec 09, from 9.510 to 9.673, cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 9.673 to 9.433, RP update line overlap
+// >>chng 08 aug 02, from 9.433 to 9.45 changes over past month
+// >>chng 08 nov 08, from 9.45 to 9.407, fix VS80 elec impact coll. str. (r2444)
+monitor line luminosity "He 2"  1640 9.407 error 0.1
+//
+// >>chng 09 jun 15, add this monitor, total FeII cooling
+// >>chng 09 oct 25, from 8.844 to 8.816, icc 10 on bcxng
+// >>chng 09 nov 17, from 8.816 to 8.839, N I changes (r3588)
+// >>chng 10 jan 27, from 8.839 to 8.817, gradual change
+// >>chng 10 feb 14, from 8.817 to 8.84, update O atomic data
+// >>chng 10 mar 03, from 8.84 to 8.818, fix botches after CO changes
+// >>chng 11 may 18, from 8.818 to 8.825, average of 16 runs
+monitor line luminosity "Fe2c" 0 8.825
+//
+// >>chng 09 jun 15, add this monitor
+// >>chng 09 jun 16, from 1 to 9.63, add FeII bands
+monitor line luminosity "Fe2b" 2445 9.63
+//
+// >>chng 09 jun 15, add this monitor
+// >>chng 09 jun 16, from 1 to 8.004, add FeII bands
+monitor line luminosity "Fe2b" 4558 8.004
+//
+// >>chng 08 dec 08, from 8 to 6.578, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 6.578 to 14.63, merging newsolvers branch
+// >>chng 09 jan 16, from 14.63 to 14.46 (error 0.03), average of 9 runs
+// >>chng 09 feb 10, from 14.46 to 15.15, combined effect of r2655, r2669
+// >>chng 09 feb 23, from 15.15 to 15.58, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jul 16, from 15.58 to 15.07, change autocv back to 0.2
+// >>chng 09 nov 03, from 15.07 to 14.7, drift down
+monitor itrzn 14.7
+//
+// >>chng 08 dec 08, from 4 to 3, upper limit -> equals (r2515)
+// >>chng 09 jul 16, from 3 to 6, change autocv back to 0.2
+// >>chng 09 aug 01, from 6 to 3, do not check on outward Hb, autocv back to old default
+monitor niter 3 error 0.01
+// 
+// >>chng 03 nov 10, from 420 to 450, improve he0 zoning
+// >>chng 08 apr 30, from <450 to 396 H, He topoff change
+// >>chng 08 dec 13, from 396 to 392, merging newsolvers branch
+// >>chng 09 jan 16, from 392 to 396, average of 9 runs
+// >>chng 09 jun 11, from 396 to 437, better approach to outer edge of bounded model
+// >>chng 09 jul 06, from 437 to 447, botches resulting from r3095
+// >>chng 09 jul 16, from 447 to 455, change autocv back to 0.2
+// >>chng 09 aug 01, from 455 to 441, do not check on outward Hb, autocv back to old default
+monitor nzone 441
+
+This is one of the 5 models that sample the LOC plane.

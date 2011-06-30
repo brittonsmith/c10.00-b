@@ -1,0 +1,134 @@
+title Orion's veil
+c
+c commands controlling continuum =========
+q(h) 50.000000 
+table star rubin  
+c AGN & CMB background
+background z=0   
+cosmic rays background 
+c as a test this was tried - atomic temperature raised fm 100 to 140
+c but nothing really wrong
+* cosmic rays equipartition 
+c the observed magnetic field, roughly 100 micro Gauss
+magnetic field -4 
+c
+c commands for density & abundances =========
+// >>chng 04 may 7, update density to final paper model
+hden 3.1
+init "ism.ini"
+element calcium on 
+abundances orion no grains  
+grains orion no qheat 
+c
+c commands controlling geometry  =========
+stop neutral hydrogen column density 21.6  
+radius 19.1
+stop temperature linear 5  
+c this will not be hit, but put it in to insure that we stop if
+c gas becomes totally molecular
+stop av 10 
+c
+c other commands for details     =========
+failures 3
+* uncomment to include large H2 molecule - results will CHANGE!
+* atom h2 
+turbulence 0.5 km/sec 
+sphere  
+c c this simulates Lyman lines in the stellar continuum
+c atom h-like lyman pumping off 
+c
+c commands controlling output    =========
+print line optical depths
+save PDR "pdr_orion_veil.pdr"
+save feii column densities "pdr_orion_veil.fe2col"
+save hydrogen 21 cm "pdr_orion_veil.21cm"
+save molecules "pdr_orion_veil.mol"
+save overveiw "pdr_orion_veil.ovr"
+save column densities "pdr_orion_veil.col"   
+save heating "pdr_orion_veil.het"
+save cooling "pdr_orion_veil.col"
+save dr "pdr_orion_veil.dr"
+save H2 rates "pdr_orion_veil.h2rat"
+save pressure "pdr_orion_veil.pre"
+save wind "pdr_orion_veil.wnd"
+print line optical depths
+save continuum units microns "pdr_orion_veil.con" last 
+c
+c commands giving the monitors    =========
+// >>chng 04 jan 23, from 115.6 to 109.4, rescale orion dust to gas
+// >>chng 04 may 07, update density radius to published paper
+// >>chng 05 jul 05, from 95.4 to 94.2, tune up
+monitor temperature hydrogen 1 94.2
+//
+// >>chng 04 may 07, update density radius to published paper
+monitor temperature hydrogen 2 8330
+//
+// >>chng 03 aug 29, from 16.94 to 16.885, add H2* reactions
+// >>chng 03 aug 30, from 16.885 to 16.907, differnt resut debg rel
+// >>chng 03 sep 10, from 16.91 to 16.76 H2* resolution
+// >>chng 03 sep 11, from 16.76 to 16.43 better H2*
+// >>chng 03 nov 16, from 16.43 to 14.72, Solomon th85 -> bd96
+// >>chng 04 jan 23, from 14.72 to 14.50 rescale orion dust to gas
+// >>chng 04 feb 09, from 14.50 to 14.56, update H2 net
+// >>chng 04 feb 24, from 14.56 to 14.93, small changes, incr error
+// >>chng 04 may 07, update density radius to published paper, 17.81
+// >>chng 05 dec 08, from 17.94 to 15.30, update to Elwert Solomon rate
+monitor H2 column density 15.30 error 0.2 
+//
+// >>chng 03 jul 20, from 7.097 to 6.86, cap diffuse field pump, incr error
+// >>chng 03 aug 01, from 6.86 to 7.05, ans very unstable, incr error
+// TODO above just diff between fst and debug compile,
+// aug 01, fst got 7.00, slo got 7.11
+// >>chng 03 aug 03, from 7.05 to 7.20, 2s-2p coll rate
+// >>chng 03 aug 22, from 7.02 to 9.78, Nick Abel rewrite co network
+// >>chng 03 sep 10, from 9.78 to 6.81, H2* resolution
+// >>chng 03 nov 16, from 6.81 to -305, Solomon th85 -> bd96, rm this assert
+// >>chng 04 may 07, update density radius to published paper
+// >>chng 04 may 29, from 7.996 to 8.31, NA update H chem
+// >>chng 04 jul 03, from 8.31 to 8.61, NA update H, CO chem net
+// >>chng 05 mar 22, from 8.61 to 9.125, NA update CO chem net
+// >>chng 05 jul 05, from 9.12 to 9.14, tune up
+monitor CO column density 9.14 error 0.3 
+// 
+// >>chng 05 sep 30, add these 5
+monitor column density H2+  10.49 error 0.1
+// 
+// >>chng 05 dec 08, from 7.69 to 5.10, update to Elwert Solomon rate
+// >>chng 07 jan 07, from 5.10 to 5.44, enable McCall et al. H3+ rate
+monitor column density H3+  5.44 error 0.1
+// 
+// >>chng 05 dec 08, from 17.69 to 15.20, update to Elwert Solomon rate
+monitor column density H2g  15.20 error 0.1
+// 
+// >>chng 05 dec 08, from 15.15 to 14.60, update to Elwert Solomon rate
+monitor column density H2*  14.60 error 0.1
+// 
+// >>chng 08 mar 22, from 10.79 to 10.68 bugfix r1879
+monitor column density HeH+ 10.68 error 0.1
+// 
+//
+// >>chng 03 nov 10, from 400 to 440, chng zoning, use He0
+// >>chng 05 jul 05, from 440 to 500 cdsqte err
+// >>chng 08 dec 08, from 500 to 410, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 410 to 432, merging newsolvers branch
+// >>chng 09 jan 16, from 432 to 431, average of 10 runs
+monitor nzone 431
+//
+// >>chng 04 jul 02, from 6.5 to 7.5 O H ct
+// >>chng 04 sep 25, from 7.5 to 11, incr temp toler 0.02 to 0.005
+// >>chng 08 dec 08, from 11 to 9.554, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 9.554 to 21.3, merging newsolvers branch
+// >>chng 09 jan 16, from 21.3 to 21.3 (error 0.03), average of 10 runs
+// >>chng 09 jun 01, from 21.3 to 21.1, drift down, inc err
+monitor itrzn 21.1
+//
+c pdr_orion_veil.in
+c class pdr 
+c ========================================
+c 
+
+This is Abel et al 2004 model of Orion's veil, the layer of gas in front
+of the Orion Nebula.  
+>>refer	Orion	Veil	Abel, N. P., Brogan, C. L.,  Ferland, G. J., 
+>>refercon	O'Dell, C. R., Shaw, G., & Troland, T. H. 2004
+

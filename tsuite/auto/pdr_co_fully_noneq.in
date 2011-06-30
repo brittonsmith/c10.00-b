@@ -1,0 +1,124 @@
+title H2 and CO are fully molecular, non-equilibrium case
+c this is a pair with pdr_co_fully.in, which does not include non-equil chem
+c
+c commands controlling continuum =========
+blackbody 5000
+luminosity total solar linear 2
+brems 6
+luminosity total solar log -2.7
+c 
+c commands for density & abundances =========
+c set the density and composition, ism with grains
+hden 10
+abundances ism no qheat
+c
+c other commands for details     =========
+c this is an important ionization source
+cosmic ray background 
+c code will stop at 4000 K by default, lower this temp so we
+c can do fully molecular gas 
+stop temperature 10K linear
+c
+c commands controlling geometry  =========
+c the radius and thickness
+radius 15.8 
+stop thickness 6
+//>>chng 06 jun 02 add turbulence of 3 km/s
+turbulence 3 km / s
+c this turns on non-equilibrium chemistry as suggested by Federman et al. 1996
+set chemistry non equilibrium 
+c
+c commands controlling output    =========
+save overview "pdr_co_fully_noneq.ovr"
+save molecules "pdr_co_fully_noneq.mol"
+save dr "pdr_co_fully_noneq.dr"
+save heating "pdr_co_fully_noneq.het"
+save cooling "pdr_co_fully_noneq.col"
+save grain charge "pdr_co_fully_noneq.grnchr"
+save grain drift "pdr_co_fully_noneq.grndft"
+save grain temperature "pdr_co_fully_noneq.grntem"
+save monitors "pdr_co_fully_noneq.asr"
+c
+c commands giving the monitors    =========
+// >>chng 10 mar 03, from 154 to 36.95, enable all LAMDA and increase max num levels
+// >>chng 10 jun 17, from 36.95 to 34.81, fix botches due to recent dBase cooling changes
+// >>chng 10 aug 25, from 34.81 to 32.58, bugfix r4165 & r4167
+monitor temperature hydrogen 1 32.58
+// 
+monitor H2 column density 15.683
+// 
+// >>chng 07 feb 06, bugfix in r828, from 12.13 to 12.06
+// >>chng 08 dec 13, from 12.06 to 11.97, merging newsolvers branch
+// >>chng 10 mar 03, from 11.97 to 12.36, enable all LAMDA and increase max num levels
+monitor CO column density 12.36 error 0.1 
+// 
+// >>chng 10 mar 03, from -7.43 to -7.327, enable all LAMDA and increase max num levels
+monitor ionization helium 2 -7.327 error 0.1
+c 
+c gas has more he++ than He+ due to fast charge transfer with co
+c neutralizing he+ 
+// >>chng 07 dec 19, from -6.70 to -6.66, changes in r1698
+// >>chng 08 feb 20, from -6.66 to <-20, grain charge transfer changes in ion_solver and iso*
+monitor ionization helium 3 < -20 error 0.1
+// 
+monitor column density H2+  5.46 error 0.1
+// 
+// >>chng 06 dec 09, from 8.09 to 8.05, drift down as result of newmole merge
+// >>chng 08 dec 13, from 8.05 to 8.006, merging newsolvers branch
+// >>chng 10 mar 03, from 8.006 to 8.313, enable all LAMDA and increase max num levels
+monitor column density H3+  8.313 error 0.1
+// 
+monitor column density H2g  15.70 error 0.1
+// 
+// >>chng 07 feb 06, bugfix in r828, from 10.03 to 9.95
+// >>chng 08 dec 13, from 9.95 to 9.848, merging newsolvers branch
+// >>chng 10 mar 03, from 9.848 to 10.45, enable all LAMDA and increase max num levels
+// >>chng 11 may 18, from 10.45 to 10.486, average of 16 runs
+monitor column density H2*  10.486 error 0.1
+//
+// >>chng 06 sep 30, from 6.99 to 7.11, rjrw merge chem, corr several bugs
+// >>chng 08 feb 20, from 7.11 to 7.04, grain charge transfer changes in ion_solver and iso*
+// >>chng 10 mar 03, from 7.04 to 7.466, enable all LAMDA and increase max num levels
+monitor column density CN 7.466 error 0.1
+//
+// >>chng 08 feb 20, from 8.02 to 7.97, grain charge transfer changes in ion_solver and iso*
+// >>chng 10 mar 03, from 7.97 to 8.251, enable all LAMDA and increase max num levels
+monitor column density CH 8.251 error 0.1
+//
+// >>chng 08 dec 13, from 3.87 to 3.826, merging newsolvers branch
+// >>chng 10 mar 03, from 3.826 to 3.944, enable all LAMDA and increase max num levels
+monitor column density CH+ 3.944 error 0.1
+// 
+// >>chng 08 feb 20, from 3.366 to 3.276, grain charge transfer changes in ion_solver and iso*
+// >>chng 10 mar 03, from 3.276 to 3.454, enable all LAMDA and increase max num levels
+monitor eden 3.454
+// 
+// >>chng 07 feb 06, bugfix in r828, from 9 to 11 (9.03)
+// >>chng 08 dec 08, from 11 to 3.836, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 3.836 to 16.23, merging newsolvers branch
+// >>chng 09 jan 08, from 16.23 to 17.6, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, from 17.6 to 16.12 (error 0.18), average of 10 runs
+// >>chng 09 jun 15, from 16.12 to 13.5, adjust approach to outer edge
+// >>chng 09 jun 26, from 13.5 to 16.06, remove several dampers
+// >>chng 09 nov 09, from 16.06 to 12.88, update several botches after my slew of commits
+// >>chng 10 jan 27, from 12.88 to 15.86, gradual change
+// >>chng 10 feb 14, from 15.86 to 12.91, update O atomic data
+// >>chng 10 mar 02, from 12.91 to 16.08, fix botches after CO model switch
+// >>chng 10 mar 03, from 16.08 to 33.48, enable all LAMDA and increase max num levels
+monitor itrzn 33.48 error 0.18
+// 
+// >>chng 08 dec 08, from 85 to 73, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 73 to 69, merging newsolvers branch
+// >>chng 09 jan 08, from 69 to 68, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, from 68 to 71.6 (error 0.11), average of 10 runs
+// >>chng 09 jun 15, from 71.6 to 93, gradual approach to outer edge
+// >>chng 10 mar 03, from 93 to 80, enable all LAMDA and increase max num levels
+monitor nzone 80 error 0.11
+//
+c pdr_co_fully_noneq.in
+c class pdr 
+c ========================================
+
+test code in fully molecular limit with Federman non-equilibrium chem
+this is a pair with pdr_co_fully.in, which does not include non-equil chem
+

@@ -1,0 +1,40 @@
+title He atom at high densities 
+c
+c commands controlling continuum =========
+laser 2
+ionization -3
+c
+c commands for density & abundances =========
+hden 18
+set eden 18
+element helium abundance -1
+init file "hheonly.ini"
+c
+c commands controlling geometry  =========
+stop zone 1
+set dr -10 
+c
+c other commands for details     =========
+atom he-like levels 10
+atom he-like collapsed levels 20
+case b // no photoionization
+// >>chng 03 feb 28, raise temperature to get He ionized
+constant temper 20000 K
+iterate
+c
+c commands controlling output    =========
+print he-like departure helium 
+normalise to "He 1" 4471
+print line faint -2
+c
+c commands giving the monitors    =========
+monitor he-like excited helium departures 1 
+c limit_lte_he1_coll.in 
+c class limit 
+c ========================================
+c 
+
+test whether he-like ion populations go to lte in high density limit.
+The level populations should be in LTE, and the departure coefficients
+should be unity.
+

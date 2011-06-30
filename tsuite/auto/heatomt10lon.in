@@ -1,0 +1,146 @@
+title test low-den continuous emission from H atom, 2-nu is important
+c
+c commands controlling continuum =========
+laser 2
+ionization -1
+c
+c commands for density & abundances =========
+hden -8
+element helium abundance log 3
+set eden -5
+init "hheonly.ini"
+c
+c commands controlling geometry  =========
+stop thickness log 10
+c
+c other commands for details     =========
+no scattering opacity
+c force all helium to be in He+ 
+element helium ionization -4 0 -4 
+case b 
+c increase default resolution stored in continuum_mesh.ini 
+set continuum resolution 0.1
+iterate
+constant temperature 4
+c
+c commands controlling output    =========
+normalize to "he 1" 4471 
+print lines column  
+print diffuse continuum
+print lines column 
+save continuum "heatomt10lon.con" last units microns 
+save diffuse continuum "heatomt10lon.dif" last units microns 
+save two photon continuum "heatomt10lon.2nu" last
+save spectrum "heatomt10lon.ncon" last units microns 
+save monitors "heatomt10lon.asr"
+c
+c commands giving the monitors    =========
+monitor line luminosity "nFnu" 122.4m -26.458
+monitor line luminosity "nFnu" 60.83m -26.217
+monitor line luminosity "nFnu" 41.22m -26.085
+monitor line luminosity "nFnu" 30.87m -25.987
+monitor line luminosity "nFnu" 24.78m -25.912
+monitor line luminosity "nFnu" 24.30m -25.906
+monitor line luminosity "nFnu" 22.83m -25.885
+monitor line luminosity "nFnu" 21.42m -25.864
+monitor line luminosity "nFnu" 21.12m -25.859
+// >>chng 02 nov 26, use bigger attom next 15 or so changed
+monitor line luminosity "nFnu" 19.62m -25.816
+monitor line luminosity "nFnu" 17.65m -25.777
+monitor line luminosity "nFnu" 17.37m -25.771
+monitor line luminosity "nFnu" 15.69m -25.738
+monitor line luminosity "nFnu" 14.60m -25.709
+monitor line luminosity "nFnu" 12.43m -25.651
+monitor line luminosity "nFnu" 11.40m -25.623
+monitor line luminosity "nFnu" 10.46m -25.587
+monitor line luminosity "nFnu" 9.480m -25.556
+monitor line luminosity "nFnu" 9.325m -25.550
+monitor line luminosity "nFnu" 8.210m -25.500
+monitor line luminosity "nFnu" 7.580m -25.475
+monitor line luminosity "nFnu" 7.050m -25.439
+monitor line luminosity "nFnu" 4.114m -25.233
+monitor line luminosity "nFnu" 2.324m -25.058
+monitor line luminosity "nFnu" 1.643m -24.924
+monitor line luminosity "nFnu" 1.480m -24.919
+monitor line luminosity "nFnu" 1.436m -24.774
+monitor line luminosity "nFnu" 1.119m -24.737
+monitor line luminosity "nFnu"  8330A -24.778
+monitor line luminosity "nFnu"  8079A -24.500
+// >>chng 10 aug 12, from -24.43 to -24.45, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  6210A -24.45
+// >>chng 10 aug 12, from -24.52 to -24.59, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  4885A -24.59
+// >>chng 10 aug 12, from -24.62 to -24.83, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  3704A -24.83
+// >>chng 10 aug 12, from -24.25 to -24.34, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  3588A -24.34
+// >>chng 10 aug 12, from -23.87 to -23.97, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  2430A -23.97
+// >>chng 10 aug 12, from -23.89 to -23.99, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  2392A -23.99
+// >>chng 10 aug 12, from -24.02 to -24.26, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  2071A -24.26
+// >>chng 10 aug 12, from -24.03 to -24.28, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  2053A -24.28
+// >>chng 09 feb 24, from -24.09 to -24.06, botches due to r2763
+// >>chng 10 aug 12, from -24.06 to -24.57, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1793A -24.57
+// >>chng 02 aug 19, most of remainder changed when proper He 2-nu dist put in
+// >>chng 10 aug 12, from -24.03 to -24.85, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1585A -24.85
+// >>chng 10 aug 12, from -23.98 to -25.01, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1458A -25.01
+// >>chng 10 aug 12, from -23.93 to -25.1, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1357A -25.1
+// >>chng 10 aug 12, from -23.89 to -25.13, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1297A -25.13
+// >>chng 10 aug 12, from -23.87 to -25.14, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1263A -25.14
+// >>chng 10 aug 12, from -23.84 to -25.15, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1218A -25.15
+// >>chng 10 aug 12, from -23.82 to -25.14, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1196A -25.14
+// >>chng 10 aug 12, from -23.81 to -25.14, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1175A -25.14
+// >>chng 10 aug 12, from -23.79 to -25.13, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1144A -25.13
+// >>chng 10 aug 12, from -23.77 to -25.11, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1113A -25.11
+// >>chng 10 aug 12, from -23.76 to -25.1, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1103A -25.1
+// >>chng 10 aug 12, from -23.74 to -25.08, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1074A -25.08
+// >>chng 10 aug 12, from -23.73 to -25.08, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1064A -25.08
+// >>chng 10 aug 12, from -23.71 to -25.06, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1036A -25.06
+// >>chng 10 aug 12, from -23.68 to -25.03, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu"  1000A -25.03
+// >>chng 10 aug 12, from -23.63 to -24.96, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu" 925.1A -24.96
+// >>chng 10 aug 12, from -23.9 to -25.07, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu" 897.8A -25.07
+// >>chng 10 aug 12, from -23.86 to -25.08, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu" 760.0A -25.08
+//
+// >>chng 04 may 19, from -23.889 to -23.914 RP update helike sequence
+// >>chng 10 aug 12, from -23.91 to -25.03, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu" 701.5A -25.03
+//
+// >>chng 06 oct 20, from -25.556 to -25.511, ? ?
+// >>chng 06 dec 18, from -25.511 to -25.559, bugfix in r730
+// >>chng 10 aug 12, from -25.56 to -24.94, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu" 608.2A -24.94
+// >>chng 09 jan 22, from -26.92 to -27.02, some minor botches as a result of r2655
+// >>chng 10 aug 12, from -27.02 to -24.9, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu" 575.1A -24.9
+// >>chng 09 jan 22, from -26.82 to -26.93, some minor botches as a result of r2655
+// >>chng 10 aug 12, from -26.93 to -24.8, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nFnu" 511.9A -24.8
+monitor line luminosity "nFnu" 496.9A -22.210
+c heatomt10lon.in 
+c class limit 
+c ========================================
+c 
+
+This is a mate to hatomt10.in except that everything is He at low density

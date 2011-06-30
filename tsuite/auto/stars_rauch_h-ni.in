@@ -1,0 +1,104 @@
+title Rauch hot PN star
+c
+c commands controlling continuum =========
+table star rauch T = 150000 K, g = 6.5
+luminosity 4.5 solar
+c
+c commands controlling geometry  =========
+sphere
+radius 18
+stop zone 1
+set dr 0
+c
+c commands for density & abundances =========
+abundances planetary 
+hden 3.0
+c
+c other commands for details     =========
+constant temperature 15000 // because we only want to test shape
+no level2
+c
+c commands controlling output    =========
+plot continuum range .1
+save overview last "stars_rauch_h-ni.ovr"
+save results last "stars_rauch_h-ni.rlt"
+save monitors last "stars_rauch_h-ni.asr"
+save continuum last "stars_rauch_h-ni.con" units microns
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 20.39 to 20.44, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  20.44
+monitor line luminosity "nInu" 122.4m  27.769
+monitor line luminosity "nInu" 60.83m  28.681
+monitor line luminosity "nInu" 41.22m  29.189
+monitor line luminosity "nInu" 30.87m  29.567
+monitor line luminosity "nInu" 24.78m  29.853
+monitor line luminosity "nInu" 24.30m  29.873
+monitor line luminosity "nInu" 22.83m  29.958
+monitor line luminosity "nInu" 21.42m  30.042
+monitor line luminosity "nInu" 21.12m  30.055
+monitor line luminosity "nInu" 19.62m  30.153
+monitor line luminosity "nInu" 17.65m  30.290
+monitor line luminosity "nInu" 17.37m  30.316
+monitor line luminosity "nInu" 15.69m  30.446
+monitor line luminosity "nInu" 14.60m  30.537
+monitor line luminosity "nInu" 12.43m  30.752
+monitor line luminosity "nInu" 11.40m  30.863
+monitor line luminosity "nInu" 10.46m  30.974
+monitor line luminosity "nInu" 9.480m  31.104
+monitor line luminosity "nInu" 9.325m  31.123
+monitor line luminosity "nInu" 8.210m  31.293
+monitor line luminosity "nInu" 7.580m  31.391
+monitor line luminosity "nInu" 7.050m  31.488
+monitor line luminosity "nInu" 4.114m  32.192
+monitor line luminosity "nInu" 2.324m  32.934
+monitor line luminosity "nInu" 1.643m  33.384
+monitor line luminosity "nInu" 1.480m  33.520
+monitor line luminosity "nInu" 1.436m  33.559
+monitor line luminosity "nInu" 1.119m  33.885
+monitor line luminosity "nInu"  8330A  34.269
+monitor line luminosity "nInu"  8079A  34.308
+monitor line luminosity "nInu"  6210A  34.654
+monitor line luminosity "nInu"  4885A  34.966
+monitor line luminosity "nInu"  3704A  35.324
+monitor line luminosity "nInu"  3588A  35.370
+monitor line luminosity "nInu"  2430A  35.878
+monitor line luminosity "nInu"  2392A  35.898
+monitor line luminosity "nInu"  2071A  36.087
+monitor line luminosity "nInu"  2053A  36.093
+monitor line luminosity "nInu"  1793A  36.260
+monitor line luminosity "nInu"  1585A  36.409
+monitor line luminosity "nInu"  1458A  36.509
+monitor line luminosity "nInu"  1357A  36.592
+monitor line luminosity "nInu"  1297A  36.643
+monitor line luminosity "nInu"  1263A  36.676
+monitor line luminosity "nInu"  1218A  36.614
+monitor line luminosity "nInu"  1196A  36.734
+monitor line luminosity "nInu"  1175A  36.757
+monitor line luminosity "nInu"  1144A  36.785
+monitor line luminosity "nInu"  1113A  36.819
+monitor line luminosity "nInu"  1103A  36.830
+monitor line luminosity "nInu"  1074A  36.856
+monitor line luminosity "nInu"  1064A  36.869
+monitor line luminosity "nInu"  1036A  36.884
+monitor line luminosity "nInu"  1000A  36.932
+monitor line luminosity "nInu" 925.1A  36.949
+monitor line luminosity "nInu" 897.8A  36.989
+monitor line luminosity "nInu" 760.0A  37.168
+monitor line luminosity "nInu" 701.5A  37.261
+monitor line luminosity "nInu" 608.2A  37.412
+monitor line luminosity "nInu" 575.1A  37.466
+monitor line luminosity "nInu" 511.9A  37.574
+monitor line luminosity "nInu" 496.9A  37.601
+monitor line luminosity "nInu" 399.2A  37.754
+c stars_rauch_h-ni.in
+c class stars 
+c ========================================
+
+This is a model of a very hot planetary nebula, and checks that the code
+is able to access the H-Ni version of the Rauch grid of stellar
+atmosphere models.
+Constant temperature is set since this test is intended to test
+shape of ionizing continuum, not thermal physics.
+
+

@@ -1,0 +1,164 @@
+0	atmdat_char_tran.c	288	these should be values at 1e5 K 
+0	conv_base.c	915	PvH prefers test against err/10 
+0	ion_recomb.c	295	once debugged, move test to above so that old dr is not needlessly evaluated 
+0	mole_h2.c	2212	get better relationship between cr excit of Lya rate 
+0	mole_h_step.c	1521	update photoelectric opacity for H2 to include real cross sections and energies. this is not a higher priority because when H2 is formed there can be very little ionizing  radiation. this process must be trivial compared with the solomon process   following reference gives cross section for all energies  >>refer H2 photo cs Yan, M., Sadeghpour, H.R., & Dalgarno, A., 1998, ApJ, 496, 1044   Wilms, J., Allen, A., & McCray, R. 2000, ApJ, 542, 914 
+0	mole_h_step.c	1532	must include heating, compton ionization 
+0	mole_h_step.c	5303	had to comment following test out - NA change to hmole caused massive prints 
+0	opacity_addtotal.c	524	these RJRW macros are permanent - remove tests & make final 
+1	cont_createmesh.c	466	do not let temperature fall below 1e4 K for choosing stop temperature, to prevent fine opacity grid from becoming huge 
+1	cool_carb.c	235	add neutral helium Staemmler, V., & Flower, D. R. 1991, J. Phys. B, 24, 2343 
+1	cool_nitr.c	127	update these to Hudson & Bell, MNRAS, 348, 1275 and A&A, 430, 725 
+1	dynamics.c	1731	get following to work 
+1	heat_sum.c	436	add part of hard heat to secondaries 
+1	mole_h2_create.c	424	add this as a Lya excitation process >>KEYWORD Allison&Dalgargo; continuum dissociation; 
+1	mole_h2_io.c	1438	add logic to deduce cs 
+1	mole_h_step.c	1363	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	1412	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	1431	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	1463	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	1479	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	1504	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	1787	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	1845	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? reverse of this reaction i not in detailed balance,why? GS 
+1	mole_h_step.c	1904	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	1926	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	1972	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	2228	equivalent reaction for H2* is not included in chemistry,  Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	903	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	mole_h_step.c	949	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+1	opacity_addtotal.c	514	stupid - why this test on opacity_abs ? - we only get here if we already passed above test on this very thing 
+1	pressure_total.c	200	do something with this pressure term 
+1	prt_linepres.c	61	make this and eval rad pressure same routine, with flag saying to  print contributors - copy code from other routine - this code has been  left behind 
+1	prt_lines_lv1_k_zn.c	668	this does not belong here - should be where radius incremnted 
+1	radius_next.c	1288	rm logic detecting temp and pres failure - these normally occur near troubled parts of cooling curve 
+1	rt_escprob.c	1037	dynamics; this test assumes that neg vel are subsonic, so that sobolev length would overestimate the optical depth, since ion is at most present over computed  slab, and possibly more.  
+1	rt_escprob.c	1162	dynamics; this test assumes that neg vel are subsonic, so that sobolev length would overestimate the optical depth, since ion is at most present over computed  slab, and possibly more.  
+1	rt_line_one_tauinc.c	32	dynamics; this test assumes that neg vel are subsonic, so that sobolev length would overestimate the optical depth, since ion is at most present over computed  slab, and possibly more.  
+2	assert_results.c	282	NB this is not used, should do both, and more molecules (H2 only for now) 
+2	atmdat_2photon.c	366	How should these affect locally emitted continuum calculated in rtdiffuse? Just subtract these rates from the emitted ones? 
+2	atmdat_coll_ion.c	102	all of these are used in only three lines in this same file, and go into making a double.  So all of these casts to  float just turn intermediate doubles into floats to be turned back  into doubles.  Either promote ".CF" to double and or change all of these  vectors to floats.  In both cases all the casts to float should be removed. 
+2	atmdat_H_phot_cs.c	15	all of these ".STH" go straight into doubles.  Change definition of itmps or .STH to avoid demotion. 
+2	atmdat_readin.c	911	- check these 
+2	atom_fe2ovr.c	153	hydro.dstfe2lya is always multiplied by a double and stuffed into a double.  defining it as a float causes lost precision here. 
+2	atom_level3.c	208	test on c checks whether collisions are possible at this temperature, should add photo excitation 
+2	atom_level3.c	219	these pops ARE NOT defined below 
+2	atom_oi.c	216	following needed to get badbugs/bug8.in to work 
+2	atom_oi.c	222	following needed to get badbugs/bug5.in to work 
+2	atom_oi.c	381	this must have all stimulated emission, pump by cont, etc
+2	atom_pop5.c	249	p(5) was very slightly negative (1e-40) for SII in dqher.in 
+2	cddefines.c	294	do something with this or set to LONG_MAX?  after moving collapsed levels to iso.nCollapsed, this   variable does nothing.  iso.nTopOff[ipHE_LIKE] = 0;
+2	cddefines.c	349	Change this to higher number.  Make this change by itself after all other changes pass suite.  
+2	cddrive.c	1749	this should have a last argument like cdIonFrac for whether or not weighting is wrt electron density 
+2	cont_createpointers.c	1100	what are we trying to print here?
+2	cont_createpointers.c	488	this is redundant with contents of oxygen line arrays use them instead  when removing this, make sure all line intensity predictions  also go into oi line arrays 
+2	cont_gaunt.c	137	- These are liberal bounds, in final product, this ASSERT should be much more demanding. 
+2	cont_gaunt.c	154	- insert reference
+2	cont_gaunt.c	288	- insert reference
+2	cont_gaunt.c	339	- this check may also too liberal.  
+2	cont_gaunt.c	382	- pick these interface values and stick with it...best results have been 0.4, 1.5
+2	cont_pump.c	26	if used, add damp as arg since calling routine probably evaluated it 
+2	conv_base.c	854	this assert is not passed if error made much smaller.  This error should be related to a check on convergence of the molecular  networks and their sum rules, with a criteria used here and there 
+2	cool_carb.c	234	add term for protons from Rouef, E., & Le Bourlot, J. 1990, A&A, 236, 515 
+2	cool_iron.c	1060	update atomic data to Chidichimo et al 1999 AASup 137, 175
+2	cool_iron.c	1082	 * following not in cooling function 
+2	cool_iron.c	2338	put in temperature dependence 
+2	cool_iron.c	2792	put in temperature dependence 
+2	cool_iron.c	696	- ground term is actually a fix level system, the vectors are created, with pointers ipFe1_54m , ipFe1_111m, must add collision date, use  larger model atom 
+2	cool_iron.c	807	following to stop insane FeX strengths >>chng 96 jul 11, removed 1  10 factor, so using real data, 90.01
+2	cool_magn.c	191	use AtomSeqBeryllium here 
+2	cool_neon.c	129	transfer these lines 
+2	cool_nitr.c	78	use atom_level3 
+2	cool_oxyg.c	411	add proper temperature dependence when good coll stren calculations become available 
+2	cool_oxyg.c	483	put all these in cooling 
+2	cool_phos.c	27	update to Tayal data, email of April 22 2003, must be published 
+2	cool_sili.c	256	- update to this reference for As >>refer Si7 As Galavis, M.E., Mendoza, C., * Zeippen, C.J. 1997, A&AS, 123, 159 
+2	dynamics.c	143	this should be setable at run time as per Robin Williams emailrshock = 4e16; 
+2	dynamics.c	1645	Need to include divergence terms in pressure balance  if flux index is != 0 
+2	dynamics.c	1667	Need to include divergence terms in pressure balance  if flux index is != 0 
+2	dynamics.c	414	Switch to supersonic when bad enough failure for STRONGD -- need to improve this logic when the p(rho) data is cleaner  
+2	grains.c	1230	should any of the following 3 statements be removed 
+2	grains.c	1618	this algorithm might be more efficient with Brent 
+2	grains.c	1675	use something like log(ThermRatio) + log(delta) ???? 
+2	grains.c	2125	remove gv.bin[nd]->lgChrgConverged, gv.bin[nd]->LowestPot, gv.bin[nd]->dstpotsav      gv.bin[nd]->RateUp, gv.bin[nd]->RateDn; also  gv.HighestIon??, HighestIonStage()?? 
+2	grains.c	2375	note that the number of primary electrons is given by yhat, which may not be one, so this is not necessarily consistent 
+2	grains.c	2377	avAuger depends on grain charge, this should be treated explicitly here 
+2	grains.c	4425	a self-consistent treatment for the heating by Auger electrons should be used 
+2	grains.c	4426	a self-consistent treatment for the heating by Compton recoil electrons should be used 
+2	grains.c	4908	a self-consistent treatment for the heating by Auger electrons should be used 
+2	grains.c	4909	a self-consistent treatment for the heating by Compton recoil electrons should be used 
+2	grains_mie.c	1865	impose size limits on PAH's, changeover to graphite ?? 
+2	grains_mie.c	1866	detect if PAH's are present in ionized regions ?? 
+2	grains_mie.c	2038	include code for interpolating inv_att_len somewhere!! 
+2	grains_mie.c	2039	why is charge of pah2_ism_01.opc so different?? 
+2	heat_sum.c	588	find correct high-energy limit for these 
+2	helike.c	155	remove this when this routine really controls helium itself 
+2	helike.c	455	say where these come from...and do something with them!
+2	helike_create.c	1553	 this is part of the induce 2nu problem, which must be fixed for both he and h sequences. 
+2	helike_create.c	1808	- this structure is currently only used for helium itself... stuff numbers in for other elements, or drop the [nelem] dimension off  of helike.HeCS 
+2	helike_cs.c	125	rewrite HeCSInterp and all called routines to use a temp parameter, rather than phycon.te 
+2	helike_cs.c	315	find ioniz rates for helium like species, these are hydrogenic rates 
+2	helike_einsta.c	338	find a transition probability for this 2^3P0 - 2^3P1 transition. It will require a bit of trickery to insert into the rate matrix,   because of the fact that the lower level has a higher index.    See discussion "Energy order within 2 3P" near the top of helike.c 
+2	helike_level.c	1149	This is only temporary! 
+2	helike_level.c	419	Can't be used for helium sequence because suprathermals rate has not been split up into individual levels for helium sequence.  So Secondaries structure must be extended to include  helium levels before the below code can be implemented.  This is not a pressing correction  because total suprathermal is already included for the sequence, but this should not be put  off for too long because it should not be too difficult to do correctly. 
+2	helike_level.c	439	these are all wrong -- see comment above
+2	helike_level.c	828	at the moment can only assert these for the atom, and for Vriens gbar.
+2	helike_recom.c	3085	put Burgess reference here
+2	helike_recom.c	3086	I can't find this reference, should be killed anyway? --RLP 
+2	helike_recom.c	3157	use a canned interpolation routine, no need for special one here 
+2	hydro_vs_rates.c	286	make these effective quantum numbers? 
+2	hydro_vs_rates.c	446	This routine, like the above one, needs to use proper energy.
+2	hydro_vs_rates.c	500	sometimes rate is negative...is that okay?
+2	ion_oxyge.c	117	this will be zero in current form of atmdat_phfit set 2s**2 rate to rate for O V 
+2	ion_solver.c	664	renorm should == 1 when the molecules and ionization are in equilibrium.  Should monitor  this figure of merit in calling routine.  
+2	iso_cool.c	15	- if pc lint ever fixes this bug in their product, remove this -e 
+2	iso_cool.c	85	this routine dumps all heating and cooling into only a very few lables, it would be best to break these out into individual labels that show element,  iso sequence, and agent 
+2	iso_create.c	562	this will not work if highest level is resolved 
+2	iso_photo.c	110	- hydro.lgHInducImp should depend on iso and nelem, even better - just call one gamnc and within that code  check to see whether induced is important by looking  at occnum near threshold 
+2	iter_startend.c	108	this does not belong here - move to where main data created 
+2	mole_h2.c	3150	- put H2Lines in outward beams in RT_diffuse 
+2	mole_h2.c	3158	put supra thermal excitation into excitation of electronic bands 
+2	mole_h_drive.c	504	following always true, why?  either remove test or use it -  it is here to save time - this step routine is called very often 
+2	mole_h_drive.c	532	this should be done with new populations after converged soln 
+2	mole_h_step.c	1206	process is net source term for H(n=3) states, must be added in 
+2	mole_h_step.c	1234	process is net ionization term for H(n=3) states 
+2	mole_h_step.c	1897	this rate drives numerical instability in such models as secondary1 and 2.in 
+2	mole_h_step.c	1939	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+2	mole_h_step.c	1953	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+2	mole_h_step.c	2036	must add process H2+ + H- => H2 + H, Dalgarno&Lepp 87 
+2	mole_h_step.c	2041	put in H2+ + gamma => H + H+ 
+2	mole_h_step.c	2244	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+2	mole_h_step.c	2705	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+2	mole_h_step.c	2719	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+2	mole_h_step.c	2803	equivalent reaction for H2* is not included in chemistry, Big h2 does not include this reaction, what to do? GS 
+2	mole_h_step.c	598	- put in actual composition dependent Tad - this is only valid  for bare surfaces - not ice - for ice Tad is 555K   hmi.Tad is binding energy expressed as a temperature   note that hmi.Tad is set to 800. in zero   tau_nu the first equation in section 2.5  equation one paragraph before equation 2   at low grain temperatures all end in para, J=0 
+2	opacity_addtotal.c	93	add charged heavy elements 
+2	opacity_createall.c	1546	update to astro-ph/0308073, Lee, H-W, ApJ in press 
+2	pressure_total.c	120	this is the molecular binding energy (?) not set to anything 
+2	pressure_total.c	177	- should this include mass in grains? 
+2	prt_comment.c	1104	this statement needs to be reinstated with a better test for presence in the H II region 
+2	prt_comment.c	1488	extend to all iso and elem 
+2	prt_lines_continuum.c	55	this block of lines should have nInu, InwT, InwC like main vector of continuum points 
+2	prt_lines_helium.c	533	- this structure is currently only used for helium itself... stuff numbers in for other elements, or drop the [nelem] dimension off  of CaABLines 
+2	prt_lines_helium.c	673	- this structure is currently only used for helium itself... stuff numbers in for other elements, or drop the [nelem] dimension off  of CaABLines 
+2	prt_lines_lv1_k_zn.c	878	put this line back in! EFF = 43.6  (43.6 + 0.27*COLFAC)
+2	prt_lines_lv1_k_zn.c	977	put this in 
+2	prt_lines_lv1_li_ne.c	638	 these are actually in the optical depth arrays, should be moved to call PutLine - but some needed vars are not defined in structure 
+2	punch_do.c	2986	- NB - if continuum resolution changed the lines WILL NOT WORK 
+2	punch_special.c	45	this most likely needs to be changed in light of new 2nu treatment
+2	radius_next.c	6	- this routine is very important since it sets the pace for the calculation, and directly affects the convergence of the code.  Most of the logic is very old and  messy.    1) make sure all test cases have punch dr  2) cat all these reasons together into one file and sort on the reason  3) discover what logic is the main pacesetter for the code  4) which are never triggered and so can be removed 
+2	rt_diffuse.c	134	This doesn't really seem to be the expression above!!!
+2	rt_diffuse.c	153	Steve Kraemer says we're lacking radio recombination continua. Is this why?  --RLP 
+2	rt_diffuse.c	396	should use ConEmitLocal for all continua, but not followed by DiffuseEscape - put that at the end.  Once continua all  bundled this way, it will be easy to save them as a function  of depth and then do exact rt 
+2	rt_diffuse.c	458	Replace this constant with the appropriate macro, if any 
+2	rt_diffuse.c	634	add fegrain to outward beams, but within main formalism by including grains in all x-ray processes 
+2	rt_escprob.c	903	this min is because there are no calculations that show what to do for beta beyound this value 
+2	rt_line_one.c	694	- consider using ipDEST_INCOM instead of K2, it is much faster 
+2	rt_ots.c	143	should also check whether IonLo is in bounds - in func_set_ion test He0 is set to zero, so this does not do anything.  as NISO grows this  will become larger waste of time 
+2	rt_stark.c	63	- Stark is disabled for now since Lya escape causes density dependent feedback on the radiative transfer.  Would need to redo the escape  probs every time the electron density is updated - see blr89.in for an   example 
+2	zero.c	1006	file opacities are disabled for now - reinstate this when arrays settle down 
+2	zero.c	1573	why are higher lyman lines (ipResoRedist) not same as for H-like? 
+2	zero.c	390	change this to CS_new 
+3	cont_createmesh.c	451	consider making the fine opacity array a double.  with a float, the opacity  itself often becomes a denormalized number, it then becomes significant when multiplied  by dr - can cause numerical noise.  this is why the coarse opacity array is a double 
+3	cool_carb.c	275	change to atom_level3 
+3	zero.c	1044	next two should be constants since not reset - are hardwired limits to  code's range of temperature validity 

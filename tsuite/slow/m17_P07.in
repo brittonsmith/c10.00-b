@@ -1,0 +1,142 @@
+title Pellegrini et al 2008 model for M17
+c a brief description of its purpose
+c
+c commands controlling incident radiation field =========
+c these give the shape and intensity
+brems 8500000K 
+luminosity 33.5 range 7.35 to 176 Ryd
+table star CoStar, 47490K
+Q(h) 49.63 
+table star CoStar, 45335K 
+Q(h) 49.47 
+table star CoStar, 43151K 
+Q(h) 49.30 
+table star CoStar, 41209K 
+Q(h) 49.18 
+table star CoStar, 39084K 
+Q(h) 49.08 
+table star CoStar, 36982K 
+Q(h) 48.81 
+table star atlas, 34914K 
+Q(h) 48.97 
+table star atlas,27700K 
+absolute bolometric magnitude -8.5 
+table star atlas, 23700K 
+absolute bolometric magnitude -7.5 
+table star atlas, 20350K 
+absolute bolometric magnitude -6.6 
+table star atlas, 17050 
+absolute bolometric magnitude -6.3 
+c
+c commands for density & abundances =========
+hden 2.065
+abundances H II region no qheat no grains 
+grains PAH 10 
+grains orion 1 
+element Helium abundance -0.98 
+element Carbon abundance -4.14 
+element Nitrogen abundance -4.2 
+element Oxygen abundance -3.47 
+element Neon abundance -4.4 
+element Sulphur  abundance -5.06 
+element Chlorine abundance -6.88 
+element Argon abundance -5.64 
+element Iron abundance -5.5 
+c these are to speed things up a bit
+element limit off -6.9
+c
+c commands controlling geometry  =========
+radius 0.35355 linear parsecs 
+c the observed extinction along this sight line
+stop Av extended 6.36 
+c do not want to stop at too small a depth due to low temperature
+stop temperature off
+c magnetostatic equilibrium
+constant pressure 
+sphere 
+c
+c other commands for details     =========
+magnetic field tangled -4.3125 2
+turbulence 3km/s
+iterate
+cosmic rays background 2.5
+c
+c commands controlling output    =========
+save lines emissivity last "m17_P07.ems" 
+H  1 6563 
+S  2 6720 
+CO   1300m 
+CO   2600m 
+CO   866.7m 
+CO   371.5m 
+C  2 157.6m 
+C  1 369.7m 
+C  1 609.2m 
+O  1 63.17m 
+O  1 145.5m 
+Si 2 34.81m
+end of line 
+print line sort wavelength
+save overview last "m17_p07.ovr" 
+save monitors last "m17_p07.asr" 
+save hydrogen 21 CM last "m17_p07.h21"
+save pressure last "m17_p07.pre" 
+save molecules last "m17_p07.mol" 
+save heating last "m17_p07.het"
+save cooling last "m17_p07.col"
+save continuum last "m17_p07.con" units microns
+c
+c commands giving the monitors    =========
+monitor line luminosity "H  1" 6563 38.0166
+monitor line luminosity "S  2" 6720 36.687
+// 
+// >>chng 10 mar 03, from 33.71 to 34, fix botches after CO changes
+// >>chng 10 jun 22, from 34 to 33.96, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 1300m 33.96
+// 
+// >>chng 10 mar 03, from 32.98 to 33.13, fix botches after CO changes
+// >>chng 10 jun 22, from 33.13 to 33.1, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 2600m 33.1
+// 
+// >>chng 10 mar 03, from 33.83 to 34.19, fix botches after CO changes
+// >>chng 10 jun 22, from 34.19 to 34.15, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 866.7m 34.15
+// 
+// >>chng 10 mar 03, from 32.2 to 33.08, fix botches after CO changes
+// >>chng 10 jun 22, from 33.08 to 33.01, fix botches after dBaseLines cooling/heating changes
+// >>chng 10 aug 23, from 33.01 to 32.97, first run since change continuum grid
+monitor line luminosity "CO  " 371.5m 32.97
+// 
+monitor line luminosity "C  2" 157.6m 36.737
+// >>chng 10 aug 23, from 35.15 to 35.05, first run since change continuum grid
+// >>chng 11 apr 27, from 35.05 to 35.072, r4956: higher precision A_V integration
+monitor line luminosity "C  1" 369.7m 35.072
+// >>chng 10 aug 23, from 34.67 to 34.59, first run since change continuum grid
+monitor line luminosity "C  1" 609.2m 34.59
+// >>chng 10 aug 23, from 37 to 37.02, first run since change continuum grid
+monitor line luminosity "O  1" 63.17m 37.02
+// >>chng 10 aug 23, from 35.88 to 35.91, first run since change continuum grid
+monitor line luminosity "O  1" 145.5m 35.91
+// >>chng 10 aug 23, from 36.37 to 36.39, first run since change continuum grid
+monitor line luminosity "Si 2" 34.81m 36.39
+// 
+// >>chng 10 jul 19, from 15.85 to 15.83, slow drift
+// >>chng 10 aug 23, from 15.83 to 15.77, first run since change continuum grid
+monitor column density  OH 15.77 error 0.1
+// 
+monitor column density  H2 21.419 error 0.1
+// >>chng 10 jun 22, from 16.18 to 16.15, fix botches after dBaseLines cooling/heating changes
+monitor column density  CO 16.15
+// 
+monitor temperature hydrogen 2 radius 3.992
+// >>chng 10 aug 23, from 2.902 to 2.929, first run since change continuum grid
+monitor temperature hydrogen 1 radius 2.929
+monitor temperature H2 radius 2.028
+c
+c m17_P07.in 
+c class hii pdr 
+c ========================================
+c 
+
+This is the magnetostatic model of the M17 H+ / H0 / H2 region
+presented in Pellegrini et al. 2007, ApJ, 658, 1119

@@ -1,0 +1,160 @@
+# for information on the format of this file, see readme_LineList_dat.txt
+# >>chng 06 may 14, add H beta
+# >>chng 06 may 09, add H+ region optical lines
+# >>chng 06 feb 21, add broadband dust continua
+# >>chng 06 aug 31, add inward pdr lines
+#
+# a set of lines for PDR calculations - this includes H2 lines
+# that come from the big molecule 
+# this file should be kept parallel with the version that does not
+# include H2
+#
+# Begin CLOUDY grid output line list...
+#
+# hydrogen lines
+H  1   6562.85A    Balmer alpha    3-2
+H  1   4861.36A    Balmer beta     4-2
+H  1   1.87511m   Paschen alpha   4-3
+H  1   4.05116m   Br alpha        5-4
+#H  1   2.166m   Br gamma
+#H  1   1.945m   Br delta
+H  1   7.45781m   Pfund alpha     6-5
+#H  1   12.37m   Humphries alpha 7-6
+#H  1   19.06m   8-7
+#
+# some lines from the H+ region
+O  3     5007
+totl     3727
+n  2     6584
+s  2     6720
+totl     4861.36
+O  1     6300
+N  1     5200
+totl     10829.9 all three lines within multiplet
+#
+# the strong pdr lines
+#
+# carbon monoxide
+CO   866.721m
+CO   650.075m
+CO   325.137m
+#
+# carbon
+C  1 609.2m
+C  1 369.7m
+C  2 157.6m
+INWD 157.6m
+#
+# oxygen
+O  1 63.17m 
+INWD 63.17m 
+O  1 145.530m
+# 
+# neon
+Ne 2 12.81m
+Ne 3 15.55m
+Ne 3 36.0140m
+#
+# total grain heating, all source, equal to total grain cooling
+grat 0 
+#
+# series of IR bands, mainly dust emission in PDR
+FIR  83.00m
+TIR   1800m
+NIRa 2.850m
+NIRb 3.000m
+MIRa 15.00m
+MIRb 22.50m
+NMIR 21.75m
+TFIR 611.25m
+#
+# Silicon
+Si 2 34.8140m
+#
+# Sulphur
+S  3 18.67m
+S  3 33.47m
+S  4 10.51m
+#
+# an FeII line
+Fe 2 1.64355m
+#
+
+
+
+# these are in the file, but the empty line above stopped the
+# remainder of the file from being read
+# the H2 lines
+H2   17.03m  0-0 S(1)
+H2   12.28m  0-0 S(2)
+H2   9.665m  0-0 S(3)
+H2   8.025m  0-0 S(4)
+H2   6.909m  0-0 S(5)
+H2   2.801m  1-0 O(3)
+H2   2.730m  3-2 Q(3)
+H2   2.719m  2-1 Q(9)
+H2   2.718m  3-2 Q(2)
+H2   2.709m  3-2 Q(1)
+H2   2.626m  1-0 O(2)
+H2   2.558m  2-1 Q(2)
+H2   2.550m  2-1 Q(1)
+H2   1.629m  11-8 S(7)
+H2   1.631m  1-0 S(15)
+H2   1.636m  1-0 S(16)
+H2   1.639m  1-0 S(12)
+H2   1.645m  3-1 O(7)
+H2   1.650m  1-0 S(11)
+H2   1.658m  7-5 S(0)
+H2   1.666m  1-0 S(10)
+H2   1.675m  1-0 S(19)
+H2   1.687m  1-0 S(9)
+H2   1.695m  1-0 S(20)
+H2   1.714m  1-0 S(8)
+H2   1.719m  1-0 S(21)
+H2   1.747m  1-0 S(22)
+H2   1.748m  1-0 S(7)
+H2   1.780m  1-0 S(23)
+H2   1.788m  1-0 S(6)
+H2   1.835m  1-0 S(5)
+H2   1.891m  1-0 S(4)
+H2   1.957m  1-0 S(3)
+H2   2.033m  1-0 S(2)
+H2   2.121m  1-0 S(1)
+H2   2.223m  1-0 S(0)
+H2   2.413m  1-0 Q(2)
+H2   2.423m  1-0 Q(3)
+H2   2.437m  1-0 Q(4)
+H2   2.454m  1-0 Q(5)
+H2   2.475m  1-0 Q(6)
+H2   2.499m  1-0 Q(7)
+H2   2.527m  1-0 Q(8)
+H2   2.559m  8-6 Q(15)
+H2   2.595m  1-0 Q(10)
+H2   2.634m  1-0 Q(11)
+H2   2.678m  1-0 Q(12)
+H2   2.726m  1-0 Q(13)
+H2   2.778m  1-0 Q(14)
+H2   2.835m  1-0 Q(15)
+H2   2.897m  4-3 Q(2)
+H2   2.965m  1-0 Q(17)
+H2   3.117m  1-0 Q(19)
+H2   3.365m  0-0 S(22)
+H2   3.368m  0-0 S(21)
+H2   3.371m  0-0 S(23)
+H2   3.381m  6-5 Q(4)
+H2   3.386m  0-0 S(24)
+H2   3.404m  0-0 S(19)
+H2   3.410m  0-0 S(25)
+H2   3.438m  0-0 S(18)
+H2   3.485m  0-0 S(17)
+H2   3.547m  0-0 S(16)
+H2   3.626m  0-0 S(15)
+H2   3.724m  0-0 S(14)
+H2   3.846m  0-0 S(13)
+H2   3.996m  0-0 S(12)
+H2   4.181m  0-0 S(11)
+H2   4.409m  0-0 S(10)
+H2   5.053m  0-0 S(8)
+H2   6.108m  0-0 S(6) 
+
+

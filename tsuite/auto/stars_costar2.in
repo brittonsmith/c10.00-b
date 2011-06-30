@@ -1,0 +1,105 @@
+title costar interpolation mode 2
+c
+c commands controlling continuum =========
+table star costar 35575.4 4.2367
+ionization parameter -2
+table star costar 34468.5 3.86765
+ionization parameter -2
+table star costar 41741.2 4.02
+ionization parameter -2
+table star costar 45000 4.1593
+ionization parameter -2
+table star costar 27500 3.3
+ionization parameter -2
+c
+c commands for density & abundances =========
+hden 2
+grains orion single no qheat 
+abundances ism no grains
+c
+c commands controlling geometry  =========
+set dr 0
+stop zone 1
+c
+c other commands for details     =========
+c
+c commands controlling output    =========
+save monitors "stars_costar2.asr"
+save continuum "stars_costar2.con" units microns last 
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from -13.59 to -13.54, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  -13.54
+monitor line luminosity "nInu" 122.4m  -6.207
+monitor line luminosity "nInu" 60.83m  -5.295
+monitor line luminosity "nInu" 41.22m  -4.787
+monitor line luminosity "nInu" 30.87m  -4.409
+monitor line luminosity "nInu" 24.78m  -4.123
+monitor line luminosity "nInu" 24.30m  -4.105
+monitor line luminosity "nInu" 22.83m  -4.025
+monitor line luminosity "nInu" 21.42m  -3.945
+monitor line luminosity "nInu" 21.12m  -3.932
+monitor line luminosity "nInu" 19.62m  -3.840
+monitor line luminosity "nInu" 17.65m  -3.711
+monitor line luminosity "nInu" 17.37m  -3.686
+monitor line luminosity "nInu" 15.69m  -3.563
+monitor line luminosity "nInu" 14.60m  -3.476
+monitor line luminosity "nInu" 12.43m  -3.273
+monitor line luminosity "nInu" 11.40m  -3.167
+monitor line luminosity "nInu" 10.46m  -3.061
+monitor line luminosity "nInu" 9.480m  -2.936
+monitor line luminosity "nInu" 9.325m  -2.918
+monitor line luminosity "nInu" 8.210m  -2.756
+monitor line luminosity "nInu" 7.580m  -2.662
+monitor line luminosity "nInu" 7.050m  -2.569
+monitor line luminosity "nInu" 4.114m  -1.886
+monitor line luminosity "nInu" 2.324m  -1.171
+monitor line luminosity "nInu" 1.643m  -0.746
+monitor line luminosity "nInu" 1.480m  -0.617
+monitor line luminosity "nInu" 1.436m  -0.584
+monitor line luminosity "nInu" 1.119m  -0.280
+monitor line luminosity "nInu"  8330A  0.069
+monitor line luminosity "nInu"  8079A  0.092
+monitor line luminosity "nInu"  6210A  0.397
+monitor line luminosity "nInu"  4885A  0.660
+monitor line luminosity "nInu"  3704A  0.950
+monitor line luminosity "nInu"  3588A  0.919
+monitor line luminosity "nInu"  2430A  1.283
+monitor line luminosity "nInu"  2392A  1.295
+monitor line luminosity "nInu"  2071A  1.407
+monitor line luminosity "nInu"  2053A  1.411
+monitor line luminosity "nInu"  1793A  1.496
+monitor line luminosity "nInu"  1585A  1.556
+monitor line luminosity "nInu"  1458A  1.648
+monitor line luminosity "nInu"  1357A  1.698
+monitor line luminosity "nInu"  1297A  1.718
+monitor line luminosity "nInu"  1263A  1.730
+monitor line luminosity "nInu"  1218A  1.748
+monitor line luminosity "nInu"  1196A  1.756
+monitor line luminosity "nInu"  1175A  1.767
+monitor line luminosity "nInu"  1144A  1.781
+monitor line luminosity "nInu"  1113A  1.799
+monitor line luminosity "nInu"  1103A  1.804
+monitor line luminosity "nInu"  1074A  1.819
+monitor line luminosity "nInu"  1064A  1.825
+monitor line luminosity "nInu"  1036A  1.836
+monitor line luminosity "nInu"  1000A  1.846
+monitor line luminosity "nInu" 925.1A  1.870
+monitor line luminosity "nInu" 897.8A  0.970
+monitor line luminosity "nInu" 760.0A  0.858
+monitor line luminosity "nInu" 701.5A  0.808
+monitor line luminosity "nInu" 608.2A  0.682
+monitor line luminosity "nInu" 575.1A  0.632
+monitor line luminosity "nInu" 511.9A  0.586
+monitor line luminosity "nInu" 496.9A  0.356
+monitor line luminosity "nInu" 399.2A  0.217
+//
+c stars_costar2.in
+c class stars 
+c ========================================
+c 
+
+This is a test of whether the code can read the CoStar stellar atmospheres.
+It checks the resulting ionization to confirm that the continuum 
+shape was ok.
+

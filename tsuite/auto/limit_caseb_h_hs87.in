@@ -1,0 +1,63 @@
+title "Case B from Hummer and Storey"
+init "honly.ini"
+laser 1.1
+ionization parameter -1
+constant temperature 4
+case b hummer no photoionization no pdest
+atom h-like element hydrogen levels resolved 30
+no induced processes
+no level2
+no scattering escape
+set dr -20
+hden 4  
+stop zone 1
+iterate
+print populaions h-like
+print departure h-like
+save monitors "limit_caseb_h_hs87.asr"
+c 
+monitor Case B H-like hydrogen error 0.15 range 1000 30000A
+monitor line "TOTL" 4861    1.0000 error 0.02
+monitor line "Ca B" 4861    1.0000 error 0.02
+monitor line "CaBo" 4861    1.0000 error 0.02
+monitor line "H  1" 6563    2.8500 error 0.02
+monitor line "H  1" 4861    1.0000 error 0.02
+monitor line "H  1" 4340    0.4690 error 0.02
+monitor line "H  1" 4102    0.2600 error 0.02
+monitor line "H  1" 3970    0.1590 error 0.02
+monitor line "H  1" 3889    0.1050 error 0.02
+monitor line "H  1" 3835    0.0734 error 0.02
+monitor line "H  1" 3798    0.0533 error 0.02
+monitor line "H  1" 3771    0.0400 error 0.02
+monitor line "H  1" 3750    0.0309 error 0.02
+monitor line "H  1" 3734    0.0244 error 0.02
+monitor line "H  1" 3722    0.0197 error 0.02
+monitor line "H  1" 3712    0.0162 error 0.02
+monitor line "H  1" 1.875m  0.3320 error 0.02
+monitor line "H  1" 1.282m  0.1620 error 0.02
+monitor line "H  1" 1.094m  0.0901 error 0.02
+monitor line "H  1" 1.005m  0.0553 error 0.02
+monitor line "H  1" 9546A   0.0365 error 0.02
+monitor line "H  1" 9229A   0.0254 error 0.02
+monitor line "H  1" 9015A   0.0184 error 0.02
+monitor line "H  1" 8863A   0.0138 error 0.02
+monitor line "H  1" 8750A   0.0106 error 0.02
+monitor line "H  1" 8665A   0.0084 error 0.02
+monitor line "H  1" 8598A   0.0067 error 0.02
+monitor line "H  1" 8545A   0.0055 error 0.02
+monitor line "H  1" 4.051m  0.0777 error 0.02
+monitor line "H  1" 2.625m  0.0447 error 0.02
+monitor line "H  1" 2.166m  0.0275 error 0.02
+monitor line "H  1" 1.945m  0.0181 error 0.02
+monitor line "H  1" 1.817m  0.0126 error 0.02
+monitor line "H  1" 1.736m  0.0091 error 0.02
+monitor line "H  1" 1.681m  0.0068 error 0.02
+monitor line "H  1" 1.641m  0.0052 error 0.02
+monitor line "H  1" 1.611m  0.0041 error 0.02
+monitor line "H  1" 1.588m  0.0033 error 0.02
+// >>chng 08 apr 30, from 0.0027 to 0.00265 H, He topoff change
+monitor line "H  1" 1.570m  0.00265 error 0.02
+c
+c limit_caseb_h_hs87.in
+c class limit
+

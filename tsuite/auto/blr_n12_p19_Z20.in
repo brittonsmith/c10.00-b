@@ -1,0 +1,169 @@
+title BLR model, density 1e12 cm-3, flux of H-ion phots 1e19 cm2 s-1, Z=20
+c
+c commands controlling continuum =========
+table agn
+phi(h) 19
+c
+c commands for density & abundances =========
+hden 12
+abundances starburst 20 
+c
+c commands controlling geometry  =========
+stop column density 23
+c
+c other commands for details     =========
+failures 5 
+iterate convergence 
+c these are to try to speed things up
+init "c84.ini"
+no level2 lines
+c
+c commands controlling output    =========
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+save monitors "blr_n12_p19_Z20.asr" last
+save convergence reason "blr_n12_p19_Z20.cvr" 
+save overview "blr_n12_p19_Z20.ovr" last
+save dr "blr_n12_p19_Z20.dr" last 
+c
+c commands giving the monitors    =========
+// strong blr lines
+// >>chng 06 jul 07, from 7.581 to 7.560, Stancil N1 CT
+// >>chng 06 aug 02, from 7.560 to 7.609, update O+2, N+2 CT
+// >>chng 06 aug 09, from 7.609 to 7.633 Meudon 06, Bowen change
+// >>chng 07 jul 27, from 7.633 to 7.608, repair common error in several collision routines
+// >>chng 07 dec 03, from 7.608 to 7.587, RP changes iso sequences
+// >>chng 08 mar 17, from 7.587 to 7.561, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+monitor line luminosity "totl"  1216 7.561 //total Hydrogen Lyman-alpha 1215.67 
+// 
+//total of sum of both Si IV comp
+// >>chng 04 sep 06, from 5.393 to 5.345, bug nej Auger
+// >>chng 06 aug 09, from 5.345 to 5.403 Meudon 06, Bowen change
+// >>chng 07 jan 20, from 5.403 to 5.367, e2 bug
+// >>chng 07 jul 25, from 5.367 to 5.334, bugfix pvh FeII tau r1290
+// >>chng 08 mar 17, from 5.334 to 5.309, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 nov 04, from 5.309 to 5.329, line RT bug fixes (r2429-35)
+monitor line luminosity "totl"  1397 5.329
+// 
+// >>chng 06 aug 02, from 3.076 to 3.112, update O+2, N+2 CT
+// >>chng 06 aug 09, from 3.112 to 3.220 Meudon 06, Bowen change
+// >>chng 07 jan 20, from 3.220 to 3.179, e2 bug
+// >>chng 07 jul 25, from 3.179 to 3.152, bugfix pvh FeII tau r1290
+// >>chng 08 mar 17, from 3.152 to 3.115, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 10, from 3.115 to 3.139, change default h-like levels, other minor changes
+// >>chng 09 jun 15, from 3.139 to 3.161, gradual approach to outer edge
+monitor line luminosity "totl"  1402 3.161 //total O IV] 1402 
+// 
+// >>chng 06 aug 02, from 5.224 to 5.244, update O+2, N+2 CT
+// >>chng 06 aug 09, from 5.244 to 5.308 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 5.308 to 5.243, Badnell DR turned on
+// >>chng 07 jan 20, from 5.243 to 5.206, e2 bug
+// >>chng 07 jul 25, from 5.206 to 5.181, bugfix pvh FeII tau r1290
+// >>chng 09 feb 23, from 5.181 to 5.237, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1549 5.237 //total of sum of both C IV comp
+//
+// >>chng 09 jun 28, from 1 to 4.984, check convergence of outward Hb
+monitor line luminosity "Inwd" 1549 4.984, 
+//
+// >>chng 09 jun 28, from 1 to 6.582, check convergence of outward Hb
+monitor line luminosity "H  1" 4861 6.582, 
+//
+// >>chng 09 jun 28, from 1 to 6.572, check convergence of outward Hb
+monitor line luminosity "Inwd" 4861 6.572, 
+// 
+// >>chng 06 aug 02, from 6.527 to 6.498, update O+2, N+2 CT
+// >>chng 08 mar 17, from 6.498 to 6.588, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 30, from 6.588 to 6.609 H, He topoff change
+monitor line luminosity "he 2"  1640 6.609 //total He II Balmer-alpha 1640
+// 
+// >>chng 06 aug 02, from 4.709 to 4.734, update O+2, N+2 CT
+// >>chng 06 aug 09, from 4.734 to 4.795 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 4.795 to 4.761, Badnell DR turned on
+// >>chng 07 jul 25, from 4.761 to 4.719, bugfix pvh FeII tau r1290
+// >>chng 08 mar 17, from 4.719 to 4.656, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 09 feb 23, from 4.656 to 4.682, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "o  3"  1666 4.682 //total O III] 1666
+// 
+// >>chng 06 aug 09, from 4.551 to 4.591 Meudon 06, Bowen change
+// >>chng 07 jul 25, from 4.591 to 4.552, bugfix pvh FeII tau r1290
+// >>chng 08 mar 17, from 4.552 to 4.522, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 09 feb 23, from 4.522 to 4.588, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1909 4.588 //total of sum of CIII] 1908.73+
+// 
+//total of sum of Si III] 1892+
+// >>chng 04 jun 01, from 6.941 to 6.964, unified calc of Lya line width
+// >>chng 04 jul 02, from 6.964 to 6.941, O H ct
+// >>chng 04 jul 03, from 6.941 to 6.962, NA update CO, H chem net
+// >>chng 04 jul 07, from 6.962 to 6.927, oh ct integ
+// >>chng 04 dec 08, from 6.927 to 6.952 co-ion feedback, check converg
+// >>chng 05 mar 25, from 6.952 to 6.913, renorm H pops in level solver
+// >>chng 06 aug 02, from 6.913 to 6.946, update O+2, N+2 CT
+// >>chng 06 aug 25, from 6.946 to 6.967, better T fit to OIII cs
+// >>chng 06 nov 29, from 6.967 to 6.932, Badnell DR turned on
+// >>chng 07 jul 25, from 6.932 to 6.881, bugfix pvh FeII tau r1290
+// >>chng 07 nov 29, from 6.881 to 6.855, update DR rates
+// >>chng 08 mar 17, from 6.855 to 6.823, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 20, incr error to more realistic 10%
+monitor line luminosity "totl"  1888 6.823 error 0.1 
+// 
+// >>chng 06 aug 02, from 6.371 to 6.400, update O+2, N+2 CT
+// >>chng 06 aug 09, from 6.400 to 6.426 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 6.426 to 6.246, Badnell DR turned on
+// >>chng 07 jul 25, from 6.246 to 6.212, bugfix pvh FeII tau r1290
+// >>chng 07 dec 19, from 6.212 to 6.183, changes in r1698
+monitor line luminosity "totl"  1860 6.183 //total sum of both Al III comp
+//
+//total C II] 2324.69+2328.12
+// >>chng 03 sep 07, from 5.686 to 5.709, ? ?
+// >>chng 03 sep 10, from 5.709 to 5.771, changes in H2* population
+// >>chng 03 sep 12, from 5.771 to 5.725, changes in H2* population, incr err
+// >>chng 04 jun 12, from 5.649 to 5.816 chng cont shield fcn
+// >>chng 04 jul 07, from 5.816 to 5.963, oh ct integ
+// >>chng 04 jul 16, from 5.963 to 5.902, chng order eval O ion, incr err
+// >>chng 04 jul 29, from 5.902 to 6.050, imp h chem conv, inc err
+// >>chng 04 dec 08, from 6.050 to 5.805 co-ion feedback, check converg
+// >>chng 05 mar 25, from 5.805 to 5.945, renorm H pops in level solver
+// >>chng 05 aug 03, from 5.945 to 5.803, NA update CO, H chem net
+// >>chng 06 aug 02, from 5.803 to 5.892, update O+2, N+2 CT
+// >>chng 07 jan 20, from 5.892 to 5.795, e2 bug
+// >>chng 07 dec 29, from 5.795 to 5.71, drift down
+// >>chng 08 mar 22, from 5.71 to 5.61 bugfix r1879
+monitor line luminosity "totl"  2326 5.61 err 0.2
+//
+// >>chng 04 jul 07, from 7.807 to 7.833, oh ct integ
+// >>chng 07 jul 25, from 7.833 to 7.803, bugfix pvh FeII tau r1290
+// >>chng 08 mar 17, from 7.803 to 7.770, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+monitor line luminosity "totl"  2798 7.770 //total of sum of both Mg II comp
+//
+// >>chng 04 sep 30, from 8 to 10, conv_base conv heat cool
+// >>chng 08 dec 08, from 10 to 9.236, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 9.236 to 18.39, merging newsolvers branch
+// >>chng 09 jan 08, from 18.39 to 18.79, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, from 18.79 to 18.81 (error 0.11), average of 10 runs
+// >>chng 09 may 30, from 18.8 to 20, average 32/64
+monitor itrzn 20. error 0.15
+//
+// >>chng 04 apr 20, needs one more iteration, H chem has changed
+// >>chng 04 apr 25, needs one more, from 7 to 8
+// >>chng 04 apr 29, needs one from, to < 10, co col den changes
+// >>chng 08 dec 08, from 10 to 4, upper limit -> equals (r2515)
+// >>chng 09 jun 28, from 4 to 7, check convergence outward Hb
+// >>chng 09 jul 15, from 7 to 5, set autocv from 0.1 to 0.2
+// >>chng 09 jul 27, from 5 to 4, rm test on outward Hb - will create ticket on problems
+// >>chng 10 jul 23, from 4 to 3, run gcc cloud9 
+monitor niter >2 
+monitor niter <5 
+//
+// >>chng 03 dec 07, from 450 to 600, dr increase resol metals
+// >>chng 05 dec 22, from 600 to 450 (393), rationalize zone asserts
+// >>chng 08 dec 08, from 450 to 444, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 444 to 448, merging newsolvers branch
+// >>chng 09 jan 16, from 448 to 450, average of 10 runs
+// >>chng 09 jun 15, from 450 to 444, gradual approach to outer edge
+monitor nzone 444 
+// 
+c blr_n12_p19_Z20.in 
+c class blr 
+c ========================================
+
+This is one of the 5 models that sample the LOC plane.

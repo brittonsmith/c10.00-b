@@ -1,0 +1,1 @@
+g++ $1.cpp -I/Users/gary/cloudy/trunk/source  /Users/gary/cloudy/trunk/source/sys_gcc/libcloudy.a -o $1.exe

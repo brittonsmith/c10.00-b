@@ -1,0 +1,120 @@
+title access various Atlas ODFNEW grids
+c
+c commands controlling continuum =========
+c Include stars with a wide range of metallicities to test access to these grids.
+table star atlas odfnew Z+0.5 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas odfnew Z+0.2 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas odfnew Z+0.0 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas odfnew Z-0.5 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas odfnew Z-1.0 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas odfnew Z-1.5 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas odfnew Z-2.0 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas odfnew Z-2.5 38400.0 4.82
+luminosity 4.509202522 solar
+c
+c commands for density & abundances =========
+abundances old solar 84 
+hden 6.0
+grains ism
+c
+c commands controlling geometry  =========
+radius -2.0 parsec
+sphere
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+constant temperature 4
+c
+c commands controlling output    =========
+c
+save overview last "stars_atlas_odfnew_all.ovr"
+save results last "stars_atlas_odfnew_all.rlt"
+save monitors last "stars_atlas_odfnew_all.asr"
+save transmitted continuum last "stars_atlas_odfnew_all.trn" no header
+save continuum last "stars_atlas_odfnew_all.con" units microns
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 23.08 to 23.13, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  23.13
+monitor line luminosity "nInu" 122.4m  30.463
+monitor line luminosity "nInu" 60.83m  31.388
+monitor line luminosity "nInu" 41.22m  31.903
+monitor line luminosity "nInu" 30.87m  32.286
+monitor line luminosity "nInu" 24.78m  32.577
+monitor line luminosity "nInu" 24.30m  32.597
+monitor line luminosity "nInu" 22.83m  32.682
+monitor line luminosity "nInu" 21.42m  32.768
+monitor line luminosity "nInu" 21.12m  32.782
+monitor line luminosity "nInu" 19.62m  32.880
+monitor line luminosity "nInu" 17.65m  33.019
+monitor line luminosity "nInu" 17.37m  33.045
+monitor line luminosity "nInu" 15.69m  33.177
+monitor line luminosity "nInu" 14.60m  33.269
+monitor line luminosity "nInu" 12.43m  33.486
+monitor line luminosity "nInu" 11.40m  33.598
+monitor line luminosity "nInu" 10.46m  33.710
+monitor line luminosity "nInu" 9.480m  33.841
+monitor line luminosity "nInu" 9.325m  33.861
+monitor line luminosity "nInu" 8.210m  34.031
+monitor line luminosity "nInu" 7.580m  34.129
+monitor line luminosity "nInu" 7.050m  34.228
+monitor line luminosity "nInu" 4.114m  34.932
+monitor line luminosity "nInu" 2.324m  35.669
+monitor line luminosity "nInu" 1.643m  36.108
+monitor line luminosity "nInu" 1.480m  36.243
+monitor line luminosity "nInu" 1.436m  36.282
+monitor line luminosity "nInu" 1.119m  36.599
+monitor line luminosity "nInu"  8330A  36.952
+monitor line luminosity "nInu"  8079A  37.000
+monitor line luminosity "nInu"  6210A  37.326
+monitor line luminosity "nInu"  4885A  37.601
+monitor line luminosity "nInu"  3704A  37.872
+monitor line luminosity "nInu"  3588A  37.944
+monitor line luminosity "nInu"  2430A  38.371
+monitor line luminosity "nInu"  2392A  38.375
+monitor line luminosity "nInu"  2071A  38.409
+// >>chng 10 aug 12, from 38.42 to 38.5, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu"  2053A  38.5
+monitor line luminosity "nInu"  1793A  38.649
+monitor line luminosity "nInu"  1585A  38.748
+monitor line luminosity "nInu"  1458A  38.826
+monitor line luminosity "nInu"  1357A  38.897
+monitor line luminosity "nInu"  1297A  38.930
+monitor line luminosity "nInu"  1263A  38.945
+monitor line luminosity "nInu"  1218A  38.873
+monitor line luminosity "nInu"  1196A  38.967
+monitor line luminosity "nInu"  1175A  38.943
+monitor line luminosity "nInu"  1144A  39.030
+monitor line luminosity "nInu"  1113A  39.050
+monitor line luminosity "nInu"  1103A  39.059
+monitor line luminosity "nInu"  1074A  39.076
+monitor line luminosity "nInu"  1064A  39.080
+monitor line luminosity "nInu"  1036A  39.095
+monitor line luminosity "nInu"  1000A  39.084
+monitor line luminosity "nInu" 925.1A  38.765
+monitor line luminosity "nInu" 897.8A  38.602
+monitor line luminosity "nInu" 760.0A  38.584
+monitor line luminosity "nInu" 701.5A  38.550
+monitor line luminosity "nInu" 608.2A  38.487
+monitor line luminosity "nInu" 575.1A  38.521
+monitor line luminosity "nInu" 511.9A  38.474
+monitor line luminosity "nInu" 496.9A  37.968
+monitor line luminosity "nInu" 399.2A  37.786
+//
+c stars_atlas_odfnew_all.in
+c class stars 
+c ========================================
+
+This is a test that the code can correctly access the
+Atlas ODFNEW model atmosphere continua. 
+
+Checks:
+access to the various atlas odfnew grids

@@ -1,0 +1,86 @@
+title Leiden meeting model 2 with hacks
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use
+c half the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 50000
+extinguish 24
+c
+c commands for density & abundances =========
+grains ism 1.16 no qheat
+c  hydrogen density 
+hden 3.
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+failures 3
+c  use leiden initialization file
+init file="pdr_leiden_hack.ini"
+c  This command defines the grain temperature to be a constant 20 Kelvin
+constant grain temperature 20 
+c  This sets the temperature to a constant 50 Kelvin
+constant temperature 50 linear
+c
+c commands controlling output    =========
+save leiden lines "pdr_leiden_hack_f2.lin"
+save leiden "pdr_leiden_hack_f2.lei"
+save dr "pdr_leiden_hack_f2.dr" 
+save grain physical conditions "pdr_leiden_hack_f2.grn"
+save overview "pdr_leiden_hack_f2.ovr"
+save monitors "pdr_leiden_hack_f2.asr"
+c
+c commands giving the monitors    =========
+monitor H2 column density 21.757 error 0.1
+// 
+// >>chng 05 mar 22, from 17.45 to 17.60, NA update CO chem net
+// >>chng 05 aug 18, from 17.60 to 17.46, NA add hack to not use C+ - OH rate
+// >>chng 05 sep 27, from 17.46 to 17.50, TE, GS update H chem, chr trn
+// >>chng 05 dec 17, from 17.50 to 17.58, NA increase C chemistry
+// >>chng 06 jun 02, from 17.58 to 17.51, NA refactor chem, bug fix
+monitor CO column density 17.51 error 0.1
+// 
+// >>chng 05 aug 24, from 15.95 to 15.90, NA update CO cr ion rate
+monitor O2 column density 15.90 error 0.1
+// 
+// >>chng 05 sep 27, from 15.17 to 15.11, TE, GS update H chem, chr trn
+// >>chng 05 dec 17, from 15.11 to 15.16, NA increase C chemistry
+// >>chng 06 jun 02, from 17.16 to 17.12, NA refactor chem, bug fix
+monitor OH column density 15.12 error 0.1
+// 
+// >>chng 06 nov 28, add these lines
+monitor line luminosity "C  2" 157.6m -4.144
+// 
+// >>chng 06 nov 29, from -5.346 to -5.307, Badnell DR turned on
+monitor line luminosity "C  1" 369.7m -5.307
+// 
+// >>chng 06 nov 29, from -5.721 to -5.688, Badnell DR turned on
+monitor line luminosity "C  1" 609.2m -5.688
+// 
+monitor line luminosity "O  1" 63.17m -5.371
+// 
+monitor line luminosity "O  1" 145.5m -6.948
+// 
+// >>chng 05 mar 28, from 7 to 4.5, impr mol converg
+// >>chng 08 dec 08, from 5 to 2.968, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 2.968 to 4.215, merging newsolvers branch
+// >>chng 09 jan 16, from 4.215 to 4.193, average of 10 runs
+// >>chng 09 feb 24, from 4.193 to 4.068, botches due to r2763
+// >>chng 09 apr 18, from 4.068 to 4.172, refactor evaluation of esc dest probs to occur with cooling
+// >>chng 09 oct 21, from 4.172 to 3.957, drift down
+monitor itrzn 3.957
+//
+// >>chng 08 dec 08, from 480 to 438, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 438 to 442, merging newsolvers branch
+// >>chng 09 jan 16, from 442 to 443, average of 10 runs
+monitor nzone 443
+c 
+c pdr_leiden_hack_f2.in
+c class pdr 
+c ========================================
+c 
+
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+includes hacks to get standard answer.

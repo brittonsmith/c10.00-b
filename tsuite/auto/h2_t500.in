@@ -1,0 +1,148 @@
+title test large H2 molecule in PDR-like conditions
+c
+c commands controlling continuum =========
+c first continuum is FIR hot grain continuum produced in 
+c unmodeled HII Region
+blackbody, t = 75 K
+intensity -2.7 (total)
+c this is hot star continuum
+black 30000
+intensity  -5 range  0.4412 to 1 Ryd
+c this will remove all ionizing radiation
+extinguish 24 0
+c
+c commands for density & abundances =========
+hden 6
+grains ism, abundance log 0.16 single, no qheat 
+init file="ism.ini"
+abundances he -1.01 c -3.52 n-8 o-3.30 ne-8 mg-5.89
+continue si -6.10 s -5.10 cl=-7 ar-8 fe -6.60
+turbulence 2.7 km/sec
+c
+c commands controlling geometry  =========
+stop zone 10
+c force zone thickess to 1 cm 
+sphere
+set dr 0 
+c stop when gas is fully neutral
+stop efrac -10
+c stop when gas is cold
+stop temperature 10 linear
+c
+c other commands for details     =========
+failures 2 
+atom h2  
+constant temperature 500 
+iterate
+case b
+//>>chng 05 nov 22, add cr since grain absorption of molecues
+// is too extreme without it
+cosmic rays background
+c
+c commands controlling output    =========
+normalize to "CO  " 866.7m 
+c uv lines are strongly pumped by stellar continuum, break out contribution
+print line pump
+print line optical depths
+print line faint -2
+print ages
+c 
+save monitors "h2_t500.asr"
+save pdr "h2_t500.pdr"
+save H2 rates "h2_t500.rat"
+save H2 lines "h2_t500.lin" all 
+save H2 column density "h2_t500.col"
+save H2 populations "h2_t500.pop"
+save H2 levels "h2_t500.lev"
+save raw continuum "h2_t500.raw"
+save continuum "h2_t500.con"
+save overview "h2_t500.ovr"
+c
+c commands giving the monitors    =========
+// check that all lines are still present
+table lines "LineList_PDR_H2.dat"
+//
+// >>chng 05 aug 06, bound cond changed to dense gas with low levels
+// in LTE - everything changed
+monitor h2 ortho 3.000
+//
+//>>chng 05 nov 24, from 6.69 to 5.70, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 5.70 to 6.70, do not stop due to ices
+monitor h2 column density 6.70 error 0.15
+//
+//>>chng 05 nov 24, from 5.60 to 4.60, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 4.60 to 5.60, do not stop due to ices
+monitor h2 column density level 0 0 5.60 error 0.1
+//
+//>>chng 05 nov 24, from 6.40 to 5.41, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 5.41 to 6.41, do not stop due to ices
+monitor h2 column density level 0 1 6.41 error 0.1
+//
+//>>chng 05 nov 24, from 5.85 to 4.86, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 4.86 to 5.86, do not stop due to ices
+monitor h2 column density level 0 2 5.86 error 0.1
+//
+//>>chng 05 nov 24, from 3.04 to 5.04, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 5.04 to 6.04, do not stop due to ices
+monitor h2 column density level 0 3 6.04 error 0.1
+//
+//>>chng 05 nov 24, from 5.09 to 4.09, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 4.09 to 5.09, do not stop due to ices
+monitor h2 column density level 0 4 5.09 error 0.1
+//
+//>>chng 05 nov 24, from 4.93 to 3.93, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 3.93 to 4.93, do not stop due to ices
+monitor h2 column density level 0 5 4.93 error 0.1
+//
+//>>chng 05 nov 24, from 3.64 to 2.64, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 2.64 to 3.64, do not stop due to ices
+monitor h2 column density level 0 6 3.64 error 0.1
+//
+// departure coef well away from unity from here on up
+//
+//>>chng 05 nov 24, from 3.09 to 2.09, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 2.09 to 3.09, do not stop due to ices
+monitor h2 column density level 0 7 3.09 error 0.1
+//
+//>>chng 05 nov 24, from 1.40 to 0.40, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from 0.40 to 1.40, do not stop due to ices
+monitor h2 column density level 0 8 1.40 error 0.1
+//
+//>>chng 05 nov 24, from -0.42 to -1.40, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from -1.40 to -0.40, do not stop due to ices
+//>>chng 07 apr 08, from -0.40 to -0.45, use ORNL H2-He data set
+//>>chng 07 nov 09, from -0.45 to -0.41, update H - H2 collisions data
+//>>chng 09 may 11, from -0.41 to -0.48, update H2 - H2 collisions data
+monitor h2 column density level 1 0 -0.48 error 0.1
+//
+//>>chng 05 nov 24, from 0.43 to -0.55, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from -0.55 to 0.45 do not stop due to ices
+//>>chng 07 apr 08, from 0.45 to 0.49, use ORNL H2-He data set
+//>>chng 07 nov 09, from 0.49 to 0.57, update H - H2 collisions data
+//>>chng 07 dec 26, from 0.57 to 0.50, us full H-H2 data set
+//>>chng 09 may 11, from 0.50 to 0.43, update H2 - H2 collisions data
+monitor h2 column density level 1 1 0.43 error 0.1
+//
+//>>chng 05 nov 24, from -0.10 to -1.08, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from -1.08 to -0.08, do not stop due to ices
+//>>chng 07 apr 08, from -0.08 to -0.13, use ORNL H2-He data set
+//>>chng 07 nov 09, from -0.13 to -0.09, update H - H2 collisions data
+//>>chng 09 may 11, from -0.09 to -0.13, update H2 - H2 collisions data
+monitor h2 column density level 1 2 -0.13 error 0.1
+//
+//>>chng 05 nov 24, from 0.21 to -0.76, NA add mole freeze out onto grains
+//>>chng 05 dec 17, from -0.76 to 0.24, do not stop due to ices
+//>>chng 07 nov 09, from 0.24 to 0.36, update H - H2 collisions data
+//>>chng 07 dec 26, from 0.36 to 0.27, us full H-H2 data set
+monitor h2 column density level 1 3 0.27 error 0.1
+//
+// >>chng 5 dec 17 add this assert, make sure ices do not stop this sim
+monitor nzone 10 error 0.01
+//
+c h2_t500.in 
+c class limit  
+c ========================================
+
+This is a dense molecular gas with background cosmic rays and the incident
+radiation field set to a small value.  The lower levels are in LTE.
+

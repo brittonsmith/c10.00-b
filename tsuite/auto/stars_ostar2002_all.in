@@ -1,0 +1,135 @@
+title tlusty Ostar grid
+c
+c commands controlling continuum =========
+c Approximate model of 10 hot stars ionizing their surroundings.
+c Assume H density of 1e+6 per cc.  This run tests all the various
+c metallicities contained in the OSTAR 2002 grids. I choose the T_eff
+c and log(g) values such that the selection algorithm gets a good workout.
+table star tlusty ostar Z+0.3 30000.0 4.5
+luminosity 4.509202522 solar
+table star tlusty ostar Z+0.0 31400.0 4.5
+luminosity 4.509202522 solar
+table star tlusty ostar Z-0.3 45000.0 4.2
+luminosity 4.509202522 solar
+table star tlusty ostar Z-0.7 30400.0 4.2
+luminosity 4.509202522 solar
+table star tlusty ostar Z-1.0 27500.0 3.0
+luminosity 4.509202522 solar
+table star tlusty ostar Z-1.5 55000.0 4.75
+luminosity 4.509202522 solar
+table star tlusty ostar Z-1.7 27500.0 4.75
+luminosity 4.509202522 solar
+table star tlusty ostar Z-2.0 55000.0 3.00
+luminosity 4.509202522 solar
+table star tlusty ostar Z-3.0 44400.0 3.2
+luminosity 4.509202522 solar
+table star tlusty ostar Z-INF 53000.0 4.75
+luminosity 4.509202522 solar
+table star tlusty ostar Z+0.0 48400.0 3.87
+luminosity 4.509202522 solar
+table star tlusty ostar Z-0.7 48400.0 3.55
+luminosity 4.509202522 solar
+table star tlusty ostar Z+0.3 43400.0 3.65
+luminosity 4.509202522 solar
+c
+c commands for density & abundances =========
+abundances old solar 84 
+hden 6.0
+grains ism
+c
+c commands controlling geometry  =========
+radius -2.0 parsec
+sphere
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+c
+c in this model the Lyman lines are pumped significantly by the stellar continuum;
+c disable this process to avoid critical dependence on the precise shape of the continuum.
+no induced processes
+constant temperature 4
+c
+c commands controlling output    =========
+c
+save overview last "stars_ostar2002_all.ovr"
+save results last "stars_ostar2002_all.rlt"
+save monitors last "stars_ostar2002_all.asr"
+save transmitted continuum last "stars_ostar2002_all.trn" no header
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 23.4 to 23.45, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  23.45
+monitor line luminosity "nInu" 122.4m  30.790
+monitor line luminosity "nInu" 60.83m  31.706
+monitor line luminosity "nInu" 41.22m  32.215
+monitor line luminosity "nInu" 30.87m  32.593
+monitor line luminosity "nInu" 24.78m  32.878
+monitor line luminosity "nInu" 24.30m  32.898
+monitor line luminosity "nInu" 22.83m  32.982
+monitor line luminosity "nInu" 21.42m  33.067
+monitor line luminosity "nInu" 21.12m  33.080
+monitor line luminosity "nInu" 19.62m  33.177
+monitor line luminosity "nInu" 17.65m  33.313
+monitor line luminosity "nInu" 17.37m  33.339
+monitor line luminosity "nInu" 15.69m  33.469
+monitor line luminosity "nInu" 14.60m  33.559
+monitor line luminosity "nInu" 12.43m  33.778
+monitor line luminosity "nInu" 11.40m  33.883
+monitor line luminosity "nInu" 10.46m  33.992
+monitor line luminosity "nInu" 9.480m  34.121
+monitor line luminosity "nInu" 9.325m  34.141
+monitor line luminosity "nInu" 8.210m  34.308
+monitor line luminosity "nInu" 7.580m  34.405
+monitor line luminosity "nInu" 7.050m  34.502
+monitor line luminosity "nInu" 4.114m  35.195
+monitor line luminosity "nInu" 2.324m  35.923
+monitor line luminosity "nInu" 1.643m  36.359
+monitor line luminosity "nInu" 1.480m  36.491
+monitor line luminosity "nInu" 1.436m  36.526
+monitor line luminosity "nInu" 1.119m  36.838
+monitor line luminosity "nInu"  8330A  37.201
+monitor line luminosity "nInu"  8079A  37.225
+monitor line luminosity "nInu"  6210A  37.543
+monitor line luminosity "nInu"  4885A  37.820
+monitor line luminosity "nInu"  3704A  38.074
+monitor line luminosity "nInu"  3588A  38.109
+monitor line luminosity "nInu"  2430A  38.516
+monitor line luminosity "nInu"  2392A  38.521
+monitor line luminosity "nInu"  2071A  38.660
+monitor line luminosity "nInu"  2053A  38.651
+monitor line luminosity "nInu"  1793A  38.771
+monitor line luminosity "nInu"  1585A  38.847
+monitor line luminosity "nInu"  1458A  38.908
+monitor line luminosity "nInu"  1357A  38.992
+monitor line luminosity "nInu"  1297A  39.023
+monitor line luminosity "nInu"  1263A  39.039
+monitor line luminosity "nInu"  1218A  38.892
+monitor line luminosity "nInu"  1196A  39.056
+monitor line luminosity "nInu"  1175A  38.997
+monitor line luminosity "nInu"  1144A  39.116
+monitor line luminosity "nInu"  1113A  39.132
+monitor line luminosity "nInu"  1103A  39.140
+monitor line luminosity "nInu"  1074A  39.143
+monitor line luminosity "nInu"  1064A  39.148
+monitor line luminosity "nInu"  1036A  39.155
+monitor line luminosity "nInu"  1000A  39.182
+monitor line luminosity "nInu" 925.1A  38.886
+monitor line luminosity "nInu" 897.8A  38.771
+monitor line luminosity "nInu" 760.0A  38.783
+monitor line luminosity "nInu" 701.5A  38.798
+monitor line luminosity "nInu" 608.2A  38.716
+monitor line luminosity "nInu" 575.1A  38.813
+monitor line luminosity "nInu" 511.9A  38.816
+monitor line luminosity "nInu" 496.9A  38.800
+monitor line luminosity "nInu" 399.2A  38.666
+c stars_ostar2002_all.in
+c class stars 
+c ========================================
+
+This is a test that the code can correctly access the
+large block of Tlusty O-star model atmosphere continua. 
+
+Checks:
+table star tlusty ostar metallicity option works, also test selection algorithm.
+

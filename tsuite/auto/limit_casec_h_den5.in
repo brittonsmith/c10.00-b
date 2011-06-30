@@ -1,0 +1,81 @@
+title case C
+c
+c commands controlling continuum =========
+black body, T = 50000 K
+ionization parameter -2
+c
+c commands for density & abundances =========
+hden = 5
+init file="hheonly.ini"
+c
+c commands controlling geometry  =========
+set dr -10
+stop zone 1
+c
+c other commands for details     =========
+iterate
+stop lyman optical depth -6
+constant temperature = 10000 K
+c
+c commands controlling output    =========
+normalize to "Ca B" 4861
+print h-like populations 
+print line pump 
+print departure coefficients
+save monitors "limit_casec_h_den5.asr" last
+c
+c commands giving the monitors    =========
+// >>chng 08 apr 30, from 183.7 to 174 H, He topoff change
+monitor line "H  1" 1216 174
+//
+monitor line "pump" 1216 143.7
+//
+// >>chng 07 oct 22, from 26.5 to 30.63, resolve l-levels of h-like sequence
+monitor line "H  1" 1026 30.63
+// 
+monitor line "pump" 1026 28.26
+//
+// >>chng 07 oct 22, from 1.126 to 0.943, resolve l-levels of h-like sequence
+monitor line "H  1" 4861 0.943
+monitor line "Ca B" 4861 1.000
+// 
+// this can't be right
+monitor line "pump" 4861 0.995
+//
+// >>chng 07 oct 22, from 3.28 to 2.42, resolve l-levels of h-like sequence
+monitor line "H  1" 6563 2.42
+monitor line "Ca B" 6563 2.829
+//
+monitor line "H  1"  4340A 0.444
+monitor line "Ca B"  4340A 0.470
+//
+monitor line "H  1" 1.875m 0.297
+monitor line "Ca B" 1.875m 0.326
+//
+monitor line "H  1" 2.166m 0.0252
+monitor line "Ca B" 2.166m 0.0271
+//
+monitor ionization hydrogen 1 -3.273
+// 
+// >>chng 05 oct 01, from -2.881 to -2.903, RP update levels
+monitor ionization helium 1 -2.903
+// 
+// >>chng 00 sep 29, -0.964 to -0.942, H- bug, rebin cont
+monitor ionization helium 3 -0.942
+// 
+c limit_casec_h_den5.in
+c class limit 
+c ========================================
+c 
+
+
+This is Case C, what really happens when optically thin gas is
+irradiated by a continuum with Lyman line continuum fluorescence allowed.
+Checks:
+-	Departure coefficients for H, He levels
+-	Neutral fractions
+-	H* emissivity
+Case C is described in
+
+>>refer	H	case C	Ferland, G.J. 1999, PASP, 111, 1524
+

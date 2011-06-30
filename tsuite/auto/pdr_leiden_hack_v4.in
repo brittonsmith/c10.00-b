@@ -1,0 +1,118 @@
+title Leiden meeting model 8 with hacks
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+c the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 50000
+extinguish 24 
+c
+c commands for density & abundances =========
+c  Define the abundance of PAHs so we can reproduce the same photoelectric
+c heating curve as BT94 
+c  We have also scaled the grain abundance to achieve the desired AV/NH ratio 
+* grains PAH no qheat 40
+* grains ism 0.936 no qheat
+grains ism 1.16 no qheat
+set PAH Bakes 
+c  hydrogen density 
+hden 5.5
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+* failures 3
+c  use leiden initialization file
+init file="pdr_leiden_hack.ini"
+c
+c commands controlling output    =========
+save leiden lines "pdr_leiden_hack_v4.lin"
+save leiden "pdr_leiden_hack_v4.lei"
+save dr "pdr_leiden_hack_v4.dr" 
+save grain temperature  "pdr_leiden_hack_v4.grn"
+save overview "pdr_leiden_hack_v4.ovr"
+save monitors "pdr_leiden_hack_v4.asr"
+save heating "pdr_leiden_hack_v4.het"
+save cooling "pdr_leiden_hack_v4.col"
+save transmitted continuum "pdr_leiden_hack_v4.con"
+c
+c commands giving the monitors    =========
+monitor H2 column density 21.866 error 0.1
+// 
+// >>chng 05 aug 11, from 17.98 to 18.01, use UMIST C0 photo for hack
+monitor CO column density 18.01 error 0.1
+// 
+monitor O2 column density 16.17 error 0.1
+//
+// >>chng 05 aug 03, from 13.92 to 14.11, NA update CO, H chem net
+// >>chng 05 aug 04, from 14.11 to 13.94, tab drain bug, 1 cell into H-ion cont
+// >>chng 05 aug 08, from 13.94 to 13.86, readd grain-gas coll energy exchange
+// >>chng 05 aug 12, from 12.86 to 15.24 ! H2 vib heat now incl with leiden hac
+// >>chng 05 aug 18, from 15.24 to 15.03, NA further leiden hacks
+// >>chng 10 jun 17, from 15.03 to 14.98, fix botches due to recent dBase cooling changes
+monitor OH column density 14.98 error 0.1
+//
+// >>chng 04 dec 08, from 1193 to 793, co-ion feedback, check converg
+// >>chng 05 mar 25, from 793 to 1232 renorm H pops in level solver
+// >>chng 05 aug 03, from 1234 to 6933, NA update CO, H chem net
+// >>chng 05 aug 04, from 6933 to 8537 tab drain bug, 1 cell into H-ion cont
+// >>chng 05 aug 08, from 8537 to 1004 readd grain-gas coll energy exchange
+// >>chng 05 aug 12, from 1004 to 3737 H2 vib heat now incl with leiden hac
+// >>chng 05 aug 18, from 3737 to 3525 NA further leiden hacks
+// >>chng 05 aug 18, from 3525 to 4010 NA add hack to not use C+ - OH rate
+// >>chng 06 oct 02, from 4010 to 4210 HM update OI cs to Barklem '06
+// >>chng 07 oct 22, from 4210 to 4460, resolve l-levels of h-like sequence
+// >>chng 07 dec 02 from 4460 to 4674 changes in H-like seq, inc err
+// >>chng 07 dec 28, from 4674 to 4064, drift, this is an unphysical PDR
+// >>chng 08 apr 30, from 4064 to 4493 H, He topoff change
+// >>chng 08 dec 03, from 4493 to 7005, iterate on initial electron density until convergence
+// >>chng 11 apr 19, from 7005 to 7654, due to factor of 2 changes in some H2-H2 collisions.  Eq. 2 of Lee et al. 2008 (ApJ, 689, 1105)
+monitor hydrogen 2 temperature 7654 error 0.1
+//
+// >>chng 05 jul 05, from 73.03 to 69.73, cdsqte err
+// >>chng 05 aug 03, from 73.03 to 32.84, NA update CO, H chem net
+// >>chng 05 aug 04, from 32.84 to 31.59 tab drain bug, 1 cell into H-ion cont
+// >>chng 05 aug 08, from 31.59 to 71.14 readd grain-gas coll energy exchange
+// >>chng 05 aug 11, from 71.14 to 79.8 use UMIST C0 photo for hack
+// >>chng 05 aug 12, from 79.8 to 73.4 H2 vib heat now incl with leiden hac
+// >>chng 05 aug 18, from 73.4 to 116.7 NA further leiden hacks
+// >>chng 10 jun 17, from 116.7 to 110.6, fix botches due to recent dBase cooling changes
+monitor H2 temperature 110.6
+//
+// >>chng 06 nov 28, add these lines
+monitor line luminosity "C  2" 157.6m -3.201
+// 
+// >>chng 06 nov 29, from -5.878 to -5.739, Badnell DR turned on
+monitor line luminosity "C  1" 369.7m -5.739
+// 
+// >>chng 06 nov 29, from -6.698 to -6.561, Badnell DR turned on
+monitor line luminosity "C  1" 609.2m -6.561
+// 
+monitor line luminosity "O  1" 63.17m -1.460
+// 
+monitor line luminosity "O  1" 145.5m -2.774
+//
+// >>chng 05 aug 03, from 9 to 17 NA update CO, H chem net
+// >>chng 05 dec 22, from 17 to 10 (8.3) drift down
+// >>chng 08 dec 08, from 10 to 8.429, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 8.429 to 17.18, merging newsolvers branch
+// >>chng 09 jan 16, from 17.18 to 17.23, average of 10 runs
+// >>chng 09 jan 22, from 17.23 to 16.88, some minor botches as a result of r2655
+// >>chng 09 feb 23, from 16.88 to 17.34, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 mar 27, from 17.34 to 17.14 improve rigor esc prob & pop defns
+monitor itrzn 17.14
+//
+// >>chng 05 aug 03, from 620 to 700 NA update CO, H chem net
+// >>chng 08 dec 08, from 700 to 623, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 623 to 625, average of 10 runs
+// >>chng 09 nov 03, from 625 to 621, bcx gcc
+monitor nzone 621
+c
+c pdr_leiden_hack_v4.in
+c class pdr 
+c ========================================
+c 
+
+This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+includes hacks to get standard answer. 

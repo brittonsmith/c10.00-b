@@ -1,0 +1,55 @@
+title fast H+He+metals (low ionization parameter) 009 km s 
+failures 1
+*
+* ADVECTION PARAMETERS
+*
+wind -9 advection no continuum
+set dynamics pressure mode subsonic
+iterate 10 to convergence 0.001
+* iterate 10 to convergence 0.001
+set nend 2000 
+*
+* INPUT SPECTRA
+*
+* hot wd star
+blackbody 120000
+phi(h) 9.5
+sphere 
+turbulence 8 km/sec
+* 
+* OTHER PHYS PARAMS
+normalize to "Q(H)" 4861 
+*
+hden 3.5
+*init "fast.ini"
+init "ism.ini"
+abundances hii region no grains
+grains orion no qheat single 
+*
+* STOPPING CRITERIA
+*
+stop thickness 18
+stop efrac -3
+stop temperature 100
+no molecules
+*
+* SPEEDUP
+*
+atom h-like levels small
+atom he-like levels small
+* set drmin 12.5
+*
+* Output
+save dr "dynamics_HII_PDR.dr"
+save monitors "dynamics_HII_PDR.asr"
+save overview "dynamics_HII_PDR.ovr"
+save wind "dynamics_HII_PDR.wnd"
+* 
+*
+* asserts
+// >>chng 09 feb 23, from 0.37 to 0.3907, remove otslin, otscon dampers (PR #84, r2758)
+monitor line "H  1" 4861 0.3907
+c
+c dynamics_HII_PDR.in
+c
+

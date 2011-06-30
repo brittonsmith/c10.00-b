@@ -1,0 +1,70 @@
+title test of equations of motion in a very highly ionized wind
+c 
+c test motion in electron scattering limit
+c radiative acceleration (e- only) is 9.54E-7 cm s^-2
+c terminal velocity (e- only) is 7.6 km s^-1 
+c
+c commands controlling continuum =========
+table agn
+luminosiy (total) 45
+c 
+c commands for density & abundances =========
+hden 4
+c this only includes H and He
+init file="hheonly.ini"
+c
+c commands controlling geometry  =========
+radius (parsecs) 1
+stop thickness (parsecs) -1
+c a slow wind velocity, will assert velocity at outer radius
+wind velo 0.1 ball
+c
+c other commands for details     =========
+c this will speed things up a bit 
+no level2
+no radiation pressure
+constant temperature 8
+c
+c commands controlling output    =========
+save monitors "dynamics_wind.asr"
+save pressure "dynamics_wind.pre"
+save wind "dynamics_wind.wnd"
+save dr "dynamics_wind.dr"
+c
+c commands giving the monitors    =========
+monitor velocity 7.6 km/s
+// 
+// >>chng 08 jan 27 from 120 to 50 (42) reevaluate wind V continuously
+// >>chng 08 dec 08, from 50 to 42, upper limit -> equals (r2515)
+// >>chng 09 jun 15, from 42 to 60, gradual approach to outer edge
+monitor nzone 60 
+//
+// >>chng 03 dec 08, from 12 to 15, chng ots, zones
+// >>chng 08 jan 27 from 15 to 22 (19.9) reevaluate wind V continuously
+// >>chng 08 mar 17, from 21 to 35, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 jul 01, from 35 to 50 (47) converge heat/cool even in con temp sim
+// >>chng 08 dec 08, from 50 to 33.02, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 33.02 to 39.1, merging newsolvers branch
+// >>chng 09 jan 08, from 39.1 to 30.93, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, disable this assert because the values show a bimodal distribution over various platforms
+// assert itrzn 30.93 error 0.02
+// 
+c dynamics_wind.in
+c class limit dynamics 
+c ========================================
+c 
+
+This tests the radiative acceleration and terminal velocity of 
+a wind in which only electron scattering is important.  The parameters
+were chosen so that electron scattering is the dominant opacity source,
+so that the equations can be solved both numerically (in the example)
+and analytically (the expected solution given above).  In a realistic wind
+the gas would be more neutral and line driving would dominate.  The force
+multiplier, given in the save wind output, is nearly unity as a result.
+
+Checks:
+-	The radiative acceleration is correct (e- 9.543910-7 cm s-2).
+-	The terminal velocity should be 7.57 km s-1.
+-	Force multiplier near unity (no line driving since so highly ionized).
+-	Thickness of cloud correct (R-Ro + dr/2 should be 3.086391017 cm).
+

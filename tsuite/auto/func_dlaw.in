@@ -1,0 +1,44 @@
+title test model with dlaw table
+c
+c commands controlling continuum =========
+phi(H) 15
+table agn
+c
+c commands for density & abundances =========
+dlaw table radius
+continue 16 9
+continue 17 7
+continue 18 5
+continue 19 3
+continue 20 1
+continue 21 -1
+end of dlaw
+init "honly.ini"
+c
+c commands controlling geometry  =========
+sphere
+filling factor -5
+radius 17 20
+c
+c other commands for details     =========
+constant temperature 4
+c
+c commands controlling output    =========
+save dr "func_dlaw.dr"
+save overveiw "func_dlaw.ovr"
+save monitors "func_dlaw.asr"
+c
+c commands giving the monitors    =========
+monitor volumn ionization hydrogen 1 -2.704
+monitor volumn ionization hydrogen 2 -0.0009
+//
+c
+c func_dlaw.in
+c class function 
+c ========================================
+c 
+
+this model tests the dlaw density table command 
+
+
+

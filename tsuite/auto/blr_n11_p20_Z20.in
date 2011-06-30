@@ -1,0 +1,172 @@
+title BLR model, density 1e11 cm-3, flux of H-ion phots 1e20 cm2 s-1, Z=20
+c 
+c commands controlling continuum =========
+table agn
+phi(h) 20
+c
+c commands for density & abundances =========
+hden 11
+abundances starburst 20 
+c
+c commands controlling geometry  =========
+stop column density 23
+c
+c other commands for details     =========
+iterate convergence 
+c these are to try to speed things up
+init "c84.ini"
+no level2 lines
+c
+c commands controlling output    =========
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+save cooling "blr_n11_p20_Z20.col" 
+save convergence reason last "blr_n11_p20_Z20.cvr"
+save heating "blr_n11_p20_Z20.het" 
+save element calcium "blr_n11_p20_Z20.cal" 
+save monitors "blr_n11_p20_Z20.asr" last
+save overview "blr_n11_p20_Z20.ovr" 
+save dr "blr_n11_p20_Z20.dr" 
+save temperature history "blr_n11_p20_Z20.tem" 
+c
+c commands giving the monitors    =========
+// strong blr lines
+// >>chng 06 jul 18, from 6.004 to 5.978, RP major upgrade VS coll strengths
+monitor line luminosity "totl"  1035 5.978 //total of sum of both O VI comp
+// 
+// >>chng 04 jun 01, from 8.534 to 8.489, unified calc of Lya line width
+// >>chng 06 jul 18, from 8.489 to 8.529, RP major upgrade VS coll strengths
+// >>chng 06 nov 29, from 8.529 to 8.561, Badnell DR turned on
+// >>chng 07 jul 25, from 8.561 to 8.618, bugfix pvh FeII tau r1290
+// >>chng 08 mar 17, from 8.618 to 8.575, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 09 feb 23, from 8.575 to 8.599, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 10 aug 12, from 8.599 to 8.577, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "totl"  1216 8.577 //total Hydrogen Lyman-alpha 1215.67 
+// 
+// >>chng 06 nov 29, from 7.853 to 7.831, Badnell DR turned on
+monitor line luminosity "totl"  1240 7.831 //total of sum of both N V comp
+// 
+// >>chng 06 nov 29, from 8.126 to 8.147, Badnell DR turned on
+monitor line luminosity "totl"  1397 8.147 //total of sum of both Si IV comp
+// 
+//total O IV] 1402 
+// >>chng 06 nov 24, from 7.177 to 7.199, turn on Badnell RR
+// >>chng 06 nov 29, from 7.199 to 7.256, Badnell DR turned on
+// >>chng 08 mar 17, from 7.256 to 7.226, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+monitor line luminosity "totl"  1402 7.226
+// 
+monitor line luminosity "totl"  1549 8.177 //total of sum of both C IV comp
+// 
+// >>chng 09 jun 28, from 1 to 7.971, check convergence of outward Hb
+monitor line luminosity "Inwd" 1549 7.971, 
+// 
+// >>chng 09 jun 28, from 1 to 6.905, check convergence of outward Hb
+// >>chng 09 oct 12, from 6.905 to 6.925, extend fine continuum to lower limit of code by default
+// >>chng 09 oct 23, from 6.925 to 6.927, mean gcc mac&bcx
+// >>chng 09 oct 24, from 6.927 to 6.930, mean gcc mac& icc bcx
+// >>chng 09 nov 03, from 6.930 to 6.900, mean gcc bcx
+// >>chng 09 nov 17, from 6.9 to 6.955, N I changes (r3588)
+// >>chng 09 nov 21, from 6.955 to 6.93, inc err, mean gcc cloud9, bcx, mac
+// >>chng 09 dec 06, from 6.93 to 6.94, inc err, 3 platforms
+// >>chng 10 dec 01, from 6.94 to 7, first run in a few weeks, net change
+// >>chng 11 apr 29, from 7.00 to 6.97, gcc on cloud9
+// >>chng 11 may 18, from 6.97 to 6.91, average of 16 runs
+// >>chng 11 jun 09, from 6.91 to 6.945, include cloud9 run
+monitor line luminosity "H  1" 4861 6.945 error 0.15
+// 
+// >>chng 09 jun 28, from 1 to 6.847, check convergence of outward Hb
+monitor line luminosity "Inwd" 4861 6.847 
+// 
+// >>chng 06 jul 18, from 7.450 to 7.403, RP major upgrade VS coll strengths
+// >>chng 06 nov 29, from 7.403 to 7.433, Badnell DR turned on
+// >>chng 08 mar 17, from 7.433 to 7.482, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 nov 08, from 7.482 to 7.456, fix VS80 elec impact coll. str. (r2444)
+monitor line luminosity "he 2"  1640 7.456 //total He II Balmer-alpha 1640
+//
+// >>chng 03 dec 08, from 7.431 to 7.407, chng zones, ots
+// >>chng 06 nov 29, from 7.407 to 7.429, Badnell DR turned on
+// >>chng 08 mar 17, from 7.429 to 7.398, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 mar 20, from 7.398 to 7.408, dbl precision gets diff answer, take average, widen
+monitor line luminosity "o  3"  1666 7.408 0.10 //total O III] 1666
+//
+// >>chng 03 oct 04, from 7.044 to 7.066, atom2 ots
+// >>chng 03 dec 08, from 7.310 to 7.277, chng zones, ots
+// >>chng 06 jul 18, from 7.277 to 7.305, RP major upgrade VS coll strengths
+// >>chng 06 nov 29, from 7.305 to 7.346, Badnell DR turned on
+// >>chng 07 jul 25, from 7.346 to 7.323, bugfix pvh FeII tau r1290
+// >>chng 07 oct 02, increase error, slightly different results for all doubles
+monitor line luminosity "totl"  1909 7.323 0.10 //total of sum of CIII] 1908.73+
+//
+//total of sum of Si III] 1892+
+// >>chng 04 jul 29, from 8.069 to 8.047, drift
+// >>chng 07 jul 25, from 8.047 to 8.013, bugfix pvh FeII tau r1290
+// >>chng 07 dec 29, from 8.013 to 7.993, drift down
+monitor line luminosity "totl"  1888 7.993
+//
+// >>chng 04 jul 07, from 8.00 to 7.98, oh ct integ
+// >>chng 06 jul 18, from 7.98 to 8.004, RP major upgrade VS coll strengths
+// >>chng 07 mar 20, from 8.004 to 7.984, due to chng in r987
+// >>chng 07 jul 25, from 7.984 to 7.903, bugfix pvh FeII tau r1290
+// >>chng 07 sep 15, from 7.903 to 7.881, drift down
+// >>chng 07 dec 02, from 7.881 to 7.861, update Baddnell DR
+// >>chng 08 mar 17, from 7.861 to 7.829, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 mar 20, from 7.829 to 7.839, dbl precision gets diff answer, take average, widen
+monitor line luminosity "totl"  1860 7.839 0.10 //total sum of both Al III comp
+//
+//total C II] 2324.69 + 2328.12
+// >>chng 03 dec 08, from 7.564 to 7.538, chng zones, ots
+// >>chng 04 jun 01, from 7.538 to 7.597, unified calc of Lya line width
+// >>chng 04 jul 07, from 7.60 to 7.55, oh ct integ
+// >>chng 04 dec 08, from 7.77 to 7.57, co-ion feedback, check converg
+// >>chng 05 mar 25, from 7.57 to 7.54, renorm H pops in level solver
+// >>chng 06 jul 18, from 7.54 to 7.58, RP major upgrade VS coll strengths
+// >>chng 07 jul 25, from 7.58 to 7.51 bugfix pvh FeII tau r1290
+// >>chng 07 oct 22, from 7.51 to 7.46, resolve l-levels of h-like sequence
+// >>chng 08 nov 08, from 7.46 to 7.418, fix VS80 elec impact coll. str. (r2444)
+monitor line luminosity "totl"  2326 7.418 error 0.1
+//
+// >>chng 04 jun 12, from 8.295 to 8.321 chng cont shield fcn
+// >>chng 06 jan 24, from 8.321 to 8.300, RP merge He-like, drift down
+// >>chng 06 jul 18, from 8.300 to 8.320, RP major upgrade VS coll strengths
+// >>chng 07 mar 20, from 8.320 to 8.300, due to chng in r987
+// >>chng 07 jul 25, from 8.300 to 8.262, bugfix pvh FeII tau r1290
+// >>chng 07 oct 22, from 8.262 to 8.239, resolve l-levels of h-like sequence
+// >>chng 08 mar 20, from 8.239 to 8.219, value drifted but did not throw assert
+// >>chng 09 oct 06, from 8.219 to 8.198, [NI] pumping changes
+monitor line luminosity "totl"  2798 8.198 //total of sum of both Mg II comp
+//
+// >>chng 03 dec 08, from 6 to 5 chng zones, ots
+// >>chng 04 feb 09, from 5 to 6 chng zones, ots
+// >>chng 04 sep 30, from 6 to 8, conv_base conv heat cool
+// >>chng 08 dec 08, from 8 to 6.925, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 6.925 to 18.22, merging newsolvers branch
+// >>chng 09 jan 08, from 18.22 to 18.95, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, from 18.95 to 18.39 (error 0.07), average of 10 runs
+// >>chng 09 jul 14, from 18.39 to 20.07, reset autocv to 0.2 since 0.1 developed 32/64 bit distinction
+monitor itrzn 20.07 error 0.07
+//
+// >>chng 03 dec 08, from 3 to <5 chng zones, ots
+// >>chng 08 dec 08, from 5 to 3, upper limit -> equals (r2515)
+// >>chng 09 jun 15, from 3 to 5, gradual approach to outer edge
+// >>chng 09 jun 28, from 5 to 7, check convergence outward Hb
+// >>chng 09 jul 14, from 7 to 9, reset autocv to 0.2 since 0.1 developed 32/64 bit distinction
+// >>chng 09 jul 15, from 9 to 6, set autocv from 0.1 to 0.2
+// >>chng 09 jul 27, from 6 to 5, rm test on outward Hb - will create ticket on problems
+// >>chng 09 nov 17, from 5 to 4, N I changes (r3588)
+// >>chng 09 nov 18, from 4 to 5, Fe XVII update (r3604)
+monitor niter 5 error 0.01
+//
+// >>chng 03 nov 10, from 460 to 510, inprove he0 zoning
+// >>chng 03 dec 08, from 510 to 700 chng zones, ots
+// >>chng 05 dec 22, from 700 to 500 (440), rationalize zone asserts
+// >>chng 08 dec 08, from 500 to 467, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 467 to 462, merging newsolvers branch
+// >>chng 09 jan 16, from 462 to 464 (error 0.02), average of 10 runs
+// >>chng 09 jun 15, from 464 to 486, gradual approach to outer edge
+monitor nzone 486 
+// 
+c blr_n11_p20_Z20.in 
+c class blr 
+c ========================================
+
+This is one of the 5 models that sample the LOC plane.

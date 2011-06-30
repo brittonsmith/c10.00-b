@@ -1,0 +1,47 @@
+title test all grain species temperature
+c
+c commands controlling continuum =========
+black 50000
+ionization parameter -2
+c
+c commands for density & abundances =========
+hden 3
+grains_temp "graphite_ism_01.opc"
+grains_temp "silicate_ism_01.opc"
+grains_temp "graphite_orion_01.opc"
+grains_temp "silicate_orion_01.opc"
+grains_temp "silicate_0m010.opc"
+grains_temp "silicate_0m100.opc"
+grains_temp "grey_ism_01.opc"
+grains_temp "silicate_1m000.opc"
+c
+c commands controlling geometry  =========
+stop zone 1
+c
+c other commands for details     =========
+iterate
+constant temper 4
+c
+c commands controlling output    =========
+c
+c commands giving the monitors    =========
+// >>chng 02 jan 12, move to new grains_temp
+monitor grain temperature 01 76.7  0.005
+monitor grain temperature 02 71.3  0.003
+monitor grain temperature 03 65.4  0.003
+monitor grain temperature 04 63.2  0.003
+monitor grain temperature 05 87.1  0.003
+monitor grain temperature 06 61.3  0.003
+monitor grain temperature 07 18.3  0.003 
+monitor grain temperature 08 40.6 0.003
+c
+c grains_temp.in
+c class limit 
+c ========================================
+c 
+
+This turns on all the grain species that are included in the distribution.
+A model of an ionized layer is
+done and the monitors confirm the resulting grain temperatures.
+
+

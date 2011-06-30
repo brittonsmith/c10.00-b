@@ -1,0 +1,186 @@
+title continuous emission from HeII
+c
+c commands controlling continuum =========
+laser 5 ryd
+ionization 1
+c
+c commands for density & abundances =========
+hden 8
+set eden 10
+element abundance helium 2
+init "hheonly.ini"
+c
+c commands controlling geometry  =========
+stop thickness -20
+c
+c other commands for details     =========
+constant temperature 4
+iterate
+c increase continuum resolution by factor of ten
+set continuum resolution 0.1
+set nFnu diffuse outward, diffuse inward
+c
+c commands controlling output    =========
+print continuum 
+print line faint 1
+print line column
+save continuum "heiont10.con" last no title units microns 
+save spectrum  "heiont10.spc" last no title units microns
+save monitors "heiont10.asr" last 
+c
+c commands giving the monitors    =========
+// >>chng 02 may 27, all following changed as result of improved gaunt factors
+// >>chng 02 jun 21, following through 1.6 m changed, ~20% fainter,
+// due to improved gaunt factors
+monitor line luminosity  "nFnu" 122.4m -25.914
+//
+monitor line luminosity  "nFnu" 60.83m -25.671
+monitor line luminosity  "nFnu" 41.22m -25.536
+monitor line luminosity  "nFnu" 30.87m -25.436
+monitor line luminosity  "nFnu" 24.78m -25.360
+monitor line luminosity  "nFnu" 24.30m -25.353
+monitor line luminosity  "nFnu" 22.83m -25.332
+monitor line luminosity  "nFnu" 21.42m -25.310
+monitor line luminosity  "nFnu" 21.12m -25.305
+monitor line luminosity  "nFnu" 19.62m -25.280
+monitor line luminosity  "nFnu" 17.65m -25.244
+monitor line luminosity  "nFnu" 17.37m -25.238
+monitor line luminosity  "nFnu" 15.69m -25.204
+monitor line luminosity  "nFnu" 14.60m -25.179
+monitor line luminosity  "nFnu" 12.43m -25.125
+monitor line luminosity  "nFnu" 11.40m -25.096
+monitor line luminosity  "nFnu" 10.46m -25.068
+// 
+// >>chng 06 feb 03, from -25.036 to -25.016, guess dr to Badnell mean
+monitor line luminosity  "nFnu" 9.480m -25.016
+//
+// >>chng 04 sep 10, from -25.031 to -25.011, slow drift
+monitor line luminosity  "nFnu" 9.325m -25.011
+//
+// >>chng 03 jun 02, from -24.990 to -24.956, default larger atom
+monitor line luminosity  "nFnu" 8.210m -24.956
+//
+// >>chng 03 jun 02, from -24.965 to -24.931, default larger atom
+monitor line luminosity  "nFnu" 7.580m -24.931
+//
+// >>chng 03 jun 02, from -24.943 to -24.900, default larger atom
+monitor line luminosity  "nFnu" 7.050m -24.900
+//
+// >>chng 03 jun 02, from -24.751 to -24.688, default larger atom
+monitor line luminosity  "nFnu" 4.114m -24.688
+//
+// >>chng 03 jun 02, from -24.523 to -24.471, default larger atom
+monitor line luminosity  "nFnu" 2.324m -24.471
+//
+// >>chng 02 may 27 through here due to improved brems gaunt factor
+// >>chng 03 jun 02, from -24.346 to -24.307, default larger atom
+monitor line luminosity  "nFnu" 1.643m -24.307
+//
+// >>chng 03 jun 02, from -24.342 to -24.304, default larger atom
+monitor line luminosity  "nFnu" 1.480m -24.304
+//
+// >>chng 03 jun 02, from -24.231 to -24.200, default larger atom
+monitor line luminosity  "nFnu" 1.436m -24.200
+//
+// >>chng 03 jun 02, from -24.243 to -24.213, default larger atom
+monitor line luminosity  "nFnu" 1.119m -24.213
+//
+// >>chng 02 jun 21 through here due to improved brems gaunt factor
+// >>chng 03 jun 02, from -24.138 to -24.120, default larger atom
+monitor line luminosity  "nFnu"  8330A -24.120
+//
+monitor line luminosity  "nFnu"  8079A -23.900
+monitor line luminosity  "nFnu"  6210A -24.012
+monitor line luminosity  "nFnu"  4885A -23.763
+monitor line luminosity  "nFnu"  3704A -24.042
+monitor line luminosity  "nFnu"  3588A -23.322
+monitor line luminosity  "nFnu"  2392A -23.998
+monitor line luminosity  "nFnu"  2071A -24.333
+monitor line luminosity  "nFnu"  2053A -24.356
+monitor line luminosity  "nFnu"  1793A -23.130
+monitor line luminosity  "nFnu"  1585A -23.527
+monitor line luminosity  "nFnu"  1458A -23.828
+monitor line luminosity  "nFnu"  1357A -24.111
+monitor line luminosity  "nFnu"  1297A -24.298
+monitor line luminosity  "nFnu"  1263A -24.414
+monitor line luminosity  "nFnu"  1218A -24.572
+// 
+// >>chng 07 dec 14, from -24.652 to -24.673 RP update is seq
+monitor line luminosity  "nFnu"  1196A -24.673
+// 
+// >>chng 07 dec 06, from -24.733 to -24.760, changes in h-like collisions
+monitor line luminosity  "nFnu"  1175A -24.760
+// >>chng 07 dec 06, from -24.855 to -24.892, changes in h-like collisions
+monitor line luminosity  "nFnu"  1144A -24.892
+// >>chng 07 dec 06, from -24.976 to -25.028, changes in h-like collisions
+monitor line luminosity  "nFnu"  1113A -25.028
+// >>chng 07 dec 06, from -25.015 to -25.075, changes in h-like collisions
+monitor line luminosity  "nFnu"  1103A -25.075
+// >>chng 07 dec 06, from -25.132 to -25.217, changes in h-like collisions
+monitor line luminosity  "nFnu"  1074A -25.217
+// >>chng 07 dec 06, from -25.170 to -25.265, changes in h-like collisions
+monitor line luminosity  "nFnu"  1064A -25.265
+// 
+// >>chng 03 jun 02, from -25.277 to -25.254, default larger atom
+// >>chng 07 oct 22, from -25.254 to -25.300, resolve l-levels of h-like sequence
+// >>chng 07 dec 06, from -25.300 to -25.413, changes in h-like collisions
+monitor line luminosity  "nFnu"  1036A -25.413
+// 
+// >>chng 03 jun 02, from -25.401 to -25.368, default larger atom
+// >>chng 07 oct 22, from -25.368 to -25.435, resolve l-levels of h-like sequence
+// >>chng 07 dec 06, from -25.435 to -25.614, changes in h-like collisions
+monitor line luminosity  "nFnu"  1000A -25.614
+// 
+// >>chng 03 jun 02, from -25.576 to -25.518, default larger atom
+// >>chng 06 jul 18, from -25.518 to -25.544 RP major upgrade VS coll strengths
+// >>chng 07 oct 22, from -25.544 to -25.636, resolve l-levels of h-like sequence
+// >>chng 07 dec 06, from -25.636 to -26.078, changes in h-like collisions
+monitor line luminosity  "nFnu" 925.1A -26.078
+// 
+monitor line luminosity  "nFnu" 897.8A -21.999
+monitor line luminosity  "nFnu" 760.0A -23.175
+monitor line luminosity  "nFnu" 701.5A -23.817
+// 
+// >>chng 03 jun 02, from -24.920 to -24.885, default larger atom
+// >>chng 07 oct 22, from -24.885 to -24.948, resolve l-levels of h-like sequence
+// >>chng 07 dec 06, from -24.948 to -25.116, changes in h-like collisions
+monitor line luminosity  "nFnu" 608.2A -25.116
+// 
+// >>chng 03 jun 02, from -25.152 to -25.091, default larger atom
+// >>chng 06 jul 18, from -25.091 to -25.118 RP major upgrade VS coll strengths
+// >>chng 07 oct 22, from -25.118 to -25.213, resolve l-levels of h-like sequence
+// >>chng 07 dec 06, from -25.213 to -25.678, changes in h-like collisions
+monitor line luminosity  "nFnu" 575.1A -25.678
+// 
+// >>chng 02 jul 19, from -25.199 to -25.174, better two photon
+// >>chng 03 jun 02, from -25.174 to -25.119, default larger atom
+// >>chng 06 jul 18, from -25.119 to -25.155 RP major upgrade VS coll strengths
+// >>chng 07 oct 22, from -25.155 to -25.290, resolve l-levels of h-like sequence
+// >>chng 07 dec 06, from -25.290 to -26.930, changes in h-like collisions
+monitor line luminosity  "nFnu" 511.9A -26.930
+// 
+// >>chng 03 jun 02, from -24.767 to -24.709, default larger atom
+// >>chng 06 jul 18, from -24.709 to -24.742 RP major upgrade VS coll strengths
+// >>chng 07 oct 22, from -24.742 to -24.788, resolve l-levels of h-like sequence
+// >>chng 07 dec 06, from -24.788 to -24.958, changes in h-like collisions
+// >>chng 08 apr 30, from -24.950 to -25.00 H, He topoff change
+monitor line luminosity  "nFnu" 496.9A -25.00 error 0.1
+// 
+// >>chng 02 jul 19, from -25.047 to -25.022, better two photon
+// >>chng 03 jun 02, from -25.022 to -24.965, default larger atom
+// >>chng 06 jul 18, from -24.965 to -25.002 RP major upgrade VS coll strengths
+// >>chng 07 oct 22, from -25.002 to -25.139, resolve l-levels of h-like sequence
+// >>chng 07 dec 06, from -25.139 to -27.546, changes in h-like collisions
+// >>chng 08 apr 30, from -27.55 to -27.59 H, He topoff change
+monitor line luminosity  "nFnu" 399.2A -27.59 error 0.1
+// 
+c heiont10.in
+c class limit 
+c ========================================
+c 
+
+This tests the He II continuous emission.  The helium abundance
+is very large so that He II overwhelms other emission sources.
+The resolution of the continuum mesh is increased so that we get
+a better representation of the continuous emission.
+

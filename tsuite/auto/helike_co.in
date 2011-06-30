@@ -1,0 +1,46 @@
+title He-like cobalt emission
+//
+atom he-like levels 10
+atom he-like collapsed levels 20
+//
+print he-like departure cobalt 
+//
+constant temper 5
+iterate
+hden 7
+set dr -12
+init file "ism.ini"
+c must turn on since ism.ini turned it off
+element cobalt on  
+c then set abundance and ionization after turning it on
+element cobalt abundance -2
+element cobalt ionization -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 0 -5
+c now turn lots of elements off to save time
+element helium off
+element nitrogen off
+element carbon off
+element neon off
+element magnesium off
+element silicon off
+element sulphur off
+element oxygen off
+element argon off
+element iron off
+laser 1300
+ionization -1
+stop zone 1
+print line faint -2
+save monitors "helike_co.asr"
+//
+// >>chng 06 aug 18, from -18.500 to -18.395, RP update trans prob 
+// >>chng 10 aug 12, from -18.39 to -23.44, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "Co26" 1.728A -23.44
+//
+c
+c helike_co.in
+c class limit 
+c ========================================
+c 
+
+test emission of He-like Co
+

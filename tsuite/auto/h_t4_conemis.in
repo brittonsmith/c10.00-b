@@ -1,0 +1,89 @@
+title continuous emission from H atom
+c
+c commands controlling continuum =========
+c use laser so that stellar continuum is not in predicted continuum
+laser 2
+ionization -1
+c
+c commands for density & abundances =========
+c high density to suppress two-photon emission
+hden 8
+init "honly.ini"
+c
+c commands controlling geometry  =========
+c this thisckness is the inverse square of the density, so the
+c total emission from the computed slab will in effect have the
+c square of the density removed, so predictions will be j pi j / n_e n_p
+stop thickness -16
+c
+c other commands for details     =========
+c include a large number of levels to capture IR emission
+c increase default resolution stored in continuum_mesh.ini 
+set continuum resolution 0.1
+iterate
+constant temperature 4
+c
+c commands controlling output    =========
+print diffuse continuum
+print lines column 
+//
+save continuum "h_t4_conemis.con" last no title units microns 
+save spectrum "h_t4_conemis.ncon" last no title units microns 
+save monitors "h_t4_conemis.asr"
+c
+c commands giving the monitors    =========
+monitor line "nFnu" 122.4m -26.458  luminosity
+monitor line "nFnu" 60.83m -26.214 luminosity
+monitor line "nFnu" 41.22m -26.078 luminosity
+monitor line "nFnu" 30.87m -25.976 luminosity
+monitor line "nFnu" 24.78m -25.899 luminosity
+monitor line "nFnu" 24.30m -25.892 luminosity
+monitor line "nFnu" 22.83m -25.869 luminosity
+monitor line "nFnu" 21.42m -25.847 luminosity
+monitor line "nFnu" 21.12m -25.843 luminosity
+monitor line "nFnu" 19.62m -25.815 luminosity
+monitor line "nFnu" 17.65m -25.776 luminosity
+monitor line "nFnu" 17.37m -25.771 luminosity
+monitor line "nFnu" 15.69m -25.737 luminosity
+monitor line "nFnu" 14.60m -25.709 luminosity
+monitor line "nFnu" 12.43m -25.650 luminosity
+monitor line "nFnu" 11.40m -25.622 luminosity
+monitor line "nFnu" 10.46m -25.586 luminosity
+monitor line "nFnu" 9.480m -25.555 luminosity
+monitor line "nFnu" 9.325m -25.550 luminosity
+monitor line "nFnu" 8.210m -25.499 luminosity
+monitor line "nFnu" 7.580m -25.475 luminosity
+monitor line "nFnu" 7.050m -25.438 luminosity
+monitor line "nFnu" 4.114m -25.231 luminosity
+monitor line "nFnu" 2.324m -25.057 luminosity
+monitor line "nFnu" 1.643m -24.924 luminosity
+monitor line "nFnu" 1.480m -24.920 luminosity
+monitor line "nFnu" 1.436m -24.734 luminosity
+monitor line "nFnu" 1.119m -24.745 luminosity
+monitor line "nFnu"  8330A -24.803 luminosity
+monitor line "nFnu"  8079A -24.381 luminosity
+monitor line "nFnu"  6210A -24.488 luminosity
+monitor line "nFnu"  4885A -24.648 luminosity
+monitor line "nFnu"  3704A -24.927 luminosity
+monitor line "nFnu"  3588A -23.708 luminosity
+monitor line "nFnu"  2392A -24.373 luminosity
+monitor line "nFnu"  2071A -24.706 luminosity
+monitor line "nFnu"  2053A -24.729 luminosity
+monitor line "nFnu"  1793A -25.103 luminosity
+monitor line "nFnu"  1585A -25.500 luminosity
+monitor line "nFnu"  1458A -25.801 luminosity
+monitor line "nFnu"  1357A -26.084 luminosity
+//
+c h_t4_conemis.in 
+c class limit 
+c ========================================
+c 
+
+This tests the continuous emission from the model H atom.  The
+gas temperature is 10,000 K and the continuous emissivity
+is asserted for a range of wavelengths.
+
+This was used to generate the plot in Hazy 2 comparing the emission
+from a pure hydrogen plasma with those of Ferland 1980.
+
+//>>refer	HI	emission	Ferland, G. J. 1980, PASP, 92, 596

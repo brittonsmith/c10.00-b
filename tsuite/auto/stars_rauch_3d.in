@@ -1,0 +1,105 @@
+title Rauch 3-dimensional grid
+c
+c commands controlling continuum =========
+table star rauch 3-dim T = 150000 K, g = 6.5 , log(Z) = -0.6
+luminosity 4.5 solar
+table star rauch old 3-dim T = 233000 K, g = 7.5 , log(Z) = -0.32
+luminosity 4.5 solar
+c
+c commands controlling geometry  =========
+sphere
+radius 18
+stop zone 1
+set dr 0
+c
+c commands for density & abundances =========
+abundances planetary 
+hden 3.0
+c
+c other commands for details     =========
+constant temperature 15000 // because we only want to test shape
+no level2
+c
+c commands controlling output    =========
+plot continuum range .1
+save overview last "stars_rauch_3d.ovr"
+save results last "stars_rauch_3d.rlt"
+save monitors last "stars_rauch_3d.asr"
+save continuum last "stars_rauch_3d.con" units microns
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 20.49 to 20.55, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  20.55
+monitor line luminosity "nInu" 122.4m  27.874
+monitor line luminosity "nInu" 60.83m  28.786
+monitor line luminosity "nInu" 41.22m  29.294
+monitor line luminosity "nInu" 30.87m  29.672
+monitor line luminosity "nInu" 24.78m  29.958
+monitor line luminosity "nInu" 24.30m  29.978
+monitor line luminosity "nInu" 22.83m  30.063
+monitor line luminosity "nInu" 21.42m  30.147
+monitor line luminosity "nInu" 21.12m  30.160
+monitor line luminosity "nInu" 19.62m  30.258
+monitor line luminosity "nInu" 17.65m  30.395
+monitor line luminosity "nInu" 17.37m  30.421
+monitor line luminosity "nInu" 15.69m  30.551
+monitor line luminosity "nInu" 14.60m  30.642
+monitor line luminosity "nInu" 12.43m  30.857
+monitor line luminosity "nInu" 11.40m  30.968
+monitor line luminosity "nInu" 10.46m  31.079
+monitor line luminosity "nInu" 9.480m  31.209
+monitor line luminosity "nInu" 9.325m  31.228
+monitor line luminosity "nInu" 8.210m  31.398
+monitor line luminosity "nInu" 7.580m  31.496
+monitor line luminosity "nInu" 7.050m  31.593
+monitor line luminosity "nInu" 4.114m  32.297
+monitor line luminosity "nInu" 2.324m  33.039
+monitor line luminosity "nInu" 1.643m  33.489
+monitor line luminosity "nInu" 1.480m  33.625
+monitor line luminosity "nInu" 1.436m  33.664
+monitor line luminosity "nInu" 1.119m  33.990
+monitor line luminosity "nInu"  8330A  34.374
+monitor line luminosity "nInu"  8079A  34.413
+monitor line luminosity "nInu"  6210A  34.759
+monitor line luminosity "nInu"  4885A  35.071
+monitor line luminosity "nInu"  3704A  35.429
+monitor line luminosity "nInu"  3588A  35.475
+monitor line luminosity "nInu"  2430A  35.983
+monitor line luminosity "nInu"  2392A  36.003
+monitor line luminosity "nInu"  2071A  36.191
+monitor line luminosity "nInu"  2053A  36.198
+monitor line luminosity "nInu"  1793A  36.365
+monitor line luminosity "nInu"  1585A  36.516
+monitor line luminosity "nInu"  1458A  36.617
+monitor line luminosity "nInu"  1357A  36.701
+monitor line luminosity "nInu"  1297A  36.753
+monitor line luminosity "nInu"  1263A  36.788
+monitor line luminosity "nInu"  1218A  36.712
+monitor line luminosity "nInu"  1196A  36.846
+monitor line luminosity "nInu"  1175A  36.870
+monitor line luminosity "nInu"  1144A  36.898
+monitor line luminosity "nInu"  1113A  36.933
+monitor line luminosity "nInu"  1103A  36.944
+monitor line luminosity "nInu"  1074A  36.972
+monitor line luminosity "nInu"  1064A  36.984
+monitor line luminosity "nInu"  1036A  37.006
+monitor line luminosity "nInu"  1000A  37.050
+monitor line luminosity "nInu" 925.1A  37.053
+monitor line luminosity "nInu" 897.8A  37.091
+monitor line luminosity "nInu" 760.0A  37.275
+monitor line luminosity "nInu" 701.5A  37.368
+monitor line luminosity "nInu" 608.2A  37.524
+monitor line luminosity "nInu" 575.1A  37.580
+monitor line luminosity "nInu" 511.9A  37.695
+monitor line luminosity "nInu" 496.9A  37.724
+monitor line luminosity "nInu" 399.2A  37.915
+//
+c stars_rauch_3d.in
+c class stars 
+c ========================================
+
+This model checks that the code is able to access the 3-dim versions
+of the Rauch grids of stellar atmosphere models.
+Constant temperature is set since this test is intended to test
+shape of ionizing continuum, not thermal physics.
+

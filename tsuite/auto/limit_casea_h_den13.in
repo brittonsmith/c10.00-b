@@ -1,0 +1,73 @@
+title case A
+c 
+c Seaton, M.J, 1959 MN 119, 90, 
+c 4pi j(beta) 5.56E-26
+c for this model total H-beta=4.745
+c b(2)=3.73E-3 (3)=3.69E-2 (4)=0.091 (5)=0.145 (6)=0.193
+c n.b. very different results if not l-mixed
+c
+c commands controlling continuum =========
+black body, T = 50000 K
+ionization parameter -2
+c
+c commands for density & abundances =========
+hden = 13;
+init file="honly.ini"
+c
+c commands controlling geometry  =========
+stop lyman optical depth -6
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+no induced processes (OK) ;N.B. case A is a fiction; no incuded transitions
+atom h-like collisions off ; must turn off all collisions 
+constant temperature = 10000 K
+iterate
+c
+c commands controlling output    =========
+c this should make the predicted totl Hbeta near unity for case a
+normalize to "CaBo" 4861 = 2.23
+print populations h-like 
+print departure coefficients
+save monitors "limit_casea_h_den13.asr" last
+c
+c commands giving the monitors    =========
+//
+// >>chng 07 oct 22, from 1.91 to 3.29, resolve l-levels of h-like sequence 
+// >>chng 08 apr 10, from 3.29 to 3.60, change default h-like levels, other minor changes
+monitor line "H  1" 6563 3.60
+//
+// >>chng 07 oct 22, from 1.00 to 1.30, resolve l-levels of h-like sequence 
+// >>chng 08 apr 10, from 1.30 to 1.38, change default h-like levels, other minor changes
+monitor line "H  1" 4861 1.38
+//
+// >>chng 07 oct 22, from 0.589 to 0.640, resolve l-levels of h-like sequence 
+monitor line "H  1" 4340 0.640
+monitor line "H  1" 4102 0.378
+// >>chng 07 mar 13, from -3.225 to -3.250, change in lines_service to fix cache errors
+// >>chng 07 jun 25, from -3.250 to -3.295, move h-like treatment to he-like methods.
+// >>chng 07 oct 22, from -3.295 to -3.341, resolve l-levels of h-like sequence 
+monitor hydrogen 1 ionization -3.341
+c limit_casea_h_den13.in
+c class limit 
+c ========================================
+c 
+
+Case A is a mathematical fiction; when the Lyman lines are
+optically thin continuum pumping must be important if the gas
+is ionized.  Fluorescence is turned off with the
+no induced processes command.  The density is set to a
+very high value (1015 cm-3) so that the 2s-2p states are well l-mixed,
+in keeping with standard case A assumptions.  As a result,
+collisional excitation would dominate the level populations,
+and hydrogen collisions must be turned off with the hydrogen collisions off
+command.  The Ly* optical depth is set to a small value.
+The set dr command sets the zone thickness to 1 cm.
+The abundances are set to a very small value so that the
+electron density is equal to the hydrogen density. 
+Checks:
+-	Departure coefficients for H, He levels
+-	Neutral fractions
+-	H* emissivity
+

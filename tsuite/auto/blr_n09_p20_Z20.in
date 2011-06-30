@@ -1,0 +1,133 @@
+title BLR model, density 1e09 cm-3, flux of H-ion phots 1e20 cm2 s-1, Z=20
+c
+c commands controlling continuum =========
+table agn
+phi(h) 20
+c
+c commands for density & abundances =========
+abundances starburst 20 
+hden 9
+c
+c commands controlling geometry  =========
+stop column density 23
+c
+c other commands for details     =========
+init "c84.ini"
+iterate convergence 
+c these are to try to speed things up
+no level2 lines
+c
+c commands controlling output    =========
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+save monitors "blr_n09_p20_Z20.asr" last
+save overview "blr_n09_p20_Z20.ovr" last
+save dr "blr_n09_p20_Z20.dr" last 
+save convergence reason "blr_n09_p20_Z20.cvr"
+c
+c commands giving the monitors    =========
+// strong blr lines
+monitor line luminosity "totl"  1035 7.999 //total of sum of both O VI comp
+//
+// >>chng 07 oct 22, from 8.656 to 8.693, resolve l-levels of h-like sequence
+// >>chng 08 mar 17, from 8.693 to 8.649, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 jul 08, from 8.649 to 8.627, damping wing pump rates
+// >>chng 09 jun 15, from 8.627 to 8.659, gradual approach to outer edge
+monitor line luminosity "totl"  1216 8.659 //total Hydrogen Lyman-alpha 1215.67 
+// 
+// >>chng 09 jul 28, from 8.137 to 8.120 mean vs08+gcc bcx
+monitor line luminosity "totl"  1240 8.120 //total of sum of both N V comp
+//
+// >>chng 06 nov 29, from 7.688 to 7.759, Badnell DR turned on
+// >>chng 08 feb 20, from 7.759 to 7.785, grain charge transfer changes in ion_solver and iso*
+// >>chng 08 mar 17, from 7.785 to 7.761, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 mar 20, from 7.761 to 7.772, dbl precision gets diff answer, take average, widen
+// >>chng 08 jul 08, from 7.772 to 7.714, damping wing pump rates
+// >>chng 09 jul 28, from 7.714 to 7.754 mean vs08+gcc bcx
+monitor line luminosity "totl"  1397 7.754 0.10 //total of sum of both Si IV comp
+//
+// >>chng 06 nov 29, from 7.500 to 7.558, Badnell DR turned on
+// >>chng 08 mar 20, from 7.558 to 7.536, value drifted but did not throw assert
+// >>chng 09 jul 28, from 7.536 to 7.552 mean vs08+gcc bcx
+// >>chng 10 aug 12, from 7.536 to 7.562, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "totl"  1402 7.562 //total O IV] 1402 
+//
+// >>chng 07 apr 30, from 7.530 to 7.510, log DR average, use mix S DR
+// >>chng 08 jul 08, from 7.510 to 7.487, damping wing pump rates
+// >>chng 09 feb 23, from 7.487 to 7.507, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1549 7.507 //total of sum of both C IV comp
+//
+// >>chng 09 jun 28, from 1 to 7.371, check convergence of outward Hb
+monitor line luminosity "Inwd" 1549 7.371
+// 
+// >>chng 09 jun 28, from 1 to 6.958, check convergence of outward Hb
+// >>chng 09 jul 15, from 6.958 to 6.94, mean 32/63
+// >>chng 09 jul 29, from 6.94 to 6.98 mean vs08+gcc bcx
+// >>chng 09 oct 12, from 6.98 to 7.114, extend fine continuum to lower limit of code by default
+// >>chng 10 mar 02, from 7.114 to 7.152, fix botches after CO model switch
+// >>chng 10 mar 05, from 7.152 to 7.016, changes caused by r3848 atomic data update
+// >>chng 10 mar 14, from 7.016 to 7.114, update As to NIST recommended values
+// >>chng 10 jul 14, from 7.114 to 7.03, port newmole r3902 to trunk, exotic abundance bugfix
+// >>chng 10 jul 19, from 7.03 to 7.07, gcc on mac gets mid-point between two values above
+// >>chng 10 jul 26, from 7.07 to 7.04 (actually .02) mac icc, inc err
+// >>chng 10 jul 27, from 7.04 to 7.08 bcx gcc 3.3.3 gets 7.15, incr err
+// >>chng 10 aug 08, from 7.08 to 6.979, increase continuum resolution in radio
+// >>chng 10 aug 21, from 6.979 to 7.109 previous result does not verify, mac gcc 4.0.2 64 bit
+monitor line luminosity "H  1" 4861 7.109 error 0.20
+// 
+// >>chng 09 jun 28, from 1 to 6.723, check convergence of outward Hb
+// >>chng 09 oct 12, from 6.723 to 6.803, extend fine continuum to lower limit of code by default
+// >>chng 10 jul 19, from 6.803 to 6.79, port newmole r3902 to trunk, value on mac gcc
+monitor line luminosity "Inwd" 4861 6.79  error 0.1
+//
+//total He II Balmer-alpha 1640
+// >>chng 06 nov 29, from 7.469 to 7.491, Badnell DR turned on
+// >>chng 07 dec 02, from 7.491 to 7.467, changes in H-like seq
+// >>chng 08 mar 17, from 7.467 to 7.436, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 30, from 7.44 to 7.41, H, He topoff change
+monitor line luminosity "he 2"  1640 7.41 error 0.1
+//
+monitor temperature hydrogen 2 4.083
+//
+// >>chng 08 dec 08, from 6 to 4.518, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 4.518 to 13.03, merging newsolvers branch
+// >>chng 09 jan 16, from 13.03 to 13.09, average of 10 runs
+// >>chng 09 may 28, from 13.09 to 13.33, mean 32.64, inc err
+// >>chng 09 jun 28, from 13.33 to 12.92, check convergence outward Hb
+monitor itrzn 12.92
+//
+// >>chng 07 oct 12, rm out taus first iter, from 5 to 7 iter
+// >>chng 07 nov 13, from 7 to 5, change masing logic in iso_level
+// >>chng 07 nov 29, from 5 to 7, due to changes in r1579
+// >>chng 07 dec 02, from 7 to 8 very unstable since optically thin
+// >>chng 08 mar 20, from 9 to 10, dbl precision gets diff answer, increase
+// >>chng 08 dec 08, from 10 to 8, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 8 to 4, merging newsolvers branch
+// >>chng 09 jun 15, from 4 to 5, gradual approach to outer edge
+// >>chng 09 jun 28, from 5 to 10, check convergence outward Hb
+// >>chng 09 jul 14, from 10 to 9, reset autocv to 0.2 since 0.1 developed 32/64 bit distinction
+// >>chng 09 jul 15, from 9 to 7, set autocv from 0.1 to 0.2
+// >>chng 09 jul 27, from 7 to 5, rm test on outward Hb - will create ticket on problems
+monitor niter 5
+//
+// >>chng 07 oct 12, rm out taus first iter, from <550 to 447
+// >>chng 07 nov 13, from 447 to 488, change masing logic in iso_level, change error to 10 zones
+// >>chng 07 dec 23, from 488 to 448, change error to default, num drifted back down to previous
+// <<chng 07 dec 28, change back to limit, < 520, actually 497
+// >>chng 08 dec 08, from 520 to 454, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 454 to 451, average of 10 runs
+// >>chng 09 feb 23, from 451 to 444, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jun 15, from 444 to 491, gradual approach to outer edge
+// >>chng 09 jul 15, from 491 to 462, set autocv from 0.1 to 0.2
+// >>chng 09 jul 27, from 462 to 492, rm test on outward Hb - will create ticket on problems
+// >>chng 09 oct 12, from 492 to 457, extend fine continuum to lower limit of code by default
+monitor nzone 457 
+//
+c blr_n09_p20_Z20.in 
+c class blr 
+c ========================================
+
+This is one of the 5 models that sample the LOC plane.
+
+This simulation is optically thin in the Lyman continuum - no H ionization
+front is present.  As a result it can be difficult to converge.

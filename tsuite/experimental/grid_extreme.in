@@ -1,0 +1,31 @@
+set lamda off
+c 
+element lithium off
+element berylium off
+element boron off
+cosmic rays background
+cmb
+iterate
+c 
+blackbody 6 
+energy density 6 vary
+grid 1 6 1
+c -8 18 
+hden 2 vary
+grid -8 18 1
+stop zone 1
+c set to constant small thickness
+set dr -10
+normalize to "Q(H)" 4861A
+c 
+save grid no hash "grid_extreme.grd" last 
+save overview last no hash "grid_extreme.ovr" last 
+save monitors last no hash "grid_extreme.asr" last 
+save average "grid_extreme.avr" last 
+temperature hydrogen 2
+end of average
+c 
+monitor hydrogen 2 temperature grid "grid_extreme.dat" 
+c
+c grid_extreme.in limits
+ 

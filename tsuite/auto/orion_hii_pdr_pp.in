@@ -1,0 +1,377 @@
+title the Orion HII Region / PDR / Molecular cloud with an open geometry
+c
+c commands controlling continuum =========
+c the incident continuum has two parts
+c kurucz continuum with flux of photons striking cloud
+c this is the the OVI star, its temperature and phi(H)
+c this is the result of this command
+c table star kurucz 39600 K
+c and makes it possible to run these orion sims without
+c installing the stellar atmosphere files 
+table read "star_kurucz_39600.dat" 
+phi(H) 13
+c
+c this adds the observed hot brems
+c its temperature (as log of T) and the flux of 
+c photons striking the cloud
+brems 6
+phi(h) 10
+c
+c cosmic rays are important for pdr chemistry
+cosmic rays, background
+c
+c commands controlling geometry  =========
+c this turns off the stop temperature option
+c so the sim will not stop due to temperature
+stop temperature off
+c this sets the thickness of the HII region & PDR
+//>>chng 05 nov 22, change from 1 to 1/2 pc to avoid strong freeze out
+// of molecules
+stop thickness 0.5 linear parsec 
+c this is typical of a gmc, larson 1981
+c stop total hydrogen column density 22
+c this will result in a milli gauss B-field in molecular region
+magnetic field -5 gauss
+c assume constant pressure
+constant pressure 
+//>>chng 05 nov 18, add this, NA add two ices
+set nend 2000 
+c
+c other commands for details     =========
+failures 3
+c mimic existence of unmodeled molecular gas
+double 
+c iterate since lines optically thick
+iterate
+c set microturbulence in equipartition with B field
+turbulence equipartition
+c set the line width so lines appear on the save continuum
+c set save line width 10 km/s
+c
+c commands for density & abundances =========
+c this is the log of the initial H density, cm-3
+hden 4
+c this will speed up the calculation a bit
+init file="ism.ini"
+c this uses HII region abundances, but no grains
+abundances hii region no grains
+c this uses orion grains
+grains orion
+c turn on PAHs, with an abundance that depends on H0 fraction,
+c as suggested by long-slit observations of Orion bar,
+c with an abundance 3x larger than default built into the code
+grains pah function 3 
+c 
+c commands controlling output    =========
+c print lots of faint CO lines
+print line faint -6
+c normalize to Ha
+normalize to "H  1" 6563
+save overview last "orion_hii_pdr_pp.ovr"
+save monitors last "orion_hii_pdr_pp.asr"
+save temperature last "orion_hii_pdr_pp.tem"
+save overview "orion_hii_pdr_pp.ovr1"
+save molecules last "orion_hii_pdr_pp.mol"
+save molecules "orion_hii_pdr_pp.mol1"
+save heating "orion_hii_pdr_pp.het"
+save cooling "orion_hii_pdr_pp.col"
+save dr last "orion_hii_pdr_pp.dr"
+save results last "orion_hii_pdr_pp.rlt"
+save continuum last "orion_hii_pdr_pp.con" units microns
+save hydrogen 21 cm last "orion_hii_pdr_pp.21cm"
+save hydrogen lya last "orion_hii_pdr_pp.lya" 
+save element silicon last "orion_hii_pdr_pp.sil" 
+save pressure last "orion_hii_pdr_pp.pre" 
+save pressure "orion_hii_pdr_pp.pre1" 
+//
+// these give predictions for the grains
+save grain extinction last  "orion_hii_pdr_pp.grnext"
+save grain charge last "orion_hii_pdr_pp.grnchr" 
+save grain potential last "orion_hii_pdr_pp.grnpot" 
+save grain temperature last "orion_hii_pdr_pp.grntem" 
+save grain temperature "orion_hii_pdr_pp.grntem1" 
+c
+c the monitors    =========
+c
+// >>chng 08 mar 20, from 0.473 to 0.493, value drifted but did not throw assert
+// >>chng 08 jul 08, from 0.493 to 0.470 line radiation pressure
+// >>chng 08 jul 23, from 0.470 to 0.490 chng Pesc line radiation pressure
+monitor line luminosity "h  1" 4861 0.490
+//
+// >>chng 06 nov 24, from 1.052 to 1.029, turn on Badnell RR
+// >>chng 06 nov 29, from 1.029 to 1.069, Badnell DR turned on
+monitor line luminositry "o  3" 5007 1.069
+//
+// >>chng 05 nov 22, from -1.312 to -1.290 - slow drift?
+// >>chng 06 nov 29, from -1.290 to -1.257, Badnell DR turned on
+// >>chng 08 jul 08, from -1.257 to -1.280 line radiation pressure
+// >>chng 09 feb 23, from -1.28 to -1.245, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl" 4363 -1.245
+//
+// >>chng 06 nov 29, from -0.301 to -0.272, Badnell DR turned on
+// >>chng 08 apr 03, from -0.272 to -0.292, include 10830 in fine opacity array
+// >>chng 08 jul 08, from -0.292 to -0.239 line radiation pressure
+// >>chng 08 jul 23, from -0.239 to -0.300 chng Pesc line radiation pressure
+monitor line luminosity "O  3" 51.80m -0.300
+// 
+// >>chng 06 aug 25 add mag field and stop col 22, from -1.553 to -1.757
+// >>chng 06 dec 25, from -1.757 to -3.391, mole CT reset bug
+// >>chng 09 jul 14, from -3.391 to -3.574 update NI atomic data
+// >>chng 09 oct 05, from -3.574 to -2.378, [NI] pumping changes
+monitor line luminosity "totl" 5199A  -2.378 
+//
+// >>chng 06 jul 25, from 0.591 to 0.621 HN update OIII, OII collision data
+// >>chng 06 nov 29, from 0.621 to 0.571, Badnell DR turned on
+monitor line luminosity "totl" 3727 0.571
+//
+// >>chng 06 jul 25, from -0.009 to 0.0605 HN update OIII, OII collision data
+// >>chng 06 nov 29, from 0.0605 to 0.0126, Badnell DR turned on
+// >>chng 08 jul 08, from 0.0126 to -0.031 line radiation pressure
+// >>chng 08 jul 23, fromo -0.031 to 0.0293 chng Pesc line radiation pressure
+// >>chng 10 feb 14, from 0.0293 to -0.0461, update O atomic data
+monitor line luminosity "totl" 7325 -0.0461
+//
+// >>chng 06 jul 06, from -1.705 to -1.517, update Ne cs
+// >>chng 06 aug 25, from -1.517 to -1.714, add mag field and stop col 22, 
+// >>chng 06 oct 02, from -1.714 to -1.612 HM update OI cs to Barklem '06
+// >>chng 08 jul 08, from -1.612 to -1.649 line radiation pressure
+// >>chng 08 jul 23, fromo -1.649 to -1.602 chng Pesc line radiation pressure
+monitor line luminosity "O  1" 6300 -1.602 
+//
+// >>chng 05 aug 06, from -0.30 to -0.26, chng H2 col dis rates, logic
+// for dealing with thermal fronts, inc errer
+monitor line luminosity "O  1" 63.17m -0.26 erro 0.1 
+//
+// >>chng 06 jul 06, add this line 
+monitor line luminosity "Ne 2" 12.81m -0.00
+//
+// >>chng 05 mar 22, from -1.66 to -1.615, NA update CO chem net
+// >>chng 05 mar 25, from -1.615 to -1.586, renorm H pops in level solver
+// >>chng 05 dec 08, from -1.586 to -1.672, update to Elwert Solomon rate
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from -1.672 to -1.643
+monitor line luminosity "C  2" 157.6m -1.643 
+//
+// >>chng 05 aug 06, from -0.95 to -0.92, chng H2 col dis rates, logic
+// for dealing with thermal fronts, inc errer
+// >>chng 06 aug 25, from -0.92 to -0.83, add mag field and stop col 22, 
+// >>chng 10 feb 14, from -0.83 to -0.8888, update O atomic data
+monitor line luminosity "Si 2" 34.81m -0.8888 error 0.1
+//
+// >>chng 06 aug 25, from 3.183 to 2.882 add mag field and stop col 22, 
+// >>chng 10 feb 14, from 2.882 to 3.176, update O atomic data
+monitor line luminosity "GraT" 0 3.176
+//
+// >>chng 05 nov 22, from 25.15 to 24.81 - chng stop depth to avoid ice
+// >>chng 06 aug 25, from 24.81 to 20.96 add mag field and stop col 22, 
+// >>chng 10 feb 14, from 20.96 to 24.81, update O atomic data
+monitor "H2" column density 24.81 error 0.1
+//
+// >>chng 05 jun 07, from 21.92 to 21.75, NA add CO grain condensation
+// >>chng 05 nov 22, from 21.75 to 21.36 - chng stop depth to avoid ice
+// >>chng 05 dec 17, from 21.13 to 21.49, NA increase C chemistry
+// >>chng 06 aug 25, from 21.49 to 17.00 add mag field and stop col 22, 
+// >>chng 10 feb 14, from 17 to 21.52, update O atomic data
+monitor "CO" column density 21.52 error 0.15
+//
+// >>chng 05 mar 25, from 18.38 to 18.48, renorm H pops in level solver
+// >>chng 05 jun 07, from 18.48 to 18.90, NA add CO grain condensation
+// >>chng 05 aug 06, from 18.90 to 18.61, chng H2 col dis rates, logic
+// for dealing with thermal fronts
+// >>chng 05 nov 22, from 18.61 to 17.46 - chng stop depth to avoid ice
+// >>chng 06 mar 02, from 17.46 to 17.55, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 aug 25, from 17.55 to 11.77 add mag field and stop col 22, 
+// >>chng 08 dec 13, from 11.77 to 11.9, merging newsolvers branch
+// >>chng 10 feb 14, from 11.9 to 17.26, update O atomic data
+monitor "H2O" column density 17.26 error 0.20
+// 
+// >>chng 05 jun 07, from 19.08 to 19.47, NA add CO grain condensation
+// >>chng 05 aug 06, from 19.47 to 19.09, chng H2 col dis rates, logic
+// for dealing with thermal fronts, inc errer
+// >>chng 05 nov 22, from 19.09 to 17.91 - chng stop depth to avoid ice
+// >>chng 06 aug 25, from 17.91 to 11.24 add mag field and stop col 22, 
+// >>chng 08 dec 13, from 11.24 to 11.36, merging newsolvers branch
+// >>chng 10 feb 14, from 11.36 to 17.64, update O atomic data
+monitor "O2" column density 17.64 error 0.2
+// 
+// >>chng 05 mar 25, from 18.51 to 18.63, renorm H pops in level solver
+// >>chng 05 jun 07, from 18.63 to 18.88, NA add CO grain condensation
+// >>chng 05 nov 22, from 18.88 to 17.95 - chng stop depth to avoid ice
+// >>chng 06 aug 25, from 17.95 to 10.31 add mag field and stop col 22, 
+// >>chng 08 dec 13, from 10.31 to 10.42, merging newsolvers branch
+// >>chng 10 feb 14, from 10.42 to 17.96, update O atomic data
+monitor "SiO" column density 17.96 error 0.25
+// 
+// >>chng 05 mar 22, from 15.94 to 15.88, NA update CO chem net
+// >>chng 05 mar 25, from 15.88 to 15.79, renorm H pops in level solver
+// >>chng 05 jun 07, from 15.79 to 16.06, NA add CO grain condensation
+// >>chng 05 nov 22, from 16.06 to 15.44 - chng stop depth to avoid ice
+// >>chng 05 dec 08, from 15.44 to 14.77 update to Elwert Solomon rate
+// >>chng 06 aug 25, from 14.77 to 13.40 add mag field and stop col 22, 
+// >>chng 07 dec 15, from 13.40 to 13.46, X-ray grain merge
+// >>chng 08 feb 20, from 13.46 to 13.40, grain charge transfer changes in ion_solver and iso*
+// >>chng 08 mar 17, from 13.40 to 13.44, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 dec 13, from 13.44 to 13.55, merging newsolvers branch
+// >>chng 09 oct 24, from 13.55 to 13.508, merging newsolvers branch
+// >>chng 10 feb 14, from 13.51 to 14.8, update O atomic data
+monitor "OH" column density 14.8 error 0.1 
+//
+// >>chng 05 mar 22, from -4.10 to -4.06, NA update CO chem net
+// >>chng 05 dec 08, from -4.10 to -4.31 update to Elwert Solomon rate
+// >>chng 05 dec 17, from -4.33 to -4.27, NA increase C chemistry
+// >>chng 06 mar 02, from -4.27 to -4.22, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 aug 25, from -4.22 to -4.40 add mag field and stop col 22, 
+// >>chng 10 feb 14, from -4.4 to -4.19, update O atomic data
+// >>chng 10 mar 02, from -4.19 to -3.555, fix botches after CO model switch
+// >>chng 10 jun 17, from -3.555 to -3.655, fix botches due to recent dBase cooling changes
+monitor line luminosity "CO  " 650.1m  -3.655 error 0.1
+//
+// >>chng 05 mar 22, from -3.74 to -3.70, NA update CO chem net
+// >>chng 05 dec 08, from -3.74 to -4.00 update to Elwert Solomon rate
+// >>chng 05 dec 17, from -4.00 to -3.95, NA increase C chemistry
+// >>chng 06 mar 02, from -3.95 to -3.88, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 aug 25, from -3.88 to -4.03 add mag field and stop col 22, 
+// >>chng 10 feb 14, from -4.03 to -3.849, update O atomic data
+// >>chng 10 mar 02, from -3.849 to -3.269, fix botches after CO model switch
+// >>chng 10 jun 17, from -3.269 to -3.381, fix botches due to recent dBase cooling changes
+monitor line luminosity "CO  " 520.1m  -3.381 error 0.1
+//
+// >>chng 05 mar 22, from -3.45 to -3.42, NA update CO chem net
+// >>chng 05 dec 08, from -3.45 to -3.76 update to Elwert Solomon rate
+// >>chng 05 dec 17, from -3.76 to -3.70, NA increase C chemistry
+// >>chng 06 mar 02, from -3.70 to -3.62, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from -3.62 to -3.59
+// >>chng 06 aug 25, from -3.59 to -3.74 add mag field and stop col 22, 
+// >>chng 10 feb 14, from -3.74 to -3.578, update O atomic data
+// >>chng 10 mar 02, from -3.578 to -3.048, fix botches after CO model switch
+// >>chng 10 jun 17, from -3.048 to -3.173, fix botches due to recent dBase cooling changes
+monitor line luminosity "CO  " 433.4m  -3.173 error 0.1
+//
+// >>chng 05 dec 08, from -3.24 to -3.59 update to Elwert Solomon rate
+// >>chng 05 dec 17, from -3.59 to -3.52, NA increase C chemistry
+// >>chng 06 mar 02, from -3.52 to -3.42, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from -3.42 to -3.38
+// >>chng 06 aug 25, from -3.38 to -3.52 add mag field and stop col 22, 
+// >>chng 10 feb 14, from -3.52 to -3.37, update O atomic data
+// >>chng 10 mar 02, from -3.37 to -2.874, fix botches after CO model switch
+// >>chng 10 jun 17, from -2.874 to -3.014, fix botches due to recent dBase cooling changes
+monitor line luminosity "CO  " 371.5m  -3.014 error 0.1
+//
+// >>chng 05 dec 08, from -3.08 to -3.45 update to Elwert Solomon rate
+// >>chng 05 dec 17, from -3.45 to -3.37, NA increase C chemistry
+// >>chng 06 mar 02, from -3.37 to -3.26, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from -3.26 to -3.22
+// >>chng 06 aug 25, from -3.22 to -3.34 add mag field and stop col 22, 
+// >>chng 10 feb 14, from -3.34 to -3.205, update O atomic data
+// >>chng 10 mar 02, from -3.205 to -2.736, fix botches after CO model switch
+// >>chng 10 jun 17, from -2.736 to -2.894, fix botches due to recent dBase cooling changes
+monitor line luminosity "CO  " 325.1m  -2.894 error 0.1
+//
+// >>chng 05 dec 08, from -2.95 to -3.36 update to Elwert Solomon rate
+// >>chng 05 dec 17, from -3.36 to -3.27, NA increase C chemistry
+// >>chng 06 mar 02, from -3.27 to -3.13, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 aug 25, from -3.13 to -3.20 add mag field and stop col 22, 
+// >>chng 10 feb 14, from -3.2 to -3.077, update O atomic data
+// >>chng 10 mar 02, from -3.077 to -2.628, fix botches after CO model switch
+// >>chng 10 jun 17, from -2.628 to -2.808, fix botches due to recent dBase cooling changes
+monitor line luminosity "CO  " 289.0m  -2.808 error 0.15
+//
+// >>chng 05 dec 08, from -2.86 to -3.30 update to Elwert Solomon rate
+// >>chng 05 dec 17, from -3.30 to -3.20, NA increase C chemistry
+// >>chng 06 mar 02, from -3.20 to -3.04, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from -3.04 to -2.99
+// >>chng 06 aug 25, from -2.99 to -3.09 add mag field and stop col 22, 
+// >>chng 10 feb 14, from -3.09 to -2.979, update O atomic data
+// >>chng 10 mar 02, from -2.979 to -2.547, fix botches after CO model switch
+// >>chng 10 jun 17, from -2.547 to -2.752, fix botches due to recent dBase cooling changes
+monitor line luminosity "CO  " 260.2m  -2.752 error 0.15
+//
+// >>chng 05 aug 06, from -2.80 to -2.86, chng H2 col dis rates, logic
+// for dealing with thermal fronts, inc errer
+// >>chng 05 dec 08, from -2.86 to -3.29 update to Elwert Solomon rate
+// >>chng 05 dec 17, from -3.29 to -3.17, NA increase C chemistry
+// >>chng 06 mar 02, from -3.17 to -2.99, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from -2.99 to -2.93
+// >>chng 06 aug 25, from -2.93 to -3.00 add mag field and stop col 22, 
+// >>chng 10 feb 14, from -3 to -2.912, update O atomic data
+// >>chng 10 mar 02, from -2.912 to -2.49, fix botches after CO model switch
+// >>chng 10 jun 17, from -2.49 to -2.726, fix botches due to recent dBase cooling changes
+monitor line luminosity "CO  " 236.5m  -2.726 error 0.15
+//
+// >>chng 05 jun 26, from -2.77 to -2.84, make Federman chem the default
+// >>chng 05 dec 08, from -2.83 to -3.31 update to Elwert Solomon rate
+// >>chng 05 dec 17, from -3.31 to -3.18, NA increase C chemistry
+// >>chng 06 mar 02, from -3.18 to -2.96, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from -2.96 to -2.89
+// >>chng 06 aug 25, from -2.89 to -2.95 add mag field and stop col 22, 
+// >>chng 10 feb 14, from -2.95 to -2.875, update O atomic data
+// >>chng 10 mar 02, from -2.875 to -2.452, fix botches after CO model switch
+// >>chng 10 jun 17, from -2.452 to -2.721, fix botches due to recent dBase cooling changes
+monitor line luminosity "CO  " 216.9m  -2.721 error 0.15
+// 
+// >>chng 05 dec 08, add this temperature
+monitor temperature hydrogen 2 9226
+// 
+// >>chng 06 aug 29 from 1330 to 1270, drift down
+// >>chng 08 feb 20, from 1270 to 1385, grain charge transfer changes in ion_solver and iso*
+// >>chng 08 mar 17, from 1385 to 1286, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 mar 18, this result depends on platform, it did not change with
+// VS08 in relese mode.  VS08 get 1395 while icl on same platform reproduces
+// Ryan's answer, 1286.  move asserted value to middle of range, 1330, and
+// increase error
+// >>chng 08 dec 13, from 1330 to 1113, merging newsolvers branch
+// >>chng 09 feb 08, error 0.1 -> 0.05
+// >>chng 09 oct 05, from 1113 to 1361, [NI] pumping changes
+// >>chng 10 feb 14, from 1361 to 1427, update O atomic data
+monitor temperature hydrogen 1 1427
+// 
+// >>chng 06 aug 25, from 22.7 to 202 add mag field and stop col 22, 
+// >>chng 10 feb 14, from 202 to 22.8 update O atomic data
+monitor temperature H2 22.8
+//
+// >>chng 05 nov 22, from 1400 to 1650 - chng stop depth to avoid ice
+// >>chng 05 dec 08, from 1650 to 1750 update to Elwert Solomon rate
+// >>chng 05 dec 17, from 1750 to 1850 NA increase C chemistry
+// >>chng 07 oct 29, from 1850 to 733, change from "<" to "="
+// >>chng 09 jan 08, from 733 to 742, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 10 feb 14, from 742 to 1854, update O atomic data
+monitor nzone 1854 
+//
+// >>chng 05 mar 28, from 24 to 14 impr mol converg
+// >>chng 05 apr 10, from 14 to 16, chng ci conv
+// >>chng 05 jun 28, 16 to 18, took more on sdx
+// >>chng 05 jul 02, 18 to 24, why?
+// >>chng 05 nov 22, from 24 to 18 NA add freeze out onto grains
+// >>chng 08 dec 08, from 18 to 12.25, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 12.25 to 44.5, merging newsolvers branch
+// >>chng 09 jan 16, from 44.5 to 44.17, average of 10 runs
+// >>chng 09 feb 10, from 44.17 to 45.33, add forbidden component of N IV] 1498 to continuum (r2669)
+// >>chng 09 feb 23, from 45.33 to 44.02, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 10 feb 14, from 44.02 to 30.5, update O atomic data
+monitor itrzn 30.5
+// 
+// >>chng 08 jul 07 add radiation pressure
+// >>chng 08 jul 08, set 0.1995
+// >>chng 08 jul 23, from 0.199 to 0.0168 chng Pesc line radiation pressure
+// >>chng 09 oct 06, from 0.0168 to 0.0176, [NI] pumping changes
+monitor Pradmax 0.0176
+//
+c orion_hii_pdr_pp.in
+c class hii pdr  
+c ========================================
+
+Similar to orion_hii_pdr except for plane parallel geometry.
+The properties of the molecular region change when details of the H+
+region change because the pressure of the entire cloud can change
+as a result.  The goal of this sim is an existence proof - that it can
+be done, rather than the stable details of the molecular region.
+

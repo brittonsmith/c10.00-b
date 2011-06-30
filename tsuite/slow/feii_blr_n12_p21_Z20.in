@@ -1,0 +1,98 @@
+title FeII model 
+table agn
+print lines column
+print lines sort intensity 
+abundances starburst 20 
+atom feii 
+hden 12
+phi(h) 21
+stop column density 23
+iterate convergence 
+//
+// affects appearance of printout
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+//
+// these are to try to speed things up
+init "c84.ini"
+//
+save monitors "feii_blr_n12_p21_Z20.asr" last
+save feii continuum units microns "feii_blr_n12_p21_Z20.fe2con" last
+save convergence reason "feii_blr_n12_p21_Z20.cvr"
+save feii lines "feii_blr_n12_p21_Z20.lin" last
+save feii populations all "feii_blr_n12_p21_Z20.lev" last
+save feii column densities "feii_blr_n12_p21_Z20.fe2col" last
+save overview "feii_blr_n12_p21_Z20.ovr" last
+save dr "feii_blr_n12_p21_Z20.dr" last 
+//
+// strong blr lines
+// >>chng 10 jun 29, from 7.768 to 9.021, init
+monitor line luminosity "totl"  1216 9.021 //total Hydrogen Lyman-alpha 1215.67 
+//
+// >>chng 10 jun 29, from 5.112 to 9.096, init
+monitor line luminosity "totl"  1397 9.096 //total of sum of both Si IV comp
+//
+// >>chng 10 jun 29, from 3.327 to 8.006, init
+monitor line luminosity "totl"  1402 8.006 //total O IV] 1402 
+//
+//total of sum of both C IV comp
+// >>chng 10 jun 29, from 5.459 to 9.034, init
+monitor line luminosity "totl"  1549 9.034 error 0.1
+//
+// >>chng 10 jun 29, from 6.816 to 8.493, init
+monitor line luminosity "he 2"  1640 8.493 //total He II Balmer-alpha 1640
+//
+// >>chng 10 jun 29, from 4.53 to 8.032, init
+monitor line luminosity "o  3"  1666 8.032 //total O III] 1666
+//
+//total of sum of CIII] 1908.73+
+// >>chng 10 jun 29, from 4.541 to 7.733, init
+monitor line luminosity "totl"  1909 7.733 error 0.1
+//
+//total of sum of Si III] 1892+
+// >>chng 10 jun 29, from 6.29 to 8.663, init
+monitor line luminosity "totl"  1888 8.663 error 0.1
+//
+// >>chng 10 jun 29, from 5.449 to 8.742, init
+monitor line luminosity "totl"  1860 8.742 //total sum of both Al III comp
+//
+// >>chng 10 jun 29, from 5.39 to 7.62, init
+// >>chng 10 aug 23, from 7.62 to 7.551, first run since change continuum grid
+monitor line luminosity "totl"  2326 7.551 err 0.1 //total C II] 2324.69+2328.12
+//
+// >>chng 10 jun 29, from 7.438 to 8.774, init
+monitor line luminosity "totl"  2798 8.774 //total of sum of both Mg II comp
+//
+//total of sum of both Mg II comp
+// >>chng 10 jun 29, from 7.324 to 8.638, init
+monitor line luminosity "He 1" 584.3 8.638 error 0.1
+//
+// >>chng 10 jun 29, from 7.152 to 9.532, init
+monitor line luminosity "Fe2b"  2500 9.532 //total of sum of both Mg II comp
+//
+//total of sum of both Mg II comp
+// >>chng 10 jun 29, from 6.645 to 7.354, init
+monitor line luminosity "He 1"  5876 7.354 error 0.1
+//
+// >>chng 10 jun 29, from 7.145 to 9.53, init
+monitor line luminosity "Fe2C" 0 9.53
+//
+// >>chng 10 jun 29, from 7.013 to 9.347, init
+monitor line luminosity "Fe2b" 2445 9.347
+//
+// >>chng 10 jun 29, from 5.65 to 8.066, init
+monitor line luminosity "Fe2b" 4558 8.066
+//
+// >>chng 10 jul 19, from 18 to 16.6, drift from changes over past few weeks
+monitor itrzn 16.6 error 0.06
+//
+// >>chng 10 jun 29, from 3 to 5, init
+// >>chng 10 jul 26, cloud9 gcc got 3 at r4068
+// >>chng 10 jul 26, icc 11.1 mac 64, got 5
+monitor niter >2 error 0.01
+monitor niter <6 error 0.01
+//
+// >>chng 10 jun 29, from 316 to 509, init
+monitor nzone 509 
+
+This is one of the models that sample the LOC plane.

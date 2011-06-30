@@ -1,0 +1,98 @@
+title background cosmic ray ionization by suprathermal electrons only
+c
+c commands controlling continuum =========
+c this is hot star continuum
+black 30000
+intensity  -5. range  0.4412 to 1 Ryd
+c this will remove all ionizing radiation
+extinguish 24 0
+c background CR ionization rate should be 2.5e-17 s^-1,
+c Tielens & Hollenbach 1985; McKee AstroPH 9901370
+cosmic rays, background
+c
+c commands for density & abundances =========
+abundances ism 
+hden 5
+c
+c commands controlling geometry  =========
+set dr 0 
+stop zone 5 
+stop temperature 400 
+c
+c other commands for details     =========
+set h2 grain formation thermal pump 
+atom h2 
+iterate
+constant temperature 500K
+c must turn off line photoexcitation
+c since we want to test cr heating and ionization
+no induced processes
+c
+c commands controlling output    =========
+normalize to "H2  " 2.121m
+print column density 
+print ages
+save overview "h2_cr_grains.ovr" last
+save h2 lines "h2_cr_grains.lin" last all 
+save h2 rates "h2_cr_grains.rat" last
+save h2 column density "h2_cr_grains.col" last
+save grains H2rates "h2_cr_grains.h2r" last
+save monitors "h2_cr_grains.asr" last
+c
+c commands giving the monitors    =========
+// >>chng 05 apr 19, added this test
+// >>chng 05 nov 22, from 5.398 to 4.687 stop half thick to avoid grn freeze out
+// >>chng 05 dec 17, from 4.69 to 5.39, do not stop due to ices
+monitor h2 column 5.39 error 0.1
+//
+// >>chng 05 jun 07, from 1.87 to 1.72, NA add CO grain condensation
+// >>chng 05 aug 03, from 1.72 to 2.02, NA update CO, H chem net
+// >>chng 05 nov 22, from 2.02 to -1.13, NA add freeze out onto grains
+// >>chng 05 nov 22, from -1.13 to -1.83 stop half thick to avoid grn freeze out
+// >>chng 05 dec 17, from -1.83 to -1.13, do not stop due to ices
+// >>chng 05 dec 17, from -1.13 to -0.97, NA increase C chemistry
+// >>chng 06 jan 12, from -0.97 to 2.01, add term thermal dest ices
+monitor CO column 2.01 error 0.1
+//
+// >>chng 05 may 07, disable Le Bourlot grain coll orth-para conversion, 
+// from 2.776 to 2.995
+monitor H2 ortho 2.995
+// 
+// >>chng 05 aug 03, from 4.33 to 4.29, NA update CO, H chem net
+// >>chng 05 nov 22, from 4.29 to 3.59 stop half thick to avoid grn freeze out
+// >>chng 05 dec 17, from 3.59 to 4.29, do not stop due to ices
+monitor H2 column density level v=0 J=0 N=4.29 error 0.1
+// 
+// >>chng 05 nov 22, from 5.10 to 4.40 stop half thick to avoid grn freeze out
+// >>chng 05 dec 17, from 4.40 to 5.10, do not stop due to ices
+monitor H2 column density level v=0 J=1 N=5.10 error 0.1
+// 
+// >>chng 05 aug 03, from 4.58 to 4.54, NA update CO, H chem net
+// >>chng 05 nov 22, from 4.54 to 3.85 NA update freeze out
+// >>chng 05 dec 17, from 3.85 to 4.55, do not stop due to ices
+monitor H2 column density level v=0 J=2 N=4.55 error 0.1
+// 
+// >>chng 05 nov 22, from 4.73 to 4.03 NA update freeze out
+// >>chng 05 dec 17, from 4.03 to 4.73, do not stop due to ices
+monitor H2 column density level v=0 J=3 N=4.73 error 0.1
+// 
+// >>chng 05 aug 03, from 3.07 to 3.77, NA update CO, H chem net
+monitor H2 column density level v=0 J=4 N=3.77 error 0.1
+// 
+// >>chng 05 aug 03, from 2.84 to 3.54, NA update CO, H chem net
+monitor H2 column density level v=0 J=5 N=3.54 error 0.1
+//
+// >>chng 05 dec 17, add this to confirm got to expected depth and
+// did not stop due to ice form
+monitor nzone 5 
+// 
+c h2_cr_grains.in
+c class limit  
+c ========================================
+c 
+
+This tests conditions of cosmic ray ionization and grain formation pumping.
+Solomon process is turned off with the "no induced processes" command
+so cosmic rays are the main dissociation process.
+This forms a pair with h2_cr which does not include grains, so relies
+only on gas-phase chemistry.

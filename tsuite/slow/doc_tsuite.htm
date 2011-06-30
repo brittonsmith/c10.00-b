@@ -1,0 +1,958 @@
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+   <meta name="GENERATOR" content="Mozilla/4.77 [en] (X11; U; Linux 2.4.3-12 i686) [Netscape]">
+
+   <title>Cloudy test suite</title>
+
+
+</head>
+<body><h4>  This HTML file was created by the program doc_tsuite.pl.  doc_tsuite.txt contains a tab delimited list of the files. </h4>
+<hr><h2><kbd>dynamics_HII_PDR.in  </kbd><I>fast H+He+metals (low ionization parameter) 009 km s 
+</I></h2><kbd><br>title fast H+He+metals (low ionization parameter) 009 km s 
+<br>failures 1
+<br>*
+<br>* ADVECTION PARAMETERS
+<br>*
+<br>wind -9 advection no continuum
+<br>set dynamics pressure mode subsonic
+<br>iterate 10 to convergence 0.001
+<br>* iterate 10 to convergence 0.001
+<br>set nend 2000 
+<br>*
+<br>* INPUT SPECTRA
+<br>*
+<br>* hot wd star
+<br>blackbody 120,000
+<br>phi(h) 9.5
+<br>sphere 
+<br>turbulence 8 km/sec
+<br>* 
+<br>* OTHER PHYS PARAMS
+<br>normalize to "Q(H)" 4861 
+<br>*
+<br>hden 3.5
+<br>*init "fast.ini"
+<br>init "ism.ini"
+<br>abundances hii region no grains
+<br>grains orion no qheat single 
+<br>*
+<br>* STOPPING CRITERIA
+<br>*
+<br>stop thickness 18
+<br>stop efrac -3
+<br>stop temperature 100
+<br>no molecules
+<br>*
+<br>* SPEEDUP
+<br>*
+<br>atom h-like levels small
+<br>atom he-like levels small
+<br>* set drmin 12.5
+<br>*
+<br>* Output
+<br>punch dr "dynamics_HII_PDR.dr"
+<br>punch overview "dynamics_HII_PDR.ovr"
+<br>punch wind "dynamics_HII_PDR.wnd"
+<br>* 
+<br>*
+<br>* asserts
+<br>c
+<br>c dynamics_HII_PDR.in
+<br>c
+</kbd><p>
+</p><hr><h2><kbd>feii_blr_n09_p18.in  </kbd><I>FeII model 
+</I></h2><kbd><br>title FeII model 
+<br>table agn
+<br>atom feii 
+<br>print lines column
+<br>print lines sort intensity 
+<br>hden 9
+<br>phi(h) 18
+<br>stop column density 23
+<br>iterate convergence 
+<br>normalize to "totl" 1216 100 
+<br>init "c84.ini"
+<br>punch feii lines "feii_blr_n09_p18.lin" last
+<br>punch feii column densities "feii_blr_n09_p18.fe2col" last
+<br>punch feii relative populations all "feii_blr_n09_p18.lev" last
+<br>punch feii relative populations range 0 200 "feii_blr_n09_p18.lv1" last
+<br>punch feii relative populations range 201 371 "feii_blr_n09_p18.lv2" last
+<br>punch overview "feii_blr_n09_p18.ovr" last
+<br>punch dr "feii_blr_n09_p18.dr" last 
+<br>punch convergence reason "feii_blr_n09_p18.cvr"
+</kbd><p>
+This is one of the 5 models that sample the LOC plane.
+</p><hr><h2><kbd>feii_blr_n09_p18_Z20.in  </kbd><I>FeII model 
+</I></h2><kbd><br>title FeII model 
+<br>table agn
+<br>print lines column
+<br>print lines sort intensity 
+<br>atom feii 
+<br>abundances starburst 20 
+<br>hden 9
+<br>phi(h) 18
+<br>stop column density 23
+<br>iterate convergence 
+<br>normalize to "totl" 1216 100 
+<br>init "c84.ini"
+<br>punch feii lines "feii_blr_n09_p18_Z20.lin" last
+<br>punch feii colum density "feii_blr_n09_p18_Z20.fe2col" last
+<br>punch feii populations all "feii_blr_n09_p18_Z20.lev" last
+<br>punch overview "feii_blr_n09_p18_Z20.ovr" last
+<br>punch dr "feii_blr_n09_p18_Z20.dr" last 
+<br>punch convergence reason "feii_blr_n09_p18_Z20.cvr"
+</kbd><p>
+This is one of the 5 models that sample the LOC plane.
+</p><hr><h2><kbd>feii_blr_n11_p20.in  </kbd><I>FeII model 
+</I></h2><kbd><br>title FeII model 
+<br>table agn
+<br>print lines column
+<br>print lines sort intensity 
+<br>atom feii 
+<br>hden 11
+<br>phi(h) 20
+<br>stop column density 23
+<br>iterate convergence 
+<br>normalize to "totl" 1216 100 
+<br>init "c84.ini"
+<br>punch convergence reason "feii_blr_n11_p20.cvr"
+<br>punch feii lines "feii_blr_n11_p20.lin" last
+<br>punch feii column densities "feii_blr_n11_p20.fe2col" last
+<br>punch feii populations all "feii_blr_n11_p20.lev" last
+<br>punch overview "feii_blr_n11_p20.ovr" last
+<br>punch dr "feii_blr_n11_p20.dr" last 
+</kbd><p>
+This is one of the 5 models that sample the LOC plane.
+</p><hr><h2><kbd>feii_blr_n11_p20_Z20.in  </kbd><I>FeII model 
+</I></h2><kbd><br>title FeII model 
+<br>table agn
+<br>print lines column
+<br>print lines sort intensity 
+<br>atom feii 
+<br>failures 2
+<br>abundances starburst 20 
+<br>hden 11
+<br>phi(h) 20
+<br>stop column density 23
+<br>iterate convergence 
+<br>normalize to "totl" 1216 100 
+<br>init "c84.ini"
+<br>punch cooling "feii_blr_n11_p20_Z20.col" 
+<br>punch convergence reason "feii_blr_n11_p20_Z20.cvr"
+<br>punch feii lines "feii_blr_n11_p20_Z20.lin" last
+<br>punch feii column densites "feii_blr_n11_p20_Z20.fe2col" last
+<br>punch feii populations all  "feii_blr_n11_p20_Z20.lev" 
+<br>punch heating "feii_blr_n11_p20_Z20.het" 
+<br>punch element calcium "feii_blr_n11_p20_Z20.ca" 
+<br>punch overview "feii_blr_n11_p20_Z20.ovr" last
+<br>punch dr "feii_blr_n11_p20_Z20.dr" 
+</kbd><p>
+This is one of the 5 models that sample the LOC plane.
+</p><hr><h2><kbd>feii_blr_n12_p19.in  </kbd><I>FeII model 
+</I></h2><kbd><br>title FeII model 
+<br>table agn
+<br>print lines column
+<br>print lines sort intensity 
+<br>atom feii 
+<br>hden 12
+<br>phi(h) 19
+<br>stop column density 23
+<br>iterate convergence 
+<br>normalize to "totl" 1216 100 
+<br>init "c84.ini"
+<br>punch convergence reason "feii_blr_n12_p19.cvr"
+<br>punch feii lines "feii_blr_n12_p19.lin" last
+<br>punch feii populations all "feii_blr_n12_p19.lev" last
+<br>punch feii column densities "feii_blr_n12_p19.fe2col" last
+<br>punch overview "feii_blr_n12_p19.ovr" last
+<br>punch dr "feii_blr_n12_p19.dr" last 
+</kbd><p>
+This is one of the 5 models that sample the LOC plane.
+</p><hr><h2><kbd>feii_blr_n12_p19_Z20.in  </kbd><I>FeII model 
+</I></h2><kbd><br>title FeII model 
+<br>table agn
+<br>print lines column
+<br>print lines sort intensity 
+<br>atom feii 
+<br>abundances starburst 20 
+<br>hden 12
+<br>phi(h) 19
+<br>stop column density 23
+<br>iterate convergence 
+<br>normalize to "totl" 1216 100 
+<br>init "c84.ini"
+<br>punch feii lines "feii_blr_n12_p19.lin" last
+<br>punch feii column densiteis "feii_blr_n12_p19.fe2col" last
+<br>punch feii populations all "feii_blr_n12_p19.lev" last
+<br>punch convergence reason "feii_blr_n12_p19.cvg"
+<br>punch overview "feii_blr_n12_p19.ovr" last
+<br>punch dr "feii_blr_n12_p19.dr" last 
+</kbd><p>
+This is one of the 5 models that sample the LOC plane.
+</p><hr><h2><kbd>feii_blr_n13_p18.in  </kbd><I>BLR model, density 1e13 cm-3, flux of H-ion phots 1e18 cm2 s-1
+</I></h2><kbd><br>title BLR model, density 1e13 cm-3, flux of H-ion phots 1e18 cm2 s-1
+<br>print lines column
+<br>print lines sort intensity 
+<br>atom feii 
+<br>c
+<br>c this is a very low ionization cloud
+<br>c the conditions, and some lines, are surprisingly sensitive
+<br>c to the treatment of hydrogen molecules
+<br>c
+<br>table agn
+<br>hden 13
+<br>phi(h) 18
+<br>stop column density 22
+<br>double 
+<br>iterate convergence 
+<br>normalize to "totl" 1216 100 
+<br>init "c84.ini"
+<br>punch feii lines "feii_blr_n13_p18.lin" last
+<br>punch feii column densites "feii_blr_n13_p18.fe2col" last
+<br>punch feii populations all "feii_blr_n13_p18.lev" last
+<br>punch overview "feii_blr_n13_p18.ovr" last
+<br>punch dr "feii_blr_n13_p18.dr" last 
+<br>punch convergence reason "feii_blr_n13_p18.cvr" 
+</kbd><p>
+This is one of the 5 models that sample the LOC plane.
+</p><hr><h2><kbd>feii_blr_n13_p18_Z20.in  </kbd><I>BLR model, density 1e13 cm-3, flux of H-ion phots 1e18 cm2 s-1
+</I></h2><kbd><br>title BLR model, density 1e13 cm-3, flux of H-ion phots 1e18 cm2 s-1
+<br>print lines column
+<br>print lines sort intensity 
+<br>atom feii 
+<br>abundances starburst 20 
+<br>c
+<br>c this is a very low ionization cloud
+<br>c the conditions, and some lines, are surprisingly sensitive
+<br>c to the treatment of hydrogen molecules
+<br>c
+<br>table agn
+<br>hden 13
+<br>phi(h) 18
+<br>stop column density 19
+<br>double 
+<br>iterate convergence limit 15
+<br>normalize to "totl" 1216 100 
+<br>init "c84.ini"
+<br>punch feii lines "feii_blr_n13_p18_Z20.lin" last
+<br>punch feii column densities "feii_blr_n13_p18_Z20.fe2col" last
+<br>punch feii populations all "feii_blr_n13_p18_Z20.lev" last
+<br>punch overview "feii_blr_n13_p18_Z20.ovr" last
+<br>punch dr "feii_blr_n13_p18_Z20.dr" last 
+<br>punch convergence reason "feii_blr_n13_p18_Z20.cvr" 
+</kbd><p>
+This is one of the 5 models that sample the LOC plane.
+</p><hr><h2><kbd>feii_blr_n13_p22.in  </kbd><I>FeII model 
+</I></h2><kbd><br>title FeII model 
+<br>table agn
+<br>print lines column
+<br>print lines sort intensity 
+<br>atom feii 
+<br>hden 13
+<br>phi(h) 22
+<br>stop column density 23
+<br>iterate convergence 
+<br>normalize to "totl" 1216 100 
+<br>init "c84.ini"
+<br>punch convergence reason "feii_blr_n13_p22.cvr"
+<br>punch feii lines "feii_blr_n13_p22.lin" last
+<br>punch feii populations all "feii_blr_n13_p22.lev" last
+<br>punch feii column density "feii_blr_n13_p22.col" last
+<br>punch overview "feii_blr_n13_p22.ovr" last
+<br>punch dr "feii_blr_n13_p22.dr" last 
+</kbd><p>
+This is one of the 5 models that sample the LOC plane.
+</p><hr><h2><kbd>feii_blr_n13_p22_Z20.in  </kbd><I>FeII model 
+</I></h2><kbd><br>title FeII model 
+<br>table agn
+<br>print lines column
+<br>print lines sort intensity 
+<br>atom feii 
+<br>abundances starburst 20 
+<br>hden 13
+<br>phi(h) 22
+<br>stop column density 23
+<br>iterate convergence 
+<br>normalize to "totl" 1216 100 
+<br>init "c84.ini"
+<br>punch convergence reason "feii_blr_n13_p22_Z20.cvr"
+<br>punch feii lines "feii_blr_n13_p22_Z20.lin" last
+<br>punch feii column densities "feii_blr_n13_p22_Z20.fe2col" last
+<br>punch feii populations all "feii_blr_n13_p22_Z20.lev" last
+<br>punch overview "feii_blr_n13_p22_Z20.ovr" last
+<br>punch dr "feii_blr_n13_p22_Z20.dr"
+<br>punch heating "feii_blr_n13_p22_Z20.het"
+<br>punch cooling "feii_blr_n13_p22_Z20.col"
+</kbd><p>
+This is one of the 5 models that sample the LOC plane.
+</p><hr><h2><kbd>h2_HTT91.in  </kbd><I>Hollenbach et al. 1991 low-density PDR
+</I></h2><kbd><br>title Hollenbach et al. 1991 low-density PDR
+<br>iterate 
+<br>c
+<br>c
+<br>hden 3
+<br>c
+<br>c this is hot star continuum
+<br>black 30000
+<br>intensity  0.2 range  0.4412 to 1 Ryd
+<br>c this will remove all ionizing radiation
+<br>extinguish 24 0
+<br>c
+<br>turbulence 1.5 km/sec
+<br>c first continuum is FIR hot grain continuum produced in 
+<br>c unmodeled HII Region
+<br>grains orion, abundance log 0.16 
+<br>grains PAH 
+<br>atom h2 
+<br>init file="ism.ini"
+<br>abundances he -1.01 c -3.52 n-8 o-3.30 ne-8 mg-5.89
+<br>continue si -6.10 s -5.10 cl-7 ar-8 fe -6.60
+<br>normalize to 157.6m "C  2" 
+<br>sphere
+<br>case b
+<br>cosmic rays, background
+<br>c stop when gas is fully neutral
+<br>stop efrac -10
+<br>c this is to stop at an intended place, since results would be
+<br>c very dependent on details if we stop on temperature
+<br>stop thickness 18.954
+<br>c stop when gas is cold
+<br>stop temperature 10 linear
+<br>c add this to mimic unmodelled neutral gas
+<br>double optical depths
+<br>c
+<br>c uv lines are strongly pumped by stellar continuum, break out contribution
+<br>print line pump
+<br>print line optical depths
+<br>print ages
+<br>c
+<br>punch overview last "h2_HTT91.ovr"
+<br>punch dr "h2_HTT91.dr "
+<br>punch molecules last "h2_HTT91.mol"
+<br>punch results last "h2_HTT91.rlt"
+<br>punch continuum units microns last "h2_HTT91.con"
+<br>punch heating last "h2_HTT91.het"
+<br>punch cooling last "h2_HTT91.col"
+<br>punch H2 destruction "h2_HTT91.H2d"
+<br>punch H2 creation "h2_HTT91.H2c"
+<br>c
+<br>c h2_HTT91.in
+</kbd><p>
+This is the Hollenbach et al 1991 Low-density PDR
+The case b command appears because the Lyman lines are
+vastly optically thick in this environment. 
+If the command is removed the Lyman lines will be optically thin,
+which will result in fast fluorescent excitation of the
+(nearly totally neutral) hydrogen atom.  
+<p>
+there is very little CO in this model since it is not thick enough
+for the UV pumping lines to become optically thick
+</p><hr><h2><kbd>h2_orion_hii_pdr.in  </kbd><I>constant gas pressure orion into pdr
+</I></h2><kbd><br>title constant gas pressure orion into pdr
+<br>stop temperature 10 linear
+<br>c
+<br>c print lots of faint CO lines
+<br>print line faint -4
+<br>stop AV 1000 point
+<br>constant gas pressure 
+<br>sphere 
+<br>c
+<br>c the incident continuum is two parts
+<br>c star and flux of photons striking it
+<br>table read "star_kurucz_39600.dat"
+<br>c 
+<br>Q(H) 49
+<br>radius 17.4507
+<br>c plus hot brems 
+<br>brems 6
+<br>phi(h) 10
+<br>c
+<br>c add cosmic rays, which are important at depth
+<br>cosmic rays, background
+<br>c
+<br>c we have a spherical geometry but want to simulate observing
+<br>c through a spectrometer's slit.  use the aperture
+<br>c command for this
+<br>aperture beam 
+<br>c 
+<br>c the observed microturbulence 
+<br>turbulence 8 km/sec no pressure 
+<br>c
+<br>c density and abundances
+<br>hden 4
+<br>init file="ism.ini"
+<br>abundances hii region no grains
+<br>grains orion 
+<br>grains pah 
+<br>atom h2  
+<br>c
+<br>set nend 2000 
+<br>c
+<br>punch overview last "h2_orion_hii_pdr.ovr"
+<br>punch hydrogen 21 cm last "h2_orion_hii_pdr.21cm"
+<br>punch heating "h2_orion_hii_pdr.het"
+<br>punch cooling "h2_orion_hii_pdr.col"
+<br>punch dr last "h2_orion_hii_pdr.dr"
+<br>punch results last "h2_orion_hii_pdr.rlt"
+<br>punch continuum last "h2_orion_hii_pdr.con" units microns
+<br>punch hydrogen lya last "h2_orion_hii_pdr.lya" 
+<br>punch grain charge last "h2_orion_hii_pdr.grnchr" 
+<br>punch grain potential last "h2_orion_hii_pdr.grnpot" 
+<br>punch H2 lines last "h2_orion_hii_pdr.h2lin" 
+<br>punch H2 column density last "h2_orion_hii_pdr.h2col" 
+<br>punch H2 destruction "h2_orion_hii_pdr.H2d"
+<br>punch H2 creation "h2_orion_hii_pdr.H2c"
+<br>punch molecules "h2_orion_hii_pdr.mol" 
+<br>c
+<br>c h2_orion_hii_pdr.in
+</kbd><p>
+05 dec 19,  had stopped at 1 pc, gas/dust got very cold and H2 stopped
+forming, H2 went to H0 - this below the CO network out of the water.
+stop at AV of 1000 instead.  Is this loss of H2 at low grain temperature
+physical?  Is it ever seen?
+<p>
+</p><hr><h2><kbd>h2_pdr_leiden_f2.in  </kbd><I>low density high flux model 2 as defined in e-mail
+</I></h2><kbd><br>title low density high flux model 2 as defined in e-mail
+<br>c
+<br>c commands controlling continuum =========
+<br>c Use the Draine 1978 field, for a semi-infinite slab we have to use
+<br>c half the requested value, so the actual value
+<br>c they want for the model is actually twice the value below
+<br>table draine 50000
+<br>c insure that no H-ionizing radiation strikes cloud
+<br>extinguish 24 
+<br>c
+<br>c commands for density & abundances =========
+<br>grains ism 1.16 no qheat
+<br>c  hydrogen density 
+<br>hden 3.
+<br>c
+<br>c commands controlling geometry  =========
+<br>c
+<br>c other commands for details     =========
+<br>atom h2
+<br>failures 3
+<br>c  use leiden initialization file
+<br>init file="pdr_leiden.ini"
+<br>c  This command defines the grain temperature to be a constant 20 Kelvin
+<br>constant grain temperature 20 
+<br>c  This sets the temperature to a constant 50 Kelvin
+<br>constant temperature 50 linear
+<br>c
+<br>c commands controlling output    =========
+<br>punch overview "h2_pdr_leiden_f2.ovr"
+<br>punch leiden lines "h2_pdr_leiden_f2.lin"
+<br>punch leiden "h2_pdr_leiden_f2.lei"
+<br>punch dr "h2_pdr_leiden_f2.dr" 
+<br>punch grain physical conditions "h2_pdr_leiden_f2.grn"
+<br>punch H2 lines "h2_pdr_leiden_f2.h2lin" all
+<br>punch H2 column density "h2_pdr_leiden_f2.h2col"
+<br>punch H2 populations matrix zone "h2_pdr_leiden_f2.pop"
+<br>punch H2 destruction "h2_pdr_leiden_f2.H2d"
+<br>punch H2 creation "h2_pdr_leiden_f2.H2c"
+<br>c
+<br>c 
+<br>c h2_pdr_leiden_f2.in
+<br>c class pdr 
+<br>c ========================================
+<br>c 
+</kbd><p>
+</p><hr><h2><kbd>h2_pdr_leiden_f3.in  </kbd><I>high density low flux model 3 as defined in e-mail
+</I></h2><kbd><br>title high density low flux model 3 as defined in e-mail
+<br>c
+<br>c commands controlling continuum =========
+<br>c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+<br>c the requested value, so the actual value
+<br>c they want for the model is actually twice the value below
+<br>table draine 5
+<br>c insure that no H-ionizing radiation strikes cloud
+<br>extinguish 24 
+<br>c
+<br>c commands for density & abundances =========
+<br>grains ism 1.16 no qheat
+<br>c  hydrogen density 
+<br>hden 5.5
+<br>c
+<br>c commands controlling geometry  =========
+<br>c
+<br>c other commands for details     =========
+<br>c ice formation is exteme and will establish the thickness, which would
+<br>c make this very sensitive to details - turn off ices
+<br>no grain molecules
+<br>atom h2
+<br>failures 3
+<br>c  use leiden initialization file
+<br>init file="pdr_leiden.ini"
+<br>c  This command defines the grain temperature to be a constant 20 Kelvin
+<br>constant grain temperature 20 
+<br>c  This sets the temperature to a constant 50 Kelvin
+<br>constant temperature 50 linear
+<br>c
+<br>c commands controlling output    =========
+<br>punch overview "h2_pdr_leiden_f3.ovr"
+<br>punch leiden lines "h2_pdr_leiden_f3.lin"
+<br>punch leiden "h2_pdr_leiden_f3.lei"
+<br>punch dr "h2_pdr_leiden_f3.dr" 
+<br>punch grain physical conditions "h2_pdr_leiden_f3.grn"
+<br>punch H2 lines "h2_pdr_leiden_f3.h2lin" all
+<br>punch H2 column density "h2_pdr_leiden_f3.h2col"
+<br>punch H2 populations matrix zone "h2_pdr_leiden_f3.pop"
+<br>punch H2 rates "h2_pdr_leiden_f3.rat" 
+<br>punch H2 destruction "h2_pdr_leiden_f3.H2d"
+<br>punch H2 creation "h2_pdr_leiden_f3.H2c"
+<br>c
+<br>c 
+<br>c h2_pdr_leiden_f3.in
+<br>c class pdr 
+<br>c ========================================
+<br>c 
+</kbd><p>
+</p><hr><h2><kbd>h2_pdr_leiden_f4.in  </kbd><I>high density high flux model 4 as defined in e-mail
+</I></h2><kbd><br>title high density high flux model 4 as defined in e-mail
+<br>c
+<br>c commands controlling continuum =========
+<br>c
+<br>c commands for density & abundances =========
+<br>grains ism 1.16 no qheat
+<br>c
+<br>c commands controlling geometry  =========
+<br>c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+<br>c the requested value, so the actual value
+<br>c they want for the model is actually twice the value below
+<br>table draine 50000
+<br>c insure that no H-ionizing radiation strikes cloud
+<br>extinguish 24 
+<br>c
+<br>c  hydrogen density 
+<br>hden 5.5
+<br>c 
+<br>c other commands for details     =========
+<br>atom h2 
+<br>failures 3
+<br>c  use leiden initialization file
+<br>init file="pdr_leiden.ini"
+<br>c  This command defines the grain temperature to be a constant 20 Kelvin
+<br>constant grain temperature 20 
+<br>c  This sets the temperature to a constant 50 Kelvin
+<br>constant temperature 50 linear
+<br>c
+<br>c commands controlling output    =========
+<br>punch overview "h2_pdr_leiden_f4.ovr"
+<br>punch leiden lines "h2_pdr_leiden_f4.lin"
+<br>punch leiden "h2_pdr_leiden_f4.lei"
+<br>punch dr "h2_pdr_leiden_f4.dr" 
+<br>punch grain physical conditions "h2_pdr_leiden_f4.grn"
+<br>punch H2 lines "h2_pdr_leiden_f4.h2lin" all
+<br>punch H2 column density "h2_pdr_leiden_f4.h2col"
+<br>punch H2 populations matrix zone "h2_pdr_leiden_f4.pop"
+<br>punch H2 solomon "h2_pdr_leiden_f4.sol"
+<br>punch H2 destruction "h2_pdr_leiden_f4.H2d"
+<br>punch H2 creation "h2_pdr_leiden_f4.H2c"
+<br>c
+<br>c 
+<br>c h2_pdr_leiden_f4.in
+<br>c class pdr 
+<br>c ========================================
+<br>c 
+</kbd><p>
+</p><hr><h2><kbd>h2_pdr_leiden_hack_f1.in  </kbd><I>low density low flux model 1 as defined in e-mail
+</I></h2><kbd><br>title low density low flux model 1 as defined in e-mail
+<br>atom h2 
+<br>c
+<br>c commands controlling continuum =========
+<br>c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+<br>c the requested value, so the actual value
+<br>c they want for the model is actually twice the value below
+<br>table draine 5
+<br>c insure that no H-ionizing radiation strikes cloud
+<br>extinguish 24 
+<br>c
+<br>c commands for density & abundances =========
+<br>c  hydrogen density 
+<br>hden 3.
+<br>grains ism 1.16 
+<br>c
+<br>c commands controlling geometry  =========
+<br>c
+<br>c other commands for details     =========
+<br>failures 3
+<br>c use leiden initialization file
+<br>init file="pdr_leiden_hack.ini"
+<br>c This command defines the grain temperature to be a constant 20 Kelvin
+<br>constant grain temperature 20 
+<br>c This sets the temperature to a constant 50 Kelvin
+<br>constant temperature 50 linear
+<br>c
+<br>c commands controlling output    =========
+<br>punch leiden lines "h2_pdr_leiden_hack_f1.lin"
+<br>punch leiden "h2_pdr_leiden_hack_f1.lei"
+<br>punch dr "h2_pdr_leiden_hack_f1.dr" 
+<br>punch grain physical conditions "h2_pdr_leiden_hack_f1.grn"
+<br>punch overview "h2_pdr_leiden_hack_f1.ovr"
+<br>c 
+<br>punch H2 lines "h2_pdr_leiden_hack_f1.h2lin"
+<br>punch H2 column density "h2_pdr_leiden_hack_f1.h2col"
+<br>punch H2 populations matrix zone "h2_pdr_leiden_hack_f1.pop"
+<br>c
+<br>c h2_pdr_leiden_hack_f1.in
+<br>c class pdr  
+<br>c ========================================
+<br>c 
+</kbd><p>
+</p><hr><h2><kbd>h2_pdr_leiden_v1.in  </kbd><I>model 5 as defined in e-mail
+</I></h2><kbd><br>title model 5 as defined in e-mail
+<br>c
+<br>c commands controlling continuum =========
+<br>c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+<br>c the requested value, so the actual value
+<br>c is half the requested value
+<br>c they want for the model is actually twice the value below
+<br>table draine 5
+<br>c insure that no H-ionizing radiation strikes cloud
+<br>extinguish 24 
+<br>c
+<br>c commands for density & abundances =========
+<br>c  hydrogen density 
+<br>hden 3.
+<br>grains ism 1.16 no qheat
+<br>c  add PAHs 
+<br>grains PAH no qheat 3 function
+<br>atom h2 
+<br>c
+<br>c commands controlling geometry  =========
+<br>c
+<br>c other commands for details     =========
+<br>failures 3
+<br>c  use leiden initialization file
+<br>init file="pdr_leiden.ini"
+<br>c
+<br>c commands controlling output    =========
+<br>punch overview "h2_pdr_leiden_v1.ovr"
+<br>punch leiden lines "h2_pdr_leiden_v1.lin"
+<br>punch leiden "h2_pdr_leiden_v1.lei"
+<br>punch dr "h2_pdr_leiden_v1.dr" 
+<br>punch grain dust temperature "h2_pdr_leiden_v1.grn"
+<br>punch H2 destruction "h2_pdr_leiden_v1.H2d"
+<br>punch H2 creation "h2_pdr_leiden_v1.H2c"
+<br>c
+<br>c 
+<br>c 
+<br>c
+<br>c h2_pdr_leiden_v1.in
+<br>c class pdr 
+<br>c ========================================
+<br>c 
+</kbd><p>
+</p><hr><h2><kbd>h2_pdr_leiden_v2.in  </kbd><I>model 6 as defined in e-mail
+</I></h2><kbd><br>title model 6 as defined in e-mail
+<br>c
+<br>c commands controlling continuum =========
+<br>c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+<br>c the requested value, so the actual value
+<br>c they want for the model is actually twice the value below
+<br>table draine 50000
+<br>c insure that no H-ionizing radiation strikes cloud
+<br>extinguish 24 
+<br>c
+<br>c commands for density & abundances =========
+<br>c add PAHs and grains
+<br>grains PAH no qheat 3 function
+<br>grains ism 1.16 no qheat
+<br>c  hydrogen density 
+<br>hden 3.
+<br>c
+<br>c commands controlling geometry  =========
+<br>c
+<br>c other commands for details     =========
+<br>atom h2 
+<br>failures 3
+<br>c  use leiden initialization file
+<br>init file="pdr_leiden.ini"
+<br>c
+<br>c commands controlling output    =========
+<br>punch overview "h2_pdr_leiden_v2.ovr"
+<br>punch leiden lines "h2_pdr_leiden_v2.lin"
+<br>punch leiden "h2_pdr_leiden_v2.lei"
+<br>punch dr "h2_pdr_leiden_v2.dr" 
+<br>punch grain dust temperature "h2_pdr_leiden_v2.grn"
+<br>punch H2 destruction "h2_pdr_leiden_v2.H2d"
+<br>punch H2 creation "h2_pdr_leiden_v2.H2c"
+<br>c
+<br>c
+<br>c h2_pdr_leiden_v2.in
+<br>c class pdr  
+<br>c ========================================
+<br>c 
+</kbd><p>
+</p><hr><h2><kbd>h2_pdr_leiden_v3.in  </kbd><I>model 7 as defined in e-mail
+</I></h2><kbd><br>title model 7 as defined in e-mail
+<br>c
+<br>c commands controlling continuum =========
+<br>c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+<br>c the requested value, so the actual value
+<br>c they want for the model is actually twice the value below
+<br>table draine 5
+<br>c insure that no H-ionizing radiation strikes cloud
+<br>extinguish 24 
+<br>c
+<br>c commands for density & abundances =========
+<br>c add PAHs and grains
+<br>grains PAH no qheat 3 function
+<br>grains ism 1.16 no qheat
+<br>c  hydrogen density 
+<br>hden 5.5
+<br>c
+<br>c commands controlling geometry  =========
+<br>c
+<br>c other commands for details     =========
+<br>atom h2 
+<br>failures 3
+<br>c  use leiden initialization file
+<br>init file="pdr_leiden.ini"
+<br>c
+<br>c commands controlling output    =========
+<br>punch overview "h2_pdr_leiden_v3.ovr"
+<br>punch leiden lines "h2_pdr_leiden_v3.lin"
+<br>punch leiden "h2_pdr_leiden_v3.lei"
+<br>punch dr "h2_pdr_leiden_v3.dr" 
+<br>punch grain dust temperature "h2_pdr_leiden_v3.grn"
+<br>punch heating "h2_pdr_leiden_v3.het"
+<br>punch cooling "h2_pdr_leiden_v3.col"
+<br>punch molecules "h2_pdr_leiden_v3.mol"
+<br>punch H2 destruction "h2_pdr_leiden_v3.H2d"
+<br>punch H2 creation "h2_pdr_leiden_v3.H2c"
+<br>c
+<br>c 
+<br>c h2_pdr_leiden_v3.in
+<br>c class pdr 
+<br>c ========================================
+<br>c 
+</kbd><p>
+</p><hr><h2><kbd>h2_pdr_leiden_v4.in  </kbd><I>model 8 as defined in e-mail
+</I></h2><kbd><br>title model 8 as defined in e-mail
+<br>c
+<br>c commands controlling continuum =========
+<br>c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+<br>c the requested value, so the actual value
+<br>c they want for the model is actually twice the value below
+<br>table draine 50000
+<br>c insure that no H-ionizing radiation strikes cloud
+<br>extinguish 24 
+<br>c
+<br>c commands for density & abundances =========
+<br>grains PAH no qheat 3 function
+<br>grains ism 1.16 no qheat
+<br>c  hydrogen density 
+<br>hden 5.5
+<br>c
+<br>c commands controlling geometry  =========
+<br>c
+<br>c other commands for details     =========
+<br>failures 3
+<br>c  use leiden initialization file
+<br>init file="pdr_leiden.ini"
+<br>atom h2 
+<br>c
+<br>c commands controlling output    =========
+<br>punch overview "h2_pdr_leiden_v4.ovr"
+<br>punch leiden lines "h2_pdr_leiden_v4.lin"
+<br>punch leiden "h2_pdr_leiden_v4.lei"
+<br>punch dr "h2_pdr_leiden_v4.dr" 
+<br>punch grain dust temperature  "h2_pdr_leiden_v4.grn"
+<br>punch H2 destruction "h2_pdr_leiden_v4.H2d"
+<br>punch H2 creation "h2_pdr_leiden_v4.H2c"
+<br>c
+<br>c
+<br>c h2_pdr_leiden_v4.in
+<br>c class pdr 
+<br>c ========================================
+<br>c 
+</kbd><p>
+</p><hr><h2><kbd>h2_th85orion.in  </kbd><I>Tielens and Hollenbach pdr model with orion grains, Table 2, paper b
+</I></h2><kbd><br>title Tielens and Hollenbach pdr model with orion grains, Table 2, paper b
+<br>failures 3 
+<br>c
+<br>print line sort intensity
+<br>print line column 
+<br>iterate
+<br>c 
+<br>c cosmic background
+<br>background
+<br>cosmic rays, background 
+<br>c 
+<br>set nend 2000 
+<br>c simulate effects of gas we do not model 
+<br>double
+<br>c
+<br>c first continuum is FIR hot grain continuum produced in 
+<br>c unmodeled HII Region
+<br>blackbody, t=75K
+<br>intensity 2.7 (total)
+<br>c
+<br>c this is the attenuated hot stellar continuum
+<br>black 30000
+<br>intensity  2.204 range  0.4412 to 1 Ryd
+<br>c
+<br>c this will remove all ionizing radiation
+<br>extinguish 24 0
+<br>c
+<br>hden 5.362
+<br>grains orion
+<br>grains PAH
+<br>atom h2 
+<br>init file="ism.ini"
+<br>abundances he -1.01 c -3.52 n-8 o-3.30 ne-8 mg-5.89
+<br>continue si -6.10 s -5.10 cl-7 ar-8 fe -6.60
+<br>turbulence 2.7 km/sec
+<br>normalize to "C  2" 157.6m 
+<br>sphere
+<br>case b
+<br>cosmic rays, background
+<br>c this should be the one actually used
+<br>stop AV 33.2 
+<br>c stop when gas is fully neutral
+<br>stop efrac -10
+<br>c stop when gas is cold
+<br>stop temperature 10 linear
+<br>c stop at thickness so that would make results very
+<br>c detail dependent
+<br>stop thickness 19
+<br>c uv lines are strongly pumped by stellar continuum, break out contribution
+<br>print line pump
+<br>print line optical depths
+<br>print ages
+<br>punch overview last "h2_th85orion.ovr" no hash 
+<br>punch pdr last "h2_th85orion.pdr"
+<br>punch molecules last "h2_th85orion.mol"
+<br>punch dr "h2_th85orion.dr"
+<br>punch hydrogen physical conditions last "h2_th85orion.hyd" 
+<br>punch results last "h2_th85orion.rlt"
+<br>punch continuum units microns last "h2_th85orion.con"
+<br>punch fine conti unit last micron "h2_th85orion_con.fin" range 0.7 1. skip 2
+<br>* punch fine opaci unit micron "h2_th85orion_opc.fin" range 0.7 1. skip 2 
+<br>punch heating last "h2_th85orion.het"
+<br>punch cooling last "h2_th85orion.col"
+<br>punch hydrogen 21 cm last "h2_th85orion.21cm"
+<br>punch H2 destruction "h2_th85orion.H2d"
+<br>punch H2 creation "h2_th85orion.H2c"
+<br>c
+<br>c
+<br>c h2_th85orion.in
+</kbd><p>
+This is the Tielens and Hollenbach (1985a, b) standard model of
+the Orion photodissociation region (PDR).  Specifically,
+this is my attempt at their Table 2 of paper 2, ApJ 291,  p749.
+The case b command appears because the Lyman lines are
+vastly optically thick in this environment. 
+If the command is removed the Lyman lines will be optically thin,
+which will result in fast fluorescent excitation of the
+(nearly totally neutral) hydrogen atom.
+<p>
+// >>refer	model	pdr	Tielens, A. G. G. M., & Hollenbach, D. 1985a, ApJ, 291, 722
+// >>refer	model	pdr	Tielens, A. G. G. M., & Hollenbach, D. 1985b, ApJ, 291, 746
+  
+</p><hr><h2><kbd>m17_P07.in  </kbd><I>Pellegrini et al 2008 model for M17
+</I></h2><kbd><br>title Pellegrini et al 2008 model for M17
+<br>c a brief description of its purpose
+<br>c
+<br>c commands controlling incident radiation field =========
+<br>c these give the shape and intensity
+<br>brems 8,500,000K 
+<br>luminosity 33.5 range 7.35 to 176 Ryd
+<br>table star CoStar, 47,490K
+<br>Q(h) 49.63 
+<br>table star CoStar, 45,335K 
+<br>Q(h) 49.47 
+<br>table star CoStar, 43,151K 
+<br>Q(h) 49.30 
+<br>table star CoStar, 41,209K 
+<br>Q(h) 49.18 
+<br>table star CoStar, 39,084K 
+<br>Q(h) 49.08 
+<br>table star CoStar, 36,982K 
+<br>Q(h) 48.81 
+<br>table star atlas, 34,914K 
+<br>Q(h) 48.97 
+<br>table star atlas,27,700K 
+<br>absolute bolometric magnitude -8.5 
+<br>table star atlas, 23,700K 
+<br>absolute bolometric magnitude -7.5 
+<br>table star atlas, 20,350K 
+<br>absolute bolometric magnitude -6.6 
+<br>table star atlas, 17,050 
+<br>absolute bolometric magnitude -6.3 
+<br>c
+<br>c commands for density & abundances =========
+<br>hden 2.065
+<br>abundances H II region no qheat no grains 
+<br>grains PAH 10 
+<br>grains orion 1 
+<br>element Helium abundance -0.98 
+<br>element Carbon abundance -4.14 
+<br>element Nitrogen abundance -4.2 
+<br>element Oxygen abundance -3.47 
+<br>element Neon abundance -4.4 
+<br>element Sulphur  abundance -5.06 
+<br>element Chlorine abundance -6.88 
+<br>element Argon abundance -5.64 
+<br>element Iron abundance -5.5 
+<br>c these are to speed things up a bit
+<br>element limit off -6.9
+<br>c
+<br>c commands controlling geometry  =========
+<br>radius 0.35355 linear parsecs 
+<br>c the observed extinction along this sight line
+<br>stop Av extended 6.36 
+<br>c do not want to stop at too small a depth due to low temperature
+<br>stop temperature off
+<br>c magnetostatic equilibrium
+<br>constant pressure 
+<br>sphere 
+<br>c
+<br>c other commands for details     =========
+<br>magnetic field tangled -4.3125 2
+<br>turbulence 3km/s
+<br>iterate
+<br>cosmic rays background 2.5
+<br>c
+<br>c commands controlling output    =========
+<br>punch lines emissivity last "m17_P07.ems" 
+<br>H  1 6563 
+<br>S  2 6720 
+<br>12CO 1294m 
+<br>12CO 2589m 
+<br>12CO 863.0m 
+<br>12CO 369.8m 
+<br>C  2 157.6m 
+<br>C  1 369.7m 
+<br>C  1 609.2m 
+<br>O  1 63.17m 
+<br>O  1 145.5m 
+<br>Si 2 34.81m
+<br>end of line 
+<br>print line sort wavelength
+<br>punch overview last "m17_p07.ovr" 
+<br>punch hydrogen 21 CM last "m17_p07.h21"
+<br>punch pressure last "m17_p07.pre" 
+<br>punch molecules last "m17_p07.mol" 
+<br>punch heating last "m17_p07.het"
+<br>punch cooling last "m17_p07.col"
+<br>punch continuum last "m17_p07.con" units microns
+<br>c
+<br>c
+<br>c m17_P07.in 
+<br>c class hii pdr 
+<br>c ========================================
+<br>c 
+</kbd><p>
+This is the magnetostatic model of the M17 H+ / H0 / H2 region
+presented in Pellegrini et al. 2007, ApJ, 658, 1119
+</p><hr>
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+title test scaling of H lyman-line pumping
+sphere
+blackbody 30000
+q(h) 47
+hden 2.5
+radius 16
+stop zone 1
+atom H-like Lyman pumping scale .2
+monitor itrz 24
+
+This purpose of this test is just to exercise the option
+to scale the H lyman series pumping rates by some factor.

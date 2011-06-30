@@ -1,0 +1,101 @@
+title Rauch central star hot PN
+c NB
+c this uses the H-Ca rauch atmospheres
+c
+c commands controlling continuum =========
+table star old rauch T = 250000 K, g = 7.5
+luminosity 4.5 solar
+c
+c commands controlling geometry  =========
+sphere
+radius 18
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+constant temperature 15000 // because we only want to test shape
+no level2
+c
+c commands for density & abundances =========
+hden 3.0
+abundances planetary 
+c
+c commands controlling output    =========
+plot continuum range .1
+save overview last "stars_rauch_h-ca.ovr"
+save results last "stars_rauch_h-ca.rlt"
+save monitors last "stars_rauch_h-ca.asr"
+save continuum last "stars_rauch_h-ca.con" units microns
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 19.81 to 19.87, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  19.87
+monitor line luminosity "nInu" 122.4m  27.196
+monitor line luminosity "nInu" 60.83m  28.108
+monitor line luminosity "nInu" 41.22m  28.616
+monitor line luminosity "nInu" 30.87m  28.993
+monitor line luminosity "nInu" 24.78m  29.280
+monitor line luminosity "nInu" 24.30m  29.299
+monitor line luminosity "nInu" 22.83m  29.384
+monitor line luminosity "nInu" 21.42m  29.469
+monitor line luminosity "nInu" 21.12m  29.482
+monitor line luminosity "nInu" 19.62m  29.580
+monitor line luminosity "nInu" 17.65m  29.716
+monitor line luminosity "nInu" 17.37m  29.742
+monitor line luminosity "nInu" 15.69m  29.873
+monitor line luminosity "nInu" 14.60m  29.964
+monitor line luminosity "nInu" 12.43m  30.179
+monitor line luminosity "nInu" 11.40m  30.289
+monitor line luminosity "nInu" 10.46m  30.400
+monitor line luminosity "nInu" 9.480m  30.530
+monitor line luminosity "nInu" 9.325m  30.550
+monitor line luminosity "nInu" 8.210m  30.719
+monitor line luminosity "nInu" 7.580m  30.817
+monitor line luminosity "nInu" 7.050m  30.915
+monitor line luminosity "nInu" 4.114m  31.618
+monitor line luminosity "nInu" 2.324m  32.361
+monitor line luminosity "nInu" 1.643m  32.810
+monitor line luminosity "nInu" 1.480m  32.947
+monitor line luminosity "nInu" 1.436m  32.986
+monitor line luminosity "nInu" 1.119m  33.312
+monitor line luminosity "nInu"  8330A  33.696
+monitor line luminosity "nInu"  8079A  33.735
+monitor line luminosity "nInu"  6210A  34.080
+monitor line luminosity "nInu"  4885A  34.393
+monitor line luminosity "nInu"  3704A  34.751
+monitor line luminosity "nInu"  3588A  34.797
+monitor line luminosity "nInu"  2430A  35.305
+monitor line luminosity "nInu"  2392A  35.324
+monitor line luminosity "nInu"  2071A  35.513
+monitor line luminosity "nInu"  2053A  35.520
+monitor line luminosity "nInu"  1793A  35.689
+monitor line luminosity "nInu"  1585A  35.842
+monitor line luminosity "nInu"  1458A  35.946
+monitor line luminosity "nInu"  1357A  36.031
+monitor line luminosity "nInu"  1297A  36.086
+monitor line luminosity "nInu"  1263A  36.122
+monitor line luminosity "nInu"  1218A  36.031
+monitor line luminosity "nInu"  1196A  36.181
+monitor line luminosity "nInu"  1175A  36.206
+monitor line luminosity "nInu"  1144A  36.236
+monitor line luminosity "nInu"  1113A  36.272
+monitor line luminosity "nInu"  1103A  36.283
+monitor line luminosity "nInu"  1074A  36.313
+monitor line luminosity "nInu"  1064A  36.325
+monitor line luminosity "nInu"  1036A  36.352
+monitor line luminosity "nInu"  1000A  36.394
+monitor line luminosity "nInu" 925.1A  36.423
+monitor line luminosity "nInu" 897.8A  36.461
+monitor line luminosity "nInu" 760.0A  36.657
+monitor line luminosity "nInu" 701.5A  36.753
+monitor line luminosity "nInu" 608.2A  36.918
+monitor line luminosity "nInu" 575.1A  36.980
+monitor line luminosity "nInu" 511.9A  37.105
+monitor line luminosity "nInu" 496.9A  37.138
+monitor line luminosity "nInu" 399.2A  37.365
+c stars_rauch_h-ca.in
+c class stars 
+c ========================================
+
+This is a model of a very hot planetary nebula, and checks that the code
+is able to access the H-Ca Rauch grid of stellar atmosphere models.

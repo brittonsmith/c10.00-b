@@ -1,0 +1,86 @@
+title BLR model, density 1e09 cm-3, flux of H-ion phots 1e20 cm2 s-1
+c
+c commands controlling continuum =========
+table agn
+phi(h) 22
+c
+c commands for density & abundances =========
+hden 9
+c
+c commands controlling geometry  =========
+stop column density 23
+c
+c other commands for details     =========
+init "c84.ini"
+iterate convergence 
+c these are to try to speed things up
+no level2 lines
+c
+c commands controlling output    =========
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+save monitors "blr_n09_p22.asr" last
+save overview "blr_n09_p22.ovr" last
+save dr "blr_n09_p22.dr" last 
+save convergence reason "blr_n09_p22.cvr"
+c
+c commands giving the monitors    =========
+// strong blr lines
+//
+//total of sum of both O VI comp
+// >>chng 06 feb 03, from 3.579 to 4.515, guess dr to Badnell mean
+// >>chng 06 apr 22, from 4.515 to 4.675, RP use Badnell DR for He-like
+// >>chng 06 nov 29, from 4.675 to 4.714, Badnell DR turned on
+// >>chng 07 jan 20, from 4.714 to 4.754, e2 bug
+// >>chng 07 may 21, from 4.754 to 4.725, fix bug in He-like DR extrapolation
+// >>chng 10 aug 08, from 4.725 to 4.725, drift down
+monitor line luminosity "totl"  1035 4.71
+//
+//total Hydrogen Lyman-alpha 1215.67 
+// >>chng 06 feb 03, from 6.259 to 6.764, guess dr to Badnell mean
+// >>chng 06 nov 29, from 6.764 to 6.811, Badnell DR turned on
+// >>chng 09 jun 28, from 6.811 to 6.78, check convergence of outward Hb
+// >>chng 09 jul 27, from 6.78 to 6.824, rm test on outward Hb - will create ticket on problems
+monitor line luminosity "totl"  1216 6.824
+//
+//total of sum of both N V comp
+// >>chng 06 feb 03, from 1.613 to 2.647, guess dr to Badnell mean
+// >>chng 06 apr 22, from 2.647 to 2.851, RP use Badnell DR for He-like
+// >>chng 06 nov 29, from 2.851 to 2.894, Badnell DR turned on
+// >>chng 07 jan 20, from 2.894 to 2.921, e2 bug
+// >>chng 07 may 21, from 2.921 to 2.884, fix bug in He-like DR extrapolation
+monitor line luminosity "totl"  1240 2.884
+// 
+// >>chng 09 jun 28, from 1 to 4.215, check convergence of outward Hb
+monitor line luminosity "H  1" 4861 4.215, 
+// 
+// >>chng 09 jun 28, from 1 to 3.914, check convergence of outward Hb
+monitor line luminosity "Inwd" 4861 3.914, 
+//
+//total He II Balmer-alpha 1640
+// >>chng 06 feb 03, from 5.513 to 5.974, guess dr to Badnell mean
+// >>chng 06 nov 29, from 5.974 to 6.017, Badnell DR turned on
+// >>chng 07 oct 22, from 6.017 to 5.606, resolve l-levels of h-like sequence
+// >>chng 08 dec 13, from 5.606 to 5.584, merging newsolvers branch
+monitor line luminosity "he 2"  1640 5.584
+//
+// >>chng 08 dec 08, from 4 to 3, upper limit -> equals (r2515)
+// >>chng 09 jun 28, from 3 to 4, check convergence outward Hb
+// >>chng 09 jul 27, from 4 to 3, rm test on outward Hb - will create ticket on problems
+monitor niter 3 error 0.01
+// 
+// >>chng 06 feb 03, from 7.020 to 6.628, guess dr to Badnell mean
+// >>chng 06 nov 29, from 6.628 to 6.591, Badnell DR turned on
+monitor hydrogen 2 temperature 6.591
+//
+// >>chng 03 dec 07, from 280 to 330, dr resolve metal changes
+// >>chng 05 dec 22, from 330 to 20 (13), very hot, why did it ever need 330?
+// >>chng 08 dec 08, from 20 to 15, upper limit -> equals (r2515)
+// >>chng 09 jun 15, from 15 to 37, gradual approach to outer edge
+monitor nzone 37 
+//
+c blr_n09_p22.in 
+c class blr 
+c ========================================
+
+This is one of the models that sample the LOC plane.

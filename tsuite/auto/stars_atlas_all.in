@@ -1,0 +1,143 @@
+title interpolate on Atlas grids
+c
+c commands controlling continuum =========
+c Include stars with a wide range of metallicities to test access to these grids.
+table star atlas Z+1.0 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z+0.5 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z+0.3 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z+0.2 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z+0.1 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z+0.0 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-0.1 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-0.2 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-0.3 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-0.5 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-1.0 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-1.5 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-2.0 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-2.5 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-3.0 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-3.5 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-4.0 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-4.5 38400.0 4.82
+luminosity 4.509202522 solar
+table star atlas Z-5.0 38400.0 4.82
+luminosity 4.509202522 solar
+c
+c commands for density & abundances =========
+abundances old solar 84 
+hden 6.0
+grains ism
+c
+c commands controlling geometry  =========
+radius -2.0 parsec
+sphere
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+constant temperature 4
+c
+c commands controlling output    =========
+c
+save overview last "stars_atlas_all.ovr"
+save results last "stars_atlas_all.rlt"
+save monitors last "stars_atlas_all.asr"
+save transmitted continuum last "stars_atlas_all.trn" no header
+save continuum last "stars_atlas_all.con" units microns
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 23.46 to 23.52, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  23.52
+monitor line luminosity "nInu" 122.4m  30.851
+monitor line luminosity "nInu" 60.83m  31.774
+monitor line luminosity "nInu" 41.22m  32.288
+monitor line luminosity "nInu" 30.87m  32.670
+monitor line luminosity "nInu" 24.78m  32.960
+monitor line luminosity "nInu" 24.30m  32.980
+monitor line luminosity "nInu" 22.83m  33.066
+monitor line luminosity "nInu" 21.42m  33.151
+monitor line luminosity "nInu" 21.12m  33.164
+monitor line luminosity "nInu" 19.62m  33.263
+monitor line luminosity "nInu" 17.65m  33.401
+monitor line luminosity "nInu" 17.37m  33.428
+monitor line luminosity "nInu" 15.69m  33.559
+monitor line luminosity "nInu" 14.60m  33.651
+monitor line luminosity "nInu" 12.43m  33.868
+monitor line luminosity "nInu" 11.40m  33.980
+monitor line luminosity "nInu" 10.46m  34.091
+monitor line luminosity "nInu" 9.480m  34.223
+monitor line luminosity "nInu" 9.325m  34.242
+monitor line luminosity "nInu" 8.210m  34.413
+monitor line luminosity "nInu" 7.580m  34.511
+monitor line luminosity "nInu" 7.050m  34.609
+monitor line luminosity "nInu" 4.114m  35.313
+monitor line luminosity "nInu" 2.324m  36.050
+monitor line luminosity "nInu" 1.643m  36.489
+monitor line luminosity "nInu" 1.480m  36.625
+monitor line luminosity "nInu" 1.436m  36.663
+monitor line luminosity "nInu" 1.119m  36.981
+monitor line luminosity "nInu"  8330A  37.333
+monitor line luminosity "nInu"  8079A  37.381
+monitor line luminosity "nInu"  6210A  37.708
+monitor line luminosity "nInu"  4885A  37.983
+monitor line luminosity "nInu"  3704A  38.277
+monitor line luminosity "nInu"  3588A  38.325
+monitor line luminosity "nInu"  2430A  38.750
+monitor line luminosity "nInu"  2392A  38.756
+monitor line luminosity "nInu"  2071A  38.851
+// >>chng 10 aug 12, from 38.81 to 38.88, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu"  2053A  38.88
+monitor line luminosity "nInu"  1793A  39.025
+monitor line luminosity "nInu"  1585A  39.124
+monitor line luminosity "nInu"  1458A  39.202
+monitor line luminosity "nInu"  1357A  39.273
+monitor line luminosity "nInu"  1297A  39.304
+monitor line luminosity "nInu"  1263A  39.317
+monitor line luminosity "nInu"  1218A  39.252
+monitor line luminosity "nInu"  1196A  39.339
+monitor line luminosity "nInu"  1175A  39.318
+monitor line luminosity "nInu"  1144A  39.403
+monitor line luminosity "nInu"  1113A  39.424
+monitor line luminosity "nInu"  1103A  39.432
+monitor line luminosity "nInu"  1074A  39.449
+monitor line luminosity "nInu"  1064A  39.453
+monitor line luminosity "nInu"  1036A  39.468
+monitor line luminosity "nInu"  1000A  39.454
+monitor line luminosity "nInu" 925.1A  39.166
+monitor line luminosity "nInu" 897.8A  38.981
+monitor line luminosity "nInu" 760.0A  38.957
+monitor line luminosity "nInu" 701.5A  38.912
+monitor line luminosity "nInu" 608.2A  38.858
+monitor line luminosity "nInu" 575.1A  38.893
+monitor line luminosity "nInu" 511.9A  38.836
+monitor line luminosity "nInu" 496.9A  38.301
+monitor line luminosity "nInu" 399.2A  38.072
+//
+c stars_atlas_all.in
+c class stars 
+c ========================================
+
+This is a test that the code can correctly access the
+2D grids of various metallicity of Atlas model atmosphere continua. 
+
+Checks:
+access to the various atlas grids
+

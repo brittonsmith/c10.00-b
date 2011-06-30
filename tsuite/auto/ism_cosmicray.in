@@ -1,0 +1,98 @@
+title background cosmic ray ionization by suprathermal electrons only
+c
+c commands controlling continuum =========
+c background CR H0 ionization rate should be 2.5e-17 s^-1,
+c Williams et al. ApJ, 503, 689
+cosmic rays, background
+c this will be VERY faint black 50000
+ionization parameter -25
+black 50000 
+c
+c commands for density & abundances =========
+hden 5
+c
+c commands controlling geometry  =========
+set dr 0 
+stop zone 1
+c
+c other commands for details     =========
+iterate
+set temperature floor 1000 K
+c turn off molecules to test only ions 
+no molecules 
+c must turn off charge transfer and its heating, which would dominate,
+c since we want to test cr heating and ionization
+no charge transfer
+no ctheat
+c must turn of  photoionization by recombining species,
+c since we want to test cr heating and ionization
+no photoionization
+c any time photoionization is turned off, it is best to also
+c turn off induced processes, which include pumping in the lyman lines
+no induced processes
+c
+c commands controlling output    =========
+print ages
+// >>chng 01 may 11, model was changed to test only secondary ionization,
+// its intended purpose
+save monitors "ism_cosmicray.asr" last
+c
+c commands giving the monitors    =========
+// >>chng 04 jan 26, from -0.180 to 0.0683, update cr background
+monitor eden 0.0683 0.07
+//
+// this is log of rate in TH85, Table 10, including factor of 0.46,
+// since this is total H ionization, not exactly their value since
+// not exactly low-elec fraction limit
+// >>chng 02 apr 02, from -17.098 to -17.060, better bound compton
+// >>chng 04 jan 26, from -17.060 to -16.603 update cr background
+// >>chng 04 mar 26, from -16.602 to -16.633, update cr sec2prim ratio for 35 ev
+// >>chng 04 apr 16, from -16.633 to -16.60, chng scal fac for back, incr err
+monitor csupra -16.60 error 0.1
+//
+// total heating
+// uncertain since depends on collider density
+// >>chng 04 jan 26, from -23.750 to -23.289 update cr background
+// >>chng 04 jan 28, from -23.289 to -21.935 update cr heating background
+// >>chng 04 mar 24, from -21.935 to -22.676, heatef onto cr heat
+// >>chng 04 apr 16, from -22.676 to -22.65, chng scal fac for back, incr err
+monitor htot -22.65 error 0.1
+//
+// >>chng 04 mar 15, add cr heating by itself
+// >>chng 04 mar 24, from -21.935 to -22.676, heatef onto cr heat
+// >>chng 04 apr 16, from -22.676 to -22.64, chng scal fac for back, incr err
+monitor line "cr h" 0  luminosity -22.64 error 0.1
+//
+// >>chng 04 jan 26, from -5.219 to -4.973 update cr background
+// >>chng 04 mar 24, from -4.773 to -4.973, update cr heating
+monitor ionization hydrogen 2 -4.973
+//
+// >>chng 02 dec 11, from -5.254 to -5.206, new hei
+// >>chng 04 jan 26, from -5.206 to -4.971 update cr background
+// >>chng 04 apr 16, from -4.971 to -4.94, chng scal fac for back, incr err
+monitor ionization helium 2 -4.94 error 0.1
+//
+// >>chng 04 jan 26, from -5.315 to -5.069 update cr background
+// >>chng 06 feb 07, from -5.069 to -5.036, add exp to low-T DR 
+// >>chng 06 mar 05, from -5.036 to -8.646, NA add C+ - (Mg0 Fe0) CT
+// >>chng 08 dec 15, from -8.646 to -5.080, prev chg reversed; CT now properly killed
+monitor ionization carbon 2 -5.080
+//
+// >>chng 04 jan 26, from -5.544 to -5.297 update cr background
+// >>chng 06 mar 05, from -5.297 to -7.789, NA add C+ - (Mg0 Fe0) CT
+// >>chng 08 dec 15, from -7.789 to -5.296, prev chg reversed; CT now properly killed
+monitor ionization silicon 2 -5.296
+//
+// >>chng 03 aug 15, from -4.969 to -5.055, add guess for low-T dr
+// >>chng 04 jan 26, from -5.055 to -4.826 update cr background
+// >>chng 06 feb 07, from -4.826 to -4.765, add exp to low-T DR 
+monitor ionization iron 2 -4.765
+//
+c ism_cosmicray.in
+c class limit 
+c ========================================
+c 
+
+This test conditions of cosmic ray ionization.  Molecules and charge transfer
+are disabled so that analytical estimates can be made.  
+

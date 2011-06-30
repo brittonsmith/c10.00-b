@@ -1,0 +1,206 @@
+title coronal equilibrium at 10^5 K
+c
+c commands controlling continuum =========
+coronal 5
+c
+c commands controlling geometry  =========
+stop column density 15 
+c
+c commands for density & abundances =========
+hden 10
+c
+c other commands for details     =========
+iterate
+c
+c
+c commands controlling output    =========
+c normalize to strong HeII line
+normalize to "He 2" 303.8A 
+save overview "coll_t5.ovr"
+save monitors "coll_t5.asr"
+save continuum "coll_t5.con" units angstroms 
+c
+c commands giving the monitors    =========
+table lines "LineList_He_like.dat"
+// >>chng 08 mar 17, from -4.768 to -4.800, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 10, from -4.800 to -4.824, change default h-like levels, other minor changes
+monitor ionization Hydrogen  1 -4.824
+// 
+// >>chng 02 apr 29, from -4.821 to -4.066, chng coll dat highest hei levels
+// >>chng 02 dec 11, from -4.066 to -4.385, new hei
+// >>chng 03 feb 28, from -4.385 to -4.292
+// >>chng 03 may 02, from -4.292 to -4.454, series of small changes
+// >>chng 04 may 19, from -4.454 to -4.953, RP update he-like series
+// >>chng 05 mar 12, from -4.953 to -5.021 RP merge He-like code
+// >>chng 06 aug 18, from -5.021 to -5.001, bowen chng, drift
+// >>chng 07 apr 12, from -5.001 to -4.769, helium-like state-specific DR added
+// >>chng 07 may 21, from -4.769 to -4.808, fix bug in He-like DR extrapolation
+// >>chng 07 jul 27, from -4.808 to -4.779, repair common error in several collision routines
+// >>chng 07 nov 29, from -4.779 to -4.720, due to changes in r1579
+// >>chng 08 mar 20, from -4.720 to -4.700 value drifted but did not throw assert
+// >>chng 08 nov 08, from -4.7 to -4.758, fix VS80 elec impact coll. str. (r2444)
+monitor ionization Helium    1 -4.758 
+//
+// >>chng 08 nov 08, from -0.925 to -0.9506, fix VS80 elec impact coll. str. (r2444)
+monitor ionization Helium    2 -0.9506 
+//
+// >>chng 06 nov 29, from -3.007 to -1.763, use Badnell DR by default
+monitor ionization Carbon    2 -1.763 
+//
+// >>chng 06 nov 29, from -0.747 to -0.211, use Badnell DR by default
+monitor ionization Carbon    3 -0.211 
+//
+// >>chng 06 nov 29, from -0.205 to -0.548, use Badnell DR by default
+monitor ionization Carbon    4 -0.548 
+// 
+// >>chng 06 nov 24, from -6.236 to -6.197, turn on Badnell RR
+// >>chng 06 nov 29, from -6.197 to -4.532, use Badnell DR by default
+monitor ionization Nitrogen  1 -4.532 
+// 
+// >>chng 06 nov 29, from -2.403 to -1.449, use Badnell DR by default
+monitor ionization Nitrogen  2 -1.449 
+//
+// >>chng 06 nov 29, from -0.478 to -0.236, use Badnell DR by default
+monitor ionization Nitrogen  3 -0.236 
+//
+// >>chng 06 nov 29, from -0.192 to -0.419, use Badnell DR by default
+monitor ionization Nitrogen  4 -0.419 
+//
+// >>chng 06 nov 29, from -1.696 to -2.675, use Badnell DR by default
+monitor ionization Nitrogen  5 -2.675 
+//
+// >>chng 06 nov 29, from -4.205 to -5.197, use Badnell DR by default
+monitor ionization Nitrogen  6 -5.197
+//
+// >>chng 04 jul 03, from 06.300 to -6.432, NA update H, CO chem net, inc err
+// >>chng 06 nov 29, from -6.432 to -4.781, use Badnell DR by default
+monitor ionization Oxygen    1 -4.781 error 0.1 
+// 
+// >>chng 06 nov 24, from -2.367 to -2.344, turn on Badnell RR
+// >>chng 06 nov 29, from -2.344 to -1.443, use Badnell DR by default
+monitor ionization Oxygen    2 -1.443 
+// 
+// >>chng 06 nov 29, from -0.399 to -0.182, use Badnell DR by default
+monitor ionization Oxygen    3 -0.182 
+//
+// >>chng 06 nov 29, from -0.227 to -0.517, use Badnell DR by default
+monitor ionization Oxygen    4 -0.517 
+//
+// >>chng 06 nov 29, from -2.353 to -2.837, use Badnell DR by default
+monitor ionization Oxygen    5 -2.837
+//
+// >>chng 00 sep 29, from -6.123 to -6.162, when cont rebined, H- bug
+// >>chng 04 may 19, from -6.162 to -6.116, RP udate he-like series
+// >>chng 06 nov 24, from -6.116 to -6.074, turn on Badnell RR
+// >>chng 06 nov 29, from -6.074 to -4.270, use Badnell DR by default
+monitor ionization Neon      1 -4.270 
+//
+// >>chng 00 sep 29, from -2.007 to -2.046, when cont rebined, H- bug
+// >>chng 04 may 19, from -2.046 to -2.003, RP udate he-like series
+// >>chng 06 nov 29, from -2.003 to -1.057, use Badnell DR by default
+monitor ionization Neon      2 -1.057 
+//
+// >>chng 06 nov 29, from -0.234 to -0.143, use Badnell DR by default
+monitor ionization Neon      3 -0.143 
+//
+// >>chng 06 nov 29, from -0.394 to -0.717, use Badnell DR by default
+monitor ionization Neon      4 -0.717 
+//
+// >>chng 06 nov 29, from -2.468 to -3.089, use Badnell DR by default
+monitor ionization Neon      5 -3.089
+//
+// >>chng 06 nov 24, from -7.128 to -7.159, turn on Badnell RR
+monitor ionization Sodium    1 -7.159 
+//
+// >>chng 06 nov 29, from -1.088 to -1.392, use Badnell DR by default
+monitor ionization Sodium    2 -1.392
+//
+// >>chng 06 nov 29, from -0.082 to -0.114, use Badnell DR by default
+monitor ionization Sodium    3 -0.114
+//
+// >>chng 06 nov 29, from -1.045 to -0.722, use Badnell DR by default
+monitor ionization Sodium    4 -0.722 
+//
+// >>chng 06 nov 29, from -4.233 to -3.769, use Badnell DR by default
+monitor ionization Sodium    5 -3.759
+//
+// >>chng 06 nov 24, from -4.210 to -4.330, turn on Badnell RR
+// >>chng 06 nov 29, from -4.330 to -4.183, use Badnell DR by default
+monitor ionization Magnesium 2 -4.183 
+//
+// >>chng 06 nov 29, from -0.012 to -0.073, use Badnell DR by default
+monitor ionization Magnesium 3 -0.073 
+//
+// >>chng 06 nov 29, from -1.583 to -0.810, use Badnell DR by default
+monitor ionization Magnesium 4 -0.810
+//
+// >>chng 06 nov 29, from -5.006 to -3.712, use Badnell DR by default
+monitor ionization Magnesium 5 -3.712
+//
+// >>chng 06 nov 24, from -5.016 to -5.066, turn on Badnell RR
+// >>chng 06 nov 29, from -5.066 to -4.310, use Badnell DR by default
+monitor ionization Aluminium 2 -4.310 
+//
+// >>chng 06 nov 24, from -2.498 to -2.551, turn on Badnell RR
+monitor ionization Aluminium 3 -2.551 
+//
+monitor ionization Aluminium 4 -0.001 
+//
+// >>chng 06 nov 29, from -4.148 to -3.225, use Badnell DR by default
+monitor ionization Aluminium 5 -3.225
+//
+// >>chng 06 nov 24, from -5.259 to -5.287, turn on Badnell RR
+// >>chng 06 nov 29, from -5.287 to -4.444, use Badnell DR by default
+// >>chng 07 nov 29, from -4.444 to -3.636, update DR rates
+monitor ionization Silicon   2 -3.636 
+//
+// >>chng 06 nov 24, from -2.230 to -2.258, turn on Badnell RR
+// >>chng 06 nov 29, from -2.258 to -1.416, use Badnell DR by default
+monitor ionization Silicon   3 -1.416 
+//
+// >>chng 06 nov 29, from -0.812 to -0.836, use Badnell DR by default
+monitor ionization Silicon   4 -0.836 
+//
+monitor ionization Silicon   5 -0.076 
+//
+// >>chng 03 nov 23, from -5.733 to -30 Kraemer et al. guess of dr
+// assert ionization Silicon   6 -30
+//
+// >>chng 03 aug 15, from -4.413 to -3.911, add guess for low T dr
+// >>chng 04 Sep 10, from -3.911 to -3.891, slow drift
+// >>chng 08 sep 22, from -3.891 to -3.53, remove Ali et al. DR guess
+monitor ionization Iron      2 -3.53 
+//
+// >>chng 03 aug 15, from -1.671 to -1.260, add guess for low T dr
+// >>chng 04 Sep 10, from -1.260 to -1.239, slow drift
+// >>chng 08 sep 22, from -1.239 to -1.156, remove Ali et al. DR guess
+monitor ionization Iron      3 -1.156 
+//
+// >>chng 03 aug 15, from -0.353 to -0.202, add guess for low T dr
+monitor ionization Iron      4 -0.202 
+//
+// >>chng 03 aug 15, from -0.327 to -0.555, add guess for low T dr
+monitor ionization Iron      5 -0.555 
+//
+// >>chng 03 aug 15, from -1.193 to -1.421, add guess for low T dr
+// >>chng 03 nov 23, from -1.421 to -1.933 Kraemer et al. guess of dr
+// >>chng 06 feb 03, from -1.933 to -2.099, guess dr to Badnell mean
+// >>chng 07 apr 30, from -2.099 to -1.695, log DR average, use mix S DR
+// >>chng 07 nov 29, from -1.695 to -1.766, update DR rates
+// >>chng 08 sep 19, from -1.766 to -2.05, new method for average Badnell DR
+monitor ionization Iron      6 -2.05 
+//
+// >>chng 03 aug 15, from -3.609 to -3.837, add guess for low T dr
+// >>chng 03 nov 23, from -3.837 to -4.456 Kraemer et al. guess of dr
+// >>chng 06 feb 03, from -4.456 to -4.956, guess dr to Badnell mean
+// >>chng 06 nov 29, from -4.956 to -4.629, use Badnell DR by default
+// >>chng 07 apr 30, from -4.629 to -4.227, log DR average, use mix S DR
+// >>chng 07 nov 29, from -4.227 to -4.297, update DR rates
+// >>chng 08 sep 19, from -4.297 to -4.582, new method for average Badnell DR
+monitor ionization Iron      7 -4.582
+c coll_t5.in
+c class coronal  
+c ========================================
+
+This is a test collisional ionization equilibrium
+at 1e5 K.

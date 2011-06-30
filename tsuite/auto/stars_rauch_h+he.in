@@ -1,0 +1,117 @@
+title Rauch PN central star
+c
+c commands controlling continuum =========
+c this tests the various interpolation modes of the 3d grid
+table star rauch h+he T = 150000 K, g = 6.5 , f(He) = 0.2
+luminosity 4.5 solar
+table star rauch h+he T = 155000 K, g = 6.5 , f(He) = 0.2
+luminosity 4.5 solar
+table star rauch h+he T = 150000 K, g = 6.25 , f(He) = 0.2
+luminosity 4.5 solar
+table star rauch h+he T = 150000 K, g = 6.5 , f(He) = 0.25
+luminosity 4.5 solar
+table star rauch h+he T = 155000 K, g = 6.25 , f(He) = 0.2
+luminosity 4.5 solar
+table star rauch h+he T = 155000 K, g = 6.5 , f(He) = 0.25
+luminosity 4.5 solar
+table star rauch h+he T = 150000 K, g = 6.25 , f(He) = 0.25
+luminosity 4.5 solar
+table star rauch h+he T = 155000 K, g = 6.25 , f(He) = 0.25
+luminosity 4.5 solar
+constant temperature 15000 // because we only want to test shape
+c
+c commands controlling geometry  =========
+sphere
+radius 18
+stop zone 1
+set dr 0
+c
+c commands for density & abundances =========
+abundances planetary 
+hden 3.0
+c
+c other commands for details     =========
+no level2
+c
+c commands controlling output    =========
+plot continuum range .1
+save overview last "stars_rauch_h+he.ovr"
+save results last "stars_rauch_h+he.rlt"
+save monitors last "stars_rauch_h+he.asr"
+save continuum last "stars_rauch_h+he.con" units microns
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 21.18 to 21.23, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  21.23
+monitor line luminosity "nInu" 122.4m  28.561
+monitor line luminosity "nInu" 60.83m  29.473
+monitor line luminosity "nInu" 41.22m  29.981
+monitor line luminosity "nInu" 30.87m  30.359
+monitor line luminosity "nInu" 24.78m  30.645
+monitor line luminosity "nInu" 24.30m  30.665
+monitor line luminosity "nInu" 22.83m  30.749
+monitor line luminosity "nInu" 21.42m  30.834
+monitor line luminosity "nInu" 21.12m  30.847
+monitor line luminosity "nInu" 19.62m  30.945
+monitor line luminosity "nInu" 17.65m  31.082
+monitor line luminosity "nInu" 17.37m  31.108
+monitor line luminosity "nInu" 15.69m  31.238
+monitor line luminosity "nInu" 14.60m  31.329
+monitor line luminosity "nInu" 12.43m  31.544
+monitor line luminosity "nInu" 11.40m  31.655
+monitor line luminosity "nInu" 10.46m  31.765
+monitor line luminosity "nInu" 9.480m  31.896
+monitor line luminosity "nInu" 9.325m  31.915
+monitor line luminosity "nInu" 8.210m  32.085
+monitor line luminosity "nInu" 7.580m  32.182
+monitor line luminosity "nInu" 7.050m  32.280
+monitor line luminosity "nInu" 4.114m  32.983
+monitor line luminosity "nInu" 2.324m  33.726
+monitor line luminosity "nInu" 1.643m  34.175
+monitor line luminosity "nInu" 1.480m  34.312
+monitor line luminosity "nInu" 1.436m  34.351
+monitor line luminosity "nInu" 1.119m  34.677
+monitor line luminosity "nInu"  8330A  35.061
+monitor line luminosity "nInu"  8079A  35.100
+monitor line luminosity "nInu"  6210A  35.445
+monitor line luminosity "nInu"  4885A  35.758
+monitor line luminosity "nInu"  3704A  36.116
+monitor line luminosity "nInu"  3588A  36.162
+monitor line luminosity "nInu"  2430A  36.670
+monitor line luminosity "nInu"  2392A  36.689
+monitor line luminosity "nInu"  2071A  36.878
+monitor line luminosity "nInu"  2053A  36.885
+monitor line luminosity "nInu"  1793A  37.051
+monitor line luminosity "nInu"  1585A  37.201
+monitor line luminosity "nInu"  1458A  37.301
+monitor line luminosity "nInu"  1357A  37.384
+monitor line luminosity "nInu"  1297A  37.436
+monitor line luminosity "nInu"  1263A  37.471
+monitor line luminosity "nInu"  1218A  37.390
+monitor line luminosity "nInu"  1196A  37.528
+monitor line luminosity "nInu"  1175A  37.552
+monitor line luminosity "nInu"  1144A  37.580
+monitor line luminosity "nInu"  1113A  37.614
+monitor line luminosity "nInu"  1103A  37.626
+monitor line luminosity "nInu"  1074A  37.654
+monitor line luminosity "nInu"  1064A  37.665
+monitor line luminosity "nInu"  1036A  37.693
+monitor line luminosity "nInu"  1000A  37.732
+monitor line luminosity "nInu" 925.1A  37.699
+monitor line luminosity "nInu" 897.8A  37.737
+monitor line luminosity "nInu" 760.0A  37.919
+monitor line luminosity "nInu" 701.5A  38.005
+monitor line luminosity "nInu" 608.2A  38.155
+monitor line luminosity "nInu" 575.1A  38.210
+monitor line luminosity "nInu" 511.9A  38.322
+monitor line luminosity "nInu" 496.9A  38.350
+monitor line luminosity "nInu" 399.2A  38.543
+// 
+c stars_rauch_h+he.in
+c class stars 
+c ========================================
+
+This is a model of a very hot planetary nebula, and checks that the code
+is able to access the H+He version of the Rauch grid of stellar
+atmosphere models.
+

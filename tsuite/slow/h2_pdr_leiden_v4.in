@@ -1,0 +1,186 @@
+title model 8 as defined in e-mail
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+c the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 50000
+c insure that no H-ionizing radiation strikes cloud
+extinguish 24 
+c
+c commands for density & abundances =========
+grains PAH no qheat 3 function
+grains ism 1.16 no qheat
+c  hydrogen density 
+hden 5.5
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+failures 3
+c  use leiden initialization file
+init file="pdr_leiden.ini"
+atom h2 
+c
+c commands controlling output    =========
+save overview "h2_pdr_leiden_v4.ovr"
+save leiden lines "h2_pdr_leiden_v4.lin"
+save leiden "h2_pdr_leiden_v4.lei"
+save dr "h2_pdr_leiden_v4.dr" 
+save grain dust temperature  "h2_pdr_leiden_v4.grn"
+save monitors "h2_pdr_leiden_v4.asr"
+save H2 destruction "h2_pdr_leiden_v4.H2d"
+save H2 creation "h2_pdr_leiden_v4.H2c"
+c
+c commands giving the monitors    =========
+// >>chng 05 sep 08, from 21.87 to 21.85, first run in 2 mo
+monitor H2 column density 21.85 error 0.1
+// 
+monitor CO column density 17.81 error 0.1
+//
+// >>chng 05 jul 17, from 15.16 to 15.08, first run in 6 mo
+// >>chng 05 sep 08, from 15.08 to 15.14, first run in 2 mo
+// >>chng 10 mar 03, from 15.14 to 15.22, fix botches after CO changes
+// >>chng 10 jun 22, from 15.22 to 15.01, fix botches after dBaseLines cooling/heating changes
+monitor O2 column density 15.01 error 0.1
+//
+// >>chng 05 sep 08, from 12.94 to 12.93, first run in 2 mo
+// >>chng 07 feb 03, from 12.93 to 12.97, drift up
+// >>chng 09 oct 06, from 12.97 to 13.01, [NI] pumping changes
+// >>chng 10 jun 22, from 13.01 to 13.06, fix botches after dBaseLines cooling/heating changes
+monitor OH column density 13.06 error 0.1
+//
+// >>chng 05 sep 08, from 15.52 to 15.56, first run in 2 mo
+// >>chng 08 feb 20, bugfix r1803, from 15.56 to 15.45
+monitor SiO column density 15.45 error 0.1
+//
+// >>chng 04 oct 14, from 885 to 975, PvH clean up grain elec phys, incr err
+// >>chng 04 dec 08, from 975 to 6575, co-ion feedback, check converg
+// >>chng 05 mar 25, from 6575 to 1353 renorm H pops in level solver
+// >>chng 05 jun 26, from 1335 to 248 make Federman chem the default
+// >>chng 05 sep 08, from 248 to 3841 first run in 2 mo
+// >>chng 07 may 27, from 3841 to 253 add extinguish command - rm H-ion rad
+// >>chng 09 oct 05, from 253 to 922.5, [NI] pumping changes
+monitor hydrogen 2 temperature 922.5 error 0.1
+//
+// >>chng 05 sep 29, add this temperature
+// >>chng 09 oct 05, from 250 to 311.2, [NI] pumping changes
+monitor hydrogen 1 temperature 311.2. error 0.1
+//
+// >>chng 05 sep 08, from 45.45 to 45.15 first run in 2 mo
+// >>chng 10 mar 03, from 45.15 to 47.9, fix botches after CO changes
+// >>chng 10 jun 22, from 47.9 to 43.38, fix botches after dBaseLines cooling/heating changes
+monitor H2 temperature 43.38
+//
+// these added 05 jul 03
+// >>chng 05 jul 17, from 21.67 to 21.75, first run in 6 mo
+// >>chng 05 sep 08, from 21.75 to 21.76 first run in 2 mo
+monitor H2 column density level 0  0  21.76 error 0.1
+//
+// >>chng 05 jul 17, from 21.14 to 21.17, first run in 6 mo
+// >>chng 05 sep 08, from 21.17 to 21.15 first run in 2 mo
+monitor H2 column density level 0  1  21.15 error 0.1
+//
+// >>chng 05 jul 17, from 19.25 to 19.25, first run in 6 mo
+// >>chng 05 sep 08, from 19.25 to 19.14 first run in 2 mo
+// >>chng 05 sep 28, from 19.14 to 19.19, back reaction H- to H2, ct update
+// >>chng 07 apr 10, from 19.19 to 19.15, ORNL H2-He collisions
+// >>chng 09 may 12, from 19.15 to 19.2, H2 - H2 collision update to Lee et al 2008
+monitor H2 column density level 0  2  19.2 error 0.1
+//
+// >>chng 05 jul 17, from 16.85 to 18.92, first run in 6 mo
+// >>chng 05 sep 08, from 18.92 to 18.82 first run in 2 mo
+// >>chng 07 dec 15, from 18.82 to 18.86, X-ray grain merge
+monitor H2 column density level 0  3  18.86 error 0.1
+//
+// >>chng 05 jul 17, from 15.94 to 16.49, first run in 6 mo
+// >>chng 05 sep 08, from 16.49 to 16.24 first run in 2 mo
+// >>chng 07 dec 15, from 16.24 to 16.29, X-ray grain merge
+monitor H2 column density level 0  4  16.29 error 0.1
+//
+// >>chng 05 jul 17, from 15.38 to 16.95, first run in 6 mo
+// >>chng 05 sep 08, from 16.95 to 16.86 first run in 2 mo
+// >>chng 07 dec 04, from 16.86 to 16.75, H-H2 collision data update
+// >>chng 07 dec 31, from 16.75 to 16.90 additional vJ H-H2 rates
+// >>chng 09 may 12, from 16.9 to 16.85, H2 - H2 collision update to Lee et al 2008
+monitor H2 column density level 0  5  16.85 error 0.1
+//
+// >>chng 05 jul 17, from 14.52 to 15.97, first run in 6 mo
+// >>chng 05 sep 08, from 15.97 to 15.85 first run in 2 mo
+// >>chng 07 apr 10, from 15.85 to 15.94, ORNL H2-He collisions
+// >>chng 08 mar 17, from 15.94 to 15.89, line overlap??, not run recently
+// >>chng 09 may 12, from 15.89 to 15.82, H2 - H2 collision update to Lee et al 2008
+monitor H2 column density level 0  6  15.82 error 0.1
+//
+// >>chng 05 jul 17, from 14.40 to 16.48, first run in 6 mo
+// >>chng 05 sep 08, from 16.48 to 16.38 first run in 2 mo
+// >>chng 07 may 27, from 16.38 to 16.42 add extinguish command - rm H-ion rad
+// >>chng 07 dec 04, from 16.42 to 16.04, H-H2 collision data update
+// >>chng 07 dec 31, from 16.04 to 16.35 additional vJ H-H2 rates
+monitor H2 column density level 0  7  16.35 error 0.1
+//
+// >>chng 05 jul 17, from 13.63 to 15.21, first run in 6 mo
+// >>chng 05 sep 08, from 15.21 to 15.10 first run in 2 mo
+// >>chng 07 apr 10, from 15.10 to 15.27, ORNL H2-He collisions
+// >>chng 07 dec 04, from 15.27 to 15.13, H-H2 collision data update
+// >>chng 07 dec 31, from 15.13 to 15.23 additional vJ H-H2 rates
+// >>chng 08 sep 25, from 15.23 to 15.19, remove damper on line pump (r2367)
+monitor H2 column density level 0  8  15.19 error 0.1
+//
+// >>chng 05 jul 17, from 13.77 to 15.90, first run in 6 mo
+// >>chng 05 sep 08, from 15.90 to 15.81 first run in 2 mo
+// >>chng 07 may 27, from 15.81 to 15.84 add extinguish command - rm H-ion rad
+// >>chng 07 dec 04, from 15.84 to 15.26, H-H2 collision data update
+// >>chng 07 dec 31, from 15.26 to 15.75 additional vJ H-H2 rates
+monitor H2 column density level 0  9  15.75 error 0.1
+//
+// >>chng 05 jul 17, from 13.19 to 14.26, first run in 6 mo
+// >>chng 05 sep 08, from 14.26 to 14.09 first run in 2 mo
+// >>chng 07 apr 10, from 14.09 to 13.95, ORNL H2-He collisions
+// >>chng 07 dec 31, from 13.95 to 14.00 additional vJ H-H2 rates
+// >>chng 08 aug 02, from 14.00 to 13.96 changes over past month
+monitor H2 column density level 1  0  13.96 error 0.1
+//
+// >>chng 05 jul 17, from 13.63 to 15.06, first run in 6 mo
+// >>chng 05 sep 08, from 15.06 to 14.94 first run in 2 mo
+// >>chng 07 dec 04, from 14.94 to 15.11, H-H2 collision data update
+// >>chng 07 dec 31, from 15.11 to 14.97 additional vJ H-H2 rates
+// >>chng 09 may 12, from 14.97 to 14.91, H2 - H2 collision update to Lee et al 2008
+monitor H2 column density level 1  1  14.91 error 0.1
+//
+// >>chng 05 jul 17, from 13.67 to 14.68, first run in 6 mo
+// >>chng 05 sep 08, from 14.68 to 14.51 first run in 2 mo
+// >>chng 07 dec 04, from 14.51 to 14.44, H-H2 collision data update
+// >>chng 07 dec 31, from 14.44 to 14.48 additional vJ H-H2 rates
+// >>chng 08 aug 02, from 14.48 to 14.44 changes over past month
+// >>chng 09 may 12, from 14.44 to 14.49, H2 - H2 collision update to Lee et al 2008
+monitor H2 column density level 1  2  14.49 error 0.1
+//
+// >>chng 05 jul 17, from 13.69 to 15.05, first run in 6 mo
+// >>chng 05 sep 08, from 15.05 to 14.92 first run in 2 mo
+// >>chng 07 dec 04, from 14.92 to 15.10, H-H2 collision data update
+// >>chng 07 dec 31, from 15.10 to 14.91 additional vJ H-H2 rates
+monitor H2 column density level 1  3  14.91 error 0.1
+//
+// >>chng 05 mar 25, from 9 to 11 renorm H pops in level solver
+// >>chng 05 sep 08, from 11 to 13 first run in 2 mo
+// >>chng 08 dec 08, from 13 to 7.687, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 7.687 to 11.94, merging newsolvers branch
+// >>chng 09 jan 16, from 11.94 to 12.06, average of 9 runs
+// >>chng 09 feb 23, from 12.06 to 11.81, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 apr 18, from 11.81 to 12.13, refacto P esc and dest to sync with cooling routines
+// >>chng 09 oct 05, from 12.13 to 21.96, [NI] pumping changes
+// >>chng 09 nov 03, from 21.96 to 21.4, [NI] pumping changes
+monitor itrzn 21.4
+//
+// >>chng 05 sep 08, from 730 to 1100 first run in 2 mo
+// >>chng 08 dec 08, from 1100 to 710, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 710 to 716, average of 9 runs
+// >>chng 09 oct 05, from 716 to 795, [NI] pumping changes
+monitor nzone 795
+c
+c h2_pdr_leiden_v4.in
+c class pdr 
+c ========================================
+c 
+

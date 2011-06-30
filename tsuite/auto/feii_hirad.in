@@ -1,0 +1,40 @@
+title feii in case of high radiation density limit
+c
+c commands controlling continuum =========
+black 8000 K lte 
+c
+c commands for density & abundances =========
+hden 9
+element iron abundance 2
+c
+c commands controlling geometry  =========
+set dr 0
+stop zone 1
+c
+c other commands for details     =========
+atom feii
+constant tempera 8000
+iterate
+c
+c commands controlling output    =========
+save monitors "feii_hirad.asr" last
+save feii relative populations range 0 200 "feii_hirad.lv1" last
+save feii relative populations range 201 371 "feii_hirad.lv2" last
+save FeII continuum "feii_hirad.fe2con" last units microns
+c
+c commands giving the monitors    =========
+// std very large for radiation case since A's incomplete
+// >>02 jul 27, increase error, 0.05 to 0.1, after change in As 
+monitor feii departure, value 1 std 0.1
+c
+c feii_hirad.in
+c class limit 
+c ========================================
+c 
+
+This checks that, at high radiation densitites, in which
+the gas is irradiated by a blackbody in strict thermodynamic
+equilibrium, the level populations of the large model Fe+ ion
+go to the proper values, where the departure coefficients
+are all equal to unity.
+

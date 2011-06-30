@@ -1,0 +1,94 @@
+title H2 populations in solomon dominated limit
+c this is a pair with h2_hminus 
+c
+c commands controlling continuum =========
+c this is hot star continuum
+black 30000
+intensity  -5. range  0.4412 to 1 Ryd
+c this will remove all ionizing radiation
+extinguish 24 0
+c background CR ionization rate should be 2.5e-17 s^-1,
+c Tielens & Hollenbach 1985; McKee AstroPH 9901370
+cosmic rays, background
+c
+c commands for density & abundances =========
+abundances ism 
+hden 5
+c
+c commands controlling geometry  =========
+set dr 0 
+stop zone 5 
+stop temperature 400 
+c
+c other commands for details     =========
+c default is Takahashi 2001 - test thermal distribution here
+set h2 grain formation thermal pump 
+atom h2 
+iterate
+constant temperature 500K
+c
+c commands controlling output    =========
+c don't print so many lines
+print line faint 10 
+print line column
+print line sort wavelength
+print column density 
+print ages
+save overview "h2_solomon.ovr" last
+save h2 lines "h2_solomon.lin" last all 
+save h2 rates "h2_solomon.rat" last
+save h2 column density "h2_solomon.col" last
+save monitors "h2_solomon.asr" last
+c
+c commands giving the monitors    =========
+// >>chng 05 feb 12, added grains - had not been included
+// only H- was creating H2 - everything changed
+// >>chng 05 nov 22, from 5.37 to 4.67, NA add freeze out onto grains
+// >>chng 05 dec 17, from 4.67 to 5.37, do not stop due to ices
+monitor h2 column 5.37 error 0.1
+//
+// >>chng 05 nov 22, from 1.99 to -1.04, NA add freeze out onto grains
+// >>chng 05 nov 22, from -1.04 to -1.74, NA add freeze out onto grains
+// >>chng 05 dec 17, from -1.74 to -1.04, do not stop due to ices
+// >>chng 05 dec 17, from -1.04 to -0.87, NA increase C chemistry
+// >>chng 06 jan 04, from -0.87 to -0.77, NA C chem restore missed block reacts
+// >>chng 06 jan 12, from -0.77 to 2.02, add term thermal dest ices
+monitor CO column 2.02 error 0.1
+//
+monitor H2 ortho 3.0
+// 
+// >>chng 05 nov 22, from 4.27 to 3.58, NA add freeze out onto grains
+// >>chng 05 dec 17, from 3.58 to 4.28, do not stop due to ices
+monitor H2 column density level v=0 J=0 N=4.28 error 0.1
+// 
+// >>chng 05 nov 22, from 5.08 to 4.38, NA add freeze out onto grains
+// >>chng 05 dec 17, from 4.38 to 5.08, do not stop due to ices
+monitor H2 column density level v=0 J=1 N=5.08 error 0.1
+// 
+// >>chng 05 nov 22, from 4.53 to 3.83, NA add freeze out onto grains
+// >>chng 05 dec 17, from 3.83 to 4.53, do not stop due to ices
+monitor H2 column density level v=0 J=2 N=4.53 error 0.1
+// 
+// >>chng 05 nov 22, from 4.71 to 4.02, NA add freeze out onto grains
+// >>chng 05 dec 17, from 4.02 to 4.72, do not stop due to ices
+monitor H2 column density level v=0 J=3 N=4.72 error 0.1
+// 
+// >>chng 05 nov 22, from 3.75 to 3.06, NA add freeze out onto grains
+// >>chng 05 dec 17, from 3.06 to 3.76, do not stop due to ices
+monitor H2 column density level v=0 J=4 N=3.76 error 0.1
+// 
+// >>chng 05 nov 22, from 3.52 to 2.83, NA add freeze out onto grains
+// >>chng 05 dec 17, from 2.83 to 3.53, do not stop due to ices
+monitor H2 column density level v=0 J=5 N=3.53 error 0.1
+//
+// >>chng 05 dec 17, add this assert - this is expected num zones
+// was stopping earlier due to ices
+monitor nzone 5 error 0.01
+//
+c h2_solomon.in
+c class limit  
+c ========================================
+c 
+
+This test H2 in case of grain formation and solomon destruction
+

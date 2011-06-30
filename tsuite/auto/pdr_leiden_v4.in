@@ -1,0 +1,116 @@
+title Leiden meeting model 8
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+c the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 50000
+extinguish 24
+c
+c commands for density & abundances =========
+grains PAH no qheat 3 function
+grains ism 1.16 no qheat
+c  hydrogen density 
+hden 5.5
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+c failures 3
+c  use leiden initialization file
+init file="pdr_leiden.ini"
+c
+c commands controlling output    =========
+save overview "pdr_leiden_v4.ovr"
+save leiden lines "pdr_leiden_v4.lin"
+save leiden "pdr_leiden_v4.lei"
+save dr "pdr_leiden_v4.dr" 
+save grain temperature  "pdr_leiden_v4.grn"
+save monitors "pdr_leiden_v4.asr"
+save transmitted continuum "pdr_leiden_v4.con"
+save heating "pdr_leiden_v4.het"
+save cooling "pdr_leiden_v4.col"
+c
+c commands giving the monitors    =========
+monitor H2 column density 21.87 error 0.1
+monitor CO column density 17.81 error 0.1
+// >>chng 08 feb 20, from 15.16 to 15.20, grain charge transfer changes in ion_solver and iso*
+// >>chng 10 mar 02, from 15.2 to 15.25, fix botches after CO model switch
+// >>chng 10 mar 03, from 15.25 to 15.18, enable all LAMDA and increase max num levels
+// >>chng 10 jun 17, from 15.18 to 15, fix botches due to recent dBase cooling changes
+monitor O2 column density 15 error 0.1
+// >>chng 08 feb 20, from 12.94 to 13.00, grain charge transfer changes in ion_solver and iso*
+// >>chng 10 jun 17, from 13 to 13.07, fix botches due to recent dBase cooling changes
+monitor OH column density 13.07 error 0.1
+// 
+// >>chng 05 aug 03, from 15.52 to 15.57, NA update CO, H chem net
+// >>chng 08 feb 20, from 15.57 to 15.45, grain charge transfer changes in ion_solver and iso*
+monitor SiO column density 15.45 error 0.1
+//
+// >>chng 04 oct 14, from 885 to 975, PvH clean up grain elec phys, incr err
+// >>chng 04 dec 08, from 975 to 6575, co-ion feedback, check converg
+// >>chng 05 mar 25, from 6575 to 1353 renorm H pops in level solver
+// >>chng 05 jun 26, from 1335 to 248 make Federman chem the default
+// >>chng 09 oct 05, from 248 to 624.1, [NI] pumping changes
+monitor hydrogen 2 temperature 624.1 error 0.1
+//
+// >>chng 05 aug 03, from 45.45 to 42.15, NA update CO, H chem net
+// >>chng 05 oct 01, from 42.15 to 43.98, RP update He leve
+// >>chng 05 dec 08, from 43.98 to 47.10, update to Elwert Solomon rate
+// >>chng 10 mar 02, from 47.1 to 50.07, fix botches after CO model switch
+// >>chng 10 jun 17, from 50.07 to 45.09, fix botches due to recent dBase cooling changes
+monitor H2 temperature 45.09
+// 
+// >>chng 05 sep 30, add these 5
+// >>chng 09 oct 05, from 9.18 to 9.337, [NI] pumping changes
+monitor column density H2+  9.337 error 0.1
+// 
+// >>chng 07 jan 07, from 11.95 to 12.00, enable McCall et al. H3+ rate
+monitor column density H3+  12.00 error 0.1
+// 
+monitor column density H2g  21.85 error 0.1
+// 
+// >>chng 05 dec 08, from 17.01 to 16.44, update to Elwert Solomon rate
+monitor column density H2*  16.44 error 0.1
+// 
+monitor column density HeH+ 7.63 error 0.1
+// 
+// >>chng 06 nov 28, add these lines
+monitor line luminosity "C  2" 157.6m -3.412
+//
+// >>chng 06 nov 29, from -4.975 to -4.947, Badnell DR turned on
+monitor line luminosity "C  1" 369.7m -4.947
+//
+// >>chng 07 jan 07, from -5.529 to -5.511, enable McCall et al. H3+ rate
+monitor line luminosity "C  1" 609.2m -5.511
+//
+// >>chng 09 oct 05, from -2.053 to -1.969, [NI] pumping changes
+monitor line luminosity "O  1" 63.17m -1.969
+//
+// >>chng 09 oct 05, from -3.414 to -3.35, [NI] pumping changes
+monitor line luminosity "O  1" 145.5m -3.35
+//
+// >>chng 05 mar 25, from 9 to 11 renorm H pops in level solver
+// >>chng 08 dec 08, from 11 to 5.913, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 5.913 to 12.06, merging newsolvers branch
+// >>chng 09 jan 16, from 12.06 to 12 (error 0.03), average of 10 runs
+// >>chng 09 oct 05, from 12 to 18.82, [NI] pumping changes
+// >>chng 09 oct 12, from 18.82 to 19.91, extend fine continuum to lower limit of code by default
+// >>chng 10 feb 14, from 19.91 to 20.85, update O atomic data
+// >>chng 10 mar 02, from 20.85 to 22.96, fix botches after CO model switch
+// >>chng 10 mar 03, from 22.96 to 19.56, enable all LAMDA and increase max num levels
+// >>chng 10 mar 05, from 19.56 to 24.38, changes caused by r3848 atomic data update
+monitor itrzn 24.38
+//
+// >>chng 08 dec 13, from 730 to 737, merging newsolvers branch
+// >>chng 09 mar 27, from 737 to 742 improve rigor esc prob & pop defns
+// >>chng 09 oct 05, from 742 to 783, [NI] pumping changes
+// >>chng 10 jun 24, from 783 to 803, fix bug in species cooling
+monitor nzone 803
+c
+c pdr_leiden_v4.in
+c class pdr 
+c ========================================
+c 
+

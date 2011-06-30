@@ -1,0 +1,76 @@
+title Leiden meeting model 3 with hacks
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+c the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 5
+extinguish 24
+c
+c commands for density & abundances =========
+grains ism 1.16 no qheat
+c  hydrogen density 
+hden 5.5
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+failures 3
+c  use leiden initialization file
+init file="pdr_leiden_hack.ini"
+c  This command defines the grain temperature to be a constant 20 Kelvin
+constant grain temperature 20 
+c  This sets the temperature to a constant 50 Kelvin
+constant temperature 50 linear
+c
+c commands controlling output    =========
+save leiden lines "pdr_leiden_hack_f3.lin"
+save leiden overview "pdr_leiden_hack_f3.ovr"
+save leiden "pdr_leiden_hack_f3.lei"
+save dr "pdr_leiden_hack_f3.dr" 
+save grain physical conditions "pdr_leiden_hack_f3.grn"
+c
+c commands giving the monitors    =========
+monitor H2 column density 21.927 error 0.1
+monitor CO column density 18.216 error 0.1
+// 
+// >>chng 05 aug 24, from 17.77 to 17.65, NA update CO cr ion rate
+monitor O2 column density 17.65 error 0.1
+// 
+// >>chng 05 aug 24, from 13.80 to 13.75, NA update CO cr ion rate
+monitor OH column density 13.75 error 0.1
+// 
+// >>chng 06 nov 28, add these lines
+// >>chng 06 nov 29, from -5.044 to -5.078, Badnell DR turned on
+monitor line luminosity "C  2" 157.6m -5.078
+// 
+// >>chng 06 nov 29, from -6.569 to -6.415, Badnell DR turned on
+monitor line luminosity "C  1" 369.7m -6.415
+// 
+// >>chng 06 nov 29, from -7.195 to -7.040, Badnell DR turned on
+monitor line luminosity "C  1" 609.2m -7.040
+// 
+monitor line luminosity "O  1" 63.17m -3.651
+// 
+monitor line luminosity "O  1" 145.5m -5.057
+// 
+// >>chng 04 sep 19, from 5 to 7, improv converge criteria
+// >>chng 05 mar 28, from 7 to 4.5, impr mol converg
+// >>chng 08 dec 08, from 4.5 to 3.491, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 3.491 to 4, merging newsolvers branch
+// >>chng 09 jan 08, from 4 to 3.917, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, from 3.917 to 3.951 (error 0.04), average of 10 runs
+monitor itrzn 3.951 error 0.04
+//
+// >>chng 08 dec 08, from 550 to 495, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 495 to 496, average of 10 runs
+monitor nzone 496 error 0.01
+c 
+c pdr_leiden_hack_f3.in
+c class pdr 
+c ========================================
+c 
+
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+include hacks to get standard answer.

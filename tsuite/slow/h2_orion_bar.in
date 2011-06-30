@@ -1,0 +1,78 @@
+Title Orion Bar with magneitc field with equipartition cosmic rays
+c This is the Orion Bar model presented in Pellegrini et al, Shaw et al.
+c
+c commands controlling continuum =========
+c these give the shape and intensity
+table read "star_kurucz_39600.dat"
+Q(H) 48.99 
+brems 6 
+luminosity 32.6 range 36.76 to 588.0 Ryd
+c
+c commands for density & abundances =========
+Hden 3.500 
+init file="ism.ini" 
+Abundances H II region no grains                                                
+grains orion                                                                    
+c these were actually used in the paper
+grains PAH
+* grains "ph2c_ab08_10.opc" function 3
+* grains "ph2n_ab08_10.opc" function 3  
+// >>TODO when paper is complete change this to whatever we decide upon
+// must monitor some vib excited lines since these are very sensitive
+// to temperature
+// set PAH "H,H2"
+c
+c commands controlling geometry  =========
+iterate
+sphere 
+double 
+stop temperature 0.602K 
+Constant pressure 
+Magnetic field tangled -5.10 2
+radius 0.114 to 0.5 linear parsecs
+c
+c other commands for details     =========
+cosmic rays equipartition 
+Set nend 3000 
+atom h2 
+c use ORNL data for ortho & para H2 collisions
+atom H2 orH2 collisions ORNL
+atom H2 paH2 COLLISIONS ORNL
+turbulence 2km/s 2                                                              
+c
+c commands controlling output    =========
+print line faint -6                                                             
+print line sort wavelength                                                      
+print line column                                                               
+print last                                                                      
+save grain opacity "h2_orion_bar.grop"   
+save monitors "h2_orion_bar.asr"   
+save h2 populations zone last "h2_orion_bar.h2pop"   
+save continuum last "h2_orion_bar.con" units microns
+save H2 lines last "h2_orion_bar.h2lin" 
+save overview last "h2_orion_bar.ovr"  
+save pressure last "h2_orion_bar.press" 
+save molecules last "h2_orion_bar.mol"    
+save secondaries last "h2_orion_bar.2nd" 
+save heating last "h2_orion_bar.heat"   
+save H2 rates last "h2_orion_bar.h2rat" last 
+save h2 column density last "h2_orion_bar.h2col" 
+save h2 temperature last "h2_orion_bar.temp"
+save PDR last "h2_orion_bar.pdr"
+c
+c commands giving the monitors    =========
+c
+c hii pdr h2_orion_bar.in
+c ========================================
+c 
+
+This is the Orion Bar model discussed by
+	
+Pellegrini, E. W.; Baldwin, J. A.; Ferland, G. J.; Shaw, G.; Heathcote, S.
+ApJ, 693, 285  2009ApJ...693..285P
+and
+Shaw, Gargi; Ferland, G. J.; Henney, W. J.; Stancil, P. C.; Abel, N. P.; Pellegrini, E. W.; Baldwin, J. A.; van Hoof, P. A. M.
+2009arXiv0906.2310S
+
+
+

@@ -1,0 +1,56 @@
+title H, He in LTE at high densities 
+c test from Ferland and Rees 88, collisions drive H to LTE
+c collisions should drive all departure coef to unity
+c
+c commands controlling continuum =========
+black body t = 50000
+ionization parameter -5
+c
+c commands for density & abundances =========
+hden = 19
+init file="hheonly.ini"
+set eden 20
+c
+c commands controlling geometry  =========
+set dr -10
+stop zone 1
+stop lyman optical depth -6
+c
+c other commands for details     =========
+constant temperature = 50000
+iterate
+c
+c commands controlling output    =========
+print departure coefficients h-like
+print populations h-like 
+print departure coefficients h-like helium
+print populations h-like helium
+print departure coefficients he-like
+print populations he-like 
+save monitors "limit_lte_hhe_coll_t50.asr" last
+save dr "limit_lte_hhe_coll_t50.dr" last
+c
+c commands giving the monitors    =========
+monitor h-like departure coef hydrogen, average 1
+monitor h-like departure coef helium, average 1
+c limit_lte_hhe_coll_t50.in
+c class limit 
+c ========================================
+c 
+
+This model is a test of the behavior of hydrogen and helium
+in the high density, collision dominated, limit.
+The temperature is preset, the hydrogen density is set
+to a very high value, and the ionization parameter is very low.
+The resulting model is collision dominated, so this case
+checks that the collision physics occurs in detailed balance.
+The predicted departure coefficients should all equal unity.
+The set dr command sets the zone thickness to 1 cm.  
+
+Checks:
+-	Hydrogen departure coefficients exactly unity.
+-	Helium departure coefficients near unity.  
+	(Density not high enough to bring helium departure coefficients
+	exactly to unity.)
+-	H-, H2, H2+ H3+, and HeH+ departure coefficients exactly unity.
+`

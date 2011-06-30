@@ -1,0 +1,60 @@
+title Martin Gaskell's funny model
+c used to test that electron density convergence is ok
+c hydrogen line spectrum strongly pumped by continuum
+c all elements > H have HIGH abundances 
+c ionization of elements Fe, Mg, Si strongly affected
+c by charge transfer
+c
+c commands controlling continuum =========
+black 4000
+lumin 27.2
+c
+c commands for density & abundances =========
+hden 5.138
+abundances all 1000
+c
+c commands controlling geometry  =========
+radius 15
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+constant temper 5500
+c
+c commands controlling output    =========
+print line faint -3
+save monitors "limit_eden.asr" last
+c
+c commands giving the monitors    =========
+// >>chng 06 mar 03, from 9.000 to 9.028 NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+monitor limit_eden 9.028
+// 
+// >>chng 06 nov 24, from 0.769 to 0.634, turn on Badnell RR
+// >>chng 06 nov 29, from 0.634 to 0.521, Badnell DR turned on
+monitor ionization fraction magnesium 2 0.521
+// 
+// >>chng 06 nov 24, from 0.050 to 0.038, turn on Badnell RR
+// >>chng 06 nov 29, from 0.038 to 0.031, Badnell DR turned on
+monitor ionization fraction silicon 2 0.031
+// 
+// >>chng 06 nov 24, from 0.676 to 0.625, turn on Badnell RR
+// >>chng 06 nov 29, from 0.625 to 0.589, Badnell DR turned on
+monitor ionization fraction iron 2 0.589
+// 
+c limit_eden.in
+c class limit 
+c ========================================
+c 
+
+This is mainly a test of the ability of the code to converge a model
+with a very strange electron density. The electrons are mainly contributed
+by heavy elements, and the gas is only slightly ionized. 
+
+Ionization of elements Fe, Mg, Si strongly affected by charge transfer
+with other heavy elements.
+
+Checks:
+-	Electron density is correct.
+-	Hydrogen line spectrum strongly pumped by continuum.
+

@@ -1,0 +1,207 @@
+title low-density PDR from HTT91
+c >>refer	test	model Hollenbach, D., Takahashi, T., &
+c >>refcon	Tielens, A.G.G.M., 1991, ApJ,377, 192-209
+c
+c commands controlling continuum =========
+c first continuum is FIR hot grain continuum produced in 
+c unmodeled HII Region
+c this is hot star continuum
+black 30000
+intensity  0.2 range  0.4412 to 1 Ryd
+c this will remove all ionizing radiation
+extinguish 24 0
+cosmic rays, background
+c
+c commands for density & abundances =========
+hden 3
+init file="ism.ini"
+abundances he -1.01 c -3.52 n-8 o-3.30 ne-8 mg-5.89
+continue si -6.10 s -5.10 cl-7 ar-8 fe -6.60
+grains orion, abundance log 0.16 no qheat 
+c
+c commands controlling geometry  =========
+sphere
+c stop when gas is fully neutral
+stop efrac -10
+c this is to stop at an intended place, since results would be
+c very dependent on details if we stop on temperature
+stop thickness 18.954
+c stop when gas is cold
+stop temperature 10 linear
+c add this to mimic unmodelled neutral gas
+double optical depths
+c
+c other commands for details     =========
+iterate  2
+case b
+turbulence 1.5 km/sec
+c 
+c commands controlling output    =========
+normalize to 157.6m "C  2" 
+c uv lines are strongly pumped by stellar continuum, break out contribution
+print line pump
+print line optical depths
+print ages
+save overview last "pdr_HTT91.ovr"
+save dr "pdr_HTT91.dr"
+save molecules last "pdr_HTT91.mol"
+save results last "pdr_HTT91.rlt"
+save monitors last "pdr_HTT91.asr"
+save continuum units microns last "pdr_HTT91.con"
+save heating last "pdr_HTT91.het"
+save cooling last "pdr_HTT91.col"
+c
+c commands giving the monitors    =========
+// >>chng 01 apr 11, latest revision of grain heating changed
+// all of these results.  lines were relative to C 2 157.6m, which
+// changes at these temperatures.   all were changed to luminosities
+// >>chng 02 jan 07, distribued H2 form on grains, mean gas temp
+// rose by almost 2x, most lines changed by 2x
+// >>chng 03 mar 08, from -2.608, to -2.793bugs in grn recom, solomon
+// >>chng 03 aug 23, revised stop criteria after Nick Abel revision
+// of grain chemistry code, most answers changed as a result
+// >>chng 03 aug 23, from -2.793 to -2.695, chng stopping, update co net
+// >>chng 03 nov 16, from -2.695 to -2.666, chng solomon frm th85 to bd96
+// >>chng 04 jan 28, from -2.666 to -2.644, cnhg cr background heating
+// >>chng 04 feb 21, from -2.644 to -2.675, chem, ct rec h-
+// >>chng 05 jul 05, from -2.675 to -2.68, fine tune
+monitor line luminosity "c  2" 157.6m -2.68 err 0.1
+//
+// >>chng 03 mar 08, from -3.247, to -3.950 bugs in grn recom, solomon
+// >>chng 03 jun 10, from -3.950 to -4.003, chng solomon process
+// >>chng 03 aug 23, from -4.003 to -3.569, chng stopping, update co net
+// >>chng 03 nov 16, from -3.569 to -3.606, chng solomon frm th85 to bd96
+// >>chng 03 jan 27, from -3.606 to -3.577, cosmic ray background udpate
+// >>chng 04 jan 28, from -3.577 to -3.546, cnhg cr background heating
+// >>chng 04 feb 21, from -3.546 to -3.615, chem, ct rec h-
+// >>chng 04 mar 04, from -3.615 to -3.645, improv conv criteria
+// >>chng 04 mar 24, from -3.645 to -3.680, stability, incr error
+// >>chng 04 may 13, from -3.680 to -3.633, dest albedo chng, incr err
+monitor line luminosity "O  1" 63.17m -3.63 error 0.15
+//
+// >>chng 02 dec 09, from -3.409 to -3.39, after dublin sound meet
+// >>chng 03 mar 08, from -3.39, to -4.798 bugs in grn recom, solomon
+// >>chng 03 jun 10, from -4.798 to -5.049, chng solomon process
+// >>chng 03 jun 18, from -5.049 to -4.990, small changes
+// >>chng 03 aug 23, from -4.990 to -4.195, chng stopping, update co net
+// >>chng 03 nov 16, from -4.195 to -5.274, chng solomon frm th85 to bd96
+// >>chng 04 jan 28, from -5.274 to -5.228, cnhg cr background heating
+// >>chng 04 feb 09, from -5.228 to -5.329, more th85->bd96, incr error
+// >>chng 04 feb 21, from -5.329 to -5.618, chem, ct rec h-
+// >>chng 04 mar 24, from -5.618 to -5.276, stability
+// >>chng 05 jul 05, from -5.28  to -5.31, fine tune
+// >>chng 05 dec 08, from -5.31 to -5.12, update to Elwert Solomon rate
+monitor line luminosity "H2 l" 2m -5.12 error 0.15
+//
+// >>chng 03 mar 08, from -2.946 to -2.805 bugs in grn recom, solomon
+// >>chng 03 aug 23, from -2.805 to -2.684, chng stopping, update co net
+// >>chng 03 jan 27, from -2.684 to -2.661, cosmic ray background udpate
+// >>chng 04 feb 21, from -2.661 to -2.628, chem, ct rec h-
+// >>chng 05 jul 05, from -2.63  to -2.64, fine tune
+monitor line luminosity "grgh" 0 -2.64 error 0.1
+//
+// >>chng 02 jan 07, from 73.5 to 132
+// >>chng 03 mar 08, from 131.9 to 75.5 bugs in grn recom, solomon
+// >>chng 03 jun 10, from 75.5 to 69.6 chng solomon process
+// >>chng 03 aug 23, from 69.6 to 74.8 chng stopping, update co net
+// >>chng 03 nov 16, from 74.8 to 71.6 chng solomon frm th85 to bd96
+// >>chng 04 feb 21, from 71.6 to 63.3 chem, ct rec h-
+// >>chng 05 jul 05, from 63.3  to 61.9, fine tune
+monitor temperature carbon 2 61.9
+//
+// >>chng 03 mar 08, from 21.184 to 21.079 bugs in grn recom, solomon
+// >>chng 03 jun 10, from 21.079 to 20.921 chng solomon process
+// >>chng 03 jun 18, from 20.921 to 20.954, small changes incr error
+// >>chng 03 aug 23, from 20.954 to 21.588 chng stopping, update co net
+// >>chng 03 nov 16, from 21.59 to 21.36 chng solomon frm th85 to bd96
+// >>chng 04 jan 23, from 21.36 to 21.27, rescale orion dust to gas ratio
+// >>chng 04 feb 09, from 21.27 to 21.219, more th85->bd96, incr error
+// >>chng 05 dec 08, from 21.22 to 21.33, update to Elwert Solomon rate
+monitor column H2 21.33 error 0.2
+//
+// >>chng 01 aug 25, from 13.261 to 12.290,
+// >>chng 02 jan 17, from 12.498 to 12.335, H_2 photoionization opacity
+// >>chng 02 jun 13, from 12.335 to 12.298, finer zoning
+// >>chng 02 jun 19, from 12.298 to 12.397, better two photon
+// >>chng 02 sep 17, from 12.298 to 12.3485, conv mole matrix 
+// >>chng 02 nov 07, from 12.3485 to 12.30, rec cooling
+// >>chng 03 mar 08, from 12.349 to 12.231 bugs in grn recom, solomon
+// >>chng 03 jun 10, from 12.231 to 12.032 chng solomon process
+// >>chng 03 aug 23, from 12.032 to 13.454 chng stopping, update co net
+// >>chng 03 sep 10, from 13.454 to 11.692 better H2*
+// >>chng 03 sep 11, from 11.692 to 11.848 better H2*
+// >>chng 03 sep 16, from 11.848 to 12.223 Nick Abel better conserv, new ion mol
+// >>chng 03 sep 23, from 12.223 to 12.454 better conserv
+// >>chng 03 sep 23, from 12.454 to 12.584 bug  str length
+// >>chng 03 oct 03, from 12.584 to 12.222, integ co and ion solvers
+// >>chng 03 nov 16, from 12.22 to 12.07 chng solomon frm th85 to bd96
+// >>chng 03 nov 18, from 12.07 to 12.52 Nick Abel update co network
+// >>chng 04 jan 28, from 12.52 to 12.64, cnhg cr background heating
+// >>chng 04 feb 21, from 12.64 to 12.363 chem, ct rec h-
+// >>chng 04 apr 02, from 12.363 to 12.632, update photo rate for co dest
+// >>chng 04 apr 19, from 12.632 to 11.878 Nick Abel update co network
+// following Leiden meeting
+// >>chng 04 may 19, NA adds several more moles and react, from 11.88 to 12.29
+// >>chng 04 may 29, NA adds several more moles and react, from 12.29 to 12.68
+// >>chng 04 jul 03, from 12.68 to 12.77, NA update H, CO chem net
+// >>chng 05 jun 26, from 12.77 to 12.40, make Federman chem the default
+// >>chng 05 jul 06, from 12.40 to 12.47, fine tune
+// >>chng 08 Feb 10, from 12.47 to 12.55, adjust CR& secondary effic
+monitor column CO 12.55 error 0.2 
+// 
+// >>chng 05 sep 30, add these 5
+// >>chng 05 dec 08, from 11.14 to 11.19, update to Elwert Solomon rate
+monitor column density H2+  11.19 error 0.1
+// 
+// >>chng 05 dec 08, from 11.66 to 11.74, update to Elwert Solomon rate
+// >>chng 07 jan 07, from 11.74 to 12.10, enable McCall et al. H3+ rate
+monitor column density H3+  12.10 error 0.1
+// 
+// >>chng 05 dec 08, from 21.27 to 21.33, update to Elwert Solomon rate
+monitor column density H2g  21.33 error 0.1
+// 
+// >>chng 05 dec 08, from 15.47 to 15.21, update to Elwert Solomon rate
+monitor column density H2*  15.21 error 0.1
+// 
+// >>chng 05 dec 08, add this temperature
+monitor temperature hydrogen 2 72.11
+monitor temperature hydrogen 1 73.80
+monitor temperature H2 50.14 
+// 
+// >>chng 07 jan 07, from 10.37 to 10.33, enable McCall et al. H3+ rate
+monitor column density HeH+ 10.33 error 0.1
+// 
+//
+// >>chng 02 jun 19, from 12.298 to 180 better two photon
+// >>chng 03 aug 23, from 180 to 280 chng stopping, update co net
+// >>chng 03 nov 02, from 280 to 240 chng next_dr
+// >>chng 03 dec 07, from 240 to 280, incr dr resol metals
+// >>chng 04 apr 02, from 280 to 200, ? ?
+// >>chng 05 jul 05, from 200 to 318, turn on Cl
+// >>chng 08 dec 08, from 350 to 336, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 336 to 335, average of 10 runs
+monitor nzone 335 error 0.01
+//
+// >>chng 02 dec 13, from 4.6 to 3.5, better conv
+// >>chng 03 may 17, from 4.6 to 5.5, actual 4.85, reeval pump
+// >>chng 03 nov 02, from 5.5 to 6.5 chng next_dr
+// >>chng 03 nov 16, from 6.5 to 5.5, actual is 4.8
+// >>chng 08 dec 08, from 5.5 to 3.256, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 3.256 to 14.47, merging newsolvers branch
+// >>chng 09 jan 16, from 14.47 to 14.03 (error 0.05), average of 10 runs
+monitor itrzn 14.03 error 0.05
+//
+c pdr_HTT91.in
+c class pdr 
+c ========================================
+c 
+
+This is the Hollenbach et al 1991 Low-density PDR
+The case b command appears because the Lyman lines are
+vastly optically thick in this environment. 
+If the command is removed the Lyman lines will be optically thin,
+which will result in fast fluorescent excitation of the
+(nearly totally neutral) hydrogen atom.  
+
+there is very little CO in this model since it is not thick enough
+for the UV pumping lines to become optically thick

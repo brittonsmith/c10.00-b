@@ -1,0 +1,276 @@
+title Lexington 1995 dust-free hii blister region
+c
+c commands controlling continuum =========
+c a simple blackbody
+blackbody 40000
+c the flux of H-ionizing photons
+phi(h) 13.0
+c add the CMB after hot star shape & luminosity specified
+CMB 
+c
+c commands for density & abundances =========
+hden 4
+init file="ism.ini"
+c HII region abundance but no dust
+abundances hii region no grains
+abundances he1 c1 n1 o1 ne1 mg=.0001 si.01 s1 cl1 ar1
+continue fe.001
+c
+c commands controlling geometry  =========
+sphere
+c
+c other commands for details     =========
+c this is to desaturate Lya to prevent excited state photoionization
+c from being important - the other codes did not include this important
+c physical process
+turbulence 10 km/s
+c must iterate since optically thick
+iterate
+c
+c commands controlling output    =========
+normalize to "Ca B" 4861
+print line faint .01
+print line sum
+He 1 5876
+totl 2326
+C  2 1335
+TOTL 1909
+N  2 6584
+N  2 6548
+N  3  57.21m
+TOTL 7325
+TOTL 3727
+O  3  51.80m
+O  3 5007
+O  3 4959
+Ne 2  12.81m
+Ne 3  15.55m
+Ne 3 3869
+Ne 3 3968
+S  3  18.67m
+S  3 9532
+S  3 9069
+S  4  10.51m
+end of lines
+//
+save overview last "hii_blister.ovr"
+save dr last "hii_blister.dr"
+save results last "hii_blister.rlt"
+print line optical depths
+c
+c commands giving the monitors    =========
+monitor line "totl" 4861 luminosity 0.667
+monitor line "Q(H)" 4861 > 1.
+monitor line "Q(H)" 4861 < 1.1 
+//assert line "totl" 5 876  0.13
+// >>chng 02 dec 11, new entry, new hei
+// >>chng 03 feb 28, from 0.121 to 0.131, better hei coll
+// >>chng 05 oct 01, from 0.131 to 0.117, RP update He levels
+// >>chng 05 dec 22, from 0.117 to 0.123, RP incr levels he
+// >>chng 08 apr 30, from 0.123 to 0.1042H, He topoff change
+monitor line "He 1" 5876  0.142
+monitor line "+Col" 5876 0.128
+// 
+// >>chng 09 feb 24, from 0.0199 to 0.0189, botches due to r2763
+// >>chng 09 jun 15, from 0.0189 to 0.0272, gradual approach to outer edge
+monitor line "He 1" 3889  0.0272
+monitor line "+Col" 3889 0.104
+// 
+// >>chng 09 jun 15, from 0.0843 to 0.0798, gradual approach to outer edge
+monitor line "he 1" 7065  0.0798
+monitor line "+Col" 7065 0.0307
+// 
+monitor line "he 1" 4471  0.0476
+monitor line "+Col" 4471 0.0445
+//
+// >>chng 99dec06, from 0.834 to 0.791, answer had slowly drifted down
+// >>chng 00 sep 29, from 0.791 to 0.837, H- opacity bug
+//assert line "totl" 10830 0.837
+// 
+// >>chng 02 dec 11, new entry, new hei
+// >>chng 05 mar 12, from 0.848 to 0.899, RP merge He-like code
+// >>chng 05 oct 01, from 0.899 to 0.860, RP update He levels
+// >>chng 06 jan 28, from 0.860 to 0.906, RP update cs-Te routine
+// >>chng 08 dec 13, from 0.906 to 0.8625, merging newsolvers branch
+monitor line "totl" 10830 0.8625
+//
+// >>chng 01 aug 24, from 0.134 to 0.159, continuum mesh 2x finer
+// >>chng 02 nov 20, from 0.159 to 0.179, new he ots diff
+// >>chng 02 dec 10, from 0.179 to 0.202, he 23p A
+// >>chng 05 oct 01, from 0.202 to 0.171, RP update He levels
+// >>chng 06 nov 29, from 0.171 to 0.146, Badnell DR turned on
+monitor line "totl" 2326  0.146 error 0.1
+//
+monitor line "C  2" 1335  0.183 error 0.1
+// >>chng 01 jul 01 from 0.244 to 0.270, diffuse field refinement
+// >>chng 02 nov 20, from 0.270 to 0.238, new he ots diff
+// >>chng 02 dec 21, from 0.238 to 0.213, new he atom integration
+monitor line "TOTL" 1909  0.213 error 0.1
+//
+// >>chng 99jun15 was 0.46 until 92.20,
+// convering ots by taking mean of all lyman
+// lines changed it from .46 to .41.  std meeting value was .43
+// >>chng 99jun18, changed to checking on ots flucs, to 0.40
+// >>chng 00 dec 12, from 0.43 to 0.398, change in [NII] cs
+// >>chng 02 dec 10, from 0.398 to 0.501, he 23p A
+// >>chng 03 oct 30, from 0.501 to 0.451, drift down
+// >>chng 05 oct 01, from 0.451 to 0.388, RP update He levels
+// >>chng 05 dec 22, from 0.388 to 0.427, RP incr levels he
+// >>chng 06 nov 29, from 0.427 to 0.349, Badnell DR turned on
+// >>chng 08 apr 30, from 0.349 to 0.396 H, He topoff change
+monitor line "N  2" 6584  0.396 error 0.1
+//
+monitor line "N  3"  57.21m  0.038
+//
+// >>chng 00 aug 21 from .117 to .111 chng A he 1 2-phot
+// >>chng 00 aug 29 from .111 to .122 H- opacity bug
+// >>chng 01 apr 08, from 0.122 to  128, small drift upward
+// >>chng 02 dec 10, from 0.128 to 0.144, he 23p A
+// >>chng 03 sep 10, from 0.144 to 0.123, diff field bug
+// >>chng 05 oct 01, from 0.123 to 0.111, RP update He levels
+// >>chng 06 jul 06, from 0.111 to 0.112, update Ne cs
+// >>chng 06 jul 25, from 0.112 to 0.134 HN update OIII collision data
+// >>chng 06 nov 29, from 0.134 to 0.116, Badnell DR turned on
+// >>chng 09 feb 24, from 0.116 to 0.124, botches due to r2763
+// >>chng 10 feb 14, from 0.124 to 0.1029, update O atomic data
+monitor line "TOTL" 7325  0.1029 error 0.07
+//
+// >>chng 99 nov 23 93.06, changed from 0.744 to 0.070 ots rate min change??
+// >>chng 00 dec 12 from 0.707 to 0.787, due to change in cs for [NII]
+// >>chng 05 mar 12, from 0.787 to 0.702, RP merge He-like code
+// >>chng 06 nov 29, from 0.702 to 0.625, Badnell DR turned on
+// >>chng 10 mar 05, from 0.625 to 0.6835, changes caused by r3848 atomic data update
+monitor line "TOTL" 3727  0.6835 0.1
+//
+// >>chng 05 oct 01, from 0.310 to 0.326, RP update He levels
+monitor line "O  3"  51.80m  0.326
+//
+// >>chng 02 dec 11, from 3.95 to 3.751, new hei 
+// >>chng 03 sep 10, from 3.751 to 3.982 diff field bug
+// >>chng 05 oct 01, from 3.982 to 4.188, RP update He levels
+monitor line "O  3" 5007  4.188
+//
+// >>chng 02 dec 10, from 0.141 to 0.149, he 23p A
+// >>chng 03 sep 10, from 0.149 to 0.138 diff field bug
+// >>chng 05 oct 01, from 0.138 to 0.131, RP update He levels
+// >>chng 06 jul 06, from 0.131 to 0.149, update Ne cs
+// >>chng 06 nov 29, from 0.149 to 0.139, Badnell DR turned on
+// >>chng 09 feb 24, from 0.139 to 0.1455, botches due to r2763
+monitor line "Ne 2"  12.81m  0.1455
+//
+// >>chng 05 oct 01, from 0.464 to 0.485, RP update He levels
+// >>chng 06 jul 06, from 0.485 to 0.463, update Ne cs
+monitor line "Ne 3"  15.55m  0.463
+// 
+// >>chng 06 jul 06, add this line 
+monitor line "Ne 3"  36.01m  0.0329
+//
+// >>chng 02 jun 21, from 0.166 to 0.175, better brems cooling
+// >>chng 02 nov 24, from 0.175 to 0.166, new he grd rec eff
+// >>chng 02 dec 13, from 0.166 to 0.157, better zoning, incr error
+// >>chng 05 oct 01, from 0.157 to 0.173, RP update He levels
+// >>chng 06 jul 06, from 0.173 to 0.156, update Ne cs
+// >>chng 07 dec 14, from 0.156 to 0.168 RP update is seq
+monitor line "Ne 3" 3869  0.168 error 0.08
+//
+// >>chng 00 sep 12 from 0.305 to 0.341, cs change
+// >>chng 07 apr 30, from 0.341 to 0.405, log DR average, use mix S DR
+// >>chng 10 mar 05, from 0.405 to 0.3217, changes caused by r3848 atomic data update
+// >>chng 10 mar 14, from 0.3217 to 0.4128, update As to NIST recommended values
+monitor line "S  3"  18.67m  0.4128
+//
+// >>chng 00 sep 12 from 0.97 to 0.846, cs change
+// >>chng 07 apr 30, from 0.846 to 0.987, log DR average, use mix S DR
+monitor line "S  3" 9532  0.987
+//
+// >>chng 03 sep 10, from 0.684 to 0.735 diff field bug
+// >>chng 07 apr 30, from 0.735 to 0.354, log DR average, use mix S DR
+// >>chng 07 nov 29, from 0.354 to 0.324 update DR rates
+monitor line "S  4"  10.51m  0.324
+//
+monitor line "Stoy"    0  11.02
+monitor line "Stoy"    0  luminosity 1.701
+monitor line "Bac " 3646 17.22
+monitor hydrogen 2 ionization fraction is 0.9977
+monitor helium   2 ionization fraction is 0.90
+monitor depth 17.47
+//
+// >>chng 01 apr 01, from 150 to 185, make change in eden smaller
+// >>chng 02 jun 13, from 185 to 225, zoning changed
+// >>chng 03 apr 27, from 225 to 250, efrac zoning added
+// >>chng 03 jun 08, from 250 to 300, N0 zoning
+// >>chng 07 oct 29, from 300 to 191, change from "<" to "="
+// >>chng 08 dec 08, from 191 to 194, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 194 to 192, merging newsolvers branch
+// >>chng 09 jun 15, from 192 to 193, adjust zoning near outer edge
+monitor nzone 193
+// 
+monitor temperature face 8371
+// 
+// >>chng 05 jul 05, from 3.932 to 3.957, cdsqte err, incr err
+// >>chng 05 oct 01, from 3.957 to 3.937 RP update He levels
+monitor temperature Oxygen 1 3.937
+// 
+monitor temperature Oxygen 2 3.964
+monitor temperature Oxygen 3 3.904
+monitor temperature Oxygen 4 3.920
+// >>chng 01 jul 01 from 0.0859 to 0.0740, diffuse field refinement
+// >>chng 01 aug 24, from 0.074 to 0.079, continuum mesh 2x finer
+// >>chng 02 mar 08, from 0.0790 to 0.074, update he-like coll ion
+// >>chng 02 mar 15, from 0.074 to 0.073, chang in he atom
+// >>chng 02 nov 20, from 0.0730 to 0.0865, new he ots diff
+// >>chng 02 dec 10, from 0.0865 to 0.1313, he 23p A
+// >>chng 03 sep 10, from 0.1313 to 0.1183 diff field bug
+// >>chng 04 jul 03, from 0.1182 to 0.1109, NA update CO, H chem net
+// >>chng 05 mar 12, from 0.1109 to 0.1035, RP merge He-like code,
+//  err 0.005 to 0.01
+// >>chng 05 oct 01, from 0.1035 to 0.0821 RP update He levels
+// >>chng 05 dec 20, from 0.0821 to 0.0983, RP change default helium levels
+// >>chng 06 nov 29, from 0.0983 to 0.0792, Badnell DR turned on
+// >>chng 08 apr 07, from 0.0792 to 0.0909, a number of mostly minor iso changes
+// >>chng 08 apr 30, from 0.0909 to 0.107 H, He topoff change
+monitor HHeicf 0.107 error 0.01
+//
+// >>chng 02 dec 13, from 6 to 5, better conv
+// >>chng 04 jul 07, from 5 to 6, integ OH ct
+// >>chng 04 sep 25, from 6 to 8.5, (7.3) incr temp conv 0.02 to 0.005
+// >>chng 04 sep 30, from 8.5 to 10, conv_base conv heat cool
+// >>chng 05 dec 22, from 10 to 12 (9.5) drift up
+// >>chng 08 dec 08, from 12 to 10.11, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 10.11 to 19.56, merging newsolvers branch
+// >>chng 09 jan 16, from 19.56 to 19.63 (error 0.04), average of 10 runs
+// >>chng 09 mar 29, from 19.63 to 18.78 improve rigor esc prob & pop defns
+monitor itrzn 18.78 error 0.05
+c 
+c hii_blister.in
+c class hii
+c ========================================
+
+
+This is one of the test cases from the Lexington Meeting suite of
+nebulae (Ferland et al. 1995).  It is a grain-free hii_blister HII region,
+similar to inner regions of the Orion Nebula, except for the
+absence of grains.
+The set of lines entered with the print line sum command lists
+the most powerful coolants in this model.  This is one of the
+tabulated quantities in the Lexington Meeting, and is a
+fundamental test of energy conservation in the code. 
+The ratio of the sum of these lines to Hb is equivalent to the
+Stoy ratio, used for determining stellar temperatures.
+
+The "dielec kludge 0" command is to turn off my estimates of the
+DR rates for those elements that had none.  This was only to allow
+comparison with other calculations that did not make similar estimates.
+For an actual calculation I would not include this command, since the
+guesses are better than nothing.
+
+the turbulence is to stop the balmer lines from becoming optically
+thick since few other codes include an actual H atom, but use
+case b instead.  The Orion HII region does have an observed turbulence
+of about 8 km/s.  
+
+This calculation stops near the H+ - H0 ionization front, where
+the temperature falls below the default lowest temperature of 4000 K.
+This model would have continued into the PDR had a lower temperature
+been specified with the STOP LOWEST TEMP command. 
+

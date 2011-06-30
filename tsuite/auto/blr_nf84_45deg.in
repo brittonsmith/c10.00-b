@@ -1,0 +1,234 @@
+title early model of BLR, with illumination at 45 degree angle
+//>>refer	tsuite	blr	Netzer, H., & Ferland, G.J. 1984, PASP 96, 593
+//>>refercon	 Table 1
+c
+c commands controlling continuum =========
+ionization parameter -1.92
+power law -1 100 0.01
+c this continuum is a beam coming in at 45 degrees 
+illuminate 45 degrees
+c
+c commands for density & abundances =========
+hden 9.5
+abundances cameron
+stop lyman optical 6
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+init file "ism.ini"
+constant gas pressure
+iterate to convergence
+c
+c commands controlling output    =========
+print diffuse continuum
+plot continuum
+save overview "blr_nf84_45deg.ovr"
+save convergence reason last "blr_nf84_45deg.cvr"
+save dr "blr_nf84_45deg.dr"
+save results last "blr_nf84_45deg.rlt"
+save monitors last "blr_nf84_45deg.asr"
+c
+c commands giving the monitors    =========
+// these are optically thick brems continua 
+monitor pressure error < 0.002
+//
+// >>chng 04 dec 08, from 4.44 to 4.39, co-ion feedback, check converg
+// >>chng 07 oct 27, from 4.39 to 4.43 add up lev opac to WNW FeII model
+monitor line "nFnu" 122.4m luminosity 4.43 error 0.1
+//
+// >>chng 04 dec 08, from 4.71 to 4.66, co-ion feedback, check converg
+// >>chng 07 oct 27, from 4.66 to 4.70 add up lev opac to WNW FeII model
+monitor line "nFnu" 60.83m luminosity 4.70 error 0.1
+//
+// >>chng 04 dec 08, from 4.86 to 4.80, co-ion feedback, check converg
+// >>chng 06 aug 09, from 4.80 to 4.84 Meudon 06, Bowen change
+monitor line "nFnu" 41.22m luminosity 4.84 error 0.1
+//
+// >>chng 04 dec 08, from 5.82 to 5.77, co-ion feedback, check converg
+// >>chng 07 oct 22, from 5.77 to 5.71, resolve l-levels of h-like sequence
+// >>chng 07 dec 14, from 5.71 to 5.75, RP update is seq
+// >>chng 08 mar 17, from 5.75 to 5.55, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 09 oct 12, from 5.55 to 5.729, extend fine continuum to lower limit of code by default
+monitor line "TOTL" 4861 luminosity 5.729 error 0.10
+//
+monitor line "TOTL" 1216  luminosity 7.217
+// 
+// >>chng 06 nov 24, from 6.436 to 6.457, turn on Badnell RR
+// >>chng 06 nov 29, from 6.457 to 6.584, Badnell DR turned on
+monitor line "TOTL" 1909  luminosity  6.584
+//
+// >>chng 06 aug 09, from 7.087 to 7.110 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 7.110 to 7.060, Badnell DR turned on
+monitor line "TOTL" 1549 luminosity  7.060 
+// 
+// >>chng 09 jun 28, from 1 to 6.819, check convergence of outward Hb
+monitor line luminosity "Inwd" 1549 6.819, 
+// 
+// >>chng 09 jun 28, from 1 to 5.535, check convergence of outward Hb
+// >>chng 09 oct 12, from 5.535 to 5.729, extend fine continuum to lower limit of code by default
+monitor line luminosity "H  1" 4861 5.729, 
+// 
+// >>chng 09 jun 28, from 1 to 5.465, check convergence of outward Hb
+// >>chng 09 oct 12, from 5.465 to 5.611, extend fine continuum to lower limit of code by default
+monitor line luminosity "Inwd" 4861 5.611, 
+//
+// >>chng 06 jul 25, from 6.059 to 5.999 HN update OIII collision data
+// >>chng 06 aug 09, from 5.999 to 6.024 Meudon 06, Bowen change
+// >>chng 09 feb 23, from 6.024 to 6.046, remove otslin, otscon dampers (PR #84, r2758)
+monitor line "TOTL" 1665  luminosity  6.046
+//
+// >>chng 04 dec 08, from 6.90 to 6.85, co-ion feedback, check converg
+monitor line "TOTL" 2798  luminosity  6.85 err 0.1
+//
+// >>chng 04 dec 08, from 6.342 to 6.315, co-ion feedback, check converg
+// >>chng 09 oct 12, from 6.315 to 6.291, extend fine continuum to lower limit of code by default
+monitor line "Fe 2" 6200  luminosity  6.291
+// >>chng 08 apr 10, from 6.183 to 6.131, change default h-like levels, other minor changes
+// >>chng 09 oct 12, from 6.131 to 6.087, extend fine continuum to lower limit of code by default
+monitor line "Fe 2" 2400  luminosity  6.087 error 0.1
+monitor element ionization Hydrogen 1 -0.011
+//
+// >>chng 04 dec 08, from -1.584 to -1.712, co-ion feedback, check converg
+// >>chng 05 mar 25, from -1.712 to -1.63, renorm H pops in level solver
+monitor element ionization Hydrogen 2 -1.63 erro 0.1
+//
+monitor element ionization Helium   1 -0.007
+//
+// >>chng 04 dec 08, from -1.74 to -1.83, co-ion feedback, check converg
+// >>chng 08 mar 22, from -1.83 to -2.21 bugfix r1879
+// >>chng 09 feb 23, from -2.21 to -2.17, remove otslin, otscon dampers (PR #84, r2758)
+monitor element ionizaiton Helium   2 -2.17 error 0.1 
+//
+// >>chng 06 nov 29, from -2.505 to -2.482, Badnell DR turned on
+monitor element ionizaiton Helium   3 -2.482
+//
+monitor element ionizaiton Carbon   2 -0.005
+//
+// >>chng 06 nov 29, from -2.477 to -2.380, Badnell DR turned on
+monitor element ionizaiton Carbon   3 -2.380 error 0.1
+//
+// >>chng 06 nov 29, from -2.665 to -2.725, Badnell DR turned on
+monitor element ionizaiton Carbon   4 -2.725 error 0.1
+//
+monitor element ionizaiton Nitrogen 1 -0.051
+//
+// >>chng 04 dec 08, from -1.116 to -1.144, co-ion feedback, check converg
+// >>chng 06 jul 07, from -1.144 to -1.174, Stancil N1 CT
+monitor element ionizaiton Nitrogen 2 -1.174
+//
+// >>chng 09 feb 23, from -2.54 to -2.498, remove otslin, otscon dampers (PR #84, r2758)
+monitor element ionizaiton Nitrogen 3 -2.498 error 0.1
+//
+// >>chng 06 nov 29, from -2.619 to -2.553, Badnell DR turned on
+monitor element ionizaiton Nitrogen 4 -2.553 error 0.1
+//
+// >>chng 06 nov 29, from -3.056 to -3.113, Badnell DR turned on
+monitor element ionizaiton Nitrogen 5 -3.113 error 0.1
+//
+monitor element ionizaiton Oxygen   1 -0.011
+//
+// >>chng 04 dec 08, from -1.80 to -1.97, co-ion feedback, check converg
+// >>chng 05 mar 25, from -1.97 to -1.86, renorm H pops in level solver
+monitor element ionizaiton Oxygen   2 -1.86 error 0.15
+// >>chng 10 mar 14, from -2.429 to -2.391, update As to NIST recommended values
+monitor element ionizaiton Oxygen   3 -2.391 error 0.1
+//
+// >>chng 06 nov 29, from -2.793 to -2.706, Badnell DR turned on
+monitor element ionizaiton Oxygen   4 -2.706 error 0.1
+//
+monitor element ionizaiton Oxygen   5 -3.073 error 0.1
+//
+// >>chng 07 jan 20, from -3.591 to -3.636, e2 bug
+monitor element ionizaiton Oxygen   6 -3.636 error 0.1
+//
+monitor element ionizaiton Iron     2 -0.005
+//
+// >>chng 04 dec 08, from -2.66 to -2.79, co-ion feedback, check converg
+// >>chng 05 mar 25, from -2.79 to -2.71, renorm H pops in level solver
+// >>chng 08 apr 10, from -2.71 to -2.66, change default h-like levels, other minor changes
+// >>chng 08 apr 30, from -2.66 to -2.73 H, He topoff change
+// >>chng 08 nov 13, from -2.73 to -3.011, fix Boltzmann factor in CT rates (r2455)
+monitor element ionizaiton Iron     3 -3.011 error 0.1
+//
+// >>chng 06 aug 09, from -2.638 to -2.586 Meudon 06, Bowen change
+monitor element ionization Iron     4 -2.586 error 0.1
+//
+// >>chng 08 nov 13, from 3.797 to 3.775, fix Boltzmann factor in CT rates (r2455)
+monitor element temperature Hydrogen 1  3.775
+//
+// >>chng 04 dec 08, from 3.997 to 4.044 co-ion feedback, check converg
+// >>chng 05 mar 25, from 4.044 to 4.010, renorm H pops in level solver
+// >>chng 08 nov 13, from 4.01 to 4.033, fix Boltzmann factor in CT rates (r2455)
+monitor element temperature Hydrogen 2  4.033
+//
+// >>chng 04 dec 08, from 3.82 to 3.78 co-ion feedback, check converg
+monitor element temperature Helium   1  3.78 err 0.1
+//
+// >>chng 08 mar 22, from 3.962 to 4.12  bugfix r1879
+monitor element temperature Helium   2  4.12 error 0.1
+//
+monitor element temperature Helium   3  4.272
+//
+// >>chng 04 dec 08, from 3.812 to 3.777 co-ion feedback, check converg
+monitor element temperature Oxygen   1  3.777
+//
+// >>chng 04 dec 08, from 3.870 to 3.892 co-ion feedback, check converg
+// >>chng 06 feb 03, from 3.892 to 3.872, guess dr to Badnell mean
+monitor element temperature Oxygen   2  3.872
+//
+monitor element temperature Oxygen   3  4.228
+monitor element temperature Oxygen   4  4.270
+monitor element temperature Oxygen   5  4.277
+//
+monitor element temperature Oxygen   6  4.279
+//
+monitor element temperature Oxygen   7  4.280
+// 
+// >>chng 05 mar 25, from 3.847 to 3.824, renorm H pops in level solver
+// >>chng 07 oct 26, from 3.824 to 3.843, very close to botch after recent changes
+monitor element temperature Iron     1  3.843
+//
+// >>chng 04 dec 08, from 3.814 to 3.779 co-ion feedback, check converg
+monitor element temperature Iron     2  3.779
+//
+// >>chng 04 dec 08, from 3.957 to 3.977 co-ion feedback, check converg
+// >>chng 05 mar 25, from 3.977 to 3.951, renorm H pops in level solver
+// >>chng 08 nov 13, from 3.951 to 4.024, fix Boltzmann factor in CT rates (r2455)
+monitor element temperature Iron     3  4.024
+//
+// >>chng 07 oct 26, from 4.207 to 4.227, very close to botch after recent changes
+monitor element temperature Iron     4  4.227
+//
+// >>chng 06 nov 29, from 4.237 to 4.258, Badnell DR turned on
+monitor element temperature Iron     5  4.258
+//
+// >>chng 07 jan 20, from 4.256 to 4.277, e2 bug
+monitor element temperature Iron     6  4.277
+//
+monitor element temperature Iron     7  4.272
+monitor element temperature Iron     8  4.276
+//
+// >>chng 08 dec 08, from 400 to 352, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 352 to 354, average of 10 runs
+// >>chng 09 mar 27, from 354 to 359 improve rigor esc prob & pop defns
+monitor nzone 359 
+// 
+// >>chng 05 dec 22, from 18 to 20 (16.9) drift up
+// >>chng 08 dec 08, from 20 to 18.62, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 18.62 to 40.25, merging newsolvers branch
+// >>chng 09 jan 16, from 40.25 to 39.65 (error 0.04), average of 10 runs
+// >>chng 09 nov 03, from 39.65 to 41.07 (error 0.04), average of 10 runs
+monitor itrzn 41.07
+//
+c blr_nf84_45deg.in
+c class blr 
+c ========================================
+c 
+
+This is an example of a "conventional" BLR calculation. The parameters are
+similar to those of Table 1 of Netzer and Ferland (1984).  Notice that the
+ratio of Lyalpha to Hbeta ratio is much larger than observed.
+
+>>refer	blr	model	Netzer, H., & Ferland, G. J. 1984, PASP, 96, 593  
+

@@ -1,0 +1,63 @@
+title temperature across Spitzer thermal stability S curve
+c
+c commands controlling continuum =========
+c this is the generic AGN continuum
+table agn
+c the ionization parameter will be varied
+ionization parameter 0.00 vary
+grid from 0 to 3 in 0.2 dex steps
+c add background so that FIR/radio does not have zero flux
+background
+iterate 
+c
+c commands for density & abundances =========
+c intended to make sim run as fast as possible
+hden 7 vary
+grid from 7 to 9 in 1 dex steps
+no level 2 lines
+init file "ism.ini"
+element sulphur off
+element chlorine off
+element argon off
+c
+c commands controlling geometry  =========
+stop zone 1
+set dr 0
+c
+c commands controlling output
+c this produces a very large number of lines in the output mostly
+c because Hbeta is very weak in hot gas.  Choose Lya as the normalization
+c line to make line list smaller
+normalize to "totl" 1216
+print line faint 10 will be varied
+c create file with list of grid parameters
+save grid "agn_S_curve_grid.grd" last
+c save average H+ temperature
+save average "agn_S_curve_grid.avr" last
+temperature hydrogen 1 
+end of temperatures 
+save monitors "agn_S_curve_grid.asr"
+c save heating and cooling
+save heating "agn_S_curve_grid.het" last
+save xspec atable "agn_S_curve_grid.atb"
+save cooling "agn_S_curve_grid.col" last
+save iron element "agn_S_curve_grid.fe" last separate
+save brems opacity "agn_S_curve_grid.opc" last
+save fits "agn_S_curve_grid.fit"
+c
+c commands giving the asserts    =========
+//
+monitor mpi
+//
+monitor hydro 2 temp grid "agn_S_curve_grid.dat" err 0.05
+c
+c agn_S_grid.in
+c class BLR
+c ========================================
+c
+
+This computes a series of models that check the temperature
+through the S curve in the Fields et al. three-phase model of
+ISM stability.
+
+

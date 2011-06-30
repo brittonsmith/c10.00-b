@@ -1,0 +1,57 @@
+title test high-T Compton energy exchange
+c
+c commands controlling continuum =========
+c as hot as STE bb can be on IEEE 32-bit cpu
+c equilibrium temperature should also be 2.51e7
+c since gas radiated by true blackbody will equilibriate
+c at its temperature 
+blackbody 7.4 STE 
+c
+c commands for density & abundances =========
+hden 10
+c
+c commands controlling geometry  =========
+stop zone 1
+c
+c other commands for details     =========
+atom h-like element oxygen levels 5
+atom h-like element oxygen levels collapsed 30
+set temperature convergence 0.0001
+iterate
+print h-like departure element oxygen
+c
+c commands controlling output    =========
+save monitors last "limit_compton_hi_t.asr"
+c
+c commands giving the monitors    =========
+monitor temperature hydrogen 2 7.4 error 0.01
+monitor ionization oxygen radius 1 < -29.
+monitor ionization oxygen radius 2 < -29.
+monitor ionization oxygen radius 3 < -29.
+monitor ionization oxygen radius 4 < -29.
+monitor ionization oxygen radius 5 < -29.
+monitor ionization oxygen radius 6 < -29.
+// 
+// >>chng 02 jan 23, better he-like pops, set to -27.504
+// >>chng 03 feb 28, from -27.504 to -27.322, chng he-like treatment
+// >>chng 06 apr 22, from -27.322 to -27.322, RP use Badnell DR for He-like
+// rm this assert - crazy - why here?
+// assert ionization oxygen radius 7 < -27.322
+//
+// >>chng 08 apr 07, from -13.30 to -12.22, a number of mostly minor iso changes 
+monitor ionization oxygen radius 8 -12.22
+monitor ionization oxygen radius 9 0 log 
+c limit_compton_hi_t.in
+c class limit 
+c ========================================
+c 
+
+This is the highest Compton temperature that can be computed in
+LTE on an IEEE 32-bit processor.  This tests the code in the
+high-temperature Compton limit. Temperatures as high as 10^10 K
+can be computed successfully on CPUs with longer word lengths,
+such as a Cray or the new 64 bit processors. 
+
+Checks:
+-	The equilibrium temperature should be exactly 107.4 K (2.51239107 K).
+

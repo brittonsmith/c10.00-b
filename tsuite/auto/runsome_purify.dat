@@ -1,0 +1,32 @@
+# this file is read by the perl script runsome_purify.pl to run
+# the code under purify
+# anything with a # at the start of the line is a comment
+# put # in front of model to comment it out 
+agn_S_curve_grid.in
+aperture_beam_int.in
+coll_coronal.in
+dynamics_veryfast.in
+feii_hin.in
+func_hotgas_coolstar.in
+func_trans_punch.in
+func_trans_read.in
+grains_lte.in
+h2_cr.in
+h2_t500.in
+he1n4t4_best.in
+helike_fe.in
+helike_si.in
+igm_primal.in
+igm_z3.in
+ism_grid.in
+limit_recoil_ion.in
+limit_veryveryfast.in
+optimize_subplex.in
+pdr_HTT91.in
+pn_paris.in
+stars_atlas_all.in
+stars_bstar2006_all.in
+stars_costar1.in
+stars_optimize1.in
+stars_ostar2002_all.in
+stars_wmbasic.in

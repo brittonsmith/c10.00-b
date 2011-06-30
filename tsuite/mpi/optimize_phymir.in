@@ -1,0 +1,58 @@
+title test phymir optimizers
+c spectrum computed with hden 5, temp 4
+c subplex, phymir, powell
+c
+c commands controlling continuum =========
+black 40000 K
+ionization par -3
+c
+c commands for density & abundances =========
+hden 4 vary
+init file "hheonly.ini"
+element oxygen on 
+c
+c commands controlling geometry  =========
+Case B 
+stop zone 1
+c
+c other commands for details     =========
+optimize tolerance 0.0005
+constant temper 4.3 vary
+optimize phymir 
+optimize iteration 500
+c the following spectrum was derived by running this sim at hden 5 and t=4
+c resulting eden was 5.039 and T=4, which we shall assert that we find
+c >>chng 06 apr 03, backdate to old [OII] As and rederive spectrum
+// also increase error, other three do get 5.000
+// >>chng 07 oct 12, retune with case B
+optimize lines
+o ii 3729 0.1432
+o ii 3726 0.4055
+o ii 7323 0.5281
+o ii 7332 0.4257
+o  3 5007 3.6189
+totl 4363 0.0342
+end of lines
+c
+c commands controlling output    =========
+print line faint -2
+save monitors "optimize_phymir.asr"
+c
+c commands giving the asserts    =========
+//
+monitor mpi
+//
+monitor eden 5.060 error 0.1
+// 
+monitor temperature hydrogen 2 4 
+c
+c optimize_phymir.in 
+c class optimizer 
+c ========================================
+c 
+
+This checks whether the optimizer can recover a known solution.  The line
+spectrum was calculated at T = 1e4 K and and n_H=1e5 cm^-3, 
+and resulted in the given electron 
+density.  The model optimize_subplex.in is a copy of this file.
+

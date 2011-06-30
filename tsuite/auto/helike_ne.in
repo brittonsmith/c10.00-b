@@ -1,0 +1,74 @@
+title he-like neon emission
+c
+c commands controlling continuum =========
+laser 170
+ionization -1
+c
+c commands for density & abundances =========
+hden 7
+c include lots of the element we are testing and set the ionization 
+c to be dominated by the correct ion stage
+element neon abundance -2
+element neon ionization -5 -5 -5 -5 -5 -5 -5 -5 -5 0 -5
+init file "ism.ini"
+element helium off
+element nitrogen off
+element carbon off
+element oxygen off
+element magnesium off
+element silicon off
+element sulphur off
+element argon off
+element iron off
+c
+c commands controlling geometry  =========
+stop zone 1
+set dr -12
+c
+c other commands for details     =========
+atom he-like levels 10
+atom he-like collapsed levels 20
+constant temper 5
+iterate
+c
+c commands controlling output    =========
+print he-like departure neon
+print line faint -2
+save monitors "helike_ne.asr"
+c This is Lyman alpha
+normalize to "Ne 9" 13.45A
+c
+c commands giving the monitors    =========
+// >>chng 05 sep 5, wl from 13.44 to 13.45
+// >>chng 10 aug 12, from -20.53 to -24.78, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "Ne 9"  13.45A -24.78
+//
+// 13.70A is 2^3S to ground
+monitor line "Ne 9"  13.70A 3.4
+//
+// Totl is 2^3P to ground
+// >>chng 04 may 19, wl from 15.36 to 13.55, RP update he-like
+monitor line "TOTL"  13.55A 1.14
+//
+// 11.55A is 3^1P to ground
+// >>chng 03 may 24, from 0.23 to 0.217, Ryan cleaned up some As
+monitor line "Ne 9"  11.55A 0.217
+//
+// 74.36A is 3^3P to 2^3S
+monitor line "Ne 9"  74.36A 0.11
+//
+// 78.30A is 3^3D to 2^3P
+// >>chng 05 sep 5, wl from 78.23 to 78.30
+monitor line "Ne 9"  78.30A 0.26
+//
+// the entire 2^3S - 2^3P multiplet
+monitor line "TOTL"  1266A  0.0231
+c 
+c helike_ne.in
+c class limit 
+c ========================================
+c 
+
+test He-like emission for oxygen
+
+

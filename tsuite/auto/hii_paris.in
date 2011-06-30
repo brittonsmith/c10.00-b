@@ -1,0 +1,288 @@
+title "New" Paris meeting HII region
+c "standard" HII region model of the Pequignot Meudon Conference
+c
+c commands controlling continuum =========
+black body, T = 40000 K radius = 12.113943
+c add the CMB after hot star shape & luminosity specified
+CMB 
+c
+c commands for density & abundances =========
+hden = 2
+init file="ism.ini"
+abund he -1 C-3.6576 N-4.39794 O-3.481146 ne-4.30103 mg-8
+continue si-8 s-5.04576 cl=-7 ar-8 fe-8
+c
+c commands controlling geometry  =========
+radius = 18.477121
+sphere
+c next two to make sure we pick up all possible H recombination
+* stop temperature 600
+set temperature floor 1000
+c make sure sim goes very deep into cold gas
+stop temperature 100K 
+stop efrac -2 
+c
+c other commands for details     =========
+c must iterate since fine structure lines are opticall thick
+atom h-like element hydrogen levels resolved 10
+iterate   
+c
+c commands controlling output    =========
+normalize to "Ca B" 4861
+print column densities 
+print line optical depths 
+plot continuum range .1
+print line faint 0.01
+print line sum
+He 1 5876
+totl 2326
+TOTL 1909
+N  2  121.7m
+N  2 6584
+N  2 6548
+N  3  57.21m
+TOTL 3727
+O  3 5007
+O  3 4959
+O  3  51.80m
+O  3  88.33m
+Ne 2  12.81m
+Ne 3  15.55m
+Ne 3 3869
+Ne 3 3968
+S  2 6720
+S  3  18.67m
+S  3  33.47m
+S  3 9532
+S  3 9069
+S  4  10.51m
+end of lines
+save overview last "hii_paris.ovr"
+save hydrogen 21 cm last "hii_paris.21cm"
+save results last "hii_paris.rlt"
+save monitors last "hii_paris.asr"
+save dr last "hii_paris.dr"
+c this is to confirm that this commnand works
+save lines emissivity "hii_paris.str" last 
+TOTL  4861
+end lines
+c
+c commands giving the monitors    =========
+table lines "LineList_HII.dat"
+monitor line luminosity "TOTL" 4861 37.309
+monitor line "TOTL" 4861 1
+monitor line "Q(H)" 4861 > 1.
+monitor line "Q(H)" 4861 < 1.05
+// 
+// >>chng 01 sep 24, from 24.71 to 23.34 2s2p br chng
+// >>chng 07 dec 06, from 23.34 to 24.63, changes in h-like collisions
+monitor line "h  1" 1216 24.63
+// >>chng 07 dec 06, from 11.02 to 9.76, changes in h-like collisions
+monitor line "h  1" 0 9.76
+//
+// >>chng 07 oct 22, from 0.3708 to 0.3318, resolve l-levels of h-like sequence
+// >>chng 08 apr 30, from 0.332 to 0.380 H, He topoff change
+monitor line "H  1" 1.875m 0.380
+monitor line "Ca B" 1.875m 0.363
+// 
+monitor line "H  1" 6563 2.96
+monitor line "Ca B" 6563 2.92
+//
+// >>chng 04 sep 12, from 17.62 to 18.5, drift up
+monitor line "Bac " 3646 18.5
+// 
+// >>chng 02 nov 20, add this line
+// >>chng 03 feb 28, from 0.105 to 0.113, better hei coll
+// >>chng 05 jul 06, from 0.113 to 0.118, fine tune
+// >>chng 05 oct 01, from 0.118 to 0.102, RP update He levels
+// >>chng 08 apr 30, from 0.102 to 0.123 H, He topoff change
+monitor line "He 1" 5876 0.123
+monitor line "+Col" 5876 0.116
+// 
+// >>chng 06 aug 11, from 0.102 to 0.208, Meudon 06, use Badnell RR DR
+monitor line "He 1" 10830 0.208
+monitor line "+Col" 10830 0.202
+// 
+monitor line "He 1" 7065 0.0250
+monitor line "+Col" 7065 0.0177
+// 
+monitor line "He 1" 3889 0.0764
+monitor line "+Col" 3889 0.0884
+// 
+// >>chng 02 nov 20, from 0.0227 to 0.0212, new he diff ots
+// assert line "totl" 20580 0.0212
+// >>chng 02 nov 20, add this line
+// >>chng 05 jul 05, from 0.0206 to 0.0216 cdsqte err, incr err
+// >>chng 05 oct 01, from 0.0216 to 0.0205, RP update He levels
+// >>chng 08 apr 30, stop asserting this
+// assert line "he 1" 20580 0.0205
+// 
+// >>chng 00 sep 12, from 0.15 to 0.140, change in s3 cs
+// >>chng 01 apr 02, from 0.140 to 0.147, improved convergence, H atom
+// >>chng 01 aug 24 from 0.147 to 0.170, contin mesh x2 finer
+// >>chng 02 nov 20, from 0.170 to 0.198, new he diff ots
+// >>chng 06 jul 25, from 0.198 to 0.171 HN update OII collision data
+monitor line "totl" 2326 0.171 error 0.1
+// 
+// >>chng 00 mar 22, pump, widflx chnges, from 0.069 to 0.060, chng err
+// >>chng 01 apr 02, from 0.060 to 0.067, improved convergence, H atom
+// >>chng 02 nov 20, from 0.067 to 0.056, new he diff ots
+monitor line "TOTL" 1909 0.056 error 0.1
+// 
+// >>chng 05 oct 01, from 0.0278 to 0.0263, RP update He levels
+// >>chng 06 aug 11, from 0.0263 to 0.0248, Meudon 06, use Badnell RR DR
+// >>chng 08 apr 30, from 0.0248 to 0.0261 H, He topoff change
+monitor line "N  2"  121.7m 0.0261
+// 
+// >>chng 00 dec 12, from 0.578 to 0.489, change in [NII] cs
+// >>chng 02 nov 20, from 0.489 to 0.532, new he diff ots
+// >>chng 05 oct 01, from 0.532 to 0.504, RP update He levels
+// >>chng 06 aug 11, from 0.504 to 0.459, Meudon 06, use Badnell RR DR
+// >>chng 09 feb 24, from 0.459 to 0.4839, botches due to r2763
+// >>chng 10 mar 05, from 0.4839 to 0.5085, changes caused by r3848 atomic data update
+monitor line "N  2" 6584 0.5085
+//
+// >>chng 10 feb 14, from 0.0049 to 0.0053, update O atomic data
+// >>chng 10 mar 05, from 0.0053 to 0.0057, changes caused by r3848 atomic data update
+monitor line "N  2" 5755 0.0057
+// 
+// >>chng 06 aug 17, from 0.303 to  0.317, HN update fit to O3 cs
+monitor line "N  3"  57.21m 0.317
+// 
+// >>chng 06 oct 02, from 0.0082 to 0.0105, HM update OI cs to Barklem '06
+monitor line "O  1"  6300 0.0105
+//
+// >>chng 00 sep 12, from 2.06 to 1.933 change in s3 cs
+// >>chng 01 jan 28, from 1.933 to 2.057, change in He CT rates
+// >>chng 01 may 19, from 2.057 to 1.937, update collision strength
+// >>chng 02 nov 20, from 1.937 to 2.098, new he diff ots
+// >>chng 04 sep 12, from 2.098 to 1.995 drift up
+// >>chng 06 jul 25, from 1.995 to 2.181 HN update OII collision data
+// >>chng 06 aug 11, from 2.18 to 2.05 Meudon 06, use Badnell RR DR
+monitor line "TOTL" 3727 2.05
+//
+// >>chng 06 aug 11, from 1.26 to 1.37 Meudon 06, use Badnell RR DR
+// >>chng 06 aug 17, from 1.37 to  1.24 HN update fit to O3 cs
+monitor line "O  3"  51.80m 1.24
+//
+// >>chng 06 aug 11, from 1.16 to 1.24 Meudon 06, use Badnell RR DR
+// >>chng 06 aug 17, from 1.24 to  1.18 HN update fit to O3 cs
+monitor line "O  3"  88.33m 1.18
+// 
+// >>chng 00 mar 22, pump, widflx chnges, from 1.753 to 1.62 
+// >>chng 02 nov 20, from 1.62 to 1.53, new he diff ots
+// >>chng 05 oct 01, from 1.53 to 1.62, RP update He levels
+// >>chng 07 apr 30, from 1.62 to 1.69 log DR average, use mix S DR
+monitor line "O  3" 5007 1.69
+// 
+// >>chng 05 oct 01, from 0.0035 to 0.0037, RP update He levels
+// >>chng 08 apr 07, from 0.0037 to 0.0035, a number of mostly minor iso changes
+// >>chng 10 mar 05, from 0.0035 to 0.0037, changes caused by r3848 atomic data update
+monitor line "totl" 4363 0.0037
+// 
+// >>chng 06 jul 06, from 0.176 to 0.191, revise ne cs
+monitor line "Ne 2"  12.81m 0.191
+// 
+// >>chng 08 apr 30, from 0.294 to 0.279 H, He topoff change
+monitor line "Ne 3"  15.55m 0.279
+// 
+// >>chng 06 jul 06, add this line
+monitor line "Ne 3"  36.01m 0.0249
+// 
+// >>chng 00 mar 22, pump, widflx chnges, from 0.0671 to 0.061 chng error
+// >>chng 01 aug 24 from 0.061 to 0.065, contin mesh x2 finer
+// >>chng 02 nov 20, from 0.065 to 0.0592 new he diff ots
+// >>chng 06 aug 11, from 0.0592 to 0.0554 Meudon 06, use Badnell RR DR
+// >>chng 10 mar 05, from 0.0554 to 0.0605, changes caused by r3848 atomic data update
+monitor line "Ne 3" 3869 0.0605 error 0.07
+// 
+// >>chng 00 sep 18 from 0.122 to 0.132 continuum energy mesh change 
+// changed ionization balance of some third row elements
+// >>chng 02 nov 20, from 0.132 to 0.153 new he diff ots
+// >>chng 05 jul 06, from 0.153 to 0.155, fine tune
+// >>chng 06 aug 11, from 0.155 to 0.147 Meudon 06, use Badnell RR DR
+// >>chng 07 apr 30, from 0.147 to 0.227 log DR average, use mix S DR
+// >>chng 07 nov 29, from 0.227 to 0.243 update DR rates
+monitor line "S  2" 6720 0.243
+// 
+// >>chng 07 apr 30, from 0.617 to 0.657 log DR average, use mix S DR
+monitor line "S  3"  18.67m 0.657
+// 
+// >>chng 00 sep 12, from 0.87 to 1.241 change in s3 cs
+// >>chng 09 feb 23, from 1.241 to 1.304, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 10 mar 05, from 1.304 to 1.24, changes caused by r3848 atomic data update
+// >>chng 10 mar 14, from 1.24 to 1.306, update As to NIST recommended values
+monitor line "S  3"  33.47m 1.306
+//
+// >>chng 00 sep 12, from 0.914 to 0.772 change in s3 cs
+// >>chng 10 feb 14, from 0.772 to 0.8104, update O atomic data
+monitor line "S  3" 9532 0.8104
+//
+// >>chng 07 apr 30, from 0.548 to 0.260 log DR average, use mix S DR
+// >>chng 07 nov 29, from 0.260 to 0.239 update DR rates
+monitor line "S  4"  10.51m 0.239
+//
+monitor line "Stoy"  0 12.0
+//
+// >>chng 00 apr 01, sphere mean bug, from 0.932 to 0.744
+// >>chng 05 oct 01, from 0.744 to 0.775 RP update He levels
+monitor ionization fraction helium 2 volume 0.775
+//
+// >>chng 00 mar 22, pump, widflx chnges, from 7651 to 7537 chng error
+monitor hydrogen 2 temperature volume 7957.8 0.02
+//
+// >>chng 01 apr 01, from 150 to 175, change in allowed change in eden
+// >>chng 02 jun 13, from 175 to 190, finer i-front
+// >>chng 02 dec 13, from 190 to 210, finer zoning
+// >>chng 03 apr 26, from 210 to 230, efrac zoning
+// >>chng 03 jun 08, from 230 to 310, add n0 zoning
+// >>chng 08 dec 08, from 310 to 269, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 269 to 264, merging newsolvers branch
+// >>chng 09 jan 08, from 264 to 267, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, from 267 to 266 (error 0.03), average of 10 runs
+monitor nzone 266 
+//
+// >>chng 02 dec 13, from 6 to 5, finer zoning
+// >>chng 04 jul 02, from 5 to 6.5
+// >>chng 04 sep 25, from 6.5 to 9.5, incr temp toler 0.02 to 0.005
+// >>chng 04 sep 30, from 9.5 to 12, conv_base conv heat cool
+// >>chng 08 dec 08, from 12 to 9.506, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 9.506 to 18.34, merging newsolvers branch
+// >>chng 09 jan 16, from 18.34 to 18.34 (error 0.07), average of 10 runs
+// >>chng 09 oct 24, from 18.34 to 17.55 drift down
+monitor itrzn 17.55 error 0.07
+//
+monitor radius 19.163
+//
+// >>chng 01 jul 01, from 0.227 to 0.222, better diffuse field physics
+// >>chng 02 nov 20, from 0.222 to 0.236 new he diff ots
+// >>chng 02 dec 11, from 0.236 to 0.248, new hei
+// >>chng 02 dec 21, from 0.248 to 0.239, new hei
+// >>chng 03 jun 09, from 0.239 to 0.247, finer zoning, bigger H atom
+// >>chng 03 sep 09, from 0.247 to 0.238, diff fields
+// >>chng 04 jul 03, from 0.238 to 0.232, NA update H, CO chem net
+// >>chng 05 oct 01, from 0.232 to 0.211 RP update He levels
+// >>chng 06 aug 11, from 0.211 to 0.201 Meudon 06, use Badnell RR DR
+// >>chng 07 nov 29, from 0.201 to 0.212, due to changes in r1579
+// >>chng 08 mar 22, from 0.212 to 0.219 bugfix r1879
+// >>chng 08 apr 07, from 0.219 to 0.224, a number of mostly minor iso changes
+// >>chng 08 apr 30, from 0.224 to 0.232, H, He topoff change, inc error to 0.01
+monitor HHeicf 0.232 error 0.01
+//
+c hii_paris.in
+c class hii 
+c ========================================
+c 
+
+This is one of the "standard" models computed at the Paris and Lexington
+meetings on photoionization and shock calculations.  a bable in hazy
+compares the predictions of the current version of CLOUDY with predictions
+of a few of the other codes.  It is necessary to iterate since some
+fine structure lines are optically thick.   The set of lines entered
+with the print line sum command is used to obtain the total luminosity
+in detected lines, a measure of the Stoy temperature.
+
+Checks:
+-	Hb close to case B, Q(H) 4861, intensities.
+-	Enter answers in Table Error! Reference source not found..
+

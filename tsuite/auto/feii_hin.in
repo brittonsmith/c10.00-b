@@ -1,0 +1,40 @@
+title test feii in high density limit
+c
+c commands controlling continuum =========
+black 25000 K
+ionization -10
+c
+c commands for density & abundances =========
+hden 18
+c force a high electron density to insure collisions dominate
+eden 18
+c
+c commands controlling geometry  =========
+constant tempera 4
+stop zone 1
+c
+c other commands for details     =========
+atom feii
+iterate
+c want to test collision only limit 
+no induced processes
+c
+c commands controlling output    =========
+save monitors "feii_hin.asr" last
+save FeII continuum "feii_hin.fe2con" last units microns
+c
+c commands giving the monitors    =========
+monitor feii departure, value 1 std 0.003
+c
+c feii_hin.in
+c class limit 
+c ========================================
+c 
+
+This checks that, at high particle densitites, in which
+the gas should be in collisional
+equilibrium, the level populations of the large model Fe+ ion
+go to the proper values, where the departure coefficients
+are all equal to unity.
+
+

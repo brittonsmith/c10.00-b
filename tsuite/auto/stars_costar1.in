@@ -1,0 +1,105 @@
+title costar interpolation mode 1
+c
+c commands controlling continuum =========
+table star costar, 40000 K
+ionization parameter -2
+table star costar, 31000 K, index 4
+ionization parameter -2
+c
+c commands for density & abundances =========
+hden 2
+grains orion single no qheat 
+abundances ism no grains
+c
+c commands controlling geometry  =========
+set dr 0
+stop zone 1
+c
+c other commands for details     =========
+* >>chng 06 jul 01, add this to stars set since want to test shape
+* of continuum and resulting ion dist, not thermal equilibrium of nebula
+constant temperature 6000K
+c
+c commands controlling output    =========
+save monitors "stars_costar1.asr"
+save continuum "stars_costar1.con" units microns last 
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from -14.24 to -14.19, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  -14.19
+monitor line luminosity "nInu" 122.4m  -6.861
+monitor line luminosity "nInu" 60.83m  -5.949
+monitor line luminosity "nInu" 41.22m  -5.441
+monitor line luminosity "nInu" 30.87m  -5.063
+monitor line luminosity "nInu" 24.78m  -4.778
+monitor line luminosity "nInu" 24.30m  -4.762
+monitor line luminosity "nInu" 22.83m  -4.689
+monitor line luminosity "nInu" 21.42m  -4.616
+monitor line luminosity "nInu" 21.12m  -4.604
+monitor line luminosity "nInu" 19.62m  -4.520
+monitor line luminosity "nInu" 17.65m  -4.402
+monitor line luminosity "nInu" 17.37m  -4.379
+monitor line luminosity "nInu" 15.69m  -4.267
+monitor line luminosity "nInu" 14.60m  -4.188
+monitor line luminosity "nInu" 12.43m  -4.002
+monitor line luminosity "nInu" 11.40m  -3.903
+monitor line luminosity "nInu" 10.46m  -3.802
+monitor line luminosity "nInu" 9.480m  -3.682
+monitor line luminosity "nInu" 9.325m  -3.664
+monitor line luminosity "nInu" 8.210m  -3.508
+monitor line luminosity "nInu" 7.580m  -3.417
+monitor line luminosity "nInu" 7.050m  -3.327
+monitor line luminosity "nInu" 4.114m  -2.662
+monitor line luminosity "nInu" 2.324m  -1.952
+monitor line luminosity "nInu" 1.643m  -1.524
+monitor line luminosity "nInu" 1.480m  -1.394
+monitor line luminosity "nInu" 1.436m  -1.361
+monitor line luminosity "nInu" 1.119m  -1.055
+monitor line luminosity "nInu"  8330A  -0.701
+monitor line luminosity "nInu"  8079A  -0.676
+monitor line luminosity "nInu"  6210A  -0.365
+monitor line luminosity "nInu"  4885A  -0.095
+monitor line luminosity "nInu"  3704A  0.202
+monitor line luminosity "nInu"  3588A  0.185
+monitor line luminosity "nInu"  2430A  0.576
+monitor line luminosity "nInu"  2392A  0.590
+monitor line luminosity "nInu"  2071A  0.709
+monitor line luminosity "nInu"  2053A  0.712
+monitor line luminosity "nInu"  1793A  0.792
+monitor line luminosity "nInu"  1585A  0.841
+monitor line luminosity "nInu"  1458A  0.946
+monitor line luminosity "nInu"  1357A  1.007
+monitor line luminosity "nInu"  1297A  1.027
+monitor line luminosity "nInu"  1263A  1.040
+monitor line luminosity "nInu"  1218A  1.064
+monitor line luminosity "nInu"  1196A  1.076
+monitor line luminosity "nInu"  1175A  1.091
+monitor line luminosity "nInu"  1144A  1.110
+monitor line luminosity "nInu"  1113A  1.128
+monitor line luminosity "nInu"  1103A  1.134
+monitor line luminosity "nInu"  1074A  1.149
+monitor line luminosity "nInu"  1064A  1.155
+monitor line luminosity "nInu"  1036A  1.165
+monitor line luminosity "nInu"  1000A  1.170
+monitor line luminosity "nInu" 925.1A  1.185
+monitor line luminosity "nInu" 897.8A  0.608
+monitor line luminosity "nInu" 760.0A  0.489
+monitor line luminosity "nInu" 701.5A  0.418
+monitor line luminosity "nInu" 608.2A  0.284
+monitor line luminosity "nInu" 575.1A  0.205
+monitor line luminosity "nInu" 511.9A  0.188
+monitor line luminosity "nInu" 496.9A  -0.056
+monitor line luminosity "nInu" 399.2A  -0.336
+// 
+c stars_costar1.in
+c class stars 
+c ========================================
+c 
+
+This is a test of whether the code can read the CoStar stellar atmospheres.
+It checks the resulting ionization to confirm that the continuum 
+shape was ok.
+Constant temperature is assumed since this tests shape of stellar continuum
+rather than thermal physics.
+
+

@@ -1,0 +1,136 @@
+title BLR model, density 1e13 cm-3, flux of H-ion phots 1e18 cm2 s-1
+print lines column
+print lines sort intensity 
+atom feii 
+c
+c this is a very low ionization cloud
+c the conditions, and some lines, are surprisingly sensitive
+c to the treatment of hydrogen molecules
+c
+table agn
+hden 13
+phi(h) 18
+// >>chng 05 aug 05 from 23 to 22 to stop at col den rather than temp
+// also include double command to include gas we don't model
+stop column density 22
+double 
+iterate convergence 
+//
+// affects appearance of printout
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+//
+// these are to try to speed things up
+init "c84.ini"
+//
+save monitors "feii_blr_n13_p18.asr" last
+save feii continuum units microns "feii_blr_n13_p18.fe2con" last
+save feii lines "feii_blr_n13_p18.lin" last
+save feii column densites "feii_blr_n13_p18.fe2col" last
+save feii populations all "feii_blr_n13_p18.lev" last
+save overview "feii_blr_n13_p18.ovr" last
+save dr "feii_blr_n13_p18.dr" last 
+save convergence reason "feii_blr_n13_p18.cvr" 
+//
+// strong blr lines
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 6.429 to 6.453
+// >>chng 07 dec 09, from 6.453 to 6.417, cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 6.417 to 6.397, RP update line overlap
+monitor line luminosity "totl"  1216 6.397 //total Hydrogen Lyman-alpha 1215.67 
+//
+// >>chng 09 apr 18, from 0.52 to 0.585, refactor dest esc probs to synch with line cooling routines
+monitor line luminosity "totl"  1397 0.585 //total of sum of both Si IV comp
+//
+// >>chng 05 jul 17, from 4.62 to 4.51, first run in 6 mo
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 4.51 to 4.59
+// >>chng 07 aug 09, from 4.59 to 4.49 R1305 update H coll
+// >>chng 08 mar 22, from 4.49 to 4.43 bugfix r1879
+// >>chng 08 apr 30, from 4.43 to 4.47, H, He topoff change
+monitor line luminosity "he 2"  1640 4.47 error 0.1 
+//
+//total of sum of CIII] 1908.73+
+// >>chng 05 jul 17, from 0.40 to 0.36, first run in 6 mo
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 0.36 to 0.48
+// >>chng 06 nov 29, from 0.48 to 0.52 Badnell DR
+// >>chng 07 aug 09, from 0.52 to 0.45 R1305 update H coll
+// >>chng 07 dec 09, from 0.45 to 0.39 cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 0.39 to 0.31 RP update line overlap
+// >>chng 08 apr 30, from 0.31 to 0.25, H, He topoff change
+// >>chng 09 feb 23, from 0.25 to 0.2968, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1909 0.2968 error 0.1 
+//
+// >>chng 06 aug 09, from 2.283 to 2.309 Meudon 06, Bowen change
+// >>chng 07 dec 09, from 2.309 to 2.257 cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 2.257 to 2.205, RP update line overlap
+monitor line luminosity "totl"  1888 2.205  //total of sum of Si III] 1892+
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 2.987 to 3.015
+// >>chng 06 nov 29, from 3.015 to 2.958, Badnell DR
+// >>chng 07 dec 09, from 2.958 to 2.935 cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 2.935 to 2.908, RP update line overlap
+// >>chng 08 sep 25, from 2.908 to 2.888, remove damper on line pump (r2367)
+// >>chng 08 oct 18, from 2.888 to 2.912, include Badnell UTA data
+// >>chng 09 apr 18, from 2.912 to 2.933, refactor dest esc probs to synch with line cooling routines
+monitor line luminosity "totl"  1860 2.933 //total sum of both Al III comp
+// 
+//total C II] 2324.69 + 2328.12
+// >>chng 08 aug 02, from 3.79 to 3.72, changes over past month
+// >>chng 05 jan 07, from 3.822 to 3.794, evolve, incr error
+// >>chng 08 aug 10, from 3.79 to 3.73, drift down
+monitor line luminosity "totl"  2326 3.73 error 0.1
+// 
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 6.734 to 6.757
+// >>chng 07 dec 09, from 6.757 to 6.721 cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 6.721 to 6.690, RP update line overlap
+monitor line luminosity "totl"  2798 6.690  //total of sum of both Mg II comp
+// 
+monitor line luminosity "Ca 2"  3933 6.654
+// 
+// >>chng 05 jul 17, from 6.40 to 6.42, first run in 6 mo
+// >>chng 08 apr 30, from 6.42 to 6.33, H, He topoff change
+monitor line luminosity "totl"  1.083m 6.33 error 0.1
+// 
+// >>chng 08 mar 17, from 6.630 to 6.592, RP update line overlap
+monitor line luminosity "Fe2b"  2500 6.592
+// 
+// >>chng 08 mar 17, from 6.545 to 6.506, RP update line overlap
+monitor line luminosity "Fe2b"  2430 6.506
+// 
+monitor line luminosity "Ca2K"  3934 6.418
+//
+// >>chng 09 jun 15, add this monitor
+monitor line luminosity "Fe2C" 0 6.612
+//
+// >>chng 09 jun 15, add this monitor
+// >>chng 09 jun 16, from 1 to 6.517, add FeII bands
+monitor line luminosity "Fe2b" 2445 6.517
+//
+// >>chng 09 jun 15, add this monitor
+// >>chng 09 jun 16, from 1 to 4.068, add FeII bands
+monitor line luminosity "Fe2b" 4558 4.068
+//
+// >>chng 08 jan 29 from10 to 12 (10.02) drift up
+// >>chng 08 dec 08, from 12 to 8.306, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 8.306 to 17.09, merging newsolvers branch
+// >>chng 09 jan 16, from 17.09 to 16.89 (error 0.05), average of 9 runs
+// >>chng 09 feb 10, from 16.89 to 18.88, combined effect of r2655, r2669
+// >>chng 09 may 30, from 18.88 to 18.4, drift down
+// >>chng 09 oct 12, from 18.4 to 19.59, extend fine continuum to lower limit of code by default
+// >>chng 10 feb 14, from 19.59 to 18.7, update O atomic data
+// >>chng 10 sep 29, from 18.7 to 19.6, atom_leveln logic change, undoes above??
+monitor itrzn 19.6 
+//
+// >>chng 08 dec 08, from 6 to 3, upper limit -> equals (r2515)
+// >>chng 09 jul 16, from 3 to 4, change autocv back to 0.2
+// >>chng 09 aug 01, from 4 to 3, do not check on outward Hb, autocv back to old default
+monitor niter 3 error 0.01
+//
+// >>chng 08 apr 30, from <350 to 273 H, He topoff change
+// >>chng 08 aug 02, from 273 to 308 changes over past month
+// >>chng 08 dec 08, from 308 to 301, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 301 to 279, merging newsolvers branch
+// >>chng 09 feb 10, from 279 to 275, combined effect of r2655, r2669
+// >>chng 09 jun 11, from 275 to 290, better approach to outer edge of bounded model
+monitor nzone 290
+
+This is one of the 5 models that sample the LOC plane.

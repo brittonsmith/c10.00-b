@@ -1,0 +1,108 @@
+title BLR model, density 1e09 cm-3, flux of H-ion phots 1e20 cm2 s-1
+c
+c commands controlling continuum =========
+table agn
+phi(h) 20
+c
+c commands for density & abundances =========
+hden 9
+c
+c commands controlling geometry  =========
+stop column density 23
+c
+c other commands for details     =========
+init "c84.ini"
+iterate convergence 
+c these are to try to speed things up
+no level2 lines
+c
+c commands controlling output    =========
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+save monitors "blr_n09_p18.asr" last
+save overview "blr_n09_p18.ovr" last
+save dr "blr_n09_p18.dr" last 
+save convergence reason "blr_n09_p18.cvr"
+c
+c commands giving the monitors    =========
+// strong blr lines
+// >>chng 06 nov 29, from 8.457 to 8.392, Badnell DR turned on
+// >>chng 10 aug 12, from 8.392 to 8.369, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "totl"  1035 8.369 //total of sum of both O VI comp
+// 
+// >>chng 08 apr 30, from 8.290 to 8.269 H, He topoff change
+monitor line luminosity "totl"  1216 8.269 //total Hydrogen Lyman-alpha 1215.67 
+// 
+//total of sum of both N V comp
+// >>chng 06 feb 03, from 7.117 to 7.143, guess dr to Badnell mean
+// >>chng 06 nov 29, from 7.143 to 7.267, Badnell DR turned on
+// >>chng 07 oct 03, from 7.267 to 7.287 drift down
+// >>chng 08 apr 30, from 7.287 to 7.26, H, He topoff change
+// >>chng 10 aug 12, from 7.26 to 7.212, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "totl"  1240 7.212 error 0.1
+//
+//total of sum of both Si IV comp
+// >>chng 06 feb 03, from 5.809 to 5.851, guess dr to Badnell mean
+// >>chng 06 nov 29, from 5.851 to 5.828, Badnell DR turned on
+// >>chng 07 jan 20, from 5.828 to 5.860, e2 bug
+// >>chng 08 sep 25, from 5.86 to 5.82, remove damper on line pump (r2367)
+// >>chng 09 feb 23, from 5.82 to 5.764, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1397 5.764
+//
+//total O IV] 1402 
+// >>chng 06 feb 03, from 5.837 to 5.920, guess dr to Badnell mean
+// >>chng 06 nov 24, from 5.920 to 5.939, turn on Badnell RR
+// >>chng 06 nov 29, from 5.939 to 6.272, Badnell DR turned on
+// >>chng 07 apr 30, from 6.272 to 6.302, log DR average, use mix S DR
+// >>chng 08 apr 20, incr error to more realistic 10%
+// >>chng 08 apr 30, from 6.30 to 6.24, H, He topoff change
+monitor line luminosity "totl"  1402 6.24 0.1
+// 
+//total of sum of both C IV comp
+// >>chng 06 nov 24, from 7.016 to 7.037, turn on Badnell RR
+// >>chng 06 nov 29, from 7.037 to 7.064, Badnell DR turned on
+// >>chng 08 apr 30, from 7.06 to 7.04, H, He topoff change
+monitor line luminosity "totl"  1549 7.04 error 0.1
+//
+// >>chng 09 jun 28, from 1 to 6.824, check convergence of outward Hb
+monitor line luminosity "Inwd" 1549 6.824
+//
+// >>chng 09 jun 28, from 1 to 6.601, check convergence of outward Hb
+// >>chng 09 jul 27, from 6.601 to 6.64, rm test on outward Hb - will create ticket on problems
+// >>chng 09 oct 12, from 6.64 to 6.682, extend fine continuum to lower limit of code by default
+monitor line luminosity "H  1" 4861 6.682
+//
+// >>chng 09 jun 28, from 1 to 6.328, check convergence of outward Hb
+// >>chng 09 oct 12, from 6.328 to 6.36, extend fine continuum to lower limit of code by default
+monitor line luminosity "Inwd" 4861 6.36
+// 
+// >>chng 07 dec 06, from 7.697 to 7.672, changes in h-like collisions
+// >>chng 08 mar 17, from 7.672 to 7.582, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+monitor line luminosity "he 2"  1640 7.582 //total He II Balmer-alpha 1640
+monitor temperature hydrogen 2 4.497
+//
+// >>chng 08 dec 08, from 6 to 4.702, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 4.702 to 14.1, merging newsolvers branch
+// >>chng 09 jan 16, from 14.1 to 14.15 (error 0.03), average of 10 runs
+// >>chng 09 jan 22, from 14.15 to 12.85, some minor botches as a result of r2655
+// >>chng 09 jun 26, from 12.85 to 12.06, remove several dampers
+monitor itrzn 12.06
+//
+// >>chng 08 dec 08, from 6 to 5, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 5 to 6, merging newsolvers branch
+// >>chng 09 jun 28, from 6 to 8, check convergence outward Hb
+// >>chng 09 jul 27, from 8 to 6, rm test on outward Hb - will create ticket on problems
+monitor niter 6 
+//
+// >>chng 03 dec 07, from 280 to 330, dr resolve metal changes
+// >>chng 05 dec 22, from 330 to 130 (111), rationalize zone asserts
+// >>chng 07 jun 25, from 130 to 155, move h-like sequence over to he-like methods.  
+// >>chng 08 dec 08, from 155 to 114, upper limit -> equals (r2515)
+// >>chng 09 jun 15, from 114 to 121, gradual approach to outer edge
+monitor nzone 121 
+//
+c blr_n09_p18.in 
+c class blr 
+c ========================================
+
+This is one of the 5 models that sample the LOC plane.

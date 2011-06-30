@@ -1,0 +1,128 @@
+title Leiden meeting model 7 with hacks
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+c the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 5
+extinguish 24
+c
+c commands for density & abundances =========
+c  Define the abundance of PAHs so we can reproduce the same photoelectric
+c heating curve as BT94 
+c  We have also scaled the grain abundance to achieve the desired AV/NH ratio 
+* grains PAH no qheat 5.7
+grains ism 1.16 no qheat
+c  hydrogen density 
+hden 5.5
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+c this sim has more than one thermal solution - force into lowest one,
+c the one found by the rest of the group - without this we will find a
+c soln at 1400 K
+force temperature to 60K
+failures 3
+c  use leiden initialization file
+init file="pdr_leiden_hack.ini"
+c
+c commands controlling output    =========
+save monitors "pdr_leiden_hack_v3.asr"
+save leiden lines "pdr_leiden_hack_v3.lin"
+save leiden "pdr_leiden_hack_v3.lei"
+save dr "pdr_leiden_hack_v3.dr" 
+save grain temperature "pdr_leiden_hack_v3.grn"
+save overview "pdr_leiden_hack_v3.ovr"
+save heating "pdr_leiden_hack_v3.het"
+save cooling "pdr_leiden_hack_v3.col"
+c
+c commands giving the monitors    =========
+monitor H2 column density 21.912 error 0.1
+monitor CO column density 18.202 error 0.1
+//
+// >>chng 04 sep 18, from 16.03 to 16.05, imprv mole conv, incr err
+// >>chng 05 jun 26, from 16.05 to 15.95, make Federman chem the default
+// >>chng 05 jul 02, from 15.95 to 15.97, A_V zoning was not exact
+// >>chng 05 aug 24, from 15.97 to 16.12, NA update CO cr ion rate
+// >>chng 10 jun 25, from 16.12 to 16.0 HCO+ + e -> CO + H rate update
+monitor H2O column density 16.0 error 0.2
+// 
+// >>chng 05 aug 24, from 17.79 to 17.65, NA update CO cr ion rate
+monitor O2 column density 17.65 error 0.1
+//
+// >>chng 05 jul 02, from 14.91 to 14.92, A_V zoning was not exact
+// >>chng 05 aug 03, from 14.92 to 14.66, NA update CO, H chem net
+// >>chng 05 aug 08, from 14.66 to 14.96, readd grain-gas coll energy exchange
+// >>chng 05 aug 18, from 14.96 to 15.10, NA further leiden hacks
+// >>chng 05 dec 20, from 15.10 to 15.04, RP change default helium levels
+// >>chng 10 mar 03, from 15.04 to 15.18, enable all LAMDA and increase max num levels
+// >>chng 10 jun 17, from 15.18 to 14.48, fix botches due to recent dBase cooling changes
+// >>chng 10 aug 25, from 14.48 to 15.36, bugfix r4165 & r4167
+monitor OH column density 15.36 error 0.2
+// 
+// >>chng 05 jun 26, from 19.96 to 22.22, make Federman chem the default
+// >>chng 05 jul 02, from 22.22 to 21.04, A_V zoning was not exact
+// >>chng 05 aug 03, from 21.22 to 19.28, NA update CO, H chem net
+// >>chng 05 aug 18, from 19.28 to 22.19, NA further leiden hacks
+// >>chng 10 mar 02, from 22.19 to 26.25, fix botches after CO model switch
+// >>chng 10 jun 17, from 26.25 to 18.47, fix botches due to recent dBase cooling changes
+monitor hydrogen 2 temperature 18.47 error 0.1
+// 
+// >>chng 04 aug 15, from 11.09 to 9.91, NA adjust ion conv
+// >>chng 05 aug 03, from 9.91 to 10.61 NA update CO, H chem net
+// >>chng 05 aug 08, from 10.61 to 10.03, readd grain-gas coll energy exchange
+// >>chng 05 dec 20, from 10.03 to 10.42, RP change default helium levels
+// >>chng 10 mar 02, from 10.42 to 11.66, fix botches after CO model switch
+// >>chng 10 mar 03, from 11.66 to 11.08, enable all LAMDA and increase max num levels
+// >>chng 10 aug 23, from 11.08 to 11.59, small changes after recent updates
+// >>chng 10 aug 25, from 11.59 to 8.52, bugfix r4165 & r4167
+monitor H2 temperature 8.52 linear 
+// 
+// >>chng 06 nov 28, add these lines
+// >>chng 06 nov 29, from -5.487 to -5.512, Badnell DR turned on
+// >>chng 10 mar 02, from -5.512 to -5.396, fix botches after CO model switch
+// >>chng 10 jun 17, from -5.396 to -5.555, fix botches due to recent dBase cooling changes
+monitor line luminosity "C  2" 157.6m -5.555
+//
+// >>chng 06 nov 29, from -6.783 to -6.598, Badnell DR turned on
+// >>chng 10 mar 02, from -6.598 to -6.544, fix botches after CO model switch
+// >>chng 10 jun 17, from -6.544 to -6.623, fix botches due to recent dBase cooling changes
+monitor line luminosity "C  1" 369.7m -6.623
+//
+// >>chng 06 nov 29, from -7.215 to -7.044, Badnell DR turned on
+monitor line luminosity "C  1" 609.2m -7.044
+//
+// >>chng 06 nov 29, from -5.700 to -5.641, Badnell DR turned on
+// >>chng 10 mar 02, from -5.641 to -5.105, fix botches after CO model switch
+// >>chng 10 apr 11, from -5.105 to -5.126, more LAMDA models, add 13CO to chemistry
+// >>chng 10 jun 17, from -5.126 to -5.796, fix botches due to recent dBase cooling changes
+// >>chng 10 aug 25, from -5.796 to -5.819, bugfix r4165 & r4167
+monitor line luminosity "O  1" 63.17m -5.819
+//
+// >>chng 06 nov 29, from -7.981 to -7.884, Badnell DR turned on
+// >>chng 10 mar 02, from -7.884 to -7.242, fix botches after CO model switch
+// >>chng 10 apr 11, from -7.242 to -7.268, more LAMDA models, add 13CO to chemistry
+// >>chng 10 jun 17, from -7.268 to -7.998, fix botches due to recent dBase cooling changes
+// >>chng 10 aug 25, from -7.998 to -8.025, bugfix r4165 & r4167
+monitor line luminosity "O  1" 145.5m -8.025
+// 
+// >>chng 04 oct 02, from 10 to 12, improv conv criteria
+// >>chng 08 dec 08, from 12 to 6.528, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 6.528 to 12.23, merging newsolvers branch
+// >>chng 09 jan 16, from 12.23 to 12.2, average of 10 runs
+monitor itrzn 12.2 
+//
+// >>chng 05 aug 12, from 550 to 600, do not rm H2 vib heat with leiden hack
+// >>chng 08 dec 08, from 600 to 504, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 504 to 505, average of 10 runs
+monitor nzone 505 error 0.01
+c 
+c pdr_leiden_hack_v3.in
+c class pdr 
+c ========================================
+c 
+
+This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+includes hacks to get standard answer

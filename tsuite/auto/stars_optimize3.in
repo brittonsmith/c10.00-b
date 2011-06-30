@@ -1,0 +1,49 @@
+title optimizer on stellar grids
+c
+c commands controlling continuum =========
+table star costar age 5.8 log 36 msol vary
+ionization par -3
+c
+c commands for density & abundances =========
+hden 4 vary
+init file "hheonly.ini"
+element oxygen on  
+c
+c commands controlling geometry  =========
+Case B
+stop zone 1
+c
+c other commands for details     =========
+optimize tolerance 0.03
+constant temper 4.3 vary
+optimize phymir sequential
+optimize iteration 500
+c the following spectrum was derived by running this sim at hden 5, t=4,
+c and log(age)=6.3
+c resulting eden was 5.040 and T=4, which we shall assert that we find
+optimize lines
+// >>chng 06 dec 01, change line intensities due to new Badnell DR rates
+// >>chng 07 oct 12, change intensities after case b entered
+// previous lines had intermediate H 1 spectrum
+o ii  3729  0.0623
+o ii  3726  0.1765
+o ii  7323  0.2300
+o ii  7332  0.1854
+o  3  5007  8.2979
+totl  4363  0.0784
+end of lines
+c
+c commands controlling output    =========
+print line faint -2
+c
+c commands giving the monitors    =========
+monitor temperature hydrogen 2 4
+save monitors "stars_optimize3.asr"
+c
+c optimize_phymir.in
+c class optimizer
+c ========================================
+c
+
+This checks whether the optimizer sets corrects limits for log(age).  The line
+spectrum was calculated at T = 1e4 K, n_H=1e5 cm^-3, log(age/yr) = 6.3.

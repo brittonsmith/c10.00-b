@@ -1,0 +1,113 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>New Page 1</title>
+<style>
+<!--
+ p.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+</head>
+
+<body>
+
+<h1>MAKEFILE READ ME</h1>
+<h2>INTRODUCTION</h2>
+<p class="MsoNormal">This page outlines how to use the makefile for Cloudy that 
+is supplied in the source directory. It requires GNU make and is set up for g++, 
+but will also work for other compilers. It is based on experiences of Peter van 
+Hoof and Robin Williams in using g++ with the code.</p>
+<p class="MsoNormal">&nbsp;</p>
+<h2>BEFORE YOU COMPILE</h2>
+<p class="MsoNormal">Before you compile Cloudy, first inspect the file &quot;Makefile&quot;. 
+It has been set up for an optimized compilation with g++. It can be altered 
+easily for other compilers by editing the &quot;CXX&quot;, &quot;CXXFLAGS&quot;, and &quot;LDFLAGS&quot; 
+fields in the file. Alternatively you can set environment variables with the 
+same name in your shell, these will override the default settings in the 
+makefile if you replace &quot;make&quot; with &quot;make -e&quot; everywhere below. How to set 
+variables depends on the shell you are using. Here is an example for some 
+commonly used shells:</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">csh/tcsh:</p>
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setenv CXX pgCC</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">bash/sh/ksh/...</p>
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CXX=&quot;pgCC&quot;&nbsp;&nbsp; (no spaces around the &quot;=&quot;!)</p>
+<p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; export CXX</p>
+<p class="MsoNormal">&nbsp;</p>
+<h2>BUILDING CLOUDY</h2>
+<p class="MsoNormal">When you have finished inspecting the Makefile, you can 
+compile the code by simply typing</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">make</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">The resulting executable will be named cloudy.exe. If you 
+have a multi-core computer, you can take advantage of this by doing a parallel 
+build with</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">make -j &lt;n&gt;</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">where &lt;n&gt; is the number of cores you want to use.</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">The makefile will only work with GNU make, which may be 
+named gmake on your system.</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">Make will automatically set the path to the data files in 
+path.cpp. For this to work you will have to define the environment variable 
+CLOUDY_DATA_PATH containing the correct path (don't forget the trailing slash!).</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">&nbsp;</p>
+<h2>FILE DEPENDENCIES</h2>
+<p class="MsoNormal">In order for make to work, it needs to know how each of the 
+source files depends on the various header files. This is defined in the file 
+Makefile.dep. When you have downloaded a fresh version of Cloudy, this file will 
+not be present. The first time you execute the make command, the compiler will 
+automatically create the Makefile.dep file for you. This will only work if you 
+use g++ or icc. If you want to use another compiler to create Cloudy, run</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">make depend</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">with CXX set to either g++ or icc. This will create 
+Makefile.dep. Then change CXX to your favorite compiler (and possibly modify the 
+compiler and linker flags) and compile Cloudy. Now that Makefile.dep exists, it 
+will not be recreated again unless you delete the file &quot;Makefile.dep&quot; or issue 
+the command &quot;make depend&quot; again.</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">If you modify Cloudy and add new source files, or add new 
+#include statements in existing source files, the dependencies of the code will 
+change. Make will have no way of knowing this, hence you will have to recreate 
+Makefile.dep yourself by typing &quot;make depend&quot; again.</p>
+<p class="MsoNormal">&nbsp;</p>
+<h2>CLEANING UP</h2>
+<p class="MsoNormal">You can clean up the source directory by issuing</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">make clean</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">This will remove all the object files and the cloudy.exe 
+binary. You can also use</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">make distclean</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">which will do the same thing, and will additionally remove 
+Makefile.dep. Hence a full compilation from scratch can be forced by issuing the 
+commands:</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">make clean</p>
+<p class="MsoNormal">make</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">A full compilation forcing the reconstruction of 
+Makefile.dep can be done with</p>
+<p class="MsoNormal">&nbsp;</p>
+<p class="MsoNormal">make distclean</p>
+<p class="MsoNormal">make</p>
+
+</body>
+
+</html>

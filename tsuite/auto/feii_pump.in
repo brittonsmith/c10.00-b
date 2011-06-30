@@ -1,0 +1,61 @@
+title test feii in continuum pumped limit
+c
+c commands controlling continuum =========
+black 25000 K
+ionization -5
+c
+c commands for density & abundances =========
+hden 10
+abundances old solar 84 
+c commands controlling geometry  =========
+set dr 0
+stop zone 1
+c
+c other commands for details     =========
+Case B
+iterate 
+constant tempera 4
+atom feii 
+c
+c commands controlling output    =========
+save monitors "feii_pump.asr"
+save FeII continuum "feii_pump.con" units microns last  
+c
+c commands giving the monitors    =========
+// >>chng 07 oct 12, all reset when Case B & itration added
+monitor line "Fe2c"     0      2.9239 error 0.07
+monitor line "Fe2b"  1067A     0.0035 error 0.07
+monitor line "Fe2b"  1120A     0.0088 error 0.07
+monitor line "Fe2b"  1148A     0.0053 error 0.07
+monitor line "Fe2b"  1485A     0.0171 error 0.07
+monitor line "Fe2b"  1550A     0.0160 error 0.07
+monitor line "Fe2b"  1615A     0.0303 error 0.07
+monitor line "Fe2b"  1650A     0.0521 error 0.07
+monitor line "Fe2b"  1670A     0.0218 error 0.07
+monitor line "Fe2b"  1740A     0.0243 error 0.07
+monitor line "Fe2b"  1787A     0.0023 error 0.07
+monitor line "Fe2b"  1822A     0.0029 error 0.07
+monitor line "Fe2b"  1870A     0.0050 error 0.07
+monitor line "Fe2b"  1930A     0.0025 error 0.07
+monitor line "Fe2b"  2090A     0.0202 error 0.07
+monitor line "Fe2b"  2355A     1.1061 error 0.07
+monitor line "Fe2b"  2430A     2.3199 error 0.07
+monitor line "Fe2b"  2495A     0.2384 error 0.07
+monitor line "Fe2b"  2610A     0.9536 error 0.07
+monitor line "Fe2b"  2695A     0.0591 error 0.07
+monitor line "Fe2b"  2758A     0.4424 error 0.07
+monitor line "Fe2b"  2780A     0.5160 error 0.07
+monitor line "Fe2b"  2840A     0.0085 error 0.07
+monitor line "Fe2b"  2935A     0.0213 error 0.07
+monitor line "Fe2b"  2960A     0.0183 error 0.07
+c feii_pump.in
+
+This is a constant temperature low ionization
+cloud, with BLR-like densities, which includes the
+large FeII atom.  The tests check on the emission
+predicted in the Fe II bands.
+
+This model tests the large FeII model in the optically thin,
+continuum pumped limit.  The zone thickness is set to a
+small value (1 cm) so that full continuum hits atom.
+

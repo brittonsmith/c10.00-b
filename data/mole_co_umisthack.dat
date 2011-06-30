@@ -1,0 +1,4 @@
+CO,PHOTON=>C,O,PHOTON:co_lnu_c_o_lnu:1.:0.:0.#  Inner shell photoionization -- why only UMIST??  
+C,CRPHOT=>C+,e-:hmrate:0.:0.:0. # Switch off this rate for UMIST comparison 
+C+,OH=>CO+,H:hmrate:2.7e-9:-0.3508:0 # UMIST; Dubernet et al. 1992, ApJ, 239, 855	 
+C+,OH=>CO,H+:hmrate:2.7e-9:-0.3508:0 # UMIST; Dubernet et al. 1992, ApJ, 239, 855	 

@@ -1,0 +1,109 @@
+title Starburst 99 2D SED
+c
+c commands controlling continuum =========
+c read the table starburst and interpolate to an age of 2.09e6 years
+c and a metallicity of 12.
+table star log age=6.32 Z=12. "starburst99_2d.mod"
+luminosity 43
+c add background continuum - starburs 99 does not extend
+c into fir so code would complain about zero continuum
+c adding the cosmic background stops this complaint
+background
+c
+c commands for density & abundances =========
+hden 5
+c
+c commands controlling geometry  =========
+stop zone 1
+radius 20
+c
+c other commands for details     =========
+constant temper 4
+c
+c commands controlling output    =========
+save continuum "stars_starburst99_2d.con" last
+save monitors "stars_starburst99_2d.asr" last
+save continuum last "stars_starburst99_2d.con" units microns
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 35.87 to 35.93, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  35.93
+monitor line luminosity "nInu" 122.4m  35.98
+monitor line luminosity "nInu" 60.83m  36.36
+monitor line luminosity "nInu" 41.22m  37.1
+monitor line luminosity "nInu" 30.87m  37.43
+monitor line luminosity "nInu" 24.78m  37.66
+monitor line luminosity "nInu" 24.30m  37.68
+monitor line luminosity "nInu" 22.83m  37.74
+monitor line luminosity "nInu" 21.42m  37.81
+monitor line luminosity "nInu" 21.12m  37.82
+monitor line luminosity "nInu" 19.62m  37.91
+monitor line luminosity "nInu" 17.65m  38.05
+monitor line luminosity "nInu" 17.37m  38.08
+monitor line luminosity "nInu" 15.69m  38.22
+monitor line luminosity "nInu" 14.60m  38.32
+monitor line luminosity "nInu" 12.43m  38.55
+monitor line luminosity "nInu" 11.40m  38.67
+monitor line luminosity "nInu" 10.46m  38.79
+monitor line luminosity "nInu" 9.480m  38.92
+monitor line luminosity "nInu" 9.325m  38.94
+monitor line luminosity "nInu" 8.210m  39.03
+monitor line luminosity "nInu" 7.580m  39.07
+monitor line luminosity "nInu" 7.050m  39.09
+monitor line luminosity "nInu" 4.114m  39.43
+monitor line luminosity "nInu" 2.324m  40.14
+monitor line luminosity "nInu" 1.643m  40.58 
+monitor line luminosity "nInu" 1.480m  40.71
+monitor line luminosity "nInu" 1.436m  40.74
+monitor line luminosity "nInu" 1.119m  41.05
+monitor line luminosity "nInu"  8330A  41.41
+monitor line luminosity "nInu"  8079A  41.44
+monitor line luminosity "nInu"  6210A  41.76
+monitor line luminosity "nInu"  4885A  42.04
+monitor line luminosity "nInu"  3704A  42.33
+monitor line luminosity "nInu"  3588A  42.34
+monitor line luminosity "nInu"  2430A  42.76
+monitor line luminosity "nInu"  2392A  42.77
+monitor line luminosity "nInu"  2071A  42.91
+monitor line luminosity "nInu"  2053A  42.91 
+monitor line luminosity "nInu"  1793A  43.03
+monitor line luminosity "nInu"  1585A  43.13
+monitor line luminosity "nInu"  1458A  43.2
+monitor line luminosity "nInu"  1357A  43.26
+monitor line luminosity "nInu"  1297A  43.29
+monitor line luminosity "nInu"  1263A  43.3
+monitor line luminosity "nInu"  1218A  43.31
+monitor line luminosity "nInu"  1196A  43.29
+monitor line luminosity "nInu"  1175A  43.32
+monitor line luminosity "nInu"  1144A  43.38
+monitor line luminosity "nInu"  1113A  43.37
+monitor line luminosity "nInu"  1103A  43.4
+monitor line luminosity "nInu"  1074A  43.4
+monitor line luminosity "nInu"  1064A  43.42
+monitor line luminosity "nInu"  1036A  43.4
+monitor line luminosity "nInu"  1000A  43.33
+monitor line luminosity "nInu" 925.1A  43.34
+monitor line luminosity "nInu" 897.8A  43.19
+monitor line luminosity "nInu" 760.0A  43.05
+monitor line luminosity "nInu" 701.5A  43.09
+monitor line luminosity "nInu" 608.2A  43.22
+monitor line luminosity "nInu" 575.1A  43.15
+monitor line luminosity "nInu" 511.9A  43.2
+monitor line luminosity "nInu" 496.9A  43.03
+monitor line luminosity "nInu" 399.2A  42.74
+c
+c stars_starburst99_2d.in
+c class stars 
+c ========================================
+c 
+
+this is a demonstration of the use of a manually crafted Starburst 99 2D
+grid, allowing for interpolation in both age and metallicity.  It was
+provided by Christophe Morisset.
+A constant temperature is set since this is to test shape of continuum
+not thermal physics. It also tests access to user-supplied grids as the
+mechanism is the same.
+
+
+
+

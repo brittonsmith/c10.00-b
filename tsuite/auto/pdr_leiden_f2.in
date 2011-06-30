@@ -1,0 +1,143 @@
+title Leiden meeting model 2
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use
+c half the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 50000
+extinguish 24
+c
+c commands for density & abundances =========
+grains ism 1.16 no qheat
+c  hydrogen density 
+hden 3.
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+failures 3
+c  use leiden initialization file
+init file="pdr_leiden.ini"
+c  This command defines the grain temperature to be a constant 20 Kelvin
+constant grain temperature 20 
+c  This sets the temperature to a constant 50 Kelvin
+constant temperature 50 linear
+c
+c commands controlling output    =========
+save overview "pdr_leiden_f2.ovr"
+save continuum "pdr_leiden_f2.con"
+save molecules "pdr_leiden_f2.mol"
+save chemistry rates "pdr_leiden_f2.rat" "SiO"
+save leiden lines "pdr_leiden_f2.lin"
+save leiden "pdr_leiden_f2.lei"
+save dr "pdr_leiden_f2.dr" 
+save grain physical conditions "pdr_leiden_f2.grn"
+save monitors "pdr_leiden_f2.asr"
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 21, from -9.151 to -9.074, add these lines
+monitor "H2O " 538.1m line intensity -9.074
+// >>chng 10 aug 21, from -9.341 to -8.83, add these lines
+monitor "HNC " 1653m  line intensity -8.83 
+// >>chng 10 aug 21, from -9.86 to -10.81, add these lines
+monitor "HCS+" 1756m  -10.81 line intensity
+// >>chng 10 aug 21, from -8.288 to -9.032, add these lines
+monitor "CS  " 3059m  -9.032 line intensity
+// >>chng 10 aug 21, from -8.887 to -7.776, add these lines
+monitor "CO  " 2600m  -7.776 line intensity
+// >>chng 10 aug 21, from -7.637 to -7.034, add these lines
+monitor "CO  " 1300m  -7.034 line intensity
+// >>chng 10 aug 21, from -7.173 to -6.922, add these lines
+monitor "CO  " 866.7m  -6.922 line intensity
+// >>chng 10 aug 21, from -7.114 to -7.166, add these lines
+monitor "CO  " 650.1m  -7.166 line intensity
+// >>chng 10 aug 21, from -7.324 to -7.578, add these lines
+monitor "CO  " 520.1m  -7.578 line intensity
+// >>chng 10 aug 21, from -7.731 to -8.073, add these lines
+monitor "CO  " 433.4m  -8.073 line intensity
+// >>chng 10 aug 21, from -8.299 to -8.648, add these lines
+monitor "CO  " 371.5m  -8.648 line intensity
+// >>chng 10 aug 21, from -8.997 to -9.289, add these lines
+monitor "CO  " 325.1m  -9.289 line intensity
+// >>chng 10 aug 21, from -9.336 to -10.16, add these lines
+monitor "CN  " 880.9m  -10.16  line intensity
+monitor H2 column density 21.737 error 0.1
+// 
+// >>chng 05 jan 15, from 17.22 to 17.16, reset ion stg limits during search,
+// so how have He++ in this sim - had been capped at He+ before
+// >>chng 05 mar 22, from 17.16 to 17.23, NA update CO chem net
+// >>chng 05 mar 25, from 17.23 to 17.08, renorm H pops in level solver, inc err
+// >>chng 05 jun 26, from 17.08 to 16.68, make Federman chem the default,
+// turn chem elements on
+// >>chng 05 aug 03, from 16.68 to 16.63, NA update CO, H chem net
+// >>chng 05 nov 22, from 16.63 to 14.81, NA add freeze out onto grains
+// >>chng 05 dec 17, from 14.81 to 14.97, NA increase C chemistry
+// >>chng 06 mar 02, from 14.97 to 16.20, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 mar 06, from 16.20 to 15.97, PvH grain freeze out
+// >>chng 06 jun 02, from 15.97 to 16.04, NA refactor chem, bug fix
+// >>chng 07 jan 07, from 16.04 to 16.11, enable McCall et al. H3+ rate
+monitor CO column density 16.11 error 0.15
+// 
+// >>chng 05 nov 22, from 14.58 to 13.24, NA add freeze out onto grains
+// >>chng 06 mar 06, from 13.24 to 13.05, PvH grain freeze out
+monitor O2 column density 13.05 error 0.1
+// 
+// >>chng 05 nov 22, from 14.09 to 13.69, NA add freeze out onto grains
+// >>chng 06 mar 06, from 13.69 to 13.62, PvH grain freeze out
+// >>chng 07 jan 07, from 13.62 to 13.73, enable McCall et al. H3+ rate
+monitor OH column density 13.73 error 0.1
+// 
+// >>chng 05 aug 03, from 14.97 to 15.05, NA update CO, H chem net
+// >>chng 05 oct 01, from 15.05 to 15.01, drift down
+// >>chng 05 nov 22, from 15.01 to 14.31, NA add freeze out onto grains
+// >>chng 06 mar 06, from 14.31 to 14.21, PvH grain freeze out
+// >>chng 07 jan 07, from 14.21 to 14.30, enable McCall et al. H3+ rate
+monitor SiO column density 14.30 error 0.1
+// 
+// >>chng 05 sep 30, add these 5
+monitor column density H2+  11.56 error 0.1
+// 
+// >>chng 07 jan 07, from 13.30 to 13.61, enable McCall et al. H3+ rate
+monitor column density H3+  13.61 error 0.1
+// 
+monitor column density H2g  21.74 error 0.1
+//
+// >>chng 05 dec 08, from 15.17 to 14.73, update to Elwert Solomon rate
+monitor column density H2*  14.73 error 0.1
+//
+// >>chng 05 dec 08, from 10.54 to 10.49, update to Elwert Solomon rate
+// >>chng 09 oct 05, from 10.49 to 10.39, [NI] pumping changes
+monitor column density HeH+ 10.39 error 0.1
+// 
+// >>chng 06 nov 28, add these lines
+monitor line luminosity "C  2" 157.6m -4.166
+monitor line luminosity "C  1" 369.7m -5.101
+monitor line luminosity "C  1" 609.2m -5.518
+monitor line luminosity "O  1" 63.17m -5.426
+// 
+// >>chng 07 jan 07, from -7.023 to -7.045, enable McCall et al. H3+ rate
+monitor line luminosity "O  1" 145.5m -7.045
+// 
+// >>chng 05 mar 28, from 5 to 3.5, impr mol converg
+// >>chng 08 dec 08, from 3.5 to 2.434, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 2.434 to 3.954, merging newsolvers branch
+// >>chng 09 jan 08, from 3.954 to 3.867, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, from 3.867 to 3.897 (error 0.03), average of 10 runs
+// >>chng 09 oct 06, from 3.897 to 4.084, [NI] pumping changes
+monitor itrzn 4.084
+// 
+// >>chng 05 dec 08, from 520 to 600 (539) update to Elwert Solomon rate
+// >>chng 06 mar 06, from 600 to 630 (601) PvH grain freeze out
+// >>chng 08 dec 08, from 630 to 608, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 608 to 610, average of 10 runs
+// >>chng 09 oct 05, from 610 to 655, [NI] pumping changes
+monitor nzone 655
+c 
+c pdr_leiden_f2.in
+c class pdr 
+c ========================================
+c 
+
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 

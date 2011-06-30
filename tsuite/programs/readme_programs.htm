@@ -1,0 +1,68 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Read me file for the sample programs</title>
+</head>
+
+<body background="clouds.jpg">
+
+<h1>Read me file for the sample programs</h1>
+
+<hr>
+<p>These are a series of programs that show how Cloudy can be used as a 
+subroutine of other, larger, programs.&nbsp; There are two ways to use these 
+programs.&nbsp; You can 
+create a library, compile the new main program, and link the main program to this library.&nbsp; 
+Or you can compile the program and then link it to all of the object files 
+created when Cloudy itself was compiled.&nbsp;
+</p>
+<p>Each sample program includes the header files cddefines.h and cddrive.h.&nbsp; 
+These are included in the Cloudy source directory.&nbsp; You will need to 
+alter these lines so that they point to where the files live on your machine or 
+you will need to include the path to these files on your compile line.</p>
+<p>The perl script <b><kbd>run_programs.pl</kbd></b> can be set up to use either 
+gcc or the intel compiler.&nbsp; It reads a list of program directories from the 
+file <b><kbd>run_programs.dat</kbd></b>, builds each by linking against the 
+object files in source directory, and runs the programs.</p>
+<p><a href="readme_template.htm">template.cpp</a>&nbsp; -&nbsp; This is a template you can use to write your own program
+that calls Cloudy as a subroutine.&nbsp; This provides a template C++ main 
+program that includes the needed exception handlers.</p>
+<p><a href="collion/readme_collion.htm">collion</a>&nbsp; -&nbsp; This is an example of 
+a gas in collisional ionization equilibrium.&nbsp; There is no ionizing 
+radiation.&nbsp; This is something like the solar corona.</p>
+<p><a href="comp4/readme_comp4.htm">comp4</a>, This checks that the code is properly initialized when it sets up.&nbsp; 
+Two different models are computed twice and the output goes to file1.txt (the 
+first pair) and file2.txt (the second).&nbsp; These files should be exactly the 
+same.</p>
+<p><a href="hazy_coolingcurve/readme_hazy_coolingcurve.htm">hazy_coolingcurve</a>&nbsp; This is an example of a 
+gas in collisional 
+ionization equilibrium in which the temperature is varied and the heating and 
+cooling derived.&nbsp; </p>
+<p><a href="hazy_kmt/readme_hazy_kmt.htm">hazy_kmt</a> - This redoes the 
+&quot;S-curve&quot; calculation originally 
+done by Krolick, McKee, &amp; Tarter
+(1981; ApJ, 249, 422),&nbsp; </p>
+<p><a href="hizlte/readme_hizlte.htm">hizlte</a> - a high metallicity gas in 
+thermodynamic equilibrium.</p>
+<p><a href="mpi/readme_mpi.htm">mpi</a>&nbsp; This is my main routine for running large grids on our HP cluster.&nbsp; It 
+uses MPI to place a grid point on each processor.</p>
+<p><a href="vary_nete/readme_vary_nete.htm">vary_nete </a>&nbsp;Both the electron 
+density and temperature are varied over a broad range and several [O III] lines 
+are predicted.&nbsp; This shows how to make diagnostic diagrams where line 
+ratios are used to deduce temperature and density.</p>
+<p><a href="varyn/readme_varyn.htm">varyn</a>&nbsp; This is a series of calculations in which the density is varied and the intensities 
+of some [OII] lines relative to [OII] 3727 are printed.&nbsp; </p>
+<hr>
+<p>Visit <a href="http://www.nublado.org">www.nublado.org</a>&nbsp; for details and latest updates.&nbsp; </p>
+<p>Good luck,<br>
+Gary J. Ferland</p>
+
+<p>last modified 20 February, 2008</p>
+
+</body>
+
+</html>

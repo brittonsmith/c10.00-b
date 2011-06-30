@@ -1,0 +1,107 @@
+\usepackage{graphicx,rotate,url,mathptmx,lscape,times,framed,color}
+
+% include natbib for bibtex, options are
+% round use (2008) instead of [2008] for year
+\usepackage[round]{natbib}
+
+% cross references across documents
+\usepackage{xr}
+
+%\begin{comment}
+%This is my comment.
+%Note that it can span multiple lines.
+%This is very useful.
+%\end{comment}
+\usepackage{verbatim} 
+
+% allow hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=true,      % page fit to window when opened
+    pdftitle={My title},    % title
+    pdfauthor={Author},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfnewwindow=true,      % links in new window
+    pdfkeywords={keywords}, % list of keywords
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=blue,         % color of internal links, def red
+    citecolor=blue,         % color of links to bibliography, def green
+    filecolor=blue,         % color of file links, def magenta
+    urlcolor=blue           % color of external links, def cyan
+}
+
+% geometry package controls page layout
+\usepackage[letterpaper,
+left=2.5cm,right=2.5cm,
+top=2.5cm,bottom=2.5cm]{geometry}
+\oddsidemargin=+0.7cm
+\evensidemargin=-0.7cm
+\pagestyle{headings}
+
+% journal name macros used by ADS
+\usepackage{../aas_macros}
+
+% Include list of figures and references in contents lists
+\usepackage[nottoc]{tocbibind}
+
+% makes it easy to include all or part of a PDF document 
+% inside a LaTeX document
+\usepackage{pdfpages}
+
+% allow external files to be included verbatim
+\usepackage{moreverb}
+% set the default tabsize
+\def\verbatimtabsize{4\relax}
+
+% following are to pick up .aux files for cross references
+% with package xr to other volumes of Hazy
+% hazy 1
+\externaldocument[Hazy1-]{../hazy1/intro}
+\externaldocument[Hazy1-]{../hazy1/define}
+\externaldocument[Hazy1-]{../hazy1/cmdintro}
+\externaldocument[Hazy1-]{../hazy1/cont-def}
+\externaldocument[Hazy1-]{../hazy1/cont-lum}
+\externaldocument[Hazy1-]{../hazy1/cont-shp}
+\externaldocument[Hazy1-]{../hazy1/compos}
+\externaldocument[Hazy1-]{../hazy1/density}
+\externaldocument[Hazy1-]{../hazy1/geometry}
+\externaldocument[Hazy1-]{../hazy1/optdepth}
+\externaldocument[Hazy1-]{../hazy1/therm}
+\externaldocument[Hazy1-]{../hazy1/dynamics-time}
+\externaldocument[Hazy1-]{../hazy1/stopping}
+\externaldocument[Hazy1-]{../hazy1/conout}
+\externaldocument[Hazy1-]{../hazy1/optimize}
+\externaldocument[Hazy1-]{../hazy1/grid}
+\externaldocument[Hazy1-]{../hazy1/miscell}
+\externaldocument[Hazy1-]{../hazy1/latex_style}
+
+% hazy2
+\externaldocument[Hazy2-]{../hazy2/limits}
+\externaldocument[Hazy2-]{../hazy2/coninter}
+\externaldocument[Hazy2-]{../hazy2/lineatomparam}
+\externaldocument[Hazy2-]{../hazy2/linedetl}
+\externaldocument[Hazy2-]{../hazy2/CloudyStandaloneProgram}
+\externaldocument[Hazy2-]{../hazy2/sub}
+\externaldocument[Hazy2-]{../hazy2/output}
+\externaldocument[Hazy2-]{../hazy2/observed}
+\externaldocument[Hazy2-]{../hazy2/lines}
+\externaldocument[Hazy2-]{../hazy2/problems}
+\externaldocument[Hazy2-]{../hazy2/odetail}
+\externaldocument[Hazy2-]{../hazy2/sources}
+\externaldocument[Hazy2-]{../hazy2/glossary}
+\externaldocument[Hazy2-]{../hazy2/conversion}
+\externaldocument[Hazy2-]{../hazy2/TestSuite}
+
+% hazy 3
+\externaldocument[Hazy3-]{../hazy3/isoseq}
+\externaldocument[Hazy3-]{../hazy3/hydroiso}
+\externaldocument[Hazy3-]{../hazy3/helikeiso}
+\externaldocument[Hazy3-]{../hazy3/molecules}
+\externaldocument[Hazy3-]{../hazy3/dheavy}
+\externaldocument[Hazy3-]{../hazy3/dtherm}
+\externaldocument[Hazy3-]{../hazy3/dgrain}
+\externaldocument[Hazy3-]{../hazy3/dother}

@@ -1,0 +1,78 @@
+title He-like nitrogen emission
+c
+c commands controlling continuum =========
+laser 75
+ionization -1
+c
+c commands for density & abundances =========
+hden 7
+element nitrogen abundance -2
+element nitrogen ionization -5 -5 -5 -5 -5 -5 0 -5
+init file "ism.ini"
+element helium off
+element carbon off
+element oxygen off
+element neon off
+element magnesium off
+element silicon off
+element sulphur off
+element argon off
+element iron off
+c
+c commands controlling geometry  =========
+stop zone 1
+set dr -12
+c
+c other commands for details     =========
+atom he-like levels 10
+atom he-like collapsed levels 20
+constant temper 5
+iterate
+c
+c commands controlling output    =========
+print he-like departure nitrogen
+print line faint -2
+save monitors "helike_n.asr"
+c This is Lyman alpha
+normalize to "N  6" 28.79A
+c
+c commands giving the monitors    =========
+// >>chng 05 mar 12, from -21.3 to -21.325, RP merge He-like code
+// >>chng 10 aug 12, from -21.32 to -24.78, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "N  6" 28.79A -24.78
+//
+// 29.53A is 2^3S to ground
+monitor line "N  6"  29.53A 3.97
+//
+// Totl is 2^3P to ground
+// >>chng 05 sep 5, wavelength from 29.09 to 29.08 
+monitor line "TOTL"  29.08A 0.73
+//
+// 24.90A is 3^1P to ground
+// >>chng 03 may 24, from 0.25 to 0.230, Ryan cleaned up some As
+// >>chng 07 apr 12, from 0.230 to 0.252, he-like proton collision bugfix
+// >>chng 08 mar 22, from 0.252 to 0.234, changed deltan=0 yrare A's
+monitor line "N  6"  24.90A 0.234
+//
+// 161.2A is 3^3P to 2^3S
+// >>chng 05 sep 5, wavelength from 161.6 to 161.2
+// >>chng 07 apr 22, from .120 to 126, he-like proton collision bugfix
+// >>chng 08 mar 22, from 0.126 to 0.119, changed deltan=0 yrare A's
+monitor line "N  6"  161.2A 0.119
+//
+// 174.0A is 3^3D to 2^3P
+// >>chng 03 apr 25, wavelength from 173.6 to 173.7
+// >>chng 05 sep 5, wavelength from 173.7 to 174.0
+// >>chng 07 apr 12, from 0.230 to 0.210, he-like proton collision bugfix
+// >>chng 08 mar 22, from 0.210 to 0.225, changed deltan=0 yrare A's
+monitor line "N  6"  174.0A 0.225
+// 
+// the entire 2^3S - 2^3P multiplet
+monitor line "TOTL"  1904A  0.0391
+c helike_n.in
+c class limit  
+c ========================================
+c 
+
+test He-like emission for N
+

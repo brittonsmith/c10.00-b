@@ -1,0 +1,67 @@
+title interstellar cloud irradiated by ism background
+c
+c commands controlling continuum =========
+c this uses the Black continuum with no H-ionizing radiation,
+c and with background cosmic rays
+table ism
+extinguish by a column of 22
+cosmic rays, background
+c
+c commands for density & abundances =========
+hden 0 vary
+grid from -3 to 2 in 0.5 dex steps
+init file="ism.ini"
+c this turns on ism abundances and grains
+abundances ism
+c
+c commands controlling geometry  =========
+c set sphere since matter in all directions
+sphere 
+stop temperature linear 10
+stop thickness 0.1 linear parsecs
+stop zone 1 
+c
+c other commands for details     =========
+c this prevents continuum pumping from exciting H0
+case b
+c
+c commands controlling output    =========
+c this model has no heavy element molecules, because H2 does not
+c really fully form, since Lyman bands are not self-shielded
+normalize to 157.6m "C  2"
+save grid "ism_grid.grd" last
+save averages "ism_grid.avr" last
+temperature hydrogen 1 
+end of averages
+save monitors "ism_grid.asr" last
+save overview "ism_grid.ovr" last
+save dr "ism_grid.dr"
+save heating "ism_grid.het" 
+save coolign "ism_grid.col" 
+save xspec mtable "ism_grid.fit" range 0.1 3 keV
+save temperature "ism_grid.tem" 
+c
+c commands giving the monitors    =========
+c this is a special version of the monitors that does a series of models 
+// >>chng 08 feb 11, from 776 to 811 for sim 5, cr&secondary heat efficiency
+c sert tempe hydro 1 9942 .05 grid 8575 6468 3606 776 304 169 103 66.2 44.1 31.3
+monitor tempe hydro 1 grid "ism_grid.dat" .05
+c
+c ism_grid.in
+c class ism 
+c ========================================
+
+this shows an S-curve calculation - make plot showing density as X-axis
+and gas pressure (nT) as y-axis
+
+the gas is ionized by the galactic background.  the density varies between
+1e-3 and 100 cm-3.  this is the full range found in the diffuse ism.
+The components that are produced are 
+CNM - cold neutral medium, density ~ 40 cm-3
+WNM - n ~ 0.5 cm-3, 
+WIM - warm ionized medium, n ~ 0.25 cm-3
+HIM - hot ionized medium, n ~ 1e-3 cm-3, calculation DOES NOT 
+      reproduce observed temperature of HIM - we get ~1e4K but
+      observed is ~1e6 K.  HIM is shock, not photo, ionized
+
+

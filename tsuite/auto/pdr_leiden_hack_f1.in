@@ -1,0 +1,76 @@
+title Leiden meeting model 1 with hacks
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+c the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 5
+extinguish 24
+c
+c commands for density & abundances =========
+c  hydrogen density 
+hden 3.
+grains ism 1.16 no qheat
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+failures 3
+c use leiden initialization file
+init file="pdr_leiden_hack.ini"
+c This command defines the grain temperature to be a constant 20 Kelvin
+constant grain temperature 20 
+c This sets the temperature to a constant 50 Kelvin
+constant temperature 50 linear
+c
+c commands controlling output    =========
+save leiden lines "pdr_leiden_hack_f1.lin"
+save leiden "pdr_leiden_hack_f1.lei"
+save dr "pdr_leiden_hack_f1.dr" 
+save grain physical conditions "pdr_leiden_hack_f1.grn"
+save overview "pdr_leiden_hack_f1.ovr"
+save monitors "pdr_leiden_hack_f1.asr"
+c
+c commands giving the monitors    =========
+monitor H2 column density 21.925 error 0.1
+// 
+// >>chng 05 aug 24, from 18.09 to 18.05, NA update CO cr ion rate
+// >>chng 05 dec 17, from 18.05 to 18.09, NA increase C chemistry
+monitor CO column density 18.09 error 0.1
+// 
+// >>chng 05 aug 24, from 17.72 to 17.57, NA update CO cr ion rate
+monitor O2 column density 17.57 error 0.1
+// 
+// >>chng 05 aug 24, from 16.08 to 16.00, NA update CO cr ion rate
+monitor OH column density 16.00 error 0.1
+// 
+// >>chng 06 nov 28, add these lines
+monitor line luminosity "C  2" 157.6m -4.573
+// 
+// >>chng 06 nov 29, from -6.236 to -6.078, Badnell DR turned on
+monitor line luminosity "C  1" 369.7m -6.078
+// 
+// >>chng 06 nov 29, from -6.520 to -6.371, Badnell DR turned on
+monitor line luminosity "C  1" 609.2m -6.371
+// 
+monitor line luminosity "O  1" 63.17m -5.549
+// 
+monitor line luminosity "O  1" 145.5m -7.036
+c
+// >>chng 08 dec 08, from 5 to 3.061, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 3.061 to 4.524, merging newsolvers branch
+// >>chng 09 jan 16, from 4.524 to 4.568 (error 0.04), average of 10 runs
+monitor itrzn 4.568 error 0.04
+c
+// >>chng 08 dec 08, from 480 to 446, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 446 to 444, average of 10 runs
+monitor nzone 444 error 0.01
+c
+c pdr_leiden_f1_hack.in
+c class pdr  
+c ========================================
+c 
+
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+this includes hacks to get "standard answer" 

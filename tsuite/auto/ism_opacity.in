@@ -1,0 +1,76 @@
+title generate standard ISM opacity curve
+c
+c commands controlling continuum =========
+table agn
+ionization parameter -3
+c
+c commands for density & abundances =========
+hden 0 //set density of unity so that total opacity is per hydrogen atom
+abundances ism no grains //this turns on depleted gas-phas abundances
+grains no qheat
+c
+c commands controlling geometry  =========
+set dr 0
+stop zone 1
+c
+c other commands for details     =========
+iterate
+c
+c commands controlling output    =========
+save total opacity last "ism_opacity.opc" units kev
+c
+c commands giving the monitors    =========
+// >>chng 02 jun 15, all entries converted to luminosity since Hb changed
+// >>chng 07 oct 22, from -24.833 to -24.892, resolve l-levels of h-like sequence
+monitor line "totl" 4861 intensity -24.892
+// 
+// >>chng 01 feb 20, from 9070 to 10075 when default ISM O abundance changed
+monitor temperature hydrogen 2 10075
+// 
+monitor line "ca b" 4861 intensity -24.856
+// 
+// >>chng 01 feb 20, from 1.461 to 1.227 when default ISM O abundance changed
+// >>chng 06 nov 29, from -24.594 to -24.619, Badnell DR turned on
+monitor line "totm" 0  intensity -24.619
+// 
+// >>chng 01 feb 20, from 1.007 to 1.166 when default ISM O abundance changed
+// >>chng 02 may 27, from 1.166 to 1.062, improved gaunt factors
+// >>chng 02 jun 21, from -24.660 to -24.698 improved gaunt factors
+monitor line "h ff" 0  intensity -24.698
+// 
+// >>chng 02 jun 21, from -24.562 to -24.603 improved gaunt factors
+monitor line "toff" 0  intensity -24.603
+// 
+// >>chng 01 feb 20, from 0.9766 to 1.076 when default ISM O abundance changed
+// >>chng 01 mar 07, from 1.08 to 0.902 change in grain physics
+// >>chng 03 jan 12, from -24.727 to -24.642, new grains
+// >>chng 07 dec 15, from -24.642 to -24.820, X-ray grain merge
+monitor line "grgh" 0  intensity -24.820
+// 
+// >>chng 01 feb 20, from 0.3728 to 0.459 when default ISM O abundance changed
+// >>chng 01 mar 07, from 0.459 to 0.391 change in grain physics
+// >>chng 03 jan 12, from -25.084 to -25.062, new grains
+// >>chng 05 jul 05, from -25.062 to -25.070, fine tune
+monitor line "grgc" 0  intensity -25.070
+// 
+// >>chng 01 feb 20, from 0.3158 to 0.244 when default ISM O abundance changed
+monitor line "ct h" 0  intensity -25.299
+// 
+save monitors last "ism_opacity.asr"
+c ism_opacity.in
+c class limit 
+c ========================================
+c 
+
+This example creates the file ism_opacity.opc which tabulates
+the total opacity of the gas as a function of energy.  These
+plots are used in ISM studies to understand the transmission
+characteristics along a line of sight.  The opacity depends on 
+the dust to gas ratio, the gas phase abundances, and the level
+of ionization, all of which can be changed by altering parameters
+given above.
+
+The model is of a 1 cm think parcel of gas which is optically thin 
+in the Lyman continuum and Lyman lines.  As a result the hydrogen
+emission line spectrum is close to case C.  The model iterates
+so that the predicted ionization and emission know about this.

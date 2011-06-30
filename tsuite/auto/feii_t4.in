@@ -1,0 +1,155 @@
+title FeII emission in typical intermediate density photoionzied cloud
+c
+c commands controlling continuum =========
+black 5e5K
+ionization parameter -2
+c
+c commands for density & abundances =========
+hden 8
+element iron abundance 2
+element iron ionization -7 0 -7
+c
+c commands controlling geometry  =========
+stop thickness 5
+c
+c other commands for details     =========
+constant temperature 4
+atom feii
+iterate 3
+c
+c commands controlling output    =========
+set line precision 6
+print lines column 
+print line inward
+print line sort wavelength
+print line faint 0.1
+normalize "Fe2b" 5270
+save monitors "feii_t4.asr" last
+save feii continuum last "feii_t4.con" units angstroms
+save feii inward continuum last "feii_t4.cin" units angstroms
+save feii outward continuum last "feii_t4.cout" units angstroms
+save feii column density last "feii_t4.col" 
+save feii populations all last "feii_t4.pop"
+save line emissivity "feii_t4.ems"
+Fe2b 2797 
+Inwd 2797 
+end of lines
+c
+c commands giving the monitors    =========
+monitor line intensity "Fe2b" 1148 1.454
+// >>chng 09 jun 16, from 0.2364 to 1.179, increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 1148 1.179
+// >>chng 10 aug 12, from 0.7699 to 0.7497, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 1212 0.7497
+// >>chng 09 jun 16, from -5.114 to 0.4731, increase line precision to get correct FeII inward bands
+// >>chng 10 aug 12, from 0.4731 to 0.4528, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 1212 0.4528
+monitor line intensity "Fe2b" 1295 -0.1053
+// >>chng 09 jun 16, from -1.329 to -0.4034, increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 1295 -0.4034
+monitor line intensity "Fe2b" 1365 0.9315
+// >>chng 09 jun 16, from -6.295 to 0.639, increase line precision to get correct FeII inward bands
+// >>chng 10 aug 12, from 0.639 to 0.6188, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 1365 0.6188
+monitor line intensity "Fe2b" 1485 2.75
+// >>chng 09 jun 16, from -5.384 to -2.094, increase line precision to get correct FeII inward bands
+// >>chng 10 aug 12, from -2.094 to -2.117, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 1485 -2.117
+monitor line intensity "Fe2b" 1615 3.132
+// >>chng 09 jun 16, from -2.086 to 2.855, increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 1615 2.855
+// >>chng 10 aug 12, from 2.037 to 2.017, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 1787 2.017
+monitor line intensity "Inwd" 1787 -2.276
+// >>chng 10 aug 12, from 2.319 to 2.297, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 1822 2.297
+// >>chng 09 jun 16, from 0.2443 to 2.019, increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 1822 2.019
+monitor line intensity "Fe2b" 2355 4.8
+// >>chng 09 jun 15, from 2.418 to 2.393, gradual approach to outer edge
+// >>chng 09 jun 16, from 2.393 to 4.523, increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 2355 4.523
+monitor line intensity "Fe2b" 2495 4.179
+// >>chng 09 jun 16, from -3.388 to 3.888, increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 2495 3.888
+// >>chng 10 aug 12, from 3.619 to 3.598, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 2695 3.598
+// >>chng 10 aug 12, from 3.342 to 3.309, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 2695 3.309
+monitor line intensity "Fe2b" 2758 4.139
+// >>chng 10 aug 12, from 3.907 to 3.875, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 2758 3.875
+// >>chng 10 aug 12, from 2.068 to 2.04, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 2797 2.04
+// >>chng 09 jun 16, from -2.234 to 1.761, increase line precision to get correct FeII inward bands
+// >>chng 10 aug 12, from 1.761 to 1.741, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 2797 1.741
+// >>chng 10 aug 12, from 3.868 to 3.832, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 2935 3.832
+// >>chng 10 aug 12, from 3.571 to 3.532, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 2935 3.532
+// >>chng 10 aug 12, from 2.466 to 2.436, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 4255 2.436
+// >>chng 10 aug 12, from 2.165 to 2.135, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 4255 2.135
+// >>chng 10 aug 12, from 2.435 to 2.395, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 4558 2.395
+// >>chng 10 aug 12, from 2.134 to 2.094, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 4558 2.094
+// >>chng 10 aug 12, from 1.136 to 1.114, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 4743 1.114
+// >>chng 09 jun 16, from -2.302 to 0.8272, increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 4743 0.8272
+monitor line intensity "Fe2b" 4855 1.461
+// >>chng 09 jun 16, from -2.361 to 1.157, increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 4855 1.157
+monitor line intensity "Fe2b" 4971 0.9742
+// >>chng 09 jun 16, from -6.52 to 0.6697, increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 4971 0.6697
+// >>chng 10 aug 12, from 2.97 to 2.926, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 4975 2.926
+// >>chng 09 jun 16, from -8.084 to 2.651, increase line precision to get correct FeII inward bands
+// >>chng 10 aug 12, from 2.651 to 2.625, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 4975 2.625
+// >>chng 10 aug 12, from 2.524 to 2.486, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 5143 2.486
+// >>chng 09 jun 16, from -7.677 to 2.208, increase line precision to get correct FeII inward bands
+// >>chng 10 aug 12, from 2.208 to 2.186, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 5143 2.186
+// >>chng 10 aug 12, from 2.241 to 2.208, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 5318 2.208
+// >>chng 09 jun 16, from -4.485 to 1.926, increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 5318 1.926
+// >>chng 10 aug 12, from 1.135 to 1.114, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 5865 1.114
+// >>chng 09 jun 16, from -1.852 to 0.8282, increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 5865 0.8282
+monitor line intensity "Fe2b" 6265 2.039
+monitor line intensity "Inwd" 6265 1.738
+// >>chng 10 aug 12, from 1.901 to 1.879, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 6565 1.879
+// >>chng 10 aug 12, from 1.6 to 1.579, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 6565 1.579
+monitor line intensity "Fe2b" 7445 1.632
+monitor line intensity "Inwd" 7445 1.331
+// >>chng 10 aug 12, from -1.13 to -1.172, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Fe2b" 7785 -1.172
+// >>chng 10 aug 12, from -1.428 to -1.469, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line intensity "Inwd" 7785 -1.469
+monitor line intensity "Fe2b" 18890A 1.788
+// >>chng 09 jun 16, from 0.219 to 1.487 increase line precision to get correct FeII inward bands
+monitor line intensity "Inwd" 18890A 1.487
+monitor line intensity "Fe2b" 22000A 0.502
+monitor line intensity "Inwd" 22000A 0.201
+c feii_t4.in
+c class function 
+c ========================================
+c 
+
+This model has a very high iron abundance, 100x H, and most Fe is
+in the form of Fe+. it has intermediate density and should produce
+and FeII spectrum something like an AGN.
+ 
+The set line precision 6 increases the number of significant figures
+in the wavelengths for each line.  This is needed to get the right
+FeII inward band.

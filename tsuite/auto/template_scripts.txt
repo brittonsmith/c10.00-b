@@ -1,0 +1,48 @@
+title a title for the model goes here
+c a brief description of its purpose
+c
+c commands controlling continuum =========
+c these give the shaprpe and intensity
+c
+c commands for density & abundances =========
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+c
+c commands controlling output    =========
+c
+c commands giving the asserts    =========
+c
+c name.in 
+c class NAME 
+c ========================================
+c 
+
+Text after the first empty line are totally ignored and should be used
+to explain the purpose of the sim and any special commands that may
+have been used.  This should also describe what the sim is testing,
+what is the essential physics to watch out for.
+
+Each simulation is assigned to one or more classes.  The name of the class
+appears on the line starting
+c class NAMAE
+a simulation may be assigned to more than one class.
+
+Classes of models
+blr - the BLR of AGN
+coronal - coronal or collisional ionization equilibrium
+dynamics - dynamics
+function - test some special function of the code
+geometry - different aspects of the geometry
+hii - H II regions
+igm - the intergalactic medium
+ism - the interstellar medium
+limit - test the code's behavior in extreme limits
+nlr - the NLR of AGN
+nova - nova shells or photospheres
+optimizer - test whether the optimizer works
+pdr - a PDR
+pn - a planetary nebula
+stars - use one of the stellar atmospheres
+

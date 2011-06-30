@@ -1,0 +1,160 @@
+title BLR model, density 1e13 cm-3, flux of H-ion phots 1e18 cm2 s-1
+c
+c this is a very low ionization cloud
+c the conditions, and some lines, are surprisingly sensitive
+c to the treatment of hydrogen molecules
+c
+c commands controlling continuum =========
+table agn
+phi(h) 18
+c
+c commands for density & abundances =========
+hden 13
+c
+c commands controlling geometry  =========
+stop column density 23
+c
+c other commands for details     =========
+iterate to convergence 
+c
+c commands controlling output    =========
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+//
+// these are to try to speed things up
+init "c84.ini"
+no level2 lines
+//
+save monitors "blr_n13_p18.asr" last
+save overview "blr_n13_p18.ovr" last
+save dr "blr_n13_p18.dr" last 
+save convergence reason "blr_n13_p18.cvr" 
+c
+c commands giving the monitors    =========
+// strong blr lines
+// >>chng 06 jul 18, from 6.429 to 6.457 RP major upgrade VS coll strengths
+// >>chng 07 oct 22, from 6.457 to 6.431, resolve l-levels of h-like sequence
+// >>chng 08 mar 17, from 6.431 to 6.400, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 jun 25, from 6.400 to 6.380 (12.1) add source/sink to ioniz ladder
+monitor line luminosity "totl"  1216 6.380 //total Hydrogen Lyman-alpha 1215.67 
+//
+// >>chng 06 jul 18, from 6.377 to 6.450 RP major upgrade VS coll strengths
+// >>chng 07 jul 27, from 6.450 to 6.402, repair common error in several collision routines
+// >>chng 07 oct 25, from 6.402 to 6.371, bugfix stark broadening incorrect
+// >>chng 09 oct 12, from 6.371 to 6.391, extend fine continuum to lower limit of code by default
+monitor line luminosity "totl"  4861 6.391 //total of sum of both Si IV comp
+//
+//total HeII Balmer-a 1640
+// >>chng 04 apr 28, from 4.666 to 4.693, He+ - H ct rate update
+// >>chng 04 may 13, from 4.693 to 4.718, dest albedo chng
+// >>chng 04 may 19, from 4.72 to 4.58 RP update helike sequence, incr err
+// >>chng 05 mar 12, from 4.58 to 4.49 RP merge He-like code
+// >>chng 06 jul 18, from 4.49 to 4.58 RP major upgrade VS coll strengths
+// >>chng 07 jul 27, from 4.58 to 4.48, repair common error in several collision routines
+// >>chng 08 mar 22, from 4.48 to 4.42 bugfix r1879
+// >>chng 08 apr 30, from 4.42 to 4.47, H, He topoff change
+monitor line luminosity "he 2"  1640 4.47 err 0.1
+//
+// >>chng 04 jun 01, from 2.327 to 2.349, unified calc of Lya line width
+// >>chng 06 jul 21, from 2.349 to 2.375, update Mg0 Si0 CT wth H+
+// >>chng 07 oct 22, from 2.375 to 2.317, resolve l-levels of h-like sequence
+// >>chng 08 mar 17, from 2.317 to 2.254, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+monitor line luminosity "totl"  1888 2.254  //total of sum of Si III] 1892+
+//
+// >>chng 03 sep 11, from 3.008 to 3.032, H2* population improved
+// >>chng 04 jan 28, from 3.032 to 3.006, bug in H- -> H2 boltz factor
+// >>chng 06 jul 18, from 3.006 to 3.042 RP major upgrade VS coll strengths
+// >>chng 06 nov 29, from 3.042 to 2.986, Badnell DR turned on
+// >>chng 07 oct 22, from 2.986 to 2.959, resolve l-levels of h-like sequence
+// >>chng 08 mar 17, from 2.959 to 2.929, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 09 feb 24, from 2.929 to 2.954, botches due to r2763
+monitor line luminosity "totl"  1860 2.954  //total sum of both Al III comp
+//
+//total C II] 2324.69 + 2328.12
+// >>chng 03 sep 11, from 3.769 to 4.800, H2* population improved
+// >>chng 03 sep 11, from 4.800 to 4.726, changed a few H2 reactions
+// >>chng 04 jan 28, from 4.726 to 3.789, bug in H- -> H2 boltz factor
+// >>chng 04 apr 16, from 3.789 to 3.871, ? ?, it does jump around
+// >>chng 04 apr 28, from 3.871 to 3.786, He+ - H ct rate update
+// >>chng 04 jun 01, from 3.786 to 3.808, unified calc of Lya line width
+// >>chng 04 jun 12, from 3.808 to 3.871 chng cont shield fcn
+// >>chng 04 jul 02, from 3.871 to 3.849, O H ct, incr err
+// >>chng 05 aug 03, from 3.849 to 3.935, NA update CO, H chem net
+// >>chng 05 dec 08, from 3.94 to 3.83, update to Elwert Solomon rate
+// >>chng 07 dec 06, from 3.83 to 3.87, secondaries prop to osc str, apply to iso species
+// >>chng 08 apr 30, from 3.87 to 3.82, H, He topoff change
+// >>chng 08 nov 04, from 3.82 to 3.778, line RT bug fixes (r2429-35)
+monitor line luminosity "totl"  2326 3.778 err 0.1 
+//
+// >>chng 03 sep 11, from 6.765 to 6.810, H2* population improved
+// >>chng 04 jan 28, from 6.810 to 6.767, bug in H- -> H2 boltz factor
+// >>chng 06 jul 18, from 6.767 to 6.790 RP major upgrade VS coll strengths
+// >>chng 07 oct 22, from 6.790 to 6.746, resolve l-levels of h-like sequence
+// >>chng 08 mar 17, from 6.746 to 6.714, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+monitor line luminosity "totl"  2798 6.714  //total of sum of both Mg II comp
+//
+// >>chng 03 sep 11, from 6.667 to 6.753, H2* population improved
+// >>chng 04 jan 28, from 6.753 to 6.670, bug in H- -> H2 boltz factor
+// >>chng 05 sep 27, from 6.670 to 6.700, TE, GS update H chem
+// >>chng 06 jul 21, from 6.700 to 6.670, update Mg0 Si0 CT wth H+
+// >>chng 07 jul 25, from 6.670 to 6.698, bugfix pvh FeII tau r1290
+// >>chng 08 mar 20, from 6.698 to 6.676, value drifted but did not throw assert
+monitor line luminosity "Ca 2"  3933 6.676
+//
+// >>chng 04 may 19, from 6.340 to 6.376 RP update helike sequence, incr err
+// >>chng 04 jul 03, from 6.376 to 6.402, NA update H, CO chem net
+// >>chng 05 mar 12, from 6.40 to 6.44 RP merge He-like code
+// >>chng 05 sep 27, from 6.440 to 6.420, TE, GS update H chem
+// >>chng 06 jul 18, from 6.420 to 6.393 RP major upgrade VS coll strengths
+// >>chng 07 jul 27, from 6.393 to 6.426, repair common error in several collision routines
+// >>chng 08 mar 22, from 6.426 to 6.405 bugfix r1879
+// >>chng 08 apr 03, from 6.405 to 6.340, include 10830 in fine opacity array
+// >>chng 09 oct 12, from 6.34 to 6.315, extend fine continuum to lower limit of code by default
+monitor line luminosity "totl"  1.083m 6.315
+//
+// >>chng 05 mar 12, add 5876
+// >>chng 06 jul 18, from 5.630 to 5.502 RP major upgrade VS coll strengths
+// >>chng 07 apr 12, from 5.502 to 5.556 he-like proton collision bugfix 
+// >>chng 07 jul 27, from 5.556 to 5.671, repair common error in several collision routines
+monitor line luminosity "he 1"  5876 5.671
+//
+// >>chng 04 sep 25, from 7 to 8 incr temp toler 0.02 to 0.005
+// >>chng 04 sep 30, from 8 to 10, conv_base conv heat cool
+// >>chng 05 mar 13, from 10 to 12, RP update He-like
+// >>chng 08 dec 08, from 12 to 9.137, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 9.137 to 16.63, merging newsolvers branch
+// >>chng 09 jan 16, from 16.63 to 16.65 (error 0.08), average of 10 runs
+// >>chng 09 jan 22, from 16.65 to 20.04, some minor botches as a result of r2655
+// >>chng 09 apr 18, from 20.04 to 18.4, refactor evaluation of esc dest probs to occur with cooling
+// >>chng 09 jun 02, from 18.4 to 19.5, inc err, drift up
+monitor itrzn 19.5 error 0.10
+// 
+// >>chng 04 mar 05, from 5 to 6, last iter just barely converged on PC,
+// was converged on alpha & SDX
+// >>chng 04 jul 17, from 6 to 7, NA update chem net
+// >>chng 08 dec 08, from 7 to 5, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 5 to 4, merging newsolvers branch
+// >>chng 09 feb 24, from 4 to 5, botches due to r2763
+// >>chng 09 mar 27, from 5 to 4 improve rigor esc prob & pop defns
+// this one is on the ragged edge of 4 or 5 - increase error to reflect this
+// >>chng 09 mar 28, from 4 to 5 with .21 error
+// >>chng 09 apr 19, on verge between 4 and 5
+// >>chng 09 jul 14, from 6 to 4, reset autocv to 0.2 since 0.1 developed 32/64 bit distinction
+// >>chng 09 jul 15, from 4 to 5, set autocv from 0.1 to 0.2
+// >>chng 09 jul 29, bcx icc and gcc do not get same result
+monitor niter <6
+monitor niter >3
+//
+// >>chng 03 sep 11, from 300 to 400 H2* population improved
+// >>chng 04 mar 04, from < 400 to < 350, chng conv criteria
+// >>chng 08 dec 08, from 350 to 313, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 313 to 291, merging newsolvers branch
+// >>chng 09 jan 22, from 291 to 281, some minor botches as a result of r2655
+// >>chng 09 may 28, from 281 to 283, mean 32/64, incr err
+monitor nzone 283 
+//
+c blr_n13_p18.in 
+c class blr 
+c ========================================
+
+This is one of the 5 models that sample the LOC plane.

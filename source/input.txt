@@ -1,0 +1,24 @@
+most is in input.h
+NKRD (4000) is largest number of input lines
+
+maximum line length is
+INPUT_LINE_LENGTH is set to 200 in cddefines.h
+
+cdRead routine to read in command lines and enter into command stack 
+ called by user when cloudy used as subroutine 
+ called by maincl when used as a routine
+
+certain starting characters say that a line should be totally ignored - this logic
+occurs in cdRead
+
+end-of-like sentinals 
+
+input_readarray is used to bring up the next command line image in the stack
+
+GetQuote get string within quotes, then clear the quotes
+GetQuote( chDestination , chOrigin );
+
+comment lines - entire line is a comment if it starts with certain special
+symbols.  This is 
+
+ 

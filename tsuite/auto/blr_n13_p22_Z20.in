@@ -1,0 +1,161 @@
+title BLR model, density 1e13 cm-3, flux of H-ion phots 1e18 cm2 s-1, Z=20
+c
+c commands controlling continuum =========
+table agn
+phi(h) 22
+c
+c commands for density & abundances =========
+hden 13
+abundances starburst 20 
+c
+c commands controlling geometry  =========
+stop column density 23
+c
+c other commands for details     =========
+iterate convergence 
+c these are to try to speed things up
+init "c84.ini"
+no level2 lines
+c
+c commands controlling output    =========
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+monitor set error 0.1 
+save monitors "blr_n13_p22_Z20.asr" last
+save convergence reason last "blr_n13_p22_Z20.cvr"
+save overview "blr_n13_p22_Z20.ovr"
+save dr "blr_n13_p22_Z20.dr"
+save heating "blr_n13_p22_Z20.het"
+save cooling "blr_n13_p22_Z20.col"
+c
+c commands giving the monitors    =========
+// strong blr lines
+// 
+//total of sum of both O VI comp
+// >>chng 03 dec 07, from 9.255 to 9.228, add dr on metal structure
+// >>chng 04 jun 14, from 9.228 to 9.250, drift up
+// >>chng 04 sep 06, from 9.250 to 9.220, bug nej Auger
+// >>chng 06 aug 09, from 9.220 to 9.252 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 9.252 to 9.142, Badnell DR turned on
+monitor line luminosity "totl"  1035 9.142 
+//
+// >>chng 03 dec 07, from 9.275 to 9.252, add dr on metal structure
+// >>chng 06 aug 09, from 9.252 to 9.293 Meudon 06, Bowen change
+// >>chng 07 nov 29, from 9.293 to 9.260, due to changes in r1579
+// >>chng 07 dec 02, from 9.260 to 9.222, changes in H-like seq
+// >>chng 08 mar 17, from 9.222 to 9.199, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 sep 22, from 9.199 to 9.178, remove Ali et al. DR guess
+// >>chng 09 feb 23, from 9.178 to 9.205, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1216 9.205  //total Hydrogen Lyman-alpha 1215.67 
+//
+// >>chng 04 sep 07, from 9.764 to 9.788, rewrite auger solver
+// >>chng 06 nov 29, from 9.788 to 9.765, Badnell DR turned on
+// >>chng 09 jun 15, from 9.765 to 9.819, gradual approach to outer edge
+monitor line luminosity "totl"  1240 9.819  //total of sum of both N V comp
+//
+// >>chng 06 nov 29, from 9.948 to 9.926, Badnell DR turned on
+monitor line luminosity "totl"  1397 9.926  //total of sum of both Si IV comp
+//
+// >>chng 06 nov 29, from 8.745 to 8.786, Badnell DR turned on
+// >>chng 08 mar 17, from 8.786 to 8.727, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 mar 20, from 8.727 to 8.741, dbl precision gets diff answer, take average, widen
+monitor line luminosity "totl"  1402 8.741 0.10  //total O IV] 1402 
+//
+// >>chng 07 dec 02 from 9.812 to 9.790, changes in H-like seq, Badnell DR
+// >>chng 09 feb 23, from 9.79 to 9.814, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jun 15, from 9.814 to 9.838, gradual approach to outer edge
+// >>chng 09 jun 26, from 9.838 to 9.812, remove several dampers
+// >>chng 09 jun 28, from 9.812 to 9.886, check convergence of outward Hb
+// >>chng 09 jul 27, from 9.886 to 9.838, rm test on outward Hb - will create ticket on problems
+// >>chng 09 jul 28, from 9.938 to 9.925 mean vs08+gcc bcx
+monitor line luminosity "totl"  1549 9.825  //total of sum of both C IV comp
+// 
+// >>chng 09 jun 28, from 1 to 9.604, check convergence of outward Hb
+monitor line luminosity "Inwd" 1549 9.604, 
+// 
+// >>chng 09 jun 28, from 1 to 8.327, check convergence of outward Hb
+// >>chng 10 aug 23, from 8.327 to 8.383, small changes after recent updates
+// >>chng 10 aug 25, from 8.383 to 8.332, bugfix r4165 & r4167
+monitor line luminosity "H  1" 4861 8.332, 
+// 
+// >>chng 09 jun 28, from 1 to 8.284, check convergence of outward Hb
+monitor line luminosity "Inwd" 4861 8.284, 
+// 
+// >>chng 06 jul 18, from 9.156 to 9.280, RP major upgrade VS coll strengths
+// >>chng 07 oct 22, from 9.280 to 9.381, resolve l-levels of h-like sequence
+// >>chng 07 dec 23, from 9.381 to 9.341, small correction to h-like collision strengths
+// >>chng 08 feb 20, from 9.341 to 9.364, grain charge transfer changes in ion_solver and iso*
+// >>chng 08 mar 17, from 9.364 to 9.251, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 10, from 9.251 to 9.225, change default h-like levels, other minor changes, widen
+monitor line luminosity "he 2"  1640 9.225  0.10 //total He II Balmer-alpha 1640
+// 
+// >>chng 07 oct 03, from 8.976 to 8.956 drift down
+// >>chng 08 mar 17, from 8.956 to 8.914, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 09 feb 23, from 8.914 to 8.938, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "o  3"  1666 8.938  //total O III] 1666
+//
+// >>chng 03 dec 07, from 8.554 to 8.526, add dr on metal structure
+// >>chng 05 jul 08, from 8.526 to 8.542, drift down
+// >>chng 06 nov 29, from 8.542 to 8.518, Badnell DR turned on
+// >>chng 09 feb 23, from 8.518 to 8.553, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1909 8.553  //total of sum of CIII] 1908.73+
+//
+// >>chng 06 nov 29, from 9.269 to 9.310, Badnell DR turned on
+monitor line luminosity "totl"  1888 9.310  //total of sum of Si III] 1892+
+//
+// >>chng 07 oct 03, from 9.665 to 9.645 drift down
+monitor line luminosity "totl"  1860 9.645  //total sum of both Al III comp
+//
+// >>chng 03 dec 08, from 8.512 to 8.489, chng zones, ots
+// >>chng 06 jul 21, from 8.489 to 8.509, update Mg0 Si0 CT wth H+
+// >>chng 07 jul 25, from 8.509 to 8.487, bugfix pvh FeII tau r1290
+// >>chng 07 nov 29, from 8.487 to 8.460, due to changes in r1579
+// >>chng 07 dec 02, from 8.460 to 8.426, changes in H-like seq, Badnell DR
+// >>chng 08 mar 22, from 8.426 to 8.459 bugfix r1879
+monitor line luminosity "totl"  2326 8.459  //total C II] 2324.69 + 2328.12
+//
+// >>chng 07 dec 02, from 9.445 to 9.425, changes in H-like seq, Badnell DR
+monitor line luminosity "totl"  2798 9.425  //total of sum of both Mg II comp
+//
+// >>chng 03 dec 07, from <7 to <4, add dr on metal structure
+// >>chng 04 feb 09, from 4 to 5, ? ?, small chng H2 network
+// >>chng 04 sep 25, from 5 to 6, incr temp toler 0.02 to 0.005
+// >>chng 04 sep 30, from 6 to 9, conv_base conv heat cool
+// >>chng 08 dec 08, from 9 to 6.398, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 6.398 to 16.93, merging newsolvers branch
+// >>chng 09 jan 16, from 16.93 to 17.1 (error 0.05), average of 10 runs
+// >>chng 09 jan 22, from 17.1 to 21.35, some minor botches as a result of r2655
+// >>chng 09 feb 23, from 21.35 to 22.31, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jul 28, from 22.31 to 21.8 mean vs08+gcc bcx
+// >>chng 09 dec 06,from 21.8 to 23.1, incr err, spread due to different
+// number of total iterations
+// >>chng 10 jan 12,from 23.1 to 21.4, mean gcc mac/bcx
+monitor itrzn 21.4 error 0.1
+//
+// >>chng 03 dec 07, from 3 to <5
+// >>chng 08 dec 08, from 5 to 3, upper limit -> equals (r2515)
+// >>chng 09 jun 15, from 3 to 5, gradual approach to outer edge
+// >>chng 09 jun 26, from 5 to 4, remove several dampers
+// >>chng 09 jun 28, from 4 to 10, check convergence outward Hb
+// >>chng 09 jul 14, from 10 to 4, reset autocv to 0.2 since 0.1 developed 32/64 bit distinction
+// >>chng 09 jul 15, from 4 to 6, set autocv from 0.1 to 0.2
+// >>chng 09 jul 27, from 6 to 5, rm test on outward Hb - will create ticket on problems
+// >>chng 09 jul 28, vs08 takes 4, gcc bcx takes 5
+monitor niter <6 
+monitor niter >3 
+//
+// >>chng 03 nov 10, from 460 to 500, inprove he0 zoning
+// >>chng 03 dec 07, from 500 to 760, add dr on metal structure
+// >>chng 05 dec 22, from 760 to 550 (519), rationalize zone asserts
+// >>chng 08 dec 08, from 550 to 530, upper limit -> equals (r2515)
+// >>chng 09 jan 08, from 530 to 524, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, from 524 to 526, average of 10 runs
+// >>chng 09 feb 23, from 526 to 491, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jun 15, from 491 to 508, gradual approach to outer edge
+monitor nzone 508 
+// 
+c blr_n13_p22_Z20.in 
+c class blr 
+c ========================================
+
+This is one of the 5 models that sample the LOC plane.

@@ -1,0 +1,25 @@
+title very high ionization parameter limit
+c commands controlling continuum =========
+table agn 
+ionization parameter 15
+c commands controlling geometry  =========
+hden 0
+stop zone 1
+c other commands for details     =========
+iterate
+c
+c commands controlling output    =========
+save heating "limit_hi_ion.het"
+save cooling "limit_hi_ion.col"
+c 
+c commands giving the monitors    =========
+monitor hydrogen 2 temperature 7.668 
+c 
+c func_hi_ion.in 
+c class function 
+c ========================================
+c 
+
+This tests a limit of very high ionization
+
+ 

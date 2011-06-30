@@ -1,0 +1,74 @@
+title background cosmic ray ionization by suprathermal electrons only
+c
+c commands controlling continuum =========
+cosmic ray rate -16
+c this will be VERY faint black 50000
+ionization parameter -25
+black 50000 
+c
+c commands for density & abundances =========
+hden 5
+element hydrogen ionization 1 0.00000001
+c
+c commands controlling geometry  =========
+set dr 0 
+stop zone 1
+c
+c other commands for details     =========
+constant temperature 1000 K
+c turn off molecules to test only ions 
+no molecules 
+c must turn off charge transfer and its heating, which would dominate,
+c since we want to test cr heating and ionization
+no charge transfer
+no ctheat
+c must turn of  photoionization by recombining species,
+c since we want to test cr heating and ionization
+no photoionization
+c any time photoionization is turned off, it is best to also
+c turn off induced processes, which include pumping in the lyman lines
+no induced processes
+c
+c commands controlling output    =========
+print ages
+// >>chng 01 may 11, model was changed to test only secondary ionization,
+// its intended purpose
+save monitors "ism_set_cr_rate.asr" last
+c
+c commands giving the monitors    =========
+//
+// this is log of H0 ionization rate
+monitor csupra -16.00
+//
+// total heating
+// uncertain since depends on collider density
+monitor htot -22.040
+//
+monitor line "cr h" 0  luminosity -22.041
+// 
+// >>chng 08 jul 26, add two hyperfine stucture lines 
+// asserted values not yet set
+monitor line "H  1" 21.10c  luminosity -26.696
+monitor line "Mg 2" 16.00c  luminosity -35.662
+//
+monitor ionization helium 2 -4.14 error 0.1
+//
+// >>chng 06 mar 05, from -4.27 to -8.05, NA add C+ - (Mg0 Fe0) CT
+// >>chng 08 dec 18, from -8.05 to -4.27, prev chg reversed; CT now properly killed
+monitor ionization carbon 2 -4.27 error 0.1
+//
+// >>chng 06 mar 05, from -4.50 to -7.19, NA add C+ - (Mg0 Fe0) CT
+// >>chng 08 dec 18, from -7.19 to -4.50, prev chg reversed; CT now properly killed
+monitor ionization silicon 2 -4.50 error 0.1
+//
+// >>chng 06 feb 07, from -4.02 to -3.97, add exp to low-T DR 
+monitor ionization iron 2 -3.97 error 0.1
+//
+c ism_set_cr_rate.in
+c class limit 
+c ========================================
+c 
+
+This test conditions of cosmic ray ionization.  Molecules and charge transfer
+are disabled so that analytical estimates can be made.  
+

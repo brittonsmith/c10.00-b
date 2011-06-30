@@ -1,0 +1,74 @@
+title he-like iron emission
+c
+c commands controlling continuum =========
+laser 1300
+ionization -1
+c
+c commands for density & abundances =========
+hden 7
+set dr -12
+c include lots of the element we are testing and set the ionization 
+c to be dominated by the correct ion stage
+element iron abundance -2
+element iron ionization -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 0 -5
+init file "ism.ini"
+element helium off
+element nitrogen off
+element carbon off
+element neon off
+element magnesium off
+element silicon off
+element sulphur off
+element oxygen off
+element argon off
+c
+c commands controlling geometry  =========
+stop zone 1
+c
+c other commands for details     =========
+atom he-like levels 10
+atom he-like collapsed levels 20
+constant temper 5
+iterate
+c
+c commands controlling output    =========
+print line faint -2
+print he-like departure iron
+save monitors "helike_fe.asr"
+c This is Lyman alpha
+normalize to "Fe25" 1.850A
+c
+c commands giving the monitors    =========
+// >>chng 05 sep 5, wl from 1.848 to 1.850
+// >>chng 10 aug 12, from -18.57 to -23.6, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "Fe25"  1.850A -23.6
+//
+// 1.868A is 2^3S to ground
+// >>chng 05 sep 5, wl from 1.867 to 1.868
+// >>chng 06 aug 18, from 1.01 to 1.302, RP update trans prob 
+monitor line "Fe25"  1.868A 1.302
+//
+// Totl is 2^3P to ground
+// >>chng 04 may 19, wl from 1.857 to 1.856, int from 2.72 to 2.73
+// >>chng 05 sep 5, wl from 1.856 to 1.860
+// >>chng 06 aug 18, from 2.73 to 2.46 RP update trans prob 
+monitor line "TOTL"  1.860 2.46
+//
+// 1.573A is 3^1P to ground
+monitor line "Fe25"  1.573A 0.215
+//
+// 10.02A is 3^3P to 2^3S
+// >>chng 05 sep 5, wl from 10.03 to 10.02
+monitor line "Fe25"  10.02A 0.0322
+//
+// 10.34A is 3^3D to 2^3P
+monitor line "Fe25"  10.34A 0.30
+c 
+c helike_fe.in
+c class limit 
+c ========================================
+c 
+
+check He-like emission for iron
+
+

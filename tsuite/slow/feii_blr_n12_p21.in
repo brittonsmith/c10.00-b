@@ -1,0 +1,93 @@
+title FeII model 
+table agn
+print lines column
+print lines sort intensity 
+atom feii 
+hden 12
+phi(h) 21
+stop column density 23
+iterate convergence 
+//
+// affects appearance of printout
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+//
+// these are to try to speed things up
+init "c84.ini"
+//
+save monitors "feii_blr_n12_p21.asr" last
+save feii continuum units microns "feii_blr_n12_p21.fe2con" last
+save convergence reason "feii_blr_n12_p21.cvr"
+save feii lines "feii_blr_n12_p21.lin" last
+save feii populations all "feii_blr_n12_p21.lev" last
+save feii column densities "feii_blr_n12_p21.fe2col" last
+save overview "feii_blr_n12_p21.ovr" last
+save dr "feii_blr_n12_p21.dr" last 
+//
+// strong blr lines
+// >>chng 10 jun 29, from 7.768 to 9.485, init
+monitor line luminosity "totl"  1216 9.485 //total Hydrogen Lyman-alpha 1215.67 
+//
+// >>chng 10 jun 29, from 5.112 to 8.688, init
+monitor line luminosity "totl"  1397 8.688 //total of sum of both Si IV comp
+//
+// >>chng 10 jun 29, from 3.327 to 8.048, init
+monitor line luminosity "totl"  1402 8.048 //total O IV] 1402 
+//
+//total of sum of both C IV comp
+// >>chng 10 jun 29, from 5.459 to 9.222, init
+monitor line luminosity "totl"  1549 9.222 error 0.1
+//
+// >>chng 10 jun 29, from 6.816 to 8.831, init
+monitor line luminosity "he 2"  1640 8.831 //total He II Balmer-alpha 1640
+//
+// >>chng 10 jun 29, from 4.53 to 7.37, init
+monitor line luminosity "o  3"  1666 7.37 //total O III] 1666
+//
+//total of sum of CIII] 1908.73+
+// >>chng 10 jun 29, from 4.541 to 7.112, init
+monitor line luminosity "totl"  1909 7.112 error 0.1
+//
+//total of sum of Si III] 1892+
+// >>chng 10 jun 29, from 6.29 to 7.909, init
+monitor line luminosity "totl"  1888 7.909 error 0.1
+//
+// >>chng 10 jun 29, from 5.449 to 7.684, init
+monitor line luminosity "totl"  1860 7.684 //total sum of both Al III comp
+//
+// >>chng 10 jun 29, from 5.39 to 6.157, init
+monitor line luminosity "totl"  2326 6.157 err 0.1 //total C II] 2324.69+2328.12
+//
+// >>chng 10 jun 29, from 7.438 to 8.088, init
+monitor line luminosity "totl"  2798 8.088 //total of sum of both Mg II comp
+//
+//total of sum of both Mg II comp
+// >>chng 10 jun 29, from 7.324 to 8.821, init
+monitor line luminosity "He 1" 584.3 8.821 error 0.1
+//
+// >>chng 10 jun 29, from 7.152 to 8.829, init
+monitor line luminosity "Fe2b"  2500 8.829 //total of sum of both Mg II comp
+//
+//total of sum of both Mg II comp
+// >>chng 10 jun 29, from 6.645 to 7.379, init
+monitor line luminosity "He 1"  5876 7.379 error 0.1
+//
+// >>chng 10 jun 29, from 7.145 to 8.234, init
+// >>chng 11 may 18, from 8.234 to 8.245, average of 16 runs
+monitor line luminosity "Fe2C" 0 8.245
+//
+// >>chng 10 jun 29, from 7.013 to 8.615, init
+monitor line luminosity "Fe2b" 2445 8.615
+//
+// >>chng 10 jun 29, from 5.65 to 7.283, init
+monitor line luminosity "Fe2b" 4558 7.283
+//
+// >>chng 10 jun 29, from 18 to 14.97, init
+monitor itrzn 14.97 error 0.06
+//
+monitor niter 3 error 0.01
+//
+// >>chng 10 jun 29, from 316 to 409, init
+monitor nzone 409 
+
+This is one of the models that sample the LOC plane.

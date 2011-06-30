@@ -1,0 +1,131 @@
+title H2 and CO in fully molecular limit 
+c this is a pair with pdr_co_fully_noneq - that tests non equilibrium chem
+c
+c commands controlling continuum =========
+blackbody 5000
+luminosity total solar linear 2
+brems 6
+luminosity total solar log -2.7
+c 
+c commands for density & abundances =========
+c set the density and composition, ism with grains
+hden 10
+abundances ism no qheat
+c
+c other commands for details     =========
+c this is an important ionization source
+cosmic ray background 
+c code will stop at 4000 K by default, lower this temp so we
+c can do fully molecular gas 
+stop temperature 10K linear
+c
+c commands controlling geometry  =========
+c the radius and thickness
+radius 15.8 
+stop thickness 6
+//>>chng 06 jun 02 add turbulence of 3 km/s
+turbulence 3 km / s
+c
+c commands controlling output    =========
+save overview "pdr_co_fully.ovr"
+save molecules "pdr_co_fully.mol"
+save dr "pdr_co_fully.dr"
+save heating "pdr_co_fully.het"
+save cooling "pdr_co_fully.col"
+save grain charge "pdr_co_fully.grnchr"
+save grain drift "pdr_co_fully.grndft"
+save grain temperature "pdr_co_fully.grntem"
+c
+c commands giving the monitors    =========
+// >>chng 04 may 29, from 160 to 78.1, NA update H chem
+// >>chng 05 nov 27, from 78.1 to 139.1, add H2 photo & bound compton heating
+monitor temperature hydrogen 1 139.1
+// 
+// >>chng 04 apr 19, add these three asserts
+monitor H2 column density 15.699
+// 
+// >>chng 04 may 29, from 12.399 to 12.383, NA update H chem
+// >>chng 05 aug 03, from 12.383 to 12.341, NA update CO, H chem net
+// >>chng 05 aug 06, from 12.34 to 12.37, chng H2 col dis rate, inc err
+monitor CO column density 12.37 error 0.1 
+// 
+// >>chng 04 jun 05, from -7.24 to -7.34, allow He++ to exist
+// >>chng 04 aug 01, from -7.34 to -7.40, improv C converg
+// >>chng 04 aug 10, from -7.40 to -7.25, grn rec aug rewrite
+// >>chng 05 aug 03, from -7.25 to -7.20, NA update CO, H chem net
+// >>chng 05 nov 25, from -7.20 to -7.24, NA add mole freeze out onto grain
+monitor ionization helium 2 -7.24 error 0.1
+c 
+c gas has more he++ than He+ due to fast charge transfer with co
+c neutralizing he+ 
+// >>chng 04 jun 09, from -5.95 to -5.88, NA incre H mole net
+// >>chng 04 aug 01, from -5.88 to -5.83, improv C converg
+// >>chng 05 mar 25, from -5.830 to -5.79, renorm H pops in level solver
+// >>chng 05 aug 03, from -5.79 to -5.94, NA update CO, H chem net
+// >>chng 05 nov 27, from -5.94 to -5.99 add H2 photo & bound compton heating
+// >>chng 07 jan 07, from -5.99 to -6.04, enable McCall et al. H3+ rate
+// >>chng 08 feb 20, from -6.04 to <-20, grain charge transfer changes in ion_solver and iso*
+monitor ionization helium 3 < -20 error 0.1
+// 
+// >>chng 05 sep 30, add these 5
+// >>chng 05 nov 25, from 5.22 to 5.46, NA add mole freeze out onto grain
+monitor column density H2+  5.46 error 0.1
+// 
+// >>chng 05 nov 25, from 7.88 to 8.12, NA add mole freeze out onto grain
+// >>chng 07 jan 07, from 8.12 to 8.30, enable McCall et al. H3+ rate
+monitor column density H3+  8.30 error 0.1
+// 
+monitor column density H2g  15.70 error 0.1
+// 
+// >>chng 05 nov 25, from 10.62 to 10.85, NA add mole freeze out onto grain
+// >>chng 05 nov 27, from 10.85 to 10.90 add H2 photo & bound compton heating
+// >>chng 05 dec 17, from 10.90 to 10.95, NA increase C chemistry
+// >>chng 06 mar 02, from 10.95 to 11.29, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 11.29 to 11.41
+// >>chng 06 jun 02, from 11.41 to 11.48, add turbulence of 3 km/s
+// >>chng 07 jan 07, from 11.48 to 11.44, enable McCall et al. H3+ rate
+monitor column density H2*  11.44 error 0.1
+//
+//>>chng 06 jun 02, add next three
+monitor column density CN 8.55 error 0.1
+monitor column density CH 9.19 error 0.1
+// 
+// >>chng 07 jan 07, from 3.48 to 3.55, enable McCall et al. H3+ rate
+monitor column density CH+ 3.55 error 0.1
+// 
+// >>chng 04 sep 08, add electron density of last zone
+// >>chng 04 aug 10, from 3.753 to 4.206 grn rec aug rewrite
+// >>chng 05 mar 22, from 4.206 to 4.184 NA update CO chem net
+// >>chng 05 aug 03, from 4.184 to 4.397, NA update CO, H chem net
+// >>chng 05 nov 27, from 4.397 to 4.476 add H2 photo & bound compton heating
+// >>chng 07 jan 07, from 4.476 to 4.505 enable McCall et al. H3+ rate
+// >>chng 08 feb 20, from 4.505 to 4.475, grain charge transfer changes in ion_solver and iso*
+monitor eden 4.475
+// 
+// >>chng 04 apr 29, add this assert
+// >>chng 04 may 19, from < 11 to < 40 NA update CO mole, addit moles
+// >>chng 04 may 29, from < 40 to 1< 55 NA update H chem
+// >>chng 05 mar 25, from 55 to 30 renorm H pops in level solver
+// >>chng 05 dec 22, from 30 to 12 (7.8) drift down
+// >>chng 08 dec 08, from 12 to 3.395, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 3.395 to 13.39, merging newsolvers branch
+// >>chng 09 jan 16, from 13.39 to 13.65 (error 0.08), average of 10 runs
+// >>chng 09 feb 24, from 13.65 to 14.87, botches due to r2763
+// >>chng 09 jun 28, from 14.87 to 13.55, check convergence outward Hb
+// >>chng 10 jul 23, from 13.55 to 14.6, run on cloud9 gcc
+monitor itrzn 14.6 error 0.10
+// 
+// >>chng 04 may 19, from <70 to <90 NA update CO mole, addit moles
+// >>chng 05 dec 22, from 90 to 60 (41), rationalize zone asserts
+// >>chng 08 dec 08, from 60 to 38, upper limit -> equals (r2515)
+// >>chng 09 jun 15, from 38 to 56, gradual approach to outer edge
+monitor nzone 56 error 0.01
+//
+c pdr_co_fully.in
+c class pdr 
+c ========================================
+
+test code in fully molecular limit
+this is a pair with pdr_co_fully_noneq - that tests non equilibrium chem
+

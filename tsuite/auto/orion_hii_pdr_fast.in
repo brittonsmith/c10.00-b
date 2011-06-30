@@ -1,0 +1,141 @@
+title constant gas pressure H+ region/PDR
+c much faster due to physics disabled by fast.ini
+c
+c commands controlling continuum =========
+c the incident continuum is two parts
+c star and flux of photons striking it
+// >>chng 03 sep 12, now go deep into omc1 and cannot assume plane par geometry
+c this is the result of this command
+c table star kurucz 39600 K
+c and makes it possible to run these orion sims without
+c installing the stellar atmosphere files 
+table read "star_kurucz_39600.dat" 
+Q(H) 49
+// >>chng 03 apr 30, add cosmic rays to model
+c add cosmic rays, which are important at depth
+cosmic rays, background
+c plus hot brems 
+brems 6
+phi(h) 10
+c 
+c commands for density & abundances =========
+hden 4
+init file="fast.ini"
+abundances hii region no grains
+c single sized grain with no quantum heating 
+grains orion no qheat single 
+c
+c commands controlling geometry  =========
+radius 17.4507
+sphere 
+c let it go into the molecular cloud
+stop temperature 10 linear
+c this is roughly the thickness of OMC1
+stop thickness 1 linear parsec 
+c mimic existence of unmodeled molecular gas with double command
+double 
+c
+c other commands for details     =========
+failures 3
+iterate
+c make constant gas pressure since fast turned off line radiation pressure
+constant gas pressure 
+c the observed microturbulence 
+turbulence 8 km/sec
+c we have a spherical geometry but want to simulate observing
+c through a spectrometer's slit.  use the aperture
+c command for this
+aperture beam 
+c
+c commands controlling output    =========
+normalize to "CaBo" 4861
+print line faint -4
+save overview last "orion_hii_pdr_fast.ovr"
+save heating "orion_hii_pdr_fast.het"
+save cooling "orion_hii_pdr_fast.col"
+save dr last "orion_hii_pdr_fast.dr"
+save results last "orion_hii_pdr_fast.rlt"
+save continuum last "orion_hii_pdr_fast.con" units microns
+save ionizing continuum last "orion_hii_pdr_fast.ion"
+save hydrogen 21 cm last "orion_hii_pdr_fast.21cm"
+save hydrogen lya last "orion_hii_pdr_fast.lya" 
+save element silicon last "orion_hii_pdr_fast.sil" 
+save element sulphur last "orion_hii_pdr_fast.sul" 
+c
+c commands giving the monitors    =========
+// >>chng 04 jan 24, from -0.0096 to 0.0171, rescale orion dust to gas
+// >>chng 03 sep 12, from plan par to spherical geometry,
+// all lines changed, so removed history
+c
+// >>chng 06 nov 29, from 0.017 to 0.062, Badnell DR turned on
+monitor line luminosity "o  3" 51.80m 0.062
+//
+// >>chng 10 mar 05, from 0.7519 to 0.7729, changes caused by r3848 atomic data update
+monitor line luminosity "totl" 3727 0.7729
+//
+// >>chng 06 nov 29, from -1.715 to -1.552, Badnell DR turned on
+monitor line luminosity "o  1" 6300 -1.552 
+//
+// >>chng 06 nov 29, from -0.0695 to -2.540 Badnell DR turned on
+// >>chng 08 apr 30, from -2.540 to -2.521 H, He topoff change
+monitor line luminosity "o  1" 63.17m -2.521 
+//
+// >>chng 06 nov 29, from -1.272 to -1.828, Badnell DR turned on
+// >>chng 07 jan 20, from -1.828 to -1.807, e2 bug
+// >>chng 07 oct 22, from -1.807 to -1.784, resolve l-levels of h-like sequence
+monitor line luminosity "c  2" 157.6m -1.784 
+//
+// >>chng 06 nov 29, from -0.863 to -2.157, Badnell DR turned on
+// >>chng 07 nov 29, from -2.157 to -2.058 update DR rates
+monitor line luminosity "si 2" 34.81m -2.058
+//
+// >>chng 06 nov 29, from 24.759 to 21.255 Badnell DR turned on
+monitor h2 column density 21.255 error 0.1
+//
+// >>chng 06 nov 29, from 20.387 to 13.544 Badnell DR turned on
+monitor co column density 13.544 error 0.15
+//
+// >>chng 06 nov 29, from -3.164 to -7.428, Badnell DR turned on
+// >>chng 07 oct 11, from -7.428 to -7.450, finer zoning, inc err
+// >>chng 07 oct 22, from -7.450 to -7.394, resolve l-levels of h-like sequence
+// >>chng 10 mar 02, from -7.394 to -7.115, fix botches after CO model switch
+monitor line luminosity "CO  " 650.1m  -7.115 error 0.1
+//
+// >>chng 06 nov 29, from -2.886 to -7.808, Badnell DR turned on
+// >>chng 07 oct 11, from -7.808 to -7.830, finer zoning, inc err
+// >>chng 07 oct 22, from -7.830 to -7.759, resolve l-levels of h-like sequence
+// >>chng 10 mar 02, from -7.759 to -7.327, fix botches after CO model switch
+monitor line luminosity "CO  " 520.1m  -7.327 error 0.1
+//
+// >>chng 06 nov 29, from -2.677 to -8.422, Badnell DR turned on
+// >>chng 07 oct 22, from -8.422 to -8.356, resolve l-levels of h-like sequence
+// >>chng 10 mar 02, from -8.356 to -7.734, fix botches after CO model switch
+monitor line luminosity "CO  " 433.4m  -7.734
+//
+// assert line luminosity "CO  " 369.8m  -2.520
+// assert line luminosity "CO  " 323.6m  -2.410
+// assert line luminosity "CO  " 287.7m  -2.358
+// assert line luminosity "CO  " 258.9m  -2.366
+// assert line luminosity "CO  " 235.4m  -2.464
+// assert line luminosity "CO  " 215.7m  -2.863
+//
+// >>chng 05 dec 22, from 1000 to 800 (716), rationalize zone asserts
+// >>chng 07 oct 29, from 800 to 654, change from "<" to "="
+// >>chng 08 dec 13, from 654 to 642, merging newsolvers branch
+monitor nzone 642 error 0.01
+//
+// >>chng 04 sep 16, from 11 to 16, incre edentrue convergence
+// >>chng 04 dec 08, from 16 to 19 co-ion feedback, check converg
+// >>chng 08 dec 08, from 19 to 11.63, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 11.63 to 34, merging newsolvers branch
+// >>chng 09 jan 16, from 34 to 34.29, average of 10 runs
+monitor itrzn 34.29 error 0.02
+//
+c orion_hii_pdr_fast.in
+c class hii pdr 
+c ========================================
+c 
+
+Orion HII region and PDR, simialr to orion_hii_pdr but
+much faster because of fast.ini
+

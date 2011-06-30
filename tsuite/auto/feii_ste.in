@@ -1,0 +1,40 @@
+title thermal equilibrium of FeII in STE limit
+c
+c commands controlling continuum =========
+black 8000 K lte 
+hden 9
+c
+c commands for density & abundances =========
+element iron abundance 2
+c
+c commands controlling geometry  =========
+set dr 0
+stop zone 1
+c
+c other commands for details     =========
+atom feii
+iterate
+c
+c commands controlling output    =========
+save monitors "feii_ste.asr" last
+save feii continuum last "feii_ste.con"
+save feii column density last "feii_ste.col"
+save feii populations all last "feii_ste.pop"
+save FeII continuum "feii_ste.fe2con" last units microns
+c
+c commands giving the monitors    =========
+// >>chng 02 jul 27, increase error from 0.05 to 0.1, As changed,
+// dep coef increased slightly
+monitor feii departure, value = 1 std 0.10
+monitor temperature iron 2 8000 
+c feii_ste.in
+c class function 
+c ========================================
+c 
+
+This model has a very high iron abundance, 100x H, and most Fe is
+in the form of Fe+. It is irradiated by a blackbody in strict
+thermodynamic equilibrium.  We check that the temperature
+of the gas is equal to the radiation temperature, to confirm
+that the thermal properties of the model FeII atom obey thermodynamics.
+ 

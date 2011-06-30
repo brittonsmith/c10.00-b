@@ -1,0 +1,135 @@
+title Hollenbach et al. 1991 low-density PDR
+iterate 
+c
+//>>refer Hollenbach, D., Takahashi, T., & Tielens, A.G.G.M., 1991, ApJ,
+//>>refercon 377, 192-209
+c
+hden 3
+c
+c this is hot star continuum
+black 30000
+intensity  0.2 range  0.4412 to 1 Ryd
+c this will remove all ionizing radiation
+extinguish 24 0
+c
+turbulence 1.5 km/sec
+c first continuum is FIR hot grain continuum produced in 
+c unmodeled HII Region
+// turn on quantum heating
+grains orion, abundance log 0.16 
+// turn on PAHs using default abundance dependence on physical conditions
+grains PAH 
+// turn on the big H2 molecule 
+atom h2 
+init file="ism.ini"
+abundances he -1.01 c -3.52 n-8 o-3.30 ne-8 mg-5.89
+continue si -6.10 s -5.10 cl-7 ar-8 fe -6.60
+normalize to 157.6m "C  2" 
+sphere
+case b
+cosmic rays, background
+c stop when gas is fully neutral
+stop efrac -10
+c this is to stop at an intended place, since results would be
+c very dependent on details if we stop on temperature
+stop thickness 18.954
+c stop when gas is cold
+stop temperature 10 linear
+c add this to mimic unmodelled neutral gas
+double optical depths
+c
+c uv lines are strongly pumped by stellar continuum, break out contribution
+print line pump
+print line optical depths
+print ages
+c
+save overview last "h2_HTT91.ovr"
+save dr "h2_HTT91.dr "
+save molecules last "h2_HTT91.mol"
+save results last "h2_HTT91.rlt"
+save monitors last "h2_HTT91.asr"
+save continuum units microns last "h2_HTT91.con"
+save heating last "h2_HTT91.het"
+save cooling last "h2_HTT91.col"
+save H2 destruction "h2_HTT91.H2d"
+save H2 creation "h2_HTT91.H2c"
+c
+monitor line luminosity "c  2" 157.6m -2.595
+//
+// >>chng 05 jun 21, from -3.38 to -3.36, chng cr, grn deex
+monitor line luminosity "O  1" 63.17m -3.36 error 0.1 
+//
+monitor line luminosity "grgh" 0 -2.549
+//
+monitor temperature carbon 2 68.8
+//
+monitor column H2 21.368 error 0.1
+//
+// >>chng 05 jul 17, from 12.85 to 12.35, first run in 6 mo
+// >>chng 07 jan 10, from 12.35 to 12.44, H3+ to McCall rates
+monitor column CO 12.44 error 0.2 
+//
+// >>chng 05 jul 17, from 660 to 450 first run in 6 mo
+// >>chng 08 dec 08, from 450 to 344, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 344 to 345, average of 9 runs
+monitor nzone 345
+//
+// >>chng 04 dec 08, from 4 to 7 co-ion feedback, check converg
+// >>chng 08 dec 08, from 7 to 3.52, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 3.52 to 14.4, merging newsolvers branch
+// >>chng 09 jan 16, from 14.4 to 14.29 (error 0.05), average of 9 runs
+// >>chng 09 aug 02, from 14.4 to 14.0 (error 0.07), average of 3 runs
+monitor itrzn 14.0 error 0.07
+//
+// these were correct on 2004 dec 30, but command does not yet work
+monitor H2 column density level 0  0  21.26 error 0.1
+monitor H2 column density level 0  1  20.62 error 0.1
+// 
+// >>chng 05 sep 08 from 18.35 to 18.32, first run in some time
+monitor H2 column density level 0  2  18.32 error 0.1
+// 
+// >>chng 05 sep 08 from 17.33 to 17.27, first run in some time
+monitor H2 column density level 0  3  17.27 error 0.1
+//
+// >>chng 05 jul 17, from 16.21 to 16.14, first run in 6 mo
+// >>chng 07 jan 10, from 16.14 to 16.10, H3+ to McCall rates
+// >>chng 08 sep 25, from 16.1 to 16.06, remove damper on line pump (r2367)
+monitor H2 column density level 0  4  16.06 error 0.1
+//
+// >>chng 05 sep 08 from 15.84 to 15.80, first run in some time
+monitor H2 column density level 0  5  15.80 error 0.1
+// 
+// >>chng 05 sep 08 from 14.85 to 14.79, first run in some time
+monitor H2 column density level 0  6  14.79 error 0.1
+monitor H2 column density level 0  7  14.83 error 0.15
+monitor H2 column density level 0  8  13.98 error 0.1
+monitor H2 column density level 0  9  14.14 error 0.15
+//
+// >>chng 05 jul 17, from 13.45 to 13.37, first run in 6 mo
+// >>chng 05 sep 08, from 13.37 to 13.31, first run in some time
+// >>chng 08 aug 02, from 13.31 to 13.25 changes over past month
+monitor H2 column density level 1  0  13.25 error 0.1
+//
+// >>chng 05 sep 08, from 14.00 to 13.91, first run in some time
+// >>chng 08 sep 25, from 13.91 to 13.87, remove damper on line pump (r2367)
+monitor H2 column density level 1  1  13.87 error 0.1
+//
+// >>chng 05 jul 17, from 13.94 to 13.86, first run in 6 mo
+// >>chng 05 sep 08, from 13.86 to 13.80, first run in some time
+// >>chng 08 aug 02, from 13.80 to 13.74 changes over past month
+monitor H2 column density level 1  2  13.74 error 0.1
+//
+// >>chng 05 sep 08, from 14.07 to 13.97, first run in some time
+monitor H2 column density level 1  3  13.97 error 0.1
+//
+c h2_HTT91.in
+
+This is the Hollenbach et al 1991 Low-density PDR
+The case b command appears because the Lyman lines are
+vastly optically thick in this environment. 
+If the command is removed the Lyman lines will be optically thin,
+which will result in fast fluorescent excitation of the
+(nearly totally neutral) hydrogen atom.  
+
+there is very little CO in this model since it is not thick enough
+for the UV pumping lines to become optically thick

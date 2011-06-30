@@ -1,0 +1,122 @@
+title BLR model, density 1e09 cm-3, flux of H-ion phots 1e22 cm2 s-1, Z=20
+c
+c commands controlling continuum =========
+table agn
+phi(h) 22
+c
+c commands for density & abundances =========
+abundances starburst 20 
+hden 9
+c
+c commands controlling geometry  =========
+stop column density 23
+c
+c other commands for details     =========
+init "c84.ini"
+iterate convergence 
+c these are to try to speed things up
+no level2 lines
+c
+c commands controlling output    =========
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+save monitors "blr_n09_p22_Z20.asr" last
+save overview "blr_n09_p22_Z20.ovr" last
+save dr "blr_n09_p22_Z20.dr" last 
+save convergence reason "blr_n09_p22_Z20.cvr"
+c
+c commands giving the monitors    =========
+// >>chng 05 dec 19, from 6.483 to 6.466, update cs Fe10, 11, & 13
+// >>chng 06 jul 18, from 6.466 to 6.511 RP major upgrade VS coll strengths
+// >>chng 07 jan 20, from 6.511 to 6.439, e2 bug
+// >>chng 07 oct 22, from 6.439 to 6.397, resolve l-levels of h-like sequence
+// >>chng 07 dec 23, from 6.397 to 6.425, small correction to h-like collision strengths
+// >>chng 09 feb 23, from 6.425 to 6.474, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 10 aug 12, from 6.474 to 6.433, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor hydrogen 2 temperature 6.433
+//
+// strong blr lines
+//total of sum of both O VI comp
+// >>chng 06 feb 03, from 8.649 to 8.580, guess dr to Badnell mean
+// >>chng 06 jul 18, from 8.580 to 8.543 RP major upgrade VS coll strengths
+// >>chng 06 nov 29, from 8.543 to 8.4289, Badnell DR turned on
+// >>chng 07 jan 20, from 8.429 to 8.692, e2 bug
+// >>chng 07 apr 30, from 8.692 to 8.824, log DR average, use mix S DR
+// >>chng 07 oct 02, increase error, slightly different results with all doubles
+// >>chng 08 feb 20, from 8.824 to 8.776, grain charge transfer changes in ion_solver and iso*
+// >>chng 08 mar 17, from 8.776 to 8.830, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 sep 19, from 8.83 to 8.679, new method for average Badnell DR
+// >>chng 09 feb 23, from 8.679 to 8.46, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 10 aug 12, from 8.46 to 8.624, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "totl"  1035 8.624 0.10
+//
+//total Hydrogen Lyman-alpha 1215.67 
+// >>chng 05 dec 19, from 8.077 to 8.100, update cs Fe10, 11, & 13
+// >>chng 06 feb 03, from 8.100 to 8.030, guess dr to Badnell mean
+// >>chng 06 jul 18, from 8.030 to 7.997 RP major upgrade VS coll strengths
+// >>chng 06 nov 29, from 7.997 to 7.857, Badnell DR turned on
+// >>chng 07 jan 20, from 7.857 to 8.063, e2 bug
+// >>chng 07 dec 06, from 8.063 to 8.096, changes in h-like collisions
+// >>chng 08 mar 17, from 8.096 to 8.069, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 sep 19, from 8.069 to 8.049, new method for average Badnell DR
+// >>chng 09 feb 23, from 8.049 to 7.942, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 10 aug 12, from 7.942 to 8.047, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "totl"  1216 8.047
+//
+//total of sum of both N V comp
+// >>chng 06 feb 03, from 8.371 to 8.303, guess dr to Badnell mean
+// >>chng 06 jul 18, from 8.303 to 8.277 RP major upgrade VS coll strengths
+// >>chng 06 nov 29, from 8.277 to 8.150, Badnell DR turned on
+// >>chng 07 jan 20, from 8.150 to 8.348, e2 bug
+// >>chng 07 apr 30, from 8.348 to 8.383, log DR average, use mix S DR
+// >>chng 08 sep 19, from 8.383 to 8.339, new method for average Badnell DR
+// >>chng 08 sep 25, from 8.339 to 8.315, remove damper on line pump (r2367)
+// >>chng 09 feb 23, from 8.315 to 8.181, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 10 aug 12, from 8.181 to 8.294, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "totl"  1240 8.294
+//
+//total He II Balmer-alpha 1640
+// >>chng 05 mar 02, from 8.047 to 8.079, Romas UTA data update
+// >>chng 06 feb 03, from 8.079 to 7.971, guess dr to Badnell mean
+// >>chng 06 jul 18, from 7.971 to 7.925 RP major upgrade VS coll strengths
+// >>chng 06 nov 29, from 7.925 to 7.724, Badnell DR turned on
+// >>chng 07 jan 20, from 7.724 to 8.018, e2 bug
+// >>chng 07 apr 30, from 8.018 to 8.039, log DR average, use mix S DR
+// >>chng 07 oct 22, from 8.039 to 7.943, resolve l-levels of h-like sequence
+// >>chng 08 mar 17, from 7.943 to 7.920, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 30, from 7.92 to 7.90, H, He topoff change
+// >>chng 08 sep 19, from 7.9 to 7.858, new method for average Badnell DR
+// >>chng 09 feb 23, from 7.858 to 7.657, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 10 aug 12, from 7.657 to 7.805, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "he 2"  1640 7.805 error 0.1
+//
+// >>chng 04 sep 30, rom 6 to 8, improv heat cool conv in conv_base
+// >>chng 08 dec 08, from 8 to 5.481, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 5.481 to 19.15, merging newsolvers branch
+// >>chng 09 jan 16, from 19.15 to 19.36 (error 0.03), average of 10 runs
+// >>chng 09 feb 24, from 19.36 to 19.99, botches due to r2763
+monitor itrzn 19.99
+// 
+// >>chng 06 nov 29, from <5 to <7 Badnell DR turned on
+// >>chng 08 dec 08, from 7 to 4, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 4 to 5, merging newsolvers branch
+// >>chng 09 feb 23, from 5 to 7, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jun 28, from 7 to 8, check convergence outward Hb
+// >>chng 09 jul 14, from 8 to 7, reset autocv to 0.2 since 0.1 developed 32/64 bit distinction
+// >>chng 10 aug 12, from 7 to 4, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor niter 4
+//
+// >>chng 07 jan 20, from 330 to 400 (364) e2 bug
+// >>chng 07 apr 30, from 400 to 450 (429) log DR average, use mix S DR
+// >>chng 08 dec 08, from 450 to 370, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 370 to 371, average of 10 runs
+// >>chng 09 feb 23, from 371 to 334, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 apr 18, from 334 to 330, refactor evaluation of esc dest probs to occur with cooling
+// >>chng 10 aug 12, from 330 to 359, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor nzone 359 
+//
+c blr_n09_p22_Z20.in 
+c class blr 
+c ========================================
+
+This is one of the models that sample the LOC plane.

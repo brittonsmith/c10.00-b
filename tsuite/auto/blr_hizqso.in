@@ -1,0 +1,183 @@
+title high Z quasar cloud
+c
+c commands controlling continuum =========
+table agn
+ionization parameter 1
+c
+c commands for density & abundances =========
+c actual elec den will be about 100x larger 
+hden 8
+abundances starburst 35
+c
+c commands controlling geometry  =========
+c this is more gramage than it appears because of high Z
+stop column density 21
+c
+c other commands for details     =========
+c once elec den fail occurs due to tripping over He+ - He I-front
+c code does recover so not a problem.  The default for this is 10,
+c and is set low because (hopefully) this would never occur
+c hydrogen is a minor constituent in this high metallicity gas
+c the electron density is well above the hydrogen density
+failures 3
+iterate 3 
+c
+c commands controlling output    =========
+normalize "totl" 1909
+save dr "blr_hizqso.dr"
+save convergence reason "blr_hizqso.cvr"
+save overview last "blr_hizqso.ovr"
+save element nitrogen last "blr_hizqso.nit"
+save element chlorine last "blr_hizqso.cl"
+save element iron last "blr_hizqso.fe"
+save element neon last "blr_hizqso.ne"
+save element calcium last "blr_hizqso.ca"
+save element zinc last "blr_hizqso.zn"
+save heating last "blr_hizqso.het"
+save cooling last "blr_hizqso.col"
+save monitors last "blr_hizqso.asr"
+c
+c commands giving the monitors    =========
+// >>chng 01 jan 30, many changed due to better He CT reactions
+// >>chng 01 jul 04, from 7.366 to 7.440, diffuse fields
+// >>chng 02 apr 02, from 7.440 to 7.469, bound compton scattering
+// >>chng 02 jul 23, from 7.469 to 7.110, better brems opacity, inc error
+// >>chng 02 nov 15, from 7.110 to 7.389
+// >>chng 02 dec 11, from 7.389 to 7.342, new hei
+// >>chng 03 sep 03, from 7.342 to 7.391, heavy brems bug
+// >>chng 04 jun 12, from 7.391 to 7.487 chng cont shield fcn
+monitor line luminosity "totl" 1909 7.487 error 0.1
+//
+// >>chng 01 jul 04, from 0.139 to 0.213 diffuse fields
+// >>chng 01 sep 09, from 0.213 to 0.251, Fe dest lya converge better
+// >>chng 02 apr 02, from 0.251 to 0.233, bound compton scattering
+// >>chng 02 jun 13, 0.233 to 0.219, finer zoning, increase error
+// >>chng 02 jul 23, from 0.219 to 0.508, better brems opacity, inc error
+// >>chng 02 nov 15, from 7.144 to 7.183
+// >>chng 04 jun 12, from 7.183 to 7.086 chng cont shield fcn
+monitor line luminosity "totl" 1549 7.086
+//
+// >>chng 02 nov 15, change to luminosity 
+// >>chng 03 jun 02, from 6.791 to 6.846, increase size default H atom
+// >>chng 03 aug 15, from 6.846 to 6.705, add guess to low-T dr for fe
+// >>chng 04 jun 12, from 6.705 to 6.652 chng cont shield fcn
+// >>chng 04 jun 12, from 6.652 to 6.749 chng cont shield fcn
+// >>chng 06 nov 29, from 6.75 to 6.83, Badnell DR turned on
+// >>chng 07 jul 25, from 6.83 to 6.89 bugfix pvh FeII tau r1290
+// >>chng 08 jul 14, from 6.89 to 6.84, level source/sink in ioniz ladder
+monitor line luminosity "totl" 1216 6.84 error 0.1
+//
+// >>chng 01 apr 03, from 1.266 to 1.081, change in convergence criteria
+// >>chng 02 apr 02, from 1.081 to 1.003, bound compton scattering
+// >>chng 02 jul 23, from 1.003 to 2.280, better brems opacity
+// >>chng 02 nov 15, from 7.144 to 7.183
+// >>chng 02 nov 15, change to luminosity 
+// >>chng 03 jun 02, from 7.468 to 7.492, increase size default H atom
+// >>chng 04 jun 12, from 7.492 to 7.579 chng cont shield fcn
+// >>chng 06 nov 29, from 7.579 to 7.605, Badnell DR turned on
+// >>chng 08 apr 20, incr error to more realistic 10%
+// >>chng 08 apr 30, from 7.61 to 7.55, H, He topoff change
+monitor line luminosity "He 2" 303.8A 7.55 0.2
+//
+// >>chng 01 jul 04, from 1.442 to 1.859 diffuse fields
+// >>chng 02 apr 02, from 1.859 to 1.719, bound compton scattering
+// >>chng 02 apr 26, from 1.719 to 1.844, he-iso cooling
+// >>chng 02 jul 23, from 1.844 to 1.194, better brems opacity
+// >>chng 02 nov 15, change to luminosity 
+// >>chng 02 dec 11, from 7.5718 to 7.597, new hei
+// >>chng 03 aug 15, from 7.597 to 7.630, add guess to low-T dr for fe
+// >>chng 03 sep 03, from 7.630 to 7.743, heavy brems bug
+// >>chng 03 nov 08, from 7.743 to 7.715, diff reset bug
+// >>chng 04 jun 12, from 7.715 to 7.850 chng cont shield fcn
+// >>chng 06 dec 17, from 7.85 to 7.88, K. Blagrave add FeIII n-level atom
+// >>chng 08 jul 14, from 7.88 to 7.71, level source/sink in ioniz ladder
+// >>chng 10 aug 12, from 7.71 to 7.65, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "totl" 2326 7.65 error 0.1
+//
+// >>chng 01 jul 04, from 1.136 to 1.202 diffuse fields
+// >>chng 02 jul 23, from 1.202 to 1.135, better brems opacity
+// >>chng 02 nov 15, change to luminosity 
+// >>chng 02 nov 24, from 7.443 to 7.417, new he rec grnd eff
+// >>chng 03 sep 03, from 7.417 to 7.520, heavy brems bug
+// >>chng 03 nov 08, from 7.520 to 7.498, diff reset bug
+// >>chng 04 jun 12, from 7.498 to 7.680 chng cont shield fcn
+// >>chng 06 dec 17, from 7.68 to 7.70, K. Blagrave add FeIII n-level atom
+// >>chng 08 jul 14, from 7.70 to 7.63, level source/sink in ioniz ladder
+monitor line luminosity "n  2" 2141 7.63 error 0.1
+//
+// >>chng 02 jun 13, 2.880 to 2.694, finer zoning
+// >>chng 02 aug 15, 2.694 to 2.83, drift back up
+// >>chng 02 nov 15, change to luminosity 
+// >>chng 03 sep 03, from 7.837 to 7.860, heavy brems bug
+// >>chng 04 jun 12, from 7.860 to 7.964 chng cont shield fcn
+// >>chng 06 nov 29, from 7.964 to 8.010, Badnell DR turned on
+// >>chng 08 jul 14, from 8.01 to 7.98, level source/sink in ioniz ladder
+monitor line luminosity "totl" 1750 7.98 error 0.1
+//
+// >>chng 01 jul 04, from 1.881 to 1.685 diffuse fields
+// >>chng 02 apr 02, from 1.685 to 1.586, bound compton scattering
+// >>chng 02 jul 23, from 1.586 to 3.405, better brems opacity
+// >>chng 02 nov 15, change to luminosity 
+// >>chng 04 jun 12, from 7.660 to 7.695 chng cont shield fcn
+// >>chng 10 aug 12, from 7.695 to 7.674, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "totl" 1240 7.674
+//
+// >>chng 01 jul 04, from 0.955 to 0.755 diffuse fields
+// >>chng 02 jun 13, 0.755 to 0.665, finer zoning
+// >>chng 02 nov 15, change to luminosity 
+// >>chng 03 may 06, lya pesc bug, from 7.195 to 7.133
+// >>chng 04 mar 26, from 7.133 to 7.075, chng sec ion
+// >>chng 04 jun 12, from 7.075 to 7.294 chng cont shield fcn
+// >>chng 06 nov 24, from 7.294 to 7.232, turn on Badnell RR
+// >>chng 08 jul 14, from 7.233to 7.07 level source/sink in ioniz ladder
+monitor line luminosity "totl" 2798 7.07 error 0.1
+//
+// >>chng 01 apr 03, from 0.640 to 0.541 change in convergence criteria
+// >>chng 02 jun 15, from 0.541 to 0.485, slow drift
+// >>chng 02 jul 23, from 0.485 to 0.542, better brems opacity
+// >>chng 02 nov 15, change to luminosity 
+// >>chng 03 oct 17, from 7.099 to 7.141, feii cooling, ots cleanup 
+// >>chng 04 jun 12, from 7.141 to 7.250 chng cont shield fcn
+monitor line luminosity "totl" 1397 7.250 error 0.1
+//
+// >>chng 02 jun 13, 310 to 380, finer zoning
+// >>chng 03 mar 13, 380 to 410, helike changes...this may be a problem?
+// >>chng 03 dec 07, from 410 to 550, incr dr resol metals
+// >>chng 05 dec 22, from 550 to 420 (371), rationalize zone asserts
+// >>chng 08 dec 08, from 420 to 390, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 390 to 394, merging newsolvers branch
+// >>chng 09 feb 23, from 394 to 398, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jun 15, from 398 to 410, gradual approach to outer edge
+monitor nzone 410 
+//
+// >>chng 02 dec 12, from 6.2 to 8, actual value 7.4, changed
+// conv criteria in convpres...
+// >>chng 02 dec 20, from 8 to 10, big eden jumps TODO
+// >>chng 03 feb 14, fomr 10 to 12 (11.1), one change in chem network
+// >>chng 03 may 19, from 12 to 8, actually 5.6
+// >>chng 03 aug 22, from 7 to 6
+// >>chng 04 feb 15, from 6 to 5, conv ioniz loop auger
+// >>chng 07 dec 22, from 5 to 5.5, drifted up slightly
+// >>chng 08 jul 14, from 5.5 to 9 (8.3) level source/sink in ioniz ladder
+// >>chng 08 dec 08, from 9 to 5.131, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 5.131 to 13.49, merging newsolvers branch
+// >>chng 09 jan 16, from 13.49 to 13.47, average of 10 runs
+// >>chng 09 jan 22, from 13.47 to 13.92, some minor botches as a result of r2655
+// >>chng 09 feb 23, from 13.92 to 13.53, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jun 17, from 13.53 to 13.8 adjust approach to outer eduge
+// >>chng 09 sep 30, from 13.8 to 13.9, NI pumping
+// >>chng 09 oct 06, from 13.9 to 13.24, [NI] pumping changes
+monitor itrzn 13.24 
+c 
+c blr_hizqso.in
+c class blr 
+c ========================================
+
+This is a model of a very high metallicty BLR cloud.  It checks the
+intensities of some of the brigher lines, and is a check that the code
+can converge a cloud with this high Z.
+
+Secondary ionization is very important when H is highly ionized,
+due to very high He abundance.  Sec ionization becomes important
+at the He+ - He ionization front, where H+/H is 1e-5.
+

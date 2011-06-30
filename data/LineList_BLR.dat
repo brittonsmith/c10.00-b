@@ -1,0 +1,293 @@
+# version of 2009 Jun 10, improve line precision so that 
+# set line precision 6 can be used
+# version of 2003 oct 27, cleaned up some lines whose wl had changed
+#
+# for information on the format of this file, see readme_LineList_dat.txt
+# this is the standard list list, appropriate for dense gas like the BLR,
+# which will use used if no name appears
+#
+# Begin CLOUDY grid output line list...
+# 2 X-ray lines:
+FeKa     1.78       Iron K-alpha line (near 6.4 keV)
+o  8    18.9732     O VIII 19A H-like Lya
+#
+# UV lines: lambda > 600 Angstroms
+mg10   609.793A     total Mg X 610
+#inwd  609.793A     inward flux of Mg X 610
+mg10   624.941A     total Mg X 625
+#inwd  624.941A     inward flux of Mg X 625
+totl   615     total of sum of both Mg X components
+o  5   629.7A     total O V 630
+s  4   655.072A     total S IV 655; level 2 line
+n  3   678.210A     total N III 679; level 2 line
+o  3   698.231     total O III 703; level 2 line
+s  4   737.3     total S IV 737; level 2 line
+n  3   752.112     total N III 764; level 2 line
+n  4   765.1     total N IV 765
+ne 8   770.404     total Ne VIII 770
+ne 8   780.324     total Ne VIII 780
+totl   774     total of sum of both Ne VIII component
+#inwd   774     inward flux of sum of both Ne VIII components
+s  5   786.473     total S V 786
+o  4   789.4     total O IV 789
+#inwd   789.4     inward flux of O IV 789
+s  4   798.831     total S IV 799
+O  2   833.802     total O II 834A
+o  3   834.5     total O III 834
+totl   895     total Ne VII] 895
+s  6   933.378     total S VI 933
+s  6   944.523     total S VI 944
+totl   933     total of sum of both S VI components
+p  4   950.661     total P IV 951; level 2 line
+h  1   972.543     total Lyman-gamma 973
+#inwd   972.543     inward flux of Lyman-gamma 973
+c  3   977     total C III 977
+#inwd   977     inward flux of C III 977
+n  3   991     total N III 990
+#inwd   991     inward flux of N III 990
+h  1  1025.73     total Lyman-beta 1025
+#inwd  1025.73     inward flux of Lyman-beta 1025
+o  6  1031.93     total O VI 1032
+o  6  1037.62     total O VI 1037
+totl  1035     total of sum of both O VI components
+#inwd  1035     inward flux of sum of both O VI components
+he 2  1085.03     total He II Balmer-gamma 1085
+n  2  1085     total N II 1085
+s  4  1086.27     total S IV 1086; level 2 line
+p  5  1121.30     total P V 1121; level 2 line
+fe 3  1125.79     total Fe III 1122
+ne 5  1141     total Ne V 1141
+c  3  1176     total C III* 1176 (excited state)
+#inwd  1176     inward flux of C III* 1176
+s  3  1197.56     total S III 1198
+totl  1198     total S V 1198
+si 3  1207     total Si III 1207
+inci  1215     incident continuum at 1215 Angstroms in units of nuF(nu)
+H  1  1215.68     total Hydrogen Lyman-alpha 1215.67 
+inwd  1215.68     inward flux of Lyman-alpha
+he 2  1215.23     total He II Balmer-beta 1216
+#inwd  1215.23     inward flux of He II Balmer-beta 1216
+totl  1218     total of sum of O V] 1218 + [O V] 1218
+#inwd  1218     inward flux of O V]
+n  5  1239     total N V 1238.82
+n  5  1243     total N V 1242.80
+totl  1240     total of sum of both N V components
+#inwd  1240     inward flux of sum of both N V components
+s  2  1256     total S II 1256
+si 2  1263.32     total Si II 1260 + 1263
+6lev  1304     total O I 1302 + 1305  
+si 2  1307.66     total Si II 1308
+c  2  1335     total C II 1335 + 1336
+si 4  1394     total Si IV 1394
+si 4  1403     total Si IV 1403
+totl  1397     total of sum of both Si IV components
+#inwd  1397     inward flux of sum of both Si IV components
+totl  1402     total O IV] 1402; 5 components to line: 
+#
+# 1397.2, 1399.77, 1401.16, 1404.81, 1407.39 --- not computed individually
+#inwd  1402    inward flux of O IV]
+totl  1406     total S IV 1406
+totl  1486     total of sum of N IV] 1486 + [N IV]
+N  4  1485     most forbidden of the pair
+#N  4 1486      stonger of the pair, at high density this will be the same as total	
+#inwd  1488     inward flux of N IV]
+si 2  1531     total Si II 1527 + 1533
+c  4  1548     total C IV 1548.19
+c  4  1551     total C IV 1550.77
+totl  1549     total of sum of both C IV components
+inwd  1549     inward flux of sum of both C IV components
+he 2  1640     total He II Balmer-alpha 1640
+inwd  1640     inward flux of He II Balmer-alpha 1640
+o  3  1661     total O III] 1661
+#inwd  1661     inward flux of O III] 1661
+o  3  1666     total O III] 1666
+#inwd  1666     inward flux of O III] 1666
+totl  1665     total of sum of both O III] components
+al 2  1670.79     total Al II 1670.8; level 2 line
+s  3  1720     total S III 1720
+totl  1750     total N III] 1750 (all components; not computed seperately)
+#inwd  1750     inward flux of N III]
+fe 2  1786     total Fe II 1787 (probably selectively excited)
+si 2  1813.99     total Si II 1814 (1808.0 + 1816.9 + 1817.5)
+al 3  1855     total Al III 1855
+al 3  1863     total Al III 1863
+totl  1860     total sum of both Al III components
+#inwd  1860     inward flux of sum of both Al III components
+totl  1888     total of sum of Si III] 1892 + [Si III]
+Si 3  1883     the most forbidden of the doublet
+#inwd  1892     inward flux of Si III] 1892
+totl  1909     total of sum of C III] 1908.73 + [C III]
+#inwd  1910     inward flux of C III] 1908.73
+n  2  2141     total sum of N II] 2139.01, 2142.77
+o  3  2321     single line from 5-level atom
+totl  2326     total C II] 2324.69 + 2328.12
+totl  2335     total Si II] 2335
+totl  2665     total of sum of Al II] 2669 + [Al II] 2660
+al 2  2660     emission from most forbidden line of multiplet
+mg 2  2795.53     total Mg II 2796 of the doublet
+mg 2  2802.71     total Mg II 2803 of the doublet
+totl  2798     total of sum of both Mg II components
+inwd  2798     inward flux of sum of both Mg II components
+#
+# optical emission lines and continua
+he 2  3203.30     total He II Paschen-beta line
+BA C     0     total of integrated H balmer continuum
+BaC   3646     total nuFnu of Balmer jump at 3646 (the head)
+#h  1  3835     total H-7 (H-Balmer)
+He 1  3888.63     total H-6 (H-Balmer)
+ca2k  3934     total Ca II 3934 emission
+ca2h  3969     total Ca II 3969 emission
+#h  1  3970     total H-epsilon
+h  1  4101.76     total H-delta
+#inwd  4101.76     inward flux of H-delta
+h  1  4340.49     total H-gamma
+#inwd  4340.49     inward flux of H-gamma
+ca b  4471.49     total He I 4471, case B approximation
+he 2  4686.01     total He II 4686 (Paschen-alpha)
+inwd  4686.01     inward flux of He II 4686
+H  1  4861.36     total H-beta 4861
+inwd  4861.36     inward flux of H-beta 4861
+He 1  5875.61     total He I 5876
+#inwd  5875.61     inward flux of He I 5876
+na 1  5891.94     total Na ID 5892
+h  1  6562.85     total H-alpha 6563
+#inwd  6562.85     inward flux of H-alpha 6563
+#
+# near IR emission lines and continua
+k  1  7676.23     total K I 7745
+6lev  8446     total O I 8446
+ca2x  8498     total Ca II 8498
+ca2y  8542     total Ca II 8542
+ca2z  8662     total Ca II 8662
+PA C     0     total of integrated H Paschen continuum
+totl 10829.9     total He I 10,830A, all three lines within multiplet
+h  1   1.87511m    total H Paschen-alpha
+#
+# The following 11 "lines" represent emission by a "6-level" Fe II atom
+# of Hamann & Ferland, a modification of the Wills, Netzer, and Wills.
+# See HAZY for some details.
+fe 2  6200
+fe 2  4300
+fe 2  2400
+fe 2  1080
+fe 2  1500     
+fe 2 11500
+fe 2  2500
+fe 2  2300
+fe 2  8900
+fe 2  1216     pumping of the Fe II atom via H Lya 1216
+fe2c     0     cooling from the Fe II atom
+#
+# Some high critical density forbidden lines
+ne 5  3426     total [Ne V] 3426
+ne 3  3869     total [Ne III] 3869
+totl  4363     total [O III] 4363
+o  3  5007     total [O III] 5007
+Fe14  5303     total [Fe XIV] 5303
+o  1  5577     total [O I] 5577
+Fe 7  6087.47     total [Fe VII] 6087
+o  1  6300     total [O I] 6300
+Fe10  6373.35     total [Fe X] 6373
+Fe11  7892.30     total [Fe XI] 7892
+#
+# an optical incident continuum bin in units of nuFnu
+inci  4860     incident continuum at 4860 Angstroms in units of nuF(nu)
+#
+# The following are the total non-line emission from the cloud 
+# (diffuse + reflected continuum) at a given wavelength in Angstroms.
+# All have units of nuF(nu).
+nFnu 122.4m  microns 
+#
+nFnu  8329.68   A
+nFnu  8078.61 
+nFnu  6209.66 
+nFnu  4885.36
+nFnu  3704.34
+nFnu  3587.67 
+nFnu  2392.03
+nFnu  2071.34
+nFnu  2052.68 
+nFnu  1793.44
+nFnu  1585.12
+#
+# In optically thick clouds of significant H I columns, Lya "Rayleigh
+# scattering" of incident continuum becomes important beginning here and
+# extending down to the Lyman limit.
+#
+nFnu  1458.33
+nFnu  1356.96  
+nFnu  1297.29
+nFnu  1262.79  
+nFnu  1218.08
+nFnu  1196.33
+nFnu  1175.06
+nFnu  1143.64  
+nFnu  1113.22
+nFnu  1103.23
+nFnu  1073.86  
+nFnu  1064.34
+nFnu  1035.92  
+nFnu  1000
+nFnu   925.144
+nFnu   897.8  
+nFnu   760.023
+nFnu   701.514  
+nFnu   608.160
+nFnu   575.146
+nFnu   511.948  
+nFnu   496.874  
+nFnu   399.153
+#
+# The following are the inward directed non-line emission from the cloud 
+# (diffuse + reflected continuum) at a given wavelength in Angstroms.
+# All have units of nuF(nu).
+#
+#InwT 1.119m
+#InwT  8220
+#InwT  8205
+#InwT  6209
+#InwT  4885
+#InwT  3649
+#InwT  3644
+#InwT  2392
+#InwT  2071
+#InwT  2052
+#InwT  1793
+#InwT  1585
+#InwT  1458
+#InwT  1356
+#InwT  1297
+#InwT  1262
+#InwT  1218
+#InwT  1196
+#InwT  1175
+#InwT  1143
+#InwT  1113
+#InwT  1103
+#InwT  1073
+#InwT  1064
+#InwT  1035
+#InwT  1000
+#InwT   897.8
+#InwT   925.1
+#InwT   760
+#InwT   701.5
+#InwT   608.2
+#InwT   575.1
+#InwT   399.2
+#
+# lines from he-like ions
+#>>chng 06 aug 17, mean wl of multiplet now used
+TOTL  5484.32A Li 2
+TOTL  3721.72A Be 3
+TOTL  2824.03A B  4
+TOTL  2275.25A C  5
+TOTL  1903.86A N  6
+TOTL  1633.92A O  7
+TOTL  1408.98A F  8
+TOTL  1266.26A Ne 9
+TOTL  1134.43A Na 10
+TOTL  1025.02A Mg 11
+# end dense line list
+# the file ends with the end of file, or a cr in the first col
+

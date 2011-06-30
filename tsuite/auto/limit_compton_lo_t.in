@@ -1,0 +1,49 @@
+title test low-T Compton energy exchange
+c
+c commands controlling continuum =========
+black linear 3 lte
+brems 5
+ionizat -5
+c
+c commands for density & abundances =========
+hden -10
+init file "hheonly.ini"
+eden 0
+c
+c commands controlling geometry  =========
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+set temperature convergence 0.0001
+iterate 3
+c
+c commands controlling output    =========
+save monitors last "limit_compton_lo_t.asr"
+c
+c commands giving the monitors    =========
+monitor temperature hydrogen 2 3 linear error 0.01
+//
+// >>chng 01 may 07, chng in He+ H ct rate, from -44.962 to -44.610
+// >>chng 02 nov 03, from -44.610 to -45.6454, new H2+ rate and high abund
+// so much less atomic H
+// >>chng 02 dec 10, from -45.645 to -45.835, better convergence, incr error
+// >>chng 02 dec 21, from -45.835 to -44.612, new hmole
+// >>chng 04 feb 21, from -44.612 to -47.819, add on CT recom with H-
+// >>chng 07 oct 22, from -47.819 to -47.654, resolve l-levels of h-like sequence
+monitor line luminosity "h  1" 4861 -47.654 error 0.2
+//
+// >>chng 04 jun 28, from -11.850 to -15.097, include H2 in fraction
+// >>chng 05 nov 25, from -15.097 to -15.075, NA add mole grain freeze out
+monitor ioniz hydrogen 2 -15.075
+c limit_compton_lo_t.in
+c class limit 
+c ========================================
+c 
+
+This tests the code in the low temperature Compton limit.  The gas is
+illuminated by a 3 K blackbody in thermodynamic equilibrium. 
+The equilibrium temperature should be exactly 3 K. 
+It is necessary to add an extra component of free electrons to
+test the code in this limit with the eden command.  
+

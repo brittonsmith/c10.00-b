@@ -1,0 +1,70 @@
+title test ots, inward fractions for pure hydrogen, open geo, filling factor
+c
+c commands controlling continuum =========
+ionization -2
+blackbody 40000
+c
+c commands for density & abundances =========
+hden 5
+init file "honly.ini"  
+c
+c commands controlling geometry  =========
+stop efrac 0.05 %stop when 5 percent ionized 
+constant temper 7500
+filling factor 0.01
+c
+c other commands for details     =========
+c must iterate to get inward line fractions, that are asserted below
+iterate 
+diffuse ots
+c not iterating does not affect the solution
+no level2
+no induced processes (OK) 
+c
+c commands controlling output    =========
+print diffuse continuum
+print line inward
+save overview  "h_otsopen.ovr" last
+save dr  "h_otsopen.dr" last
+save monitors "h_otsopen.asr" last
+save continuum "h_otsopen.con" last units angstrom
+normalize to "Ca B" 4861 = 1 % normalize to exact result 
+c
+c commands giving the monitors    =========
+c this is an open geometry, so do not expect H atom to exactly be case B
+c due to Lyman line leakage.  we iterated, so have a good estimate of
+c inward and outward fractions, which we test 
+monitor line "Q(H)" 4861 >1.0  %
+// 
+// >>chng 08 apr 30, from 1.00 to 1.057 H, He topoff change
+monitor line "Q(H)" 4861 1.057 %
+// 
+monitor line "Q(H)" 4861 < 1.1  %>but not a lot less
+// 
+//>>chnn 99jun26, error had been just under 2%, increased above it when optical
+// depths of 2s and 2p were brought together, so increased error
+// >>chng 08 apr 30, from 1 to 0.968 H, He topoff change
+monitor line "H  1" 4861 = 0.968 error 0.03 %no surprise if not unity, since open
+// 
+// >>chng 08 apr 30, from 0.5 to 0.484 H, He topoff change
+monitor line "Inwd" 4861 =0.484 error 0.03 %no surprise if not unity, since open
+// 
+monitor line "nFnu" 3588 = 18.0 error 0.02 %total Balmer continuum rel to h-beta
+monitor line "InwT" 3588 = 9.00 error 0.02 %inward Balmer continuum rel to h-beta
+// 
+// >>chng 01 aug 23, from 18.26 to 18.633, 2x better continuum resolution
+monitor line "BaC " 3646 = 18.633 error 0.02%residual Balmer continuum rel to h-b
+// 
+// >>chng 01 aug 23, from 9.07 to 9.319 2x better continuum resolution
+monitor line "cout" 3646 = 9.319 error 0.02 %Balmer continuum rel to h-beta
+// >>chng 01 aug 23, from 9.07 to 9.319 2x better continuum resolution
+monitor line "cref" 3646 = 9.319 error 0.02 %Balmer continuum rel to h-beta
+c h_otsopen.in
+c class limit 
+c ========================================
+c 
+
+This tests the total emission from a hydrogen Stromgren sphere
+using the OTS approximation.  The conservation of the total number
+of ionizing photons, and the emitted spectrum, are all checked.
+

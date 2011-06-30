@@ -1,0 +1,75 @@
+title He-like argon emission
+c
+c commands controlling continuum =========
+laser 600
+ionization -1
+c
+c commands for density & abundances =========
+hden 7
+c include lots of the element we are testing and set the ionization 
+c to be dominated by the correct ion stage
+element argon abundance -2
+element argon ionization -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 0 -5
+init file "ism.ini"
+element helium off
+element nitrogen off
+element carbon off
+element neon off
+element magnesium off
+element silicon off
+element sulphur off
+element oxygen off
+element iron off
+c
+c commands controlling geometry  =========
+set dr -12
+stop zone 1
+c
+c other commands for details     =========
+atom he-like levels 10
+atom he-like collapsed levels 20
+constant temper 5
+iterate
+c
+c commands controlling output    =========
+print he-like departure argon
+print line faint -2
+save monitors "helike_ar.asr"
+c This is Lyman alpha
+normalize to "Ar17" 3.949A
+c
+c commands giving the monitors    =========
+//>>chng 05 sep 5, wl from 3.947 to 3.949
+// >>chng 10 aug 12, from -19.31 to -24.27, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "Ar17"  3.949A -24.27
+// 
+c 3.994A is 2^3S to ground
+//>>chng 05 sep 5, wl from 3.996 to 3.994
+// >>chng 06 aug 18, from 1.7 to 2.28, RP update trans prob 2S to grnd
+monitor line "Ar17"  3.994A 2.28
+// 
+c Totl is 2^3P to ground
+// >>chng 06 aug 18, from 2.5 to 1.90, RP update trans prob 2 to grnd
+monitor line "TOTL"  3.969A 1.90
+// 
+c 3.365A is 3^1P to ground
+//>>chng 05 sep 5, wl from 3.368 to 3.365
+monitor line "Ar17"  3.365A 0.215
+// 
+c 21.54A is 3^3P to 2^3S
+//>>chng 05 sep 5, wl from 21.47 to 21.54
+// >>chng 09 feb 24, from 0.084 to 0.08, botches due to r2763
+monitor line "Ar17"  21.54A 0.08
+// 
+c 22.24A is 3^3D to 2^3P
+//>>chng 05 sep 5, wl from 22.30 to 22.24
+monitor line "Ar17"  22.24A 0.28
+c 
+c helike_ar.in
+c class limit 
+c ========================================
+c 
+
+test He-like emission for argon
+
+

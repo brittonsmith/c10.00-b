@@ -1,0 +1,60 @@
+title test subplex optimizer
+c spectrum computed with hden 5, temp 4
+c subplex, phymir, amoeba, powell
+c
+c commands controlling continuum =========
+black 40000 K
+ionization par -3
+c
+c commands for density & abundances =========
+hden 4 vary
+init file "hheonly.ini"
+element oxygen on 
+c
+c commands controlling geometry  =========
+Case B
+stop zone 1
+c
+c other commands for details     =========
+constant temper 4.3 vary
+optimize subplex
+optimize iteration 100
+// >>chng 06 aug 11, add this since did not converge to correct value
+optimize tolerance 0.01
+c the following spectrum was derived by running this sim at hden 5 and t=4
+c resulting eden was 5.039 and T=4, which we shall assert that we find
+c >>chng 06 apr 03, backdate to old [OII] As and rederive spectrum
+// >>chng 07 oct 12, retune after adding Case B
+optimize lines
+o ii 3729 0.1432
+o ii 3726 0.4055
+o ii 7323 0.5281
+o ii 7332 0.4257
+o  3 5007 3.6189
+totl 4363 0.0342
+end of lines
+c
+c commands controlling output    =========
+print line faint -2
+c
+c commands giving the monitors    =========
+// >>chng 5.042 to 5.055, change in H line pumpin
+// >>chng 06 aug 02, from 5.039 to 5.016 update O+2, N+2 CT
+// >>chng 06 nov 29, from 5.016 to 5.000, Badnell DR turned on
+// >>chng 07 oct 12, retune after adding Case B
+// >>chng 10 feb 14, from 5.05 to 5.085, update O atomic data
+monitor eden 5.085 
+// 
+monitor temperature hydrogen 2 4 
+save monitors "optimize_subplex.asr"
+c
+c optimize_subplex.in
+c class optimizer 
+c ========================================
+c 
+
+This checks whether the optimizer can recover a known solution.  The line
+spectrum was calculated at T = 1e4 K and and n_H=1e5 cm^-3, 
+and resulted in the given electron 
+density.  The model optimize_phymir.in is a copy of this file.
+

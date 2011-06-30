@@ -1,0 +1,108 @@
+title Starburst 99 SED
+c
+c commands controlling continuum =========
+c read the table starburst and interploate to an age of 1e8 years
+table star log age=8 "starburst99.mod"
+luminosity 43
+c add background continuum - starburs 99 does not extend
+c into fir so code would complain about zero continuum
+c adding the cosmic background stops this complaint
+background
+c
+c commands for density & abundances =========
+hden 5
+c
+c commands controlling geometry  =========
+stop zone 1
+radius 20
+c
+c other commands for details     =========
+constant temper 4
+c
+c commands controlling output    =========
+save continuum "stars_starburst99.con" last
+save monitors "stars_starburst99.asr" last
+save continuum last "stars_starburst99.con" units microns
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 35.9 to 35.95, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  35.95
+monitor line luminosity "nInu" 122.4m  41.868
+monitor line luminosity "nInu" 60.83m  41.8209
+monitor line luminosity "nInu" 41.22m  41.708
+monitor line luminosity "nInu" 30.87m  41.606
+monitor line luminosity "nInu" 24.78m  41.526
+monitor line luminosity "nInu" 24.30m  41.521
+monitor line luminosity "nInu" 22.83m  41.4979
+monitor line luminosity "nInu" 21.42m  41.4745
+monitor line luminosity "nInu" 21.12m  41.4709
+monitor line luminosity "nInu" 19.62m  41.4432
+monitor line luminosity "nInu" 17.65m  41.4014
+monitor line luminosity "nInu" 17.37m  41.3935
+monitor line luminosity "nInu" 15.69m  41.3536
+monitor line luminosity "nInu" 14.60m  41.325
+monitor line luminosity "nInu" 12.43m  41.260
+monitor line luminosity "nInu" 11.40m  41.2263
+monitor line luminosity "nInu" 10.46m  41.1924
+monitor line luminosity "nInu" 9.480m  41.1522
+monitor line luminosity "nInu" 9.325m  41.1461
+monitor line luminosity "nInu" 8.210m  41.0937
+monitor line luminosity "nInu" 7.580m  41.0637
+monitor line luminosity "nInu" 7.050m  41.0340
+monitor line luminosity "nInu" 4.114m  40.9439
+monitor line luminosity "nInu" 2.324m  41.1728
+monitor line luminosity "nInu" 1.643m  41.4079 
+monitor line luminosity "nInu" 1.480m  41.4328
+monitor line luminosity "nInu" 1.436m  41.557
+monitor line luminosity "nInu" 1.119m  41.6646
+monitor line luminosity "nInu"  8330A  41.7677
+monitor line luminosity "nInu"  8079A  41.9628
+monitor line luminosity "nInu"  6210A  42.0764
+monitor line luminosity "nInu"  4885A  42.2286
+monitor line luminosity "nInu"  3704A  42.3875
+monitor line luminosity "nInu"  3588A  42.6786
+monitor line luminosity "nInu"  2430A  42.8336
+monitor line luminosity "nInu"  2392A  42.8358
+monitor line luminosity "nInu"  2071A  42.9147
+// >>chng 10 aug 12, from 42.89 to 42.93, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu"  2053A  42.93 
+monitor line luminosity "nInu"  1793A  43.0510
+monitor line luminosity "nInu"  1585A  43.1275
+monitor line luminosity "nInu"  1458A  43.1921
+monitor line luminosity "nInu"  1357A  43.2445
+monitor line luminosity "nInu"  1297A  43.2687
+monitor line luminosity "nInu"  1263A  43.2750
+monitor line luminosity "nInu"  1218A  43.2147
+monitor line luminosity "nInu"  1196A  43.2793
+monitor line luminosity "nInu"  1175A  43.2584
+monitor line luminosity "nInu"  1144A  43.3510
+monitor line luminosity "nInu"  1113A  43.3638
+monitor line luminosity "nInu"  1103A  43.3722
+monitor line luminosity "nInu"  1074A  43.3843
+monitor line luminosity "nInu"  1064A  43.3794
+monitor line luminosity "nInu"  1036A  43.3890
+monitor line luminosity "nInu"  1000A  43.3598
+monitor line luminosity "nInu" 925.1A  43.1445
+monitor line luminosity "nInu" 897.8A  43.0405
+monitor line luminosity "nInu" 760.0A  43.0476
+monitor line luminosity "nInu" 701.5A  43.0487
+monitor line luminosity "nInu" 608.2A  42.9989
+monitor line luminosity "nInu" 575.1A  43.0924
+monitor line luminosity "nInu" 511.9A  43.0970
+monitor line luminosity "nInu" 496.9A  43.0174
+monitor line luminosity "nInu" 399.2A  42.8800
+c
+c stars_starburst99.in
+c class stars 
+c ========================================
+c 
+
+this is a demonstration of the use of a Starburst 99 spectrum.  It was
+provided to me by anand Srianand, and we used it in Srianand et al. 2003.
+A constant temperature is set since this is to test shape of continuum
+not thermal physics. It also tests access to user-supplied grids as the
+mechanism is the same.
+
+
+
+

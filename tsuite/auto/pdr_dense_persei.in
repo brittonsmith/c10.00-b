@@ -1,0 +1,104 @@
+title dense phase zeta persei cloud
+c
+c density and abundances ==========
+c density of dense phase from Table 2 of Le Petit paper ========
+hden 4.3
+c 
+c abundandces from Table 1 of Le Petit paper ==========
+element carbon abundance 0.000132 linear
+element helium abundance 0.10 linear
+element oxygen abundance 0.00032 linear
+element nitrogen abundance 0.000075 linear
+element sulphur abundance 0.0000186 linear
+element silicon abundance 0.000029 linear
+c set abundance of all other elements to zero ====================
+element copper off
+element magnesium off
+element manganese off
+element sodium off
+element chlorine off
+element vanadium off
+element potassium off
+element phosphorous off
+element calcium off
+element iron off
+element zinc off
+element neon off
+element argon off
+element fluorine off
+element aluminum off
+element boron off
+element lithium off
+element beryllium off
+element scandium off
+element nickel off
+element titanium off
+element chromium off
+element cobalt off
+c do not use Federman rates for this model ==============
+set federman chemistry off
+c use standard ism grain size distribution ============
+grains ism 
+c 
+c command controlling the continuum, for this model is Draine 1978 field ====
+table draine 0.5 linear
+c make sure no H-ioinizing radiation strikes the cloud
+extinguish 24 
+c 
+c fix the temperature to 20 K =============
+constant temperature 20
+c stop at a radius of 4.3e-4 parsecs ============ 
+stop thickness 0.00043 parsecs linear
+c Le Petit model does not consider ices, so turn this off ============
+no grain molecules
+c turn on cosmic rays =========
+cosmic rays background
+c Set cosmic ray ionization rate to Table 2 of Le Petit paper ========
+set csupra -15.6
+c Allow calculation to go extend into cold environment ============
+stop temperature linear 3
+c 
+c commands controlling output ============
+save overview "pdr_dense_persei.ovr"
+save dr "pdr_dense_persei.dr"
+save molecules "pdr_dense_persei.mol"
+save heating "pdr_dense_persei.het"
+save cooling "pdr_dense_persei.col"
+save monitors "pdr_dense_persei.asr"
+c 
+c commands giving the monitors ==========
+monitor C2 column density 12.908 error 0.2 
+monitor C3 column density 11.866 error 0.2
+monitor hydrogen 1 temperature 20K 
+// 
+// >>chng 06 mar 02, from 13.30 to 13.46, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+monitor CO column density 13.46 error 0.2
+// 
+// >>chng 08 dec 08, from 300 to 226, upper limit -> equals (r2515)
+// >>chng 09 jun 15, from 226 to 244, gradual approach to outer edge
+monitor nzone 244 error 0.01
+//
+// >>chng 08 dec 08, from 10 to 3.898, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 3.898 to 5.628, merging newsolvers branch
+// >>chng 09 jan 16, from 5.628 to 5.645, average of 10 runs
+// >>chng 09 feb 24, from 5.645 to 5.54, botches due to r2763
+// >>chng 09 jun 15, from 5.54 to 5.406, gradual approach to outer edge
+// >>chng 09 jun 26, from 5.406 to 5.107, remove several dampers
+monitor itrzn 5.107 error 0.02
+//
+c pdr_dense_persei.in
+c class pdr
+c ====================================
+
+This is the dense phase model presented by LePetit, Roueff, and Herbst 
+in order to reproduce C2 and C3 column densities observed along the line
+of sight to zera persei.  This is our attempt at reproducing their calculation.
+This is the dense molecular phase, not the phase that produces H3+ 
+
+// >>refer	model	pdr	Le Petit, F., Roueff, E., & Herbst, E. 2004,
+// >>refercon	A&A, 417, 993
+
+If you do a thermal equilibrium calculation by removing the constant temperature
+command the kinetic temperature will be about three times larger than
+assumed in their paper.

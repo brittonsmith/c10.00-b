@@ -1,0 +1,136 @@
+title H2 with background cosmic ray ionization
+c
+c commands controlling continuum =========
+c this is hot star SED
+black 30000
+intensity  -5. range  0.4412 to 1 Ryd
+c this will remove all ionizing radiation
+extinguish 24 0
+c background CR ionization rate of 2.5e-17 s^-1,
+cosmic rays, background
+c
+c commands for density & abundances =========
+hden 5
+c
+c commands controlling geometry  =========
+set dr 0 
+stop zone 5 
+stop temperature 400 
+c
+c other commands for details     =========
+c failures should not occur
+failures 1 
+atom h2 
+iterate
+c want clean test of CR physics so set constant kinetic temperature
+constant temperature 500K
+c must turn off line photoexcitation and Solomon process
+c since we want to test cr heating and ionization
+no induced processes
+c
+c commands controlling output    =========
+print column density 
+print ages
+save overview "h2_cr.ovr" last
+save h2 lines "h2_cr.lin" last all 
+save h2 rates "h2_cr.rat" last
+save h2 column density "h2_cr.col" last
+save monitors "h2_cr.asr" last
+c
+c commands giving the monitors    =========
+//
+// >>chng 08 jul 12 add cosmic ray heating rate
+monitor line luminosity "CR H" 0 -21.94 err 0.1
+// 
+// >>chng 08 jul 12 metal heating is most of total heating
+monitor line luminosity "TotM" 0 -21.13 err 0.1
+//
+// >>chng 06 mar 02, add this assert
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 0.466 to 0.578
+// >>chng 06 nov 24, from 0.578 to 0.547, turn on Badnell RR
+monitor eden 0.547 
+// 
+// >>chng 03 feb 22, from 4.37 to 4.696, use big h2 mole rates
+// >>chng 03 sep 02, from 4.696 to 5.395, do 5 zones
+// >>chng 04 jan 28, from 5.395 to 5.345, cr background heating
+// >>chng 04 mar 24, from 5.345 to 5.378, finer convergence
+// >>chng 04 may 09, from 5.378 to 5.315, chng supra elec excit of h2
+// >>chng 04 may 25, from 5.315 to 5.378, chng supra elec excit of h2
+// >>chng 04 may 29, from 5.378 to 4.322, NA update H chem, GS update H2 rate
+// >>chng 04 jul 02, from 4.322 to 3.395, O H ct
+// >>chng 04 jul 03, from 3.395 to 3.352, NA update H, CO chem net
+// >>chng 04 oct 05, from 3.352 to 4.075, turn big H2 back on (had been off)
+// >>chng 05 aug 03, from 4.075 to 3.359, redo cr rates in big mol, inc trip
+// >>chng 05 aug 09, from 3.359 to 3.385, NA chng Federman rate, incr err
+// >>chng 06 mar 02, from 3.39 to 4.01, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 4.01 to 3.53
+monitor H2 column 3.53 error 0.1
+//
+// >>chng 03 aug 08, add this one
+// >>chng 03 aug 22, Nick Abel rewrite CO network
+// >>chng 03 sep 02, from 0.766 to 1.480, do 5 zones
+// >>chng 03 sep 10, from 1.48 to 1.506, better div into H2* 
+// >>chng 03 sep 11, from 1.506 to 1.392, better div into H2*, incr error 
+// >>chng 03 sep 16, from 1.392 to 1.479, Nick Abel better convers, new ion mol
+// >>chng 03 nov 18, from 1.479 to 1.869, update co network
+// >>chng 04 may 29, from 1.869 to 2.073, NA update H chem, GS update H2 rate
+// >>chng 04 jul 02, from 2.073 to 1.971, O H ct
+// >>chng 04 jul 03, from 1.971 to 2.027, NA update H, CO chem net
+// >>chng 04 oct 05, from 2.027 to 2.082, turn big H2 back on (had been off)
+// >>chng 05 aug 03, from 2.082 to 2.001, redo cr rates in big mol, inc trip
+// >>chng 06 mar 02, from 2.00 to 2.08, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+monitor CO column 2.08 error 0.1
+//
+monitor H2 ortho 3.0
+// 
+// >>chng 05 jan 05, added these state specific column densities
+// >>chng 05 aug 03, from 2.97 to 2.26, redo cr rates in big mol, inc trip
+// >>chng 06 mar 02, from 2.26 to 2.91, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 2.91 to 2.43
+monitor H2 column density level v=0 J=0 N=2.43 error 0.1
+// 
+// >>chng 05 aug 03, from 3.78 to 3.07, redo cr rates in big mol, inc trip
+// >>chng 06 mar 02, from 3.07 to 3.72, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 3.72 to 3.24
+monitor H2 column density level v=0 J=1 N=3.24 error 0.1
+// 
+// >>chng 05 aug 03, from 3.23 to 2.52, redo cr rates in big mol, inc trip
+// >>chng 06 mar 02, from 2.52 to 3.17, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 3.17 to 2.69
+monitor H2 column density level v=0 J=2 N=2.69 error 0.1
+// 
+// >>chng 05 aug 03, from 3.41 to 2.70, redo cr rates in big mol, inc trip
+// >>chng 06 mar 02, from 2.70 to 3.35, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 3.35 to 2.87
+monitor H2 column density level v=0 J=3 N=2.87 error 0.1
+// 
+// >>chng 05 aug 03, from 2.45 to 1.74, redo cr rates in big mol, inc trip
+// >>chng 06 mar 02, from 1.74 to 2.39, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 2.39 to 1.91
+monitor H2 column density level v=0 J=4 N=1.91 error 0.1
+// 
+// >>chng 05 aug 03, from 2.22 to 1.51, redo cr rates in big mol, inc trip
+// >>chng 06 mar 02, from 1.51 to 2.16, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 2.16 to 1.68
+monitor H2 column density level v=0 J=5 N=1.68 error 0.1
+c 
+c h2_cr.in
+c class limit  
+c ========================================
+c 
+
+This test conditions of cosmic ray ionization.  
+Solar abundances with no dust are assumed so this involves
+gas-phase chemistry alone.
+The Solomon process is disabled with the "no induced processes' command
+so H2 is mainly dissociated by cosmic rays.
+This forms a pair with h2_cr_grains, which does include grains.
+

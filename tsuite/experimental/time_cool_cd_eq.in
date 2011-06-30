@@ -1,0 +1,52 @@
+title constant density equilibrium cooling cloud
+c
+c commands controlling continuum =========
+c 3 keV
+blackbody 3.4e7 K
+ionization parameter -10 time
+coronal 3.4e7 K init time 
+c
+c commands for density & abundances =========
+c want nT = 2e6 K cm-3
+hden 5.88e-2 linear
+c
+c commands controlling geometry  =========
+set dr 0 
+set nend 1
+stop zone 1
+c
+c other commands for details     =========
+c the time dependent calculations will start on iteration 3
+c first two are to relax the calculation
+set dynamics relax 2
+c number of time steps
+iterate 300
+stop time when temperature falls below 1e5 K
+c this will do equilibrium cooling
+set dynamics populations equilibrium
+time first timestep 11.5 
+time 10 scale 0    
+time 11 scale=0  recombination
+time 20 scale=0  
+end of times
+cosmic rays background
+c
+c commands controlling output    =========
+print line faint 2 log 
+print line cumulative
+print ages
+save time dependent "time_cool_cd_eq.tim" no hash
+save overview "time_cool_cd_eq.ovr" no hash
+save cooling "time_cool_cd_eq.col" no hash
+save heating "time_cool_cd_eq.het" no hash
+save continuum units Angstroms "time_cool_cd_eq.con"
+save cumulative continuum units Angstroms last "time_cool_cd_eq.concum"
+c
+c commands giving the asserts    =========
+c
+c time_cool_cd_eq.in 
+c class dynamics 
+c ========================================
+c 
+
+test time dependent equilibrium cooling at constant density

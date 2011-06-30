@@ -1,0 +1,149 @@
+title FeII model 
+table agn
+print lines column
+print lines sort intensity 
+atom feii 
+abundances starburst 20 
+hden 9
+phi(h) 18
+stop column density 23
+iterate convergence 
+//
+// affects appearance of printout
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+//
+// these are to try to speed things up
+init "c84.ini"
+//
+save monitors "feii_blr_n09_p18_Z20.asr" last
+save feii continuum units microns "feii_blr_n09_p18_Z20.fe2con" last
+save feii lines "feii_blr_n09_p18_Z20.lin" last
+save feii colum density "feii_blr_n09_p18_Z20.fe2col" last
+save feii populations all "feii_blr_n09_p18_Z20.lev" last
+save overview "feii_blr_n09_p18_Z20.ovr" last
+save dr "feii_blr_n09_p18_Z20.dr" last 
+save convergence reason "feii_blr_n09_p18_Z20.cvr"
+//
+// strong blr lines
+//total of sum of both O VI comp
+// >>chng 05 oct 20, from 3.806 to 3.789, drift
+// >>chng 06 nov 29, from 3.789 to 3.760, Badnell DR
+monitor line luminosity "totl"  1035 3.760
+//
+// >>chng 06 nov 29, from 6.960 to 6.988, Badnell DR
+// >>chng 10 aug 23, from 6.988 to 6.959, first run since change continuum grid
+monitor line luminosity "totl"  1216 6.959 //total Hydrogen Lyman-alpha 1215.67 
+//
+// >>chng 06 nov 29, from 5.613 to 5.564, Badnell DR
+monitor line luminosity "totl"  1240 5.564 //total of sum of both N V comp
+//
+// >>chng 06 nov 29, from 5.757 to 5.818, Badnell DR
+monitor line luminosity "totl"  1397 5.818 //total of sum of both Si IV comp
+//
+// >>chng 06 nov 29, from 5.163 to 5.211, Badnell DR
+monitor line luminosity "totl"  1402 5.211 //total O IV] 1402 
+//
+// >>chng 07 jan 20, from 5.978 to 5.953, e2 bug
+// >>chng 09 feb 23, from 5.953 to 5.979, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1549 5.979 //total of sum of both C IV comp
+//
+// >>chng 06 nov 29, from 5.394 to 5.415, Badnell DR
+// >>chng 08 mar 17, from 5.415 to 5.452, RP update line overlap
+monitor line luminosity "he 2"  1640 5.452 //total He II Balmer-alpha 1640
+// 
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 5.464 to 5.384
+// >>chng 06 nov 29, from 5.384 to 5.420, Badnell DR
+// >>chng 08 dec 13, from 5.42 to 5.397, merging newsolvers branch
+monitor line luminosity "o  3"  1666 5.397 //total O III] 1666
+// 
+// >>chng 06 nov 29, from 6.035 to 6.115, Badnell DR
+// >>chng 08 mar 17, from 6.115 to 6.087, RP update line overlap
+// >>chng 09 feb 23, from 6.087 to 6.115, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1909 6.115 //total of sum of CIII] 1908.73+
+// 
+// >>chng 10 aug 23, from 6.331 to 6.309, first run since change continuum grid
+monitor line luminosity "totl"  1888 6.309 //total of sum of Si III] 1892+
+// 
+//total sum of both Al III comp
+// >>chng 05 oct 20, from 5.352 to 5.376, drift
+// >>chng 08 sep 25, from 5.376 to 5.356, remove damper on line pump (r2367)
+// >>chng 09 feb 23, from 5.356 to 5.377, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 10 aug 23, from 5.377 to 5.335, first run since change continuum grid
+monitor line luminosity "totl"  1860 5.335
+//
+//total C II] 2324.69 + 2328.12
+// >>chng 04 dec 08, from 5.776 to 5.573, co-ion feedback, check converg
+// >>chng 05 jul 17, from 5.57 to 5.73, first run in 6 mo
+// >>chng 06 jan 02, from 5.73 to 5.77, drift up
+// >>chng 08 apr 30, from 5.77 to 5.65, H, He topoff change
+// >>chng 08 dec 13, from 5.65 to 5.6, merging newsolvers branch
+// >>chng 10 aug 23, from 5.6 to 5.537, first run since change continuum grid
+monitor line luminosity "totl"  2326 5.537 error 0.1
+//
+//total of sum of both Mg II comp
+// >>chng 04 dec 08, from 6.631 to 6.544, co-ion feedback, check converg
+// >>chng 05 jul 17, from 6.54 to 6.60, first run in 6 mo
+// >>chng 08 dec 13, from 5.65 to 5.6, merging newsolvers branch
+// >>chng 10 aug 23, from 5.6 to 5.537, first run since change continuum grid
+monitor line luminosity "totl"  2326 5.537 error 0.1
+// 
+// >>chng 08 apr 30, from 6.60 to 6.54, H, He topoff change
+// >>chng 09 oct 05, from 6.54 to 6.489, [NI] pumping changes
+monitor line luminosity "totl"  2798 6.489 error 0.1
+//
+// >>chng 04 dec 08, from 6.883 to 6.286, co-ion feedback, check converg
+// >>chng 05 jul 17, from 6.29 to 6.81, first run in 6 mo
+// >>chng 08 apr 30, from 6.81 to 6.54, H, He topoff change
+// >>chng 08 nov 13, from 6.54 to 6.418, fix Boltzmann factor in CT rates (r2455)
+// >>chng 08 dec 13, from 6.418 to 6.359, merging newsolvers branch
+monitor line luminosity "Fe2b"  2500 6.359 error 0.1 
+//
+// >>chng 04 dec 08, from 6.214 to 6.036, co-ion feedback, check converg
+// >>chng 05 jul 17, from 6.04 to 6.16, first run in 6 mo
+// >>chng 07 dec 09, from 6.16 to 6.03 cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 6.03 to 6.18, RP update line overlap
+// >>chng 08 nov 13, from 6.18 to 6.117, fix Boltzmann factor in CT rates (r2455)
+// >>chng 09 jun 11, from 6.117 to 6.167, better approach to outer edge of bounded model
+// >>chng 09 jul 16, from 6.167 to 6.113, change autocv back to 0.2
+// >>chng 10 jul 19, from 6.11 to 6.19, drift from changer over past few weeks
+// >>chng 10 jul 26, from 6.19 to 6.15, icc 11.1 64 bit mac
+// >>chng 11 apr 29, from 6.13 to 6.16, gcc cloud9
+monitor line luminosity "6lev"  1304 6.16 error 0.15
+//
+// >>chng 09 jun 15, add this monitor
+// >>chng 09 oct 05, from 6.126 to 6.089, [NI] pumping changes
+monitor line luminosity "Fe2C" 0 6.089
+//
+// >>chng 09 jun 15, add this monitor
+// >>chng 09 jun 16, from 1 to 6.147, add FeII bands
+// >>chng 09 oct 05, from 6.147 to 6.122, [NI] pumping changes
+monitor line luminosity "Fe2b" 2445 6.122
+//
+// >>chng 09 jun 15, add this monitor
+// >>chng 09 jun 16, from 1 to 5.265, add FeII bands
+// >>chng 09 jul 16, from 5.265 to 5.241, change autocv back to 0.2
+monitor line luminosity "Fe2b" 4558 5.241
+//
+// >>chng 08 dec 08, from 9 to 5.885, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 5.885 to 17.62, merging newsolvers branch
+// >>chng 09 jan 16, from 17.62 to 17.22 (error 0.04), average of 9 runs
+// >>chng 09 jul 16, from 17.22 to 19.99, change autocv back to 0.2
+monitor itrzn 19.99 error 0.04
+// 
+// >>chng 08 apr 30, from <4 to <5 (4) H, He topoff change
+// >>chng 08 dec 08, from 5 to 3, upper limit -> equals (r2515)
+// >>chng 09 jul 16, from 3 to 4, change autocv back to 0.2
+// >>chng 09 aug 01, from 4 to 3, do not check on outward Hb, autocv back to old default
+// >>chng 10 jul 26, from 3 to 4, icc 11.1 mac 64 bit
+// >>chng 10 aug 23, from 4 to 3, first run since change continuum grid
+monitor niter 3 error 0.01
+// 
+// >>chng 08 apr 30, from < 450 to 441 H, He topoff change
+// >>chng 08 dec 08, from 441 to 451, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 451 to 396, merging newsolvers branch
+// >>chng 09 jan 16, from 396 to 397 (error 0.02), average of 9 runs
+// >>chng 09 jun 11, from 397 to 407, better approach to outer edge of bounded model
+monitor nzone 407
+
+This is one of the 5 models that sample the LOC plane.

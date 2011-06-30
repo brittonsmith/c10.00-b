@@ -1,0 +1,22 @@
+80227 # >>chng 08 feb 27,
+# fits for collisional deexcitation rate coefficicents of H2(v,J) due to He
+# >>refer   H2   collision    Lee, T. G. et al. 2008, ApJ, in preparation
+# State notation and fit parameters are different from Le Bourlot et al. The
+# first four integers are energy-ordered state index numbers. The first two refer to the
+# H2 being excited; the next two to the state of the H2 impact, i.e., 1 = H2(J=0) and
+# 2 = H2(J=1). The character refers
+# to a quality factor for the data (with A being the highest). The first real number is
+# the error of the fit while the last eight real numbers are the fit parameters (a-h).
+# The fit equation for de-excitation transitions only is given by:
+# k_(vJ,v'J') = 10^(a + b/(d*T/1000+1) + c/(T/1000)^2)
+#            + 10^(e + f/(g*T/1000+1)**h)     T in K and the rate coefficient in cm3/s
+#
+#H2(initial) H2(final) H2(initial) H2 (final) Quality Error a b c  d        e        f        g          h
+3   1   1   1   B   0.00587748     -10.4508  -0.83422  -1.27715  1.06415  -18.1265  6.15128  227.989  0.122827 
+4   2   1   1   B   0.00581442     -10.3366  -1.3988  -1.17251  1.60131  -18.9352  6.33677  100.26  0.121519   
+5   1   1   1   B   0.00789974     -11.9617  -1.87693  -1.84044  0.934083  -22.1183  7.35263  669.198  0.076914
+5   3   1   1   B   0.0116449     -10.3059  -1.65995  -1.38471  1.4097  -19.5486  6.67828  313.576  0.0921893  
+6   4   1   1   B   0.00412856     -10.3558  -2.11037  -1.42303  1.42149  -20.4268  6.92019  73.4  0.200459   
+7   5   1   1   B   0.00425005     -10.4212  -2.04049  -1.92925  1.17797  -21.1173  7.1626  133.375  0.132486  
+8   6   1   1   B   0.0054152     -10.4801  -2.15744  -2.2706  1.06148  -21.9367  7.36888  100.293  0.109711  
+9   7   1   1   B   0.00503516     -10.5553  -2.64564  -2.20601  1.06538  -22.3035  7.45221  278.265  0.0793232  

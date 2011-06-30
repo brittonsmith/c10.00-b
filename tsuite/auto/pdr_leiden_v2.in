@@ -1,0 +1,137 @@
+title Leiden meeting model 6
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+c the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 50000
+extinguish 24
+c
+c commands for density & abundances =========
+c add PAHs and grains
+grains PAH no qheat 3 function
+grains ism 1.16 no qheat
+c  hydrogen density 
+hden 3.
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+failures 3
+c  use leiden initialization file
+init file="pdr_leiden.ini"
+c
+c commands controlling output    =========
+save overview "pdr_leiden_v2.ovr"
+save leiden lines "pdr_leiden_v2.lin"
+save leiden "pdr_leiden_v2.lei"
+save dr "pdr_leiden_v2.dr" 
+save grain temperature "pdr_leiden_v2.grn"
+save monitors "pdr_leiden_v2.asr"
+c
+c commands giving the monitors    =========
+monitor H2 column density 21.76 error 0.1
+//
+//>>chng 04 dec 13, from 16.53 to 16.70 ? */
+// >>chng 05 mar 22, from 16.70 to 17.13, NA update CO chem net
+// >>chng 05 mar 25, from 17.13 to 16.82, renorm H pops in level solver
+// >>chng 05 jun 19, from 16.82 to 16.73, update chem net
+// >>chng 05 jun 26, from 16.73 to 16.89, make Federman chem the default
+// >>chng 05 jul 05, from 16.89 to 16.85, cdsqte err
+// >>chng 05 aug 03, from 16.85 to 16.79, NA update CO, H chem net
+// >>chng 06 mar 02, from 16.79 to 17.02, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 07 jan 07, from 17.02 to 17.11, enable McCall et al. H3+ rate
+monitor CO column density 17.11 error 0.1
+//
+// >>chng 05 jul 05, from 14.34 to 13.66, cdsqte err
+// >>chng 05 aug 03, from 13.66 to 13.70, NA update CO, H chem net
+// >>chng 05 dec 08, from 13.70 to 13.94, update to Elwert Solomon rate
+// >>chng 06 mar 02, from 13.94 to 14.02, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 sep 30, from 14.02 to 13.96, rjrw merge chem, corr several bugs
+// >>chng 07 jan 07, from 13.96 to 14.31, enable McCall et al. H3+ rate
+// >>chng 08 feb 20, from 14.31 to 14.39, grain charge transfer changes in ion_solver and iso*
+// >>chng 10 mar 02, from 14.39 to 14.48, fix botches after CO model switch
+// >>chng 10 mar 03, from 14.48 to 14.42, enable all LAMDA and increase max num levels
+// >>chng 10 apr 11, from 14.42 to 14.36, more LAMDA models, add 13CO to chemistry
+// >>chng 10 jun 17, from 14.36 to 13.7, fix botches due to recent dBase cooling changes
+monitor O2 column density 13.7 error 0.1
+//
+// >>chng 07 jan 07, from 14.24 to 14.49, enable McCall et al. H3+ rate
+// >>chng 08 feb 20, from 14.49 to 14.54, grain charge transfer changes in ion_solver and iso*
+monitor OH column density 14.54 error 0.1
+//
+// >>chng 05 jul 05, from 14.91 to 14.81, cdsqte err
+// >>chng 05 aug 03, from 14.81 to 14.90, NA update CO, H chem net
+// >>chng 05 sep 27, from 14.90 to 14.85, TE, GS update H chem
+// >>chng 05 dec 08, from 14.85 to 14.88, update to Elwert Solomon rate
+// >>chng 07 jan 07, from 14.88 to 15.13, enable McCall et al. H3+ rate
+// >>chng 08 feb 20, from 15.13 to 15.18, grain charge transfer changes in ion_solver and iso*
+// >>chng 10 jun 17, from 15.18 to 15.1, fix botches due to recent dBase cooling changes
+monitor SiO column density 15.1 error 0.1
+// 
+// >>chng 05 jun 26, from 97.3 to 107.6 make Federman chem the default
+// >>chng 09 oct 05, from 107.6 to 360, [NI] pumping changes
+monitor hydrogen 2 temperature 360 
+// 
+// >>chng 05 jun 26, from 23.5 to 26.3 make Federman chem the default
+// >>chng 05 jul 05, from 26.3 to 25.7 fine tune
+// >>chng 05 dec 08, from 25.7 to 28.7, update to Elwert Solomon rate
+monitor H2 temperature 28.7
+// 
+// >>chng 05 sep 30, add these 5
+monitor column density H2+  11.59 error 0.1
+// 
+// >>chng 07 jan 07, from 13.30 to 13.60, enable McCall et al. H3+ rate
+// >>chng 08 feb 20, from 13.60 to 13.64, grain charge transfer changes in ion_solver and iso*
+monitor column density H3+  13.64 error 0.1
+// 
+monitor column density H2g  21.76 error 0.1
+// 
+// >>chng 05 dec 08, from 15.21 to 14.81 update to Elwert Solomon rate
+monitor column density H2*  14.81 error 0.1
+// 
+// >>chng 05 dec 08, from 10.56 to 10.52 update to Elwert Solomon rate
+// >>chng 09 oct 05, from 10.52 to 10.42, [NI] pumping changes
+monitor column density HeH+ 10.42 error 0.1
+// 
+// >>chng 06 nov 28, add these lines
+// >>chng 09 oct 05, from -3.841 to -3.73, [NI] pumping changes
+monitor line luminosity "C  2" 157.6m -3.73
+// 
+// >>chng 06 nov 29, from -5.882 to -5.751, Badnell DR turned on
+monitor line luminosity "C  1" 369.7m -5.751
+// 
+// >>chng 06 nov 29, from -5.925 to -5.860, Badnell DR turned on
+monitor line luminosity "C  1" 609.2m -5.860
+// 
+// >>chng 09 oct 05, from -4.406 to -4.037, [NI] pumping changes
+monitor line luminosity "O  1" 63.17m -4.037
+// 
+// >>chng 09 oct 05, from -5.998 to -5.41, [NI] pumping changes
+monitor line luminosity "O  1" 145.5m -5.41
+//
+// >>chng 04 oct 19 from 8 to 10, larger change in mole abund per zone
+// >>chng 05 dec 22, from 10 to 8 (5.0) drift down
+// >>chng 08 dec 08, from 8 to 4.967, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 4.967 to 13.56, merging newsolvers branch
+// >>chng 09 jan 08, from 13.56 to 13.26, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, from 13.26 to 13.55 (error 0.05), average of 10 runs
+// >>chng 09 oct 05, from 13.55 to 21.01, [NI] pumping changes
+// >>chng 10 jan 27, from 21.01 to 22, gradual change
+monitor itrzn 22
+// 
+// >>chng 05 jun 26, from 500 to 535 turn on more elements
+// >>chng 05 dec 08, from 570 to 650 (573) update to Elwert Solomon rate
+// >>chng 08 dec 08, from 650 to 613, upper limit -> equals (r2515)
+// >>chng 09 oct 05, from 613 to 674, [NI] pumping changes
+monitor nzone 674
+c
+c pdr_leiden_v2.in
+c class pdr  
+c ========================================
+c 
+
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 

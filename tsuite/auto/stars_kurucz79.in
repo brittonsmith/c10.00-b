@@ -1,0 +1,113 @@
+title Kurucz 1979 SED
+c
+c commands controlling continuum =========
+c Approximate model of a hot star ionizing its surroundings.
+c Assume H density of 1e+6 per cc.  This run tests the Kurucz model option.
+c I choose the T_eff and log(g) values arbitrarily.  It implies a star
+c with luminosity 32300 L_sun, radius 6.4745 R_sun, and mass 3.745 M_sun.
+table star kurucz 30400.0
+luminosity 4.509202522 solar
+c
+c commands for density & abundances =========
+abundances old solar 84 
+hden 6.0
+grains ism
+c
+c commands controlling geometry  =========
+radius -3.0 parsec
+sphere
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+constant temperature 4
+c
+c commands controlling output    =========
+c
+save overview last "stars_kurucz79.ovr"
+save results last "stars_kurucz79.rlt"
+save monitors last "stars_kurucz79.asr"
+save transmitted continuum last "stars_kurucz79.trn" no header
+save continuum last "stars_kurucz79.con" units microns
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 22.5 to 22.56, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  22.56
+monitor line luminosity "nInu" 122.4m  29.887
+monitor line luminosity "nInu" 60.83m  30.800
+monitor line luminosity "nInu" 41.22m  31.308
+monitor line luminosity "nInu" 30.87m  31.686
+monitor line luminosity "nInu" 24.78m  31.972
+monitor line luminosity "nInu" 24.30m  31.992
+monitor line luminosity "nInu" 22.83m  32.077
+monitor line luminosity "nInu" 21.42m  32.161
+monitor line luminosity "nInu" 21.12m  32.174
+monitor line luminosity "nInu" 19.62m  32.272
+monitor line luminosity "nInu" 17.65m  32.409
+monitor line luminosity "nInu" 17.37m  32.435
+monitor line luminosity "nInu" 15.69m  32.565
+monitor line luminosity "nInu" 14.60m  32.656
+monitor line luminosity "nInu" 12.43m  32.871
+monitor line luminosity "nInu" 11.40m  32.982
+monitor line luminosity "nInu" 10.46m  33.093
+monitor line luminosity "nInu" 9.480m  33.224
+monitor line luminosity "nInu" 9.325m  33.243
+monitor line luminosity "nInu" 8.210m  33.413
+monitor line luminosity "nInu" 7.580m  33.511
+monitor line luminosity "nInu" 7.050m  33.609
+monitor line luminosity "nInu" 4.114m  34.311
+monitor line luminosity "nInu" 2.324m  35.040
+monitor line luminosity "nInu" 1.643m  35.481
+monitor line luminosity "nInu" 1.480m  35.615
+monitor line luminosity "nInu" 1.436m  35.653
+monitor line luminosity "nInu" 1.119m  35.969
+monitor line luminosity "nInu"  8330A  36.326
+monitor line luminosity "nInu"  8079A  36.362
+monitor line luminosity "nInu"  6210A  36.681
+monitor line luminosity "nInu"  4885A  36.965
+monitor line luminosity "nInu"  3704A  37.242
+monitor line luminosity "nInu"  3588A  37.268
+monitor line luminosity "nInu"  2430A  37.641
+monitor line luminosity "nInu"  2392A  37.653
+monitor line luminosity "nInu"  2071A  37.769
+monitor line luminosity "nInu"  2053A  37.773
+monitor line luminosity "nInu"  1793A  37.880
+monitor line luminosity "nInu"  1585A  37.979
+monitor line luminosity "nInu"  1458A  38.046
+monitor line luminosity "nInu"  1357A  38.092
+monitor line luminosity "nInu"  1297A  38.119
+monitor line luminosity "nInu"  1263A  38.138
+monitor line luminosity "nInu"  1218A  38.159
+monitor line luminosity "nInu"  1196A  38.168
+monitor line luminosity "nInu"  1175A  38.174
+monitor line luminosity "nInu"  1144A  38.173
+monitor line luminosity "nInu"  1113A  38.172
+monitor line luminosity "nInu"  1103A  38.171
+monitor line luminosity "nInu"  1074A  38.170
+monitor line luminosity "nInu"  1064A  38.169
+monitor line luminosity "nInu"  1036A  38.168
+monitor line luminosity "nInu"  1000A  38.167
+monitor line luminosity "nInu" 925.1A  37.768
+monitor line luminosity "nInu" 897.8A  37.253
+monitor line luminosity "nInu" 760.0A  36.981
+monitor line luminosity "nInu" 701.5A  36.857
+monitor line luminosity "nInu" 608.2A  36.678
+monitor line luminosity "nInu" 575.1A  36.595
+monitor line luminosity "nInu" 511.9A  36.391
+monitor line luminosity "nInu" 496.9A  35.395
+monitor line luminosity "nInu" 399.2A  34.128
+// 
+c stars_kurucz79.in
+c class stars 
+c ========================================
+
+This is a test that the code can correctly access the
+Kurucz model atmosphere continua described by Kurucz (1979). 
+Kevin Volk provided it as part of his original coding of these
+stellar atmosphere files.
+Constant temperature is assumed since this tests shape of stellar continuum
+rather than thermal physics.
+
+Checks:
+table star kurucz command works.
+

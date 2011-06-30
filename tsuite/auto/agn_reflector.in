@@ -1,0 +1,144 @@
+title model of Compton reflector
+c
+c commands controlling continuum =========
+c this is a powerlaw that extends into the x-rays, but by default
+c has exponential cutoff in FIR
+power law -1. hi=1000000000
+c the ionization parameter for this powerlaw
+ionization parameter 1.
+c add background so that FIR/radio does not have zero flux
+background
+iterate 
+c
+c commands for density & abundances =========
+hden 11
+c
+c commands controlling geometry  =========
+stop total column density 24
+c
+c other commands for details     =========
+constant temper 5
+atom h-like element hydrogen levels resolved 10
+atom h-like element helium levels resolved 10
+c
+c commands controlling output    =========
+print line faint 1
+print line inward
+print diffuse continuum
+c
+c this is to produce lines with lots of contrast with the continuum
+set save Line Width 100 km/sec
+c a fig in part 3 of hazy uses data from this model.  the fig shows lines
+c with above and below linewidth
+c set save line Width   c  
+save monitors "agn_reflector.asr"
+save continuum last "agn_reflector.con" units kev 
+save continuum reflected last "agn_reflector.alb" units kev 
+save overview last "agn_reflector.ovr"
+save dr last "agn_reflector.dr"
+c
+c commands giving the monitors    =========
+table lines "LineList_BLR.dat" 
+// >>chng 02 jun 08, from 9.327 to 9.364, better zoning
+monitor line luminosity  "InwT"  122.4m  9.364 error 0.1
+//
+// >>chng 02 jun 08, from 10.003 to 10.038 better zoning
+monitor line luminosity  "InwT"  60.83m 10.038 error 0.1
+//
+// >>chng 02 jun 08, from 10.375 to 10.400 better zoning
+monitor line luminosity  "InwT"  41.22m 10.400
+//
+monitor line luminosity  "InwT"  30.87m 10.646
+monitor line luminosity  "InwT"  24.78m 10.840
+monitor line luminosity  "InwT"  24.30m 10.857
+monitor line luminosity  "InwT"  22.83m 10.906
+monitor line luminosity  "InwT"  21.42m 10.961
+monitor line luminosity  "InwT"  21.12m 10.969
+monitor line luminosity  "InwT"  19.62m 11.021
+monitor line luminosity  "InwT"  17.65m 11.097
+monitor line luminosity  "InwT"  17.37m 11.110
+monitor line luminosity  "InwT"  15.69m 11.171
+monitor line luminosity  "InwT"  14.60m 11.209
+monitor line luminosity  "InwT"  12.43m 11.286
+monitor line luminosity  "InwT"  11.40m 11.323
+monitor line luminosity  "InwT"  10.46m 11.352
+monitor line luminosity  "InwT"  9.480m 11.383
+monitor line luminosity  "InwT"  9.325m 11.389
+monitor line luminosity  "InwT"  8.210m 11.422
+monitor line luminosity  "InwT"  7.580m 11.438
+monitor line luminosity  "InwT"  7.050m 11.453
+monitor line luminosity  "InwT"  4.114m 11.518m
+monitor line luminosity  "InwT"  2.324m 11.547
+monitor line luminosity  "InwT"  1.643m 11.555
+monitor line luminosity  "InwT"  1.480m 11.557
+monitor line luminosity  "InwT"  1.436m 11.558
+monitor line luminosity  "InwT"  1.119m 11.562
+monitor line luminosity  "InwT" 8330A  11.566
+monitor line luminosity  "InwT" 8079A  11.564
+monitor line luminosity  "InwT" 6210A  11.569
+monitor line luminosity  "InwT" 4885A  11.573
+monitor line luminosity  "InwT" 3704A  11.577
+monitor line luminosity  "InwT" 3588A  11.563
+monitor line luminosity  "InwT" 2392A  11.582
+monitor line luminosity  "InwT" 2071A  11.586
+monitor line luminosity  "InwT" 2053A  11.586
+monitor line luminosity  "InwT" 1793A  11.589
+monitor line luminosity  "InwT" 1585A  11.592
+monitor line luminosity  "InwT" 1458A  11.593
+monitor line luminosity  "InwT" 1357A  11.593
+monitor line luminosity  "InwT" 1297A  11.594
+monitor line luminosity  "InwT" 1263A  11.594
+monitor line luminosity  "InwT" 1218A  11.594
+monitor line luminosity  "InwT" 1196A  11.594
+monitor line luminosity  "InwT" 1175A  11.594
+monitor line luminosity  "InwT" 1144A  11.594
+monitor line luminosity  "InwT" 1113A  11.593
+monitor line luminosity  "InwT" 1103A  11.593
+monitor line luminosity  "InwT" 1074A  11.593
+monitor line luminosity  "InwT" 1064A  11.593
+monitor line luminosity  "InwT" 1036A  11.593
+monitor line luminosity  "InwT" 1000A  11.592
+monitor line luminosity  "InwT"  925.1A  11.591
+//
+// >>chng 02 may 09, from 11.446 to 11.418, e scat escape
+// >>chng 04 may 13, from 11.418 to 11.449, dest albedo chng
+monitor line luminosity  "InwT"  897.8A  11.449
+//
+// >>chng 02 may 09, from 11.513 to 11.489, e scat escape
+// >>chng 04 may 13, from 11.489 to 11.513, dest albedo chng
+monitor line luminosity  "InwT"  760.0A  11.513
+//
+// >>chng 02 may 12, from 11.534 to 11.510, elec scat escape
+// >>chng 04 may 13, from 11.510 to 11.534, dest albedo chng
+monitor line luminosity  "InwT"  701.5A  11.534
+//
+monitor line luminosity  "InwT"  575.1A  11.567
+monitor line luminosity  "InwT"  511.9A  11.574
+monitor line luminosity  "InwT"  496.9A  11.575
+monitor line luminosity  "InwT"  399.2A  11.575
+//
+// >>chng 04 feb 15, from 5 to 3
+// >>chng 08 dec 08, from 3 to 2.759, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 2.759 to 4.586, merging newsolvers branch
+// >>chng 09 jan 16, from 4.586 to 4.575, average of 10 runs
+// >>chng 09 feb 23, from 4.575 to 3.898, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jun 26, from 3.898 to 3.794, remove several dampers
+// >>chng 09 jul 28, from 3.974 to 3.90 mean vs08+gcc bcx
+monitor itrzn 3.90
+//
+// >>chng 04 sep 06, from 250 to 300 (actually 253) bug nej Auger
+// >>chng 08 dec 08, from 300 to 290, upper limit -> equals (r2515)
+// >>chng 09 feb 23, from 290 to 295, remove otslin, otscon dampers (PR #84, r2758)
+monitor nzone 295 
+//
+c agn_reflector.in
+c class blr 
+c ========================================
+c 
+
+This is a model of the Compton reflector in AGN.  It is a
+constant temperature since models of this region often make that assumption. 
+A plot in Part I of Hazy shows the incident and reflected portions of the 
+continuum.  The code will complain that the cloud is Compton thick since it 
+is not really designed to simulate this situation.
+

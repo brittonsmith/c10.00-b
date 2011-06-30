@@ -1,0 +1,108 @@
+\documentclass[12pt]{book}
+% !TEX root = hazy2.tex
+%\includeonly{limits}
+%\includeonly{coninter}
+%\includeonly{lineatomparam}
+%\includeonly{linedetl}
+%\includeonly{codestruc}
+%\includeonly{CloudyStandaloneProgram}
+%\includeonly{sub}
+%\includeonly{output}
+%\includeonly{observed}
+%\includeonly{lines}
+%\includeonly{problems}
+%\includeonly{odetail}
+%\includeonly{sources}
+%\includeonly{glossary}
+%\includeonly{conversion}
+%\includeonly{TestSuite}
+%\includeonly{refer}
+
+\input{../head_info}
+\input{../macros}
+\input{../variables}
+
+\externaldocument[Hazy1-]{../hazy1/hazy1}
+\externaldocument[Hazy1-]{../hazy1/conout}
+
+\begin{document}
+\frontmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  title page
+\begin{titlepage}
+\begin{center}
+
+\Huge
+Hazy\\
+\Large
+\emph{a brief introduction to \Cloudy\ C10}\\
+\LARGE
+2. Results, computational environment,\\
+and test suite
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip=on,width=0.8\columnwidth,keepaspectratio]{Deep_crab}
+\end{center}
+\end{figure}
+
+\vspace{15 mm }
+\LARGE
+\emph{Cloudy \& Associates} \\
+\Large
+\href{http://www.nublado.org}{www.nublado.org} \\
+\normalsize
+\today
+\end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% page with one figure and boilerplate text
+\clearpage
+\input{../frontis_common}
+\vspace{5mm}
+\noindent
+{\small
+{\em Cover image:} The spectrum emitted by a dusty filament exposed to 
+ionizing radiation and particles.  
+Moderate to low ionization species emit in the optical and
+ultraviolet, the left part of the lower panel.
+Strong \htwo\ emission is present in the near infrared (1 -- 10 \micron ).
+Lines from other molecules dominate in the infrared and sub-mm, as shown in the upper panel.
+Thermal dust emission peaks at roughly 150 \micron .  
+The entire spectrum is computed self consistently by specifying only the composition, density,
+and column density of the gas, and the SED and flux of ionizing photons and particles.
+}
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% table of contents page - only include top two levels
+\setcounter{tocdepth}{2}
+\tableofcontents
+\listoffigures
+\listoftables
+
+\clearpage
+\mainmatter
+\include{limits}       %proof 1
+\include{coninter}     %proof 2
+\include{lineatomparam}%proof 1
+\include{linedetl}     %proof 1
+\include{CloudyStandaloneProgram} %proof 1
+\include{sub}          %proof 1
+\include{output}       %proof 1
+\include{observed}     %proof 1
+\include{lines}        %proof 1
+\include{problems}     %proof 1
+\include{odetail}      %proof 1
+\appendix
+\include{sources}      %proof 1
+\include{glossary}     %proof 1
+\include{conversion}   %proof 1
+\include{TestSuite}
+\backmatter
+\bibliographystyle{plainnat}
+\bibliography{../bibliography2}
+
+\end{document}

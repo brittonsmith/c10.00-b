@@ -1,0 +1,83 @@
+title limit_caseb_he2_den8 He II case B
+c
+c commands controlling continuum =========
+table agn 
+ionization parameter 0
+c
+c commands for density & abundances =========
+hden = 8
+element helium abundance 1
+init file="ism.ini"
+c
+c commands controlling geometry  =========
+set dr 0
+stop zone 1
+c
+c other commands for details     =========
+atom h-like element helium levels resolved 15 
+case b hummer no photoionization no Pdest 
+no induced processes (OK)
+constant temperature = 5e4 K
+c
+c commands controlling output    =========
+normalize to "Ca B" 1640 // the balmer alpha transition
+save results "limit_caseb_he2_den8.rlt"
+save monitors "limit_caseb_he2_den8.asr"
+c
+monitor Case B H-like helium error 0.1 range 1000 40000A faint -2
+c
+c commands giving the monitors    =========
+monitor line "He 2"  1640A  1.0000 
+monitor line "He 2"  1215A  0.3667
+monitor line "He 2"  1085A  0.1771 
+monitor line "He 2"  1025A  0.1013 
+// 
+// >>chng 07 oct 26, from 0.1053 to 0.1001, very close to botch after recent changes
+monitor line "He 2"  4686A  0.1001 
+// 
+// >>chng 08 apr 30, from 0.0544 to 0.0516 H, He topoff change
+monitor line "He 2"  3203A  0.0516 
+// 
+// >>chng 08 apr 30, from 0.0314 to 0.0302 H, He topoff change
+monitor line "He 2"  2733A  0.0302 
+monitor line "He 2"  2511A  0.0200 
+// >>chng 07 oct 22, from 0.0231 to 0.0217, resolve l-levels of h-like sequence
+monitor line "He 2" 1.012m  0.0217 
+// >>chng 07 oct 22, from 0.0140 to 0.0133, resolve l-levels of h-like sequence
+monitor line "He 2"  6560A  0.0133 
+// 
+// >>chng 08 apr 30, from 0.0089 to 0.0085 H, He topoff change
+monitor line "He 2"  5412A  0.0085 
+// 
+// >>chng 06 nov 29, from 0.0061 to 0.0058, use Badnell DR by default
+// >>chng 07 mar 13, from 0.0058 to 0.0062, change in lines_service to fix cache errors
+// >>chng 07 oct 26, from 0.0062 to 0.0059, very close to botch after recent changes
+monitor line "He 2"  4860A  0.0059
+// >>chng 07 oct 22, from 0.0070 to 0.0065, resolve l-levels of h-like sequence
+monitor line "He 2" 1.864m  0.0065 
+// >>chng 07 oct 22, from 0.0047 to 0.0044, resolve l-levels of h-like sequence
+monitor line "He 2" 1.163m  0.0044 
+// >>chng 07 oct 26, increase error to 0.10
+// >>chng 07 oct 26, from 0.0032 to 0.0031, very close to botch after recent changes
+monitor line "He 2"  9345A  0.0032 0.1
+// 
+// >>chng 07 oct 03, from 0.0023 to 0.0024 drift down
+// incr error since can only read printout to 4 sig fig, value not goot
+// to 5%
+// >>chng 07 oct 22, from 0.0024 to 0.0022, resolve l-levels of h-like sequence
+monitor line "He 2"  8237A  0.0022 error 0.07
+// 
+c limit_caseb_he2_den8.in
+c class limit 
+c ========================================
+c 
+
+This test case compares the predictions of the multi-level hydrogen atom
+with the Storey and Hummer (1995) results.  The set dr command sets the
+zone thickness to 1 cm.  The case b command sets Lyman line optical depths
+to very large values. 
+Checks:
+-	Neutral fractions
+-	H* emissivity
+-	Relative line intensities
+

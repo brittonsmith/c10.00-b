@@ -1,0 +1,55 @@
+title test compton recoil ionization of hydrogen 
+c
+c commands controlling continuum =========
+laser 2000 ryd
+ionization parameter -5
+c
+c commands for density & abundances =========
+hden 0
+init "honly.ini"
+c
+c commands controlling geometry  =========
+set dr 14
+stop zone 10
+c
+c other commands for details     =========
+iterate
+no secondary ionization 
+constant temperature 1000
+c
+c commands controlling output    =========
+save monitors "limit_recoil_ion.asr" last
+c
+c commands giving the monitors    =========
+// >>chng 02 nov 05, from -3.197 to 3.504, contin norm was not exact
+// >>chng 02 dec 21, from -3.504 to -3.261, new hmole
+// >>chng 03 jan 21, from -3.261 to -3.214, better hmole converge
+// >>chng 03 feb 13, from -3.214 to -3.256, new H3+ + e => 3H
+// >>chng 03 aug 30, from -3.526 to -3.332, more zones, chng H2* rate
+// >>chng 03 sep 16, from -3.332 to -3.274, more zones, chng H2* rate
+// >>chng 04 jun 28, from -3.274 to -3.671, include mole in ion frac sum
+// >>chng 05 nov 25, from -3.67 to -3.59, H2 photo cs to dalgarno vals
+monitor hydrogen ionization 2 -3.59 error 0.1
+//
+// this is very sensitive to the reaction H2 + H+ => H3+ HNU
+// >>chng 02 dec 21, from -2.293 to -0.469, new hmole
+// >>chng 03 feb 13, from -0.469 to -0.504, new H3+ + e => 3H
+// >>chng 03 aug 30, from -0.504 to -0.527, more zones, chng H2* rate
+// >>chng 05 nov 25, from -0.53 to -0.59, H2 photo cs to dalgarno vals
+monitor H2 molecular fraction -0.59 error 0.1
+//
+// >>chng 05 nov 25 add next two asserts
+// >>chng 05 nov 25, from 5.26 to 5.33, H2 photo cs to dalgarno vals
+// >>chng 07 jan 07, from 5.33 to 5.68, enable McCall et al. H3+ rate
+monitor column density H3+ 5.68 error 0.1
+//
+// >>chng 05 nov 25, from 3.94 to 4.17, H2 photo cs to dalgarno vals
+monitor column density H2+ 4.17 error 0.1
+c 
+c limit_recoil_ion.in
+c class limit 
+c ========================================
+c 
+
+H ionization is totally due to recoil ionization in this model.
+The assert checks the final hydrogen ionization. 

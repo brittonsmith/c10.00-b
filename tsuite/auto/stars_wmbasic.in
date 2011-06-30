@@ -1,0 +1,128 @@
+title wmbasic stellar SED
+c
+c commands controlling continuum =========
+c Approximate model of a hot star ionizing its surroundings.
+c Assume H density of 1e+6 per cc. This run tests the WMBASIC model option.
+c I choose the T_eff, log(g), and log(Z) values arbitrarily.
+table star wmbasic 30000.0 4.0 -0.3
+luminosity 4.509202522 solar
+table star wmbasic 32000.0 4.0 0.0
+luminosity 4.509202522 solar
+table star wmbasic 40000.0 3.6 -0.3
+luminosity 4.509202522 solar
+table star wmbasic 35000.0 4.0 -0.15
+luminosity 4.509202522 solar
+table star wmbasic 57000.0 4.0 0.0
+luminosity 4.509202522 solar
+table star wmbasic 37000.0 3.4 -0.3
+luminosity 4.509202522 solar
+table star wmbasic 32000.0 4.0 -0.1
+luminosity 4.509202522 solar
+table star wmbasic 36000.0 3.5 -0.12
+luminosity 4.509202522 solar
+c
+c commands for density & abundances =========
+abundances old solar 84 
+hden 6.0
+grains ism
+c
+c commands controlling geometry  =========
+radius -2.0 parsec
+sphere
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+c
+c in this model the Lyman lines are pumped significantly
+c by the stellar continuum; disable this process to avoid critical
+c dependence on the precise shape of the continuum.
+no induced processes
+constant temperature 4
+c
+c commands controlling output    =========
+c
+save overview last "stars_wmbasic.ovr"
+save results last "stars_wmbasic.rlt"
+save monitors last "stars_wmbasic.asr"
+save transmitted continuum last "stars_wmbasic.trn" no header
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 23.86 to 23.91, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  23.91
+monitor line luminosity "nInu" 122.4m  31.237
+monitor line luminosity "nInu" 60.83m  31.981
+monitor line luminosity "nInu" 41.22m  32.395
+monitor line luminosity "nInu" 30.87m  32.708
+monitor line luminosity "nInu" 24.78m  32.948
+monitor line luminosity "nInu" 24.30m  32.965
+monitor line luminosity "nInu" 22.83m  33.041
+monitor line luminosity "nInu" 21.42m  33.116
+monitor line luminosity "nInu" 21.12m  33.128
+monitor line luminosity "nInu" 19.62m  33.215
+monitor line luminosity "nInu" 17.65m  33.338
+monitor line luminosity "nInu" 17.37m  33.361
+monitor line luminosity "nInu" 15.69m  33.478
+monitor line luminosity "nInu" 14.60m  33.560
+monitor line luminosity "nInu" 12.43m  33.754
+monitor line luminosity "nInu" 11.40m  33.856
+monitor line luminosity "nInu" 10.46m  33.960
+monitor line luminosity "nInu" 9.480m  34.082
+monitor line luminosity "nInu" 9.325m  34.101
+monitor line luminosity "nInu" 8.210m  34.260
+monitor line luminosity "nInu" 7.580m  34.352
+monitor line luminosity "nInu" 7.050m  34.444
+monitor line luminosity "nInu" 4.114m  35.111
+monitor line luminosity "nInu" 2.324m  35.829
+monitor line luminosity "nInu" 1.643m  36.265
+monitor line luminosity "nInu" 1.480m  36.397
+monitor line luminosity "nInu" 1.436m  36.430
+monitor line luminosity "nInu" 1.119m  36.741
+monitor line luminosity "nInu"  8330A  37.106
+monitor line luminosity "nInu"  8079A  37.129
+monitor line luminosity "nInu"  6210A  37.450
+monitor line luminosity "nInu"  4885A  37.731
+monitor line luminosity "nInu"  3704A  38.044
+monitor line luminosity "nInu"  3588A  38.020
+monitor line luminosity "nInu"  2430A  38.428
+monitor line luminosity "nInu"  2392A  38.443
+monitor line luminosity "nInu"  2071A  38.558
+monitor line luminosity "nInu"  2053A  38.565
+monitor line luminosity "nInu"  1793A  38.660
+monitor line luminosity "nInu"  1585A  38.738
+monitor line luminosity "nInu"  1458A  38.809
+monitor line luminosity "nInu"  1357A  38.860
+monitor line luminosity "nInu"  1297A  38.921
+monitor line luminosity "nInu"  1263A  38.944
+monitor line luminosity "nInu"  1218A  38.921
+monitor line luminosity "nInu"  1196A  38.928
+monitor line luminosity "nInu"  1175A  38.907
+// >>chng 10 aug 12, from 39.02 to 39, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu"  1144A  39
+monitor line luminosity "nInu"  1113A  38.912
+monitor line luminosity "nInu"  1103A  39.037
+monitor line luminosity "nInu"  1074A  39.036
+monitor line luminosity "nInu"  1064A  39.030
+monitor line luminosity "nInu"  1036A  39.016
+monitor line luminosity "nInu"  1000A  39.055
+monitor line luminosity "nInu" 925.1A  38.895
+monitor line luminosity "nInu" 897.8A  38.617
+monitor line luminosity "nInu" 760.0A  37.983
+monitor line luminosity "nInu" 701.5A  38.359
+// >>chng 10 aug 12, from 38.1 to 38.14, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 608.2A  38.14
+monitor line luminosity "nInu" 575.1A  38.551
+monitor line luminosity "nInu" 511.9A  38.609
+monitor line luminosity "nInu" 496.9A  38.348
+monitor line luminosity "nInu" 399.2A  38.072
+c stars_wmbasic.in
+c class stars 
+c ========================================
+
+This is a test that the code can correctly access the
+WMBASIC O-star model atmosphere continua. 
+
+Checks:
+table star wmbasic command works.
+
+ 

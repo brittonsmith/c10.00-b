@@ -1,0 +1,78 @@
+title redshift 1000 recombination epoch
+c
+c commands controlling continuum =========
+c a true blackbody radiation field, in strick thermo equilibrium
+blackbody 3000 STE
+c
+c commands for density & abundances =========
+hden 0
+abundances primordial
+c
+c commands controlling geometry  =========
+stop zone 1
+c
+c other commands for details     =========
+case b 
+iterate
+c
+c commands controlling output    =========
+normalize lines to "Ca B" 4861
+print ages
+print departure coef
+print line faint -5
+save monitors "igm_z3.asr"
+c
+c commands giving the monitors    =========
+// >>chng 01 sep 24, from 80.5 to 59.2, lower def case b optical depth
+// >>chng 03 may 17, from 59.2 to 23.6, update pump more often
+// >>chng 04 mar 04, from 23.6 to 54.07, improv conv
+// >>chng 04 jun 12, from 54.07 to 80.0, chng cont shield fcn
+// >>chng 07 oct 22, from 80.0 to 111.7, resolve l-levels of h-like sequence
+monitor line "H  1" 4861 111.7
+//
+monitor hydrogen 2 tempeature 3000
+//
+// >>chng 00 mar 22, widflx, pump bug from -0.709 to -0.672, also error
+// >>chng 01 aug 23, from 0.672 to 0.699, 2x better con res
+// >>chng 01 sep 24, from -0.699 to -1.06 lower def case b optical depth
+// >>chng 03 may 17, from -1.06 to -1.26 update pump more often
+// >>chng 04 mar 04, from -1.26 to -1.11 improv conv
+// >>chng 04 jun 12, from -1.11 to -0.651 chng cont shield fcn
+monitor ionization hydrogen 2 -0.651 error 0.06
+//
+// >>chng 01 sep 24, from 0.304 to 0.326 lower def case b optical depth
+// >>chng 02 may 27, from 0.326 to 0.359, improved brems gaunts
+// >>chng 02 jun 21, from 0.359 to 0.320, improved brems gaunts
+// >>chng 03 may 17, from 0.320 to 0.347 update pump more often
+// >>chng 04 mar 04, from 0.347 to 0.327, imrov conv
+// >>chng 04 jun 12, from 0.327 to 0.294 chng cont shield fcn
+monitor line "ff h" 0 0.294
+//
+// >>chng 01 sep 24, from 0.0185 to 0.049 lower def case b optical depth
+// >>chng 03 may 17, from 0.049 to 0.0806 update pump more often
+// >>chng 04 mar 04, from 0.0806 to 0.0555, imrov conv
+// >>chng 04 jun 12, from 0.0555 to 0.0162 chng cont shield fcn
+monitor line "h- h" 0 0.0162
+//
+// >>chng 01 sep 24, from 0.0163 to 0.043 lower def case b optical depth
+// >>chng 03 may 17, from 0.043 to 0.0703 update pump more often
+// >>chng 04 mar 04, from 0.0703 to 0.0485, imrov conv
+// >>chng 04 jun 12, from 0.0485 to 0.0142 chng cont shield fcn
+monitor line "h-fb" 0 0.0142
+//
+// >>chng 01 sep 24, from 0.0103 to 0.027 lower def case b optical depth
+// >>chng 03 may 17, from 0.027 to 0.0444 update pump more often
+// >>chng 04 mar 04, from 0.0444 to 0.0307, imrov conv
+// >>chng 04 jun 12, from 0.0307 to 0.0090 chng cont shield fcn
+monitor line "h2+ " 0 0.0090
+//
+c igm_z3.in
+c class limit igm
+c ========================================
+c 
+
+This is a model of the universe near the recombination epoch, at
+a redshift of a thousand.  The gas is exposed to a true blackbody at
+3000 K, and the abundances are primordial.  
+
+

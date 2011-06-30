@@ -1,0 +1,161 @@
+title FeII model 
+table agn
+print lines column
+print lines sort intensity 
+atom feii 
+hden 11
+phi(h) 20
+stop column density 23
+iterate convergence 
+//
+// affects appearance of printout
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+//
+// these are to try to speed things up
+init "c84.ini"
+//
+save monitors "feii_blr_n11_p20.asr" last
+save feii continuum units microns "feii_blr_n11_p20.fe2con" last
+save convergence reason "feii_blr_n11_p20.cvr"
+save feii lines "feii_blr_n11_p20.lin" last
+save feii column densities "feii_blr_n11_p20.fe2col" last
+save feii populations all "feii_blr_n11_p20.lev" last
+save overview "feii_blr_n11_p20.ovr" last
+save dr "feii_blr_n11_p20.dr" last 
+//
+// strong blr lines
+// >>chng 06 aug 20 from 6.921 to 6.949, bowen meudon trickledown
+// >>chng 06 nov 29, from 6.949 to 6.879, Badnell DR
+// >>chng 09 feb 23, from 6.879 to 6.855, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1035 6.855 //total of sum of both O VI comp
+//
+// >>chng 06 nov 29, from 8.960 to 8.981, Badnell DR
+// >>chng 08 apr 30, from 8.981 to 8.955 H, He topoff change
+// >>chng 09 feb 23, from 8.955 to 8.986, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1216 8.986 //total Hydrogen Lyman-alpha 1215.67 
+//
+// >>chng 06 aug 20 from 7.479 to 7.519, bowen meudon trickledown
+// >>chng 06 nov 29, from 7.519 to 7.439, Badnell DR
+monitor line luminosity "totl"  1240 7.439 //total of sum of both N V comp
+//
+//total of sum of both Si IV comp
+// >>chng 03 nov 23, from 7.747 to 7.776, Kraemer et al. guess of dr
+// >>chng 05 jul 17, from 7.78 to 7.74, first run in 6 mo
+// >>chng 06 jul 24, from 7.74 to 7.81, RP update H-like collision rates
+// >>chng 07 dec 09, from 7.81 to 7.76 cumulative RP changes in iso seq
+// >>chng 08 apr 30, from 7.76 to 7.71 H, He topoff change
+monitor line luminosity "totl"  1397 7.71 error 0.1
+//
+// >>chng 06 aug 20 from 7.309 to 7.350, bowen meudon trickledown
+// >>chng 06 nov 29, from 7.350 to 7.411, Badnell DR
+// >>chng 08 mar 17, from 7.411 to 7.380 RP update line overlap
+monitor line luminosity "totl"  1402 7.380 //total O IV] 1402 
+//
+// >>chng 06 aug 20 from 8.607 to 8.641, bowen meudon trickledown
+// >>chng 07 aug 09, from 8.641 to 8.611, R1305 update H coll
+// >>chng 08 mar 17, from 8.611 to 8.583 RP update line overlap
+monitor line luminosity "totl"  1549 8.583 //total of sum of both C IV comp
+//
+//total He II Balmer-alpha 1640
+// >>chng 05 oct 20, from 7.806 to 7.823, drift
+// >>chng 09 feb 10, from 7.823 to 7.851, combined effect of r2655, r2669
+// >>chng 10 feb 14, from 7.851 to 7.87, update O atomic data
+monitor line luminosity "he 2"  1640 7.87
+//
+//total O III] 1666
+// >>chng 05 jul 17, from 7.20 to 7.14, first run in 6 mo
+// >>chng 06 jul 24, from 7.14 to 7.24, RP update H-like collision rates
+// >>chng 07 aug 09, from 7.24 to 7.19 R1305 update H coll
+// >>chng 07 dec 09, from 7.19 to 7.14 cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 7.14 to 7.07 RP update line overlap
+monitor line luminosity "o  3"  1666 7.07 error 0.1
+//
+//total of sum of CIII] 1908.73+
+// >>chng 03 oct 04, from 7.044 to 7.066, atom2 ots
+// >>chng 05 jul 17, from 7.04 to 6.98, first run in 6 mo
+// >>chng 06 jul 24, from 6.98 to 7.10, RP update H-like collision rates
+// >>chng 06 nov 29, from 7.10 to 7.20, Badnell DR
+// >>chng 07 aug 09, from 7.20 to 7.15 R1305 update H coll
+// >>chng 07 dec 09, from 7.15 to 7.08 cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 7.08 to 6.99 RP update line overlap
+monitor line luminosity "totl"  1909 6.99 error 0.1
+//
+//total of sum of Si III] 1892+
+// >>chng 05 jul 17, from 7.55 to 7.48, first run in 6 mo
+// >>chng 06 jul 24, from 7.48 to 7.60, RP update H-like collision rates
+// >>chng 07 aug 09, from 7.60 to 7.56 R1305 update H coll
+// >>chng 07 dec 09, from 7.56 to 7.49 cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 7.49 to 7.42 RP update line overlap
+// >>chng 08 apr 30, from 7.42 to 7.38 H, He topoff change
+monitor line luminosity "totl"  1888 7.38 error 0.1
+//
+//total sum of both Al III comp
+// >>chng 05 jul 17, from 6.91 to 6.85, first run in 6 mo
+// >>chng 06 jul 24, from 6.85 to 6.97, RP update H-like collision rates
+// >>chng 07 aug 09, from 6.97 to 6.90 R1305 update H coll
+// >>chng 07 dec 09, from 6.90 to 6.83 cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 6.83 to 6.76 RP update line overlap
+// >>chng 08 apr 30, from 6.76 to 6.72 H, He topoff change
+monitor line luminosity "totl"  1860 6.72 error 0.1
+//
+//total C II] 2324.69 + 2328.12
+// >>chng 05 jul 17, from 6.23 to 6.17, first run in 6 mo
+// >>chng 06 jul 24, from 6.17 to 6.31, RP update H-like collision rates
+// >>chng 07 aug 09, from 6.31 to 6.26 R1305 update H coll
+// >>chng 07 dec 09, from 6.26 to 6.15 cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 6.15 to 5.98 RP update line overlap
+// >>chng 08 apr 30, from 5.98 to 5.81 H, He topoff change
+// >>chng 08 jul 08, from 5.81 to 5.92 damping wing pump rates
+monitor line luminosity "totl"  2326 5.92 error 0.1
+//
+//total of sum of both Mg II comp
+// >>chng 05 oct 20, from 7.650 to 7.627, drift
+// >>chng 06 jul 24, from 7.63 to 7.69, RP update H-like collision rates
+// >>chng 07 aug 09, from 7.69 to 7.65 R1305 update H coll
+// >>chng 07 dec 09, from 7.65 to 7.58 cumulative RP changes in iso seq
+// >>chng 08 mar 17, from 7.58 to 7.52 RP update line overlap
+// >>chng 08 apr 30, from 7.52 to 7.48 H, He topoff change
+monitor line luminosity "totl"  2798 7.48 error 0.1
+//
+// >>chng 09 jun 15, add this monitor
+monitor line luminosity "Fe2C" 0 7.409
+//
+// >>chng 09 jun 15, add this monitor
+// >>chng 09 jun 16, from 1 to 7.617, add FeII bands
+monitor line luminosity "Fe2b" 2445 7.617
+//
+// >>chng 09 jun 15, add this monitor
+// >>chng 09 jun 16, from 1 to 6.3, add FeII bands
+monitor line luminosity "Fe2b" 4558 6.3
+//
+// >>chng 08 dec 08, from 7 to 6.297, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 6.297 to 14.12, merging newsolvers branch
+// >>chng 09 jan 16, from 14.12 to 14.15 (error 0.04), average of 9 runs
+// >>chng 09 feb 10, from 14.15 to 17.76, combined effect of r2655, r2669
+// >>chng 09 jul 06, from 17.76 to 16.81, botches resulting from r3095
+// >>chng 09 jul 16, from 16.81 to 17.53, change autocv back to 0.2
+// >>chng 09 nov 17, from 17.53 to 16.64, N I changes (r3588)
+// >>chng 10 jan 12, from 16.64 to 16.94, small drift
+monitor itrzn 16.94
+//
+// >>chng 09 feb 10, from 4 to 5, combined effect of r2655, r2669
+// >>chng 09 feb 23, from 5 to 3, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jul 16, from 3 to 7, change autocv back to 0.2
+// >>chng 09 aug 01, from 7 to 3, do not check on outward Hb, autocv back to old default
+// >>chng 09 oct 05, from 3 to 4, [NI] pumping changes
+// >>chng 09 oct 12, from 4 to 3, extend fine continuum to lower limit of code by default
+// >>chng 09 dec 28, 3 with gcc & icc on cloud9, 4 with gcc on mac
+
+monitor niter > 2 
+monitor niter < 5 
+//
+// >>chng 03 nov 10, from 360 to 400, improve he0 zoning
+// >>chng 08 apr 30, from < 400 to 347 H, He topoff change
+// >>chng 09 feb 23, from 347 to 351, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jun 11, from 351 to 373, better approach to outer edge of bounded model
+// >>chng 09 jul 16, from 373 to 377, change autocv back to 0.2
+// >>chng 09 aug 02 from 377 to 375, bcx vs08, rm small error
+monitor nzone 375
+
+This is one of the 5 models that sample the LOC plane.

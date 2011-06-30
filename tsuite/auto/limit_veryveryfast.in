@@ -1,0 +1,56 @@
+title very fast simulation for Purify/valgrind
+c
+c commands controlling continuum =========
+table agn
+ionization parameter -2
+c
+no file opacity
+set dr 0 
+c
+c commands for density & abundances =========
+hden 9
+init file "hheonly.ini"
+element oxygen on  
+c
+c commands controlling geometry  =========
+stop zone 1
+c
+c other commands for details     =========
+no level 2
+constant temperature 4
+atom h-like levels very small
+atom he-like levels very small
+c
+c commands controlling output    =========
+save monitors last "limit_veryveryfast.asr"
+save dr last "limit_veryveryfast.dr"
+c
+c commands giving the monitors    =========
+monitor line luminoisty "ca b" 4861 -6.772
+monitor line luminoisty "ca a" 4861 -7.063
+// 
+// >>chng 06 nov 29, from -2.733 to -2.857, Badnell DR turned on
+monitor ionization oxygen 2 -2.857
+// 
+// >>chng 06 nov 29, from -0.762 to -0.817, Badnell DR turned on
+monitor ionization oxygen 3 -0.817
+// 
+// >>chng 06 nov 29, from -0.179 to -0.158, Badnell DR turned on
+monitor ionization oxygen 4 -0.158
+// 
+// >>chng 06 nov 29, from -0.810 to -0.841, Badnell DR turned on
+monitor ionization oxygen 5 -0.841
+// 
+// >>chng 06 feb 03, from -2.132 to -2.153, guess dr to Badnell mean
+// >>chng 06 nov 29, from -2.153 to -2.194, Badnell DR turned on
+monitor ionization oxygen 6 -2.194
+c 
+c limit_veryveryfast
+c class limit   
+c ========================================
+c 
+
+This is meant to be a very fast calculation to 
+use when running extensive debug-enabled runtimes.
+
+

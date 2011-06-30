@@ -1,0 +1,360 @@
+title constant gas pressure orion into pdr
+// >>chng 00 oct 13, from 50 to 10
+stop temperature 10 linear
+c
+c print lots of faint CO lines
+print line faint -6
+print lines column
+print lines sort wavelength 
+// >>chng 02 dec 21, change to set thickness, with new hmole
+// co hits asymptote at 0.9 and so does not stop due to co
+// >>chng 03 sep 12, co network cleaned up, reset thickness to
+// 1 parsec, roughly the width of the cloud
+// stop thickness 1 linear parsec 
+// >>chng 05 dec 19, stop at AV 10000 to prevent H2-> H0 in deep regions
+// due to low grain temperature - see further comments below
+stop AV 1000 point
+// >>chng 01 dec 30, make constant gas pressure to avoid Lya rad pressure
+constant gas pressure 
+// >>chng 05 jan 06, rm the itertate since this sim is soooo slooooow
+// iterate
+// >>chng 03 sep 12, add this command
+double // mimic existence of unmodeled molecular gas
+sphere 
+c
+c the incident continuum is two parts
+c star and flux of photons striking it
+// >>chng 03 sep 12, now go deep into omc1 and cannot assume plane par geometry
+table read "star_kurucz_39600.dat"
+c 
+Q(H) 49
+radius 17.4507
+//
+c plus hot brems 
+brems 6
+phi(h) 10
+c
+// >>chng 03 apr 30, add cosmic rays to model
+c add cosmic rays, which are important at depth
+cosmic rays, background
+c
+c we have a spherical geometry but want to simulate observing
+c through a spectrometer's slit.  use the aperture
+c command for this
+aperture beam 
+c 
+c the observed microturbulence 
+turbulence 8 km/sec no pressure 
+c
+c density and abundances
+hden 4
+init file="ism.ini"
+abundances hii region no grains
+grains orion 
+// turn on PAHs with default abundance, depending on physical conditions
+grains pah 
+atom h2  
+c
+set nend 2000 
+c
+save overview last "h2_orion_hii_pdr.ovr"
+save hydrogen 21 cm last "h2_orion_hii_pdr.21cm"
+save heating "h2_orion_hii_pdr.het"
+save cooling "h2_orion_hii_pdr.col"
+save dr last "h2_orion_hii_pdr.dr"
+save results last "h2_orion_hii_pdr.rlt"
+save continuum last "h2_orion_hii_pdr.con" units microns
+save hydrogen lya last "h2_orion_hii_pdr.lya" 
+save grain charge last "h2_orion_hii_pdr.grnchr" 
+save grain potential last "h2_orion_hii_pdr.grnpot" 
+save H2 lines last "h2_orion_hii_pdr.h2lin" 
+save H2 column density last "h2_orion_hii_pdr.h2col" 
+save H2 destruction "h2_orion_hii_pdr.H2d"
+save H2 creation "h2_orion_hii_pdr.H2c"
+save molecules "h2_orion_hii_pdr.mol" 
+save monitors "h2_orion_hii_pdr.asr" 
+c
+//
+// >>chng 04 mar 26, add large H2
+// all lines changed, so removed history
+//
+// >>chng 07 dec 05, from 0.656 to 0.676, RP iso updates
+monitor line luminosity "h  1" 4861 0.676
+//
+// >>chng 09 feb 23, from 1.236 to 1.256, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminositry "o  3" 5007 1.256
+//
+// >>chng 06 nov 29, from -1.115 to -1.126, Badnell DR
+monitor line luminosity "totl" 4363 -1.126
+//
+// >>chng 06 nov 29, from 0.013 to 0.0462, Badnell DR
+monitor line luminosity "o  3" 51.80m 0.0462
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from 0.752 to 0.777
+// >>chng 06 nov 29, from 0.777 to 0.736, Badnell DR
+monitor line luminosity "totl" 3727 0.736
+//
+// >>chng 06 aub 06, update O+2 & N+2 CT, from -0.020 to -0.034
+// >>chng 06 aug 17, from -0.034 to 0.0328, update [OII] cs
+// >>chng 06 nov 29, from 0.0328 to -0.009, Badnell DR
+// >>chng 10 feb 14, from -0.009 to -0.0809, update O atomic data
+monitor line luminosity "totl" 7325 -0.0809
+//
+// >>chng 06 oct 02, from -1.678 to -1.579 HM update OI cs to Barklem '06
+monitor line luminosity "o  1" 6300 -1.579 
+//
+// >>chng 05 jul 17, from 0.219 to 0.28 first run in 6 mo
+monitor line luminosity "o  1" 63.17m  0.28 error 0.1 
+//
+// >>chng 05 jul 17, from -1.10 to -1.05 first run in 6 mo
+// >>chng 06 jun 02, from -1.05 to -1.09, NA refactor chem, bug fix
+monitor line luminosity "c  2" 157.6m -1.09 error 0.1 
+//
+// >>chng 05 jul 17, from -0.74 to -0.67 first run in 6 mo
+monitor line luminosity "si 2" 34.81m -0.67 error 0.1
+//
+// >>chng 05 dec 19, from 3.630 to 3.514, stop AV 1000
+// >>chng 10 jun 22, from 3.514 to 3.534, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "GraT" 0 3.534
+//
+// >>chng 05 sep 08, from 25.49 to 25.45, first run in two months
+// >>chng 05 dec 19, from 25.45 to 23.95, stop AV 1000
+monitor H2 column density 23.95 error 0.1
+//
+// >>chng 05 jul 17, from 22.26 to 21.89 first run in 6 mo
+// >>chng 05 dec 19, from 21.89 to 20.73, stop AV 1000
+monitor CO column density 20.73 error 0.15
+//
+// >>chng 05 sep 08, from -2.96 to -2.93, first run in two months
+// >>chng 05 dec 19, from -2.93 to -2.99, stop AV 1000
+// >>chng 06 mar 02, from -2.99 to -2.94, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 jun 02, from -2.94 to -2.84, NA refactor chem, bug fix
+// >>chng 10 mar 03, from -2.84 to -2.124, fix botches after CO changes
+// >>chng 10 jun 22, from -2.124 to -2.408, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 650.1m  -2.408 error 0.1
+//
+// >>chng 05 jul 17, from -2.70 to -2.67 first run in 6 mo
+// >>chng 05 dec 19, from -2.67 to -2.71, stop AV 1000
+// >>chng 06 mar 02, from -2.71 to -2.66, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 jun 02, from -2.66 to -2.56, NA refactor chem, bug fix
+// >>chng 10 mar 03, from -2.56 to -1.864, fix botches after CO changes
+// >>chng 10 jun 22, from -1.864 to -2.175, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 520.1m  -2.175 error 0.1
+//
+// >>chng 05 jul 17, from -2.50 to -2.46 first run in 6 mo
+// >>chng 06 jun 02, from -2.46 to -2.35, NA refactor chem, bug fix
+// >>chng 10 mar 03, from -2.35 to -1.672, fix botches after CO changes
+// >>chng 10 jun 22, from -1.672 to -2.012, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 433.4m  -2.012 error 0.1
+//
+// >>chng 05 jul 17, from -2.33 to -2.29 first run in 6 mo
+// >>chng 06 jun 02, from -2.29 to -2.21, NA refactor chem, bug fix
+// >>chng 10 mar 03, from -2.21 to -1.534, fix botches after CO changes
+// >>chng 10 jun 22, from -1.534 to -1.904, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 371.5m  -1.904 error 0.1
+//
+// >>chng 05 jul 17, from -2.18 to -2.15 first run in 6 mo
+// >>chng 06 jun 02, from -2.15 to -2.10, NA refactor chem, bug fix
+// >>chng 10 mar 03, from -2.1 to -1.442, fix botches after CO changes
+// >>chng 10 jun 22, from -1.442 to -1.842, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 325.1m  -1.842 error 0.1
+//
+// >>chng 05 jul 17, from -2.06 to -2.03 first run in 6 mo
+// >>chng 05 dec 19, from -2.02 to -2.07, stop AV 1000
+// >>chng 06 jun 02, from -2.07 to -2.02, NA refactor chem, bug fix
+// >>chng 10 mar 03, from -2.02 to -1.393, fix botches after CO changes
+// >>chng 10 mar 05, from -1.393 to -1.438, update results after r3848 chng atomic data
+// >>chng 10 jun 22, from -1.438 to -1.829, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 289.0m  -1.829 error 0.1
+//
+// >>chng 05 jul 17, from -1.99 to -1.96 first run in 6 mo
+// >>chng 05 dec 19, from -1.96 to -2.00, stop AV 1000
+// >>chng 09 may 12, from -2 to -1.959, H2 - H2 collision update to Lee et al 2008
+// >>chng 10 mar 03, from -1.959 to -1.391, fix botches after CO changes
+// >>chng 10 mar 05, from -1.391 to -1.453, update results after r3848 chng atomic data
+// >>chng 10 jun 22, from -1.453 to -1.887, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 260.2m  -1.887 error 0.1
+//
+// >>chng 05 jul 17, from -2.00 to -1.96 first run in 6 mo
+// >>chng 05 sep 08, from -1.96 to -1.92, first run in two months
+// >>chng 05 dec 19, from -1.92 to -1.99, stop AV 1000
+// >>chng 10 mar 03, from -1.99 to -1.445, fix botches after CO changes
+// >>chng 10 mar 05, from -1.445 to -1.534, update results after r3848 chng atomic data
+// >>chng 10 jun 22, from -1.534 to -2.07, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 236.5m  -2.07 error 0.1
+//
+// >>chng 05 jul 17, from -2.19 to -2.06 first run in 6 mo
+// >>chng 05 sep 08, from -2.06 to -1.98, first run in two months
+// >>chng 05 dec 19, from -1.98 to -2.12, stop AV 1000
+// >>chng 07 feb 06, bugfix in r828, from -2.12 to -2.09 (9.03)
+// >>chng 10 mar 03, from -2.09 to -1.578, fix botches after CO changes
+// >>chng 10 mar 05, from -1.578 to -1.716, update results after r3848 chng atomic data
+// >>chng 10 jun 22, from -1.716 to -2.48, fix botches after dBaseLines cooling/heating changes
+monitor line luminosity "CO  " 216.9m  -2.48 error 0.1
+//
+// >>chng 05 dec 19, from 1600 to 1400, stop AV 1000
+// >>chng 08 dec 08, from 1400 to 1266, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 1266 to 1269, average of 9 runs
+// >>chng 09 oct 05, from 1269 to 1255, [NI] pumping changes
+// >>chng 09 nov 03, from 1255 to 1268, drift?
+monitor nzone 1268
+//
+// >>chng 04 dec 08, from 13 to 19 co-ion feedback, check converg
+// >>chng 05 jul 17, from 19 to 25 first run in 6 mo
+// >>chng 08 dec 08, from 25 to 20.36, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 20.36 to 34.55, merging newsolvers branch
+// >>chng 09 jan 16, from 34.55 to 34.79, average of 9 runs
+// >>chng 09 feb 10, from 34.79 to 35.5, combined effect of r2655, r2669
+// >>chng 09 may 30, from 35.5 to 35.0, drift down
+monitor itrzn 36.0
+//
+// these added 05 jan 23
+// >>chng 05 sep 08, from 25.49 to 25.45, first run in two months
+// >>chng 05 dec 19, from 25.45 to 23.91, stop AV 1000
+monitor H2 column density level 0  0  23.91 error 0.1
+//
+// >>chng 05 jul 17, from 23.34 to 23.49 first run in 6 mo
+// >>chng 05 sep 08, from 23.49 to 23.55, first run in two months
+// >>chng 05 dec 19, from 23.55 to 22.96, stop AV 1000
+// >>chng 08 feb 10, from 22.96 to 23.03, chng CR heat efficiency
+// >>chng 10 mar 03, from 23.03 to 23.13, fix botches after CO changes
+// >>chng 10 mar 05, from 23.13 to 23.03, update results after r3848 chng atomic data
+// >>chng 10 jun 22, from 23.03 to 22.74, fix botches after dBaseLines cooling/heating changes
+monitor H2 column density level 0  1  22.74 error 0.1
+//
+// >>chng 05 jul 17, from 18.74 to 19.76 first run in 6 mo
+// >>chng 05 sep 08, from 19.76 to 19.81, first run in two months
+// >>chng 05 dec 19, from 19.81 to 19.67, stop AV 1000
+// >>chng 06 jun 02, from 19.67 to 19.50, NA refactor chem, bug fix
+// >>chng 07 dec 05, from 19.50 to 19.57 H-H2 coll update
+// >>chng 08 mar 17, from 19.57 to 19.52 line overlap??, not run recently
+// >>chng 08 sep 25, from 19.52 to 19.56, remove damper on line pump (r2367)
+// >>chng 09 may 12, from 19.56 to 19.62, H2 - H2 collision update to Lee et al 2008
+// >>chng 10 mar 03, from 19.62 to 19.76, fix botches after CO changes
+// >>chng 10 mar 05, from 19.76 to 19.66, update results after r3848 chng atomic data
+// >>chng 10 jun 22, from 19.66 to 19.52, fix botches after dBaseLines cooling/heating changes
+// >>chng 11 apr 21, from 19.52 to 19.45, fix botches due to factor of 2 in r4946
+monitor H2 column density level 0  2  19.45 error 0.1
+//
+// >>chng 05 jul 17, from 18.41 to 18.83 first run in 6 mo
+// >>chng 05 sep 08, from 18.83 to 18.75, first run in two months
+// >>chng 05 sep 17, from 18.75 to 18.71, update H- rate
+// >>chng 06 mar 02, from 18.71 to 18.88, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 jun 02, from 18.88 to 18.50, NA refactor chem, bug fix
+// >>chng 07 feb 06, bugfix in r828, from 18.50 to 18.53 (9.03)
+// >>chng 07 dec 05, from 18.53 to 18.83 H-H2 coll update
+// >>chng 08 mar 17, from 18.83 to 18.73 line overlap??, not run recently
+// >>chng 08 sep 25, from 18.73 to 18.79, remove damper on line pump (r2367)
+// >>chng 09 may 12, from 18.79 to 18.85, H2 - H2 collision update to Lee et al 2008
+// >>chng 11 apr 21, from 18.85 to 18.74, fix botches due to factor of 2 in r4946
+monitor H2 column density level 0  3  18.74 error 0.1
+//
+// >>chng 05 feb 12, from 15.54 to 15.58, better H2 conv
+// >>chng 05 jul 17, from 15.58 to 16.44 first run in 6 mo
+// >>chng 05 sep 08, from 16.44 to 16.37, first run in two months
+// >>chng 05 sep 17, from 16.37 to 16.32, update H- rate
+// >>chng 06 mar 02, from 16.32 to 16.40, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 jun 02, from 16.40 to 16.23, NA refactor chem, bug fix
+// >>chng 07 dec 05, from 16.23 to 16.43 H-H2 coll update
+// >>chng 07 dec 31, from 16.43 to 16.52 additional vJ H-H2 rates
+// >>chng 08 mar 17, from 16.52 to 16.35 line overlap??, not run recently
+// >>chng 08 sep 25, from 16.35 to 16.4, remove damper on line pump (r2367)
+// >>chng 09 may 12, from 16.4 to 16.49, H2 - H2 collision update to Lee et al 2008
+// >>chng 11 apr 21, from 16.49 to 16.4, fix botches due to factor of 2 in r4946
+monitor H2 column density level 0  4  16.4 error 0.1
+//
+// >>chng 05 jul 17, from 17.29 to 17.18 first run in 6 mo
+// >>chng 05 sep 08, from 17.18 to 17.14, first run in two months
+// >>chng 06 nov 29, from 17.14 to 17.09, Badnell DR
+// >>chng 07 dec 05, from 17.09 to 16.88 H-H2 coll update
+// >>chng 07 dec 31, from 16.88 to 17.11 additional vJ H-H2 rates
+monitor H2 column density level 0  5  17.11 error 0.1
+//
+// >>chng 05 feb 12, from 16.01 to 16.06, better H2 conv
+// >>chng 05 jul 17, from 16.06 to 16.72 first run in 6 mo
+// >>chng 05 sep 17, from 16.72 to 16.68, update H- rate
+// >>chng 05 dec 19, from 16.68 to 16.55, stop AV 1000
+// >>chng 06 mar 02, from 16.55 to 16.59, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 jun 02, from 16.59 to 16.53, NA refactor chem, bug fix
+// >>chng 07 apr 10, from 16.53 to 16.48, ORNL H2-He collisions
+// >>chng 07 dec 05, from 16.48 to 16.40 H-H2 coll update
+// >>chng 08 sep 25, from 16.4 to 16.35, remove damper on line pump (r2367)
+// >>chng 09 may 12, from 16.35 to 16.25, H2 - H2 collision update to Lee et al 2008
+monitor H2 column density level 0  6  16.25 error 0.1
+//
+// >>chng 05 feb 12, from 17.29 to 17.24, better H2 conv
+// >>chng 05 jul 17, from 17.24 to 17.12 first run in 6 mo
+// >>chng 05 dec 19, from 17.12 to 17.03, stop AV 1000
+// >>chng 07 dec 05, from 17.03 to 16.35 H-H2 coll update
+// >>chng 07 dec 31, from 16.35 to 16.86 additional vJ H-H2 rates
+monitor H2 column density level 0  7  16.86 error 0.15
+//
+// >>chng 05 feb 12, from 15.52 to 15.55, better H2 conv
+// >>chng 05 jul 17, from 15.55 to 16.13 first run in 6 mo
+// >>chng 05 dec 19, from 16.13 to 15.94, stop AV 1000
+// >>chng 07 feb 03, from 15.94 to 15.90, drift down
+// >>chng 07 feb 06, bugfix in r828, from 15.99 to 15.90 (9.03)
+// >>chng 07 dec 05, from 15.90 to 15.61 H-H2 coll update
+// >>chng 07 dec 31, from 15.61 to 15.79 additional vJ H-H2 rates
+// >>chng 08 may 16, from 15.79 to 15.785, increase error, sensitive to computational detail
+// >>chng 09 may 12, from 15.79 to 15.71, H2 - H2 collision update to Lee et al 2008
+monitor H2 column density level 0  8  15.71 error 0.15
+//
+// >>chng 05 jul 17, from 16.74 to 16.62 first run in 6 mo
+// >>chng 05 dec 19, from 16.62 to 16.53, stop AV 1000
+// >>chng 07 dec 05, from 16.53 to 15.50 H-H2 coll update
+// >>chng 07 dec 31, from 15.50 to 16.33 additional vJ H-H2 rates
+monitor H2 column density level 0  9  16.33 error 0.15
+//
+// >>chng 05 feb 12, from 14.54 to 14.57, better H2 conv
+// >>chng 05 jul 17, from 14.57 to 15.15 first run in 6 mo
+// >>chng 05 sep 08, from 15.15 to 15.07, first run in two months
+// >>chng 05 dec 19, from 15.07 to 14.93, stop AV 1000
+// >>chng 07 feb 06, bugfix in r828, from 14.93 to 14.89 (9.03)
+// >>chng 07 dec 31, from 14.89 to 14.94 additional vJ H-H2 rates
+// >>chng 08 feb 10, from 14.94 to 14.99, chng CR heat efficiency
+// >>chng 08 mar 17, from 14.99 to 14.92 line overlap??, not run recently
+monitor H2 column density level 1  0  14.92 error 0.1
+//
+// >>chng 05 jul 17, from 15.97 to 15.86 first run in 6 mo
+// >>chng 05 sep 08, from 15.86 to 15.78, first run in two months
+// >>chng 05 dec 19, from 15.78 to 15.74, stop AV 1000
+// >>chng 06 mar 02, from 15.74 to 15.78, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 jun 02, from 15.78 to 15.71, NA refactor chem, bug fix
+// >>chng 07 apr 10, from 15.71 to 15.76, ORNL H2-He collisions
+// >>chng 07 dec 05, from 15.76 to 15.94 H-H2 coll update
+// >>chng 07 dec 31, from 15.94 to 15.70 additional vJ H-H2 rates
+// >>chng 09 may 12, from 15.7 to 15.63, H2 - H2 collision update to Lee et al 2008
+monitor H2 column density level 1  1  15.63 error 0.1
+//
+// >>chng 05 feb 12, from 14.85 to 14.87, better H2 conv
+// >>chng 05 jul 17, from 14.87 to 15.34 first run in 6 mo
+// >>chng 05 sep 08, from 15.34 to 15.23, first run in two months
+// >>chng 05 dec 19, from 15.23 to 15.19, stop AV 1000
+// >>chng 07 dec 05, from 15.19 to 15.11 H-H2 coll update
+// >>chng 07 dec 31, from 15.11 to 15.15 additional vJ H-H2 rates
+// >>chng 08 mar 17, from 15.15 to 15.11 line overlap??, not run recently
+// >>chng 09 may 12, from 15.11 to 15.21, H2 - H2 collision update to Lee et al 2008
+monitor H2 column density level 1  2  15.21 error 0.1
+//
+// >>chng 05 jul 17, from 15.69 to 15.62 first run in 6 mo
+// >>chng 05 sep 08, from 15.62 to 15.55, first run in two months
+// >>chng 07 apr 10, from 15.55 to 15.49, ORNL H2-He collisions
+// >>chng 07 dec 05, from 15.49 to 15.59 H-H2 coll update
+// >>chng 07 dec 31, from 15.59 to 15.44 additional vJ H-H2 rates
+// >>chng 09 may 12, from 15.44 to 15.48, H2 - H2 collision update to Lee et al 2008
+monitor H2 column density level 1  3  15.48 error 0.1
+//
+c h2_orion_hii_pdr.in
+
+05 dec 19,  had stopped at 1 pc, gas/dust got very cold and H2 stopped
+forming, H2 went to H0 - this below the CO network out of the water.
+stop at AV of 1000 instead.  Is this loss of H2 at low grain temperature
+physical?  Is it ever seen?
+

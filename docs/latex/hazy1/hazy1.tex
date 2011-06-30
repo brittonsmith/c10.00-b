@@ -1,0 +1,106 @@
+\documentclass[12pt]{book}
+% !TEX root = hazy1.tex
+%\includeonly{intro}
+%\includeonly{define}
+%\includeonly{cmdintro}
+%\includeonly{cont-def}
+%\includeonly{cont-lum}
+%\includeonly{cont-shp}
+%\includeonly{compos}
+%\includeonly{density}
+%\includeonly{geometry}
+%\includeonly{optdepth}
+%\includeonly{therm}
+%\includeonly{dynamics-time}
+%\includeonly{stopping}
+%\includeonly{conout}
+%\includeonly{optimize}
+%\includeonly{grid}
+%\includeonly{miscell}
+%\includeonly{latex_style}
+
+\input{../head_info}
+\input{../macros}
+\input{../variables}
+
+\begin{document}
+\frontmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  title page
+\begin{titlepage}
+\begin{center}
+
+\Huge
+Hazy\\
+\Large
+\emph{a brief introduction to \Cloudy\ C10}\\
+\LARGE
+1. Introduction and commands
+
+\begin{figure}
+\begin{center}
+\includegraphics[clip=on,width=\columnwidth,height=0.6\textheight,keepaspectratio]{hazy1_cover}
+\end{center}
+\end{figure}
+
+\vspace{15 mm }
+\LARGE
+\emph{Cloudy \& Associates} \\
+\Large
+\href{http://www.nublado.org}{www.nublado.org} \\
+\normalsize
+\today
+\end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% page with one figure and boilerplate text
+\clearpage
+\input{../frontis_common}
+\vspace{5mm}
+\noindent
+{\small
+{\em Cover image:} Image of a bipolar planetary nebula produced with Cloudy\_3D, written by Christophe Morisset
+and available from \href{http://sites.google.com/site/cloudy3d/}{sites.google.com/site/cloudy3d}.
+}
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% table of contents page - only include top two levels
+\tableofcontents
+\listoffigures
+\listoftables
+
+\clearpage
+\mainmatter
+% proofed 1 - read over latex file, remove dead xrefs,
+% include figures, make xregs to figs and tables live
+% NB the equations have not been checked
+% proofed 2 - print document and read in detail
+\include{intro}         %proofed 2
+\include{define}        %proofed 2
+\include{cmdintro}      %proofed 2
+\include{cont-def}      %proofed 2
+\include{cont-lum}      %proofed 2
+\include{cont-shp}      %proofed 2
+\include{compos}        %proofed 2
+\include{density}       %proofed 2
+\include{geometry}      %proofed 2
+\include{optdepth}      %proofed 2
+\include{therm}         %proofed 2
+\include{dynamics-time} %proofed 2
+\include{stopping}      %proofed 2
+\include{conout}        %proofed 2
+\include{optimize}      %proofed 2
+\include{grid}          %proofed 2
+\include{miscell}       %proofed 2
+\appendix
+\include{vanhoof_grain_model}  %proofed
+\include{vanhoof_atmosphere_grids}%proofed
+\include{latex_style}   %proofed 2
+\backmatter
+\bibliographystyle{plainnat}
+\bibliography{../bibliography2}
+
+\end{document}

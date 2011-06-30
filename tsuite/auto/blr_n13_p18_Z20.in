@@ -1,0 +1,167 @@
+title BLR model, density 1e13 cm-3, flux of H-ion phots 1e18 cm2 s-1, Z=20
+c
+c this is a very low ionization cloud
+c the conditions, and some lines, are surprisingly sensitive
+c to the treatment of hydrogen molecules
+c extend stopping temperature to low values to cover full column density
+c
+c commands controlling continuum =========
+phi(h) 18
+table agn
+c
+c commands for density & abundances =========
+hden 13
+abundances starburst 20 
+c
+c commands controlling geometry  =========
+stop column density 23
+stop temperature 1000
+c
+c other commands for details     =========
+c this sim needs roughly 10 iterations to converge 
+iterate convergence
+c these are to try to speed things up
+init "c84.ini"
+no level2 lines
+c abort if any failures occur - we want to pass this test
+failures 1 
+c
+c commands controlling output    =========
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+save monitors "blr_n13_p18_Z20.asr" last
+save overview "blr_n13_p18_Z20.ovr" last
+save overview "blr_n13_p18_Z20.ovr1"
+save dr "blr_n13_p18_Z20.dr" last 
+save convergence reason "blr_n13_p18_Z20.cvr" 
+c
+c commands giving the monitors    =========
+// strong blr lines
+// >>chng 04 may 19, from 6.331 to 6.354 RP update helike sequence
+// >>chng 10 jul 30, from 6.354 to 6.319, lower te floor so column density stopping criterion is reached
+monitor line luminosity "totl"  1216 6.319 //total Hydrogen Lyman-alpha 1215.67 
+//
+//total Hydrogen Lyman-alpha 1215.67 
+// >>chng 06 sep 30, from 5.911 to 5.937, rjrw merge chem, corr several bugs
+// >>chng 06 nov 29, from 5.937 to 5.910, Badnell DR turned on
+// >>chng 08 apr 30, from 5.91 to 5.94, H, He topoff change
+monitor line luminosity "totl"  4861 5.94 error 0.1
+// 
+//total HeII Bal-al 1640
+// >>chng 04 may 13, from 4.656 to 4.691, dest albedo chng
+// >>chng 04 may 19, from 4.691 to 4.549, incr err RP update helike sequence
+// >>chng 05 mar 12, from 4.549 to 4.433, RP merge He-like code
+// >>chng 05 sep 27, from 4.433 to 4.379, TE, GS update H chem
+// >>chng 06 jul 18, from 4.379 to 4.459, RP major upgrade VS coll strengths
+// >>chng 06 jul 21, from 4.459 to 4.505, update Mg0 Si0 CT wth H+
+// >>chng 06 aug 02, from 4.505 to 4.459, update O+2, N+2 CT
+// >>chng 06 sep 30, from 4.46 to 4.50,   rjrw merge chem, corr several bugs
+// >>chng 07 jul 27, from 4.50 to 4.40, repair common error in several collision routines
+// >>chng 08 mar 22, from 4.40 to 4.35 bugfix r1879
+// >>chng 08 apr 30, from 4.35 to 4.40, H, He topoff change
+monitor line luminosity "He 2"  1640 4.40 err 0.1
+// 
+// >>chng 04 may 19, from 2.778 to 2.817, incr err RP update helike sequence
+// >>chng 09 dec 17, from 2.817 to 2.853, drift up
+// >>chng 10 jul 30, from 2.853 to 2.923, lower te floor so column density stopping criterion is reached
+monitor line luminosity "totl"  1888 2.923 err 0.1 //tot sum of Si III] 1892+
+// 
+// >>chng 04 jun 12, from 3.255 to 3.278, chng cont shield fcn
+// >>chng 06 jul 21, from 3.278 to 3.303, update Mg0 Si0 CT wth H+
+// >>chng 06 nov 29, from 3.303 to 3.279, slow drift down
+// >>chng 06 nov 29, from 3.279 to 3.228, Badnell DR turned on
+// >>chng 07 oct 22, from 3.228 to 3.205, resolve l-levels of h-like sequence
+// >>chng 08 mar 20, from 3.205 to 3.195, dbl precision gets diff answer, take average, widen
+// >>chng 10 jul 30, from 3.195 to 3.27, lower te floor so column density stopping criterion is reached
+monitor line luminosity "totl"  1860 3.27 0.10 //total sum of both Al III comp
+//
+// >>chng 04 jun 12, from 3.213 to 3.238, chng cont shield fcn
+// >>chng 05 aug 03, from 3.238 to 3.199, NA update CO, H chem net
+// >>chng 06 nov 29, from 3.199 to 3.166, Badnell DR turned on
+// >>chng 07 feb 23, from 3.166 to 3.146, drift down
+// >>chng 08 mar 17, from 3.146 to 3.121, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 jun 25, from 3.131 to 3.100 (12.1) add source/sink to ioniz ladder
+// >>chng 09 feb 23, from 3.1 to 3.12, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 feb 24, from 3.12 to 3.143, botches due to r2763
+// >>chng 10 jul 30, from 3.143 to 3.272, lower te floor so column density stopping criterion is reached
+monitor line luminosity "totl"  2326 3.272  //total C II] 2324.69 + 2328.12
+//
+// >>chng 06 jul 21, from 6.669 to 6.692, update Mg0 Si0 CT wth H+
+// >>chng 07 oct 22, from 6.692 to 6.667, resolve l-levels of h-like sequence
+monitor line luminosity "totl"  2798 6.667  //total of sum of both Mg II comp
+//
+// >>chng 10 jul 30, from 6.793 to 6.822, lower te floor so column density stopping criterion is reached
+monitor line luminosity "Ca 2"  3933 6.822
+// >>chng 10 jul 30, from 6.911 to 6.945, lower te floor so column density stopping criterion is reached
+monitor line luminosity "Ca 2"  8579 6.945
+// >>chng 08 sep 22, from 6.174 to 6.195, remove Ali et al. DR guess
+// >>chng 10 jul 30, from 6.195 to 6.222, lower te floor so column density stopping criterion is reached
+monitor line luminosity "Ca 1"  4228 6.222
+// 
+// >>chng 05 jun 05, from 6.201 to 6.184, drift up, update HeI
+// >>chng 06 nov 29, from 6.184 to 6.165, Badnell DR turned on
+// >>chng 08 mar 17, from 6.165 to 6.189, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 09 feb 24, from 6.189 to 6.209, botches due to r2763
+// >>chng 10 jul 30, from 6.209 to 6.386, lower te floor so column density stopping criterion is reached
+monitor line luminosity "Na 1"  5892 6.386
+// 
+// >>chng 04 may 19, from 6.440 to 6.474, incr err RP update helike sequence
+// >>chng 05 jun 05, from 6.474 to 6.500, update HeI
+// >>chng 05 sep 27, from 6.500 to 6.481, TE, GS update H chem
+// >>chng 06 jul 18, from 6.481 to 6.446, RP major upgrade VS coll strengths
+// >>chng 06 nov 29, from 6.446 to 6.464, slow drift down
+// >>chng 07 dec 02 from 6.464 to 6.483, changes in H-like seq
+// >>chng 08 apr 03, from 6.483 to 6.381, include 10830 in fine opacity array
+// >>chng 10 jul 30, from 6.381 to 6.292, lower te floor so column density stopping criterion is reached
+monitor line luminosity "totl"  1.083m 6.292
+//
+// >>chng 04 mar 05, from < 7 to < 9, chng conv criteria
+// >>chng 04 sep 30, from 9 to 12, conv_base conv heat cool
+// >>chng 07 dec 22, from 12 to 13, drifted up after r1709
+// >>chng 07 dec 23, from 13 to 13.5, small correction to h-like collision strengths
+// >>chng 08 jun 25, from <13.5 to 17 (15.5) add source/sink to ioniz ladder
+// >>chng 08 dec 08, from 17 to 9.789, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 9.789 to 14.51, merging newsolvers branch
+// >>chng 09 jan 08, from 14.51 to 15.55, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, from 15.55 to 14.98 (error 0.08), average of 10 runs
+// >>chng 09 jan 22, from 14.98 to 19.38, some minor botches as a result of r2655
+// >>chng 10 jul 14, from 19.38 to 17.61, port newmole r3902 to trunk, exotic abundance bugfix
+// >>chng 10 jul 26, from 17.61 to 19.0, icc on mac
+// >>chng 10 jul 30, from 19 to 16.49, lower te floor so column density stopping criterion is reached
+monitor itrzn 16.49 error 0.10
+//
+// number of iterations required
+// >>chng 03 dec 08, from <11 to <7 chng zones, ots
+// >>chng 04 mar 05, from < 7 to < 6, chng conv criteria
+// >>chng 04 mar 11, from < 6 to < 7, chng conv criteria
+// >>chng 04 mar 28, from < 7 to < 8, alpha needed 7
+// >>chng 04 jun 13, from < 8 to < 11, chng cont shield fcn
+// >>chng 08 dec 08, from 11 to 8, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 8 to 7, merging newsolvers branch
+// >>chng 09 jan 08, from 7 to 6, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 22, from 6 to 7, some minor botches as a result of r2655
+// >>chng 09 feb 24, from 7 to 6, botches due to r2763
+// >>chng 09 mar 27, from 6 to 7 improve rigor esc prob & pop defns
+// >>chng 09 jun 02, 32/64 iter 6 or 7, allow both
+// >>chng 09 jul 14, from 8 to 6, reset autocv to 0.2 since 0.1 developed 32/64 bit distinction
+// >>chng 09 jul 29, bcx icc and gcc do not get same result
+// >>chng 10 aug 08, no change, gcc 4.2.1 on mac, assert range 4-7
+// change in stopping temperature, to allow full model, should make this more stable
+// >>chng 10 aug 08, from 7 to 8, increase continuum resolution in radio
+monitor niter <8
+monitor niter >4
+//
+// >>chng 03 dec 08, from <200 to <160 chng zones, ots
+// >>chng 04 mar 05, from < 160 to < 190 
+// >>chng 04 sep 18, from < 190 to < 220 finer conv criteria - mole chk
+// >>chng 08 dec 08, from 220 to 180, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 180 to 182, merging newsolvers branch
+// >>chng 09 jan 08, from 182 to 192, minor changes in iter/zn, iterations, and zone that crept in over last month
+// >>chng 09 jan 16, disable this assert because the values show a bimodal distribution over various platforms
+// assert nzone 192 
+c 
+c blr_n13_p18_Z20.in 
+c class blr 
+c ========================================
+
+This is one of the 5 models that sample the LOC plane.

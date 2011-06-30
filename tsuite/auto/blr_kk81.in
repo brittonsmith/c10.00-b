@@ -1,0 +1,514 @@
+title old blr
+// >>refer	tsuite	blr	Kwan, H., & Krolik, J. 1981, Ap.J. 250, 478
+c
+c commands controlling continuum =========
+interpolate (0 -5) (.05 -5) (.1 0) (1 -0.5) (7.353 -2.233)
+continue (735 -3.233) (800 -15) (8.e6 -15)
+f(nu) -7.32148
+constant gas pressure
+c
+c commands for density & abundances =========
+hden 9.60206
+init file="c84.ini"
+abundances he-1 c-3.699 n-4 o-3.1549 ne-4 na=-8 mg-4.5229
+continue al-10 si-4.4229 s-10 ar-10 ca-10 fe-4.5229 ni=-8
+c
+c commands controlling geometry  =========
+stop column density 23
+c
+c other commands for details     =========
+failures 2
+iterate to convergence
+c
+c commands controlling output    =========
+print line faint -1
+print ages 
+normalise "H  1" 1216 100
+plot continuum range -3
+save overview last "blr_kk81.ovr"
+save convergence reason last "blr_kk81.cvr"
+save dr last "blr_kk81.dr"
+save monitors last "blr_kk81.asr"
+save continuum last "blr_kk81.con"
+save ionizing continuum "blr_kk81.ion"
+c
+c commands giving the monitors    =========
+monitor set error 0.1
+// 
+monitor pressure error < 0.002 
+// >>chng 01 dec 21, inner shell yields, 7.777 to 7.801
+monitor line luminosity "TOTL" 1216  7.801
+// 
+// >>chng 00 oct 03, from 5.55 to 6.09, cont rebin, H- opac bug
+// >>chng 01 mar 09, from 6.09 to 4.43, H redis function
+// >>chng 01 apr 03, from 4.43 to 5.305, convergence criteria, feii bug
+// >>chng 02 may 09, from 5.356 to 5.641, e scat escap prob
+// >>chng 03 apr 11, from 5.64 to 6.72 PopOpc bug
+// >>chng 03 may 17, from 6.72 to 7.09, h line pump update
+// >>chng 03 sep 09, from 7.09 to 6.72, diff fields
+// >>chng 04 may 13, from 6.72 to 6.285, dest albedo chng
+// >>chng 04 jun 01, from 6.285 to 6.82, unified calc of Lya line width
+// >>chng 05 mar 12, from 6.82 to 5.84 RP merge He-like code
+// >>chng 06 jul 18, from 5.84 to 9.04, RP major upgrade VS coll strengths
+// >>chng 07 jul 27, from 9.04 to 7.34, repair common error in several collision routines
+// >>chng 07 oct 25, from 7.34 to 8.28, bugfix stark broadening incorrect
+// >>chng 07 dec 19, from 8.28 to 7.82, changes in r1698
+// >>chng 08 mar 17, from 7.82 to 4.84, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 10, from 4.84 to 3.88, change default h-like levels, other minor changes
+// >>chng 08 apr 20, incr error to more realistic 10%
+// >>chng 09 oct 12, from 3.88 to 5.247, extend fine continuum to lower limit of code by default
+monitor line "TOTL" 4861     5.247 0.1
+//
+// >>chng 00 oct 03, from 17.2 to 18.4 cont rebin, H- opac bug
+// >>chng 01 mar 09, from 18.4 to 14.0 H redis function
+// >>chng 01 apr 03, from 14.0 to 35.89 convergence criteria, feii bug
+// >>chng 01 sep 24, from 35.4 to 33.1, 2s2p br chng
+// >>chng 02 nov 20, from 33.1 to 35.1, new he ots dif
+// >>chng 03 apr 11, from 35.1 to 40.2 PopOpc bug
+// >>chng 03 aug 22, from 40.2 to 43.9, line overlap
+// >>chng 03 nov 08, from 43.9 to 41.6, diff reset bugincr error
+// >>chng 05 mar 12, from 41.6 to 37.8 RP merge He-like code
+// >>chng 06 jul 18, from 37.8 to 45.7, RP major upgrade VS coll strengths
+// >>chng 07 oct 07, from 45.7 to 45.7, drift down
+// >>chng 08 mar 17, from 41.6 to 36.8, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 10, from 36.8 to 31.0, change default h-like levels, other minor changes
+// >>chng 09 oct 12, from 31 to 27.31, extend fine continuum to lower limit of code by default
+monitor line "H  1" 6563    27.31 error 0.1
+//
+// >>chng 00 oct 03, from 58.6 to 65.7 cont rebin, H- opac bug
+// >>chng 01 mar 09, from 65.7 to 69.4 H redis function
+// >>chng 01 apr 03, from 69.4 to 61.7 convergence criteria, feii bug
+// >>chng 01 aug 26, from 60.2 to 56.55, con res 2x better
+// >>chng 03 apr 11, from 56.6 to 52.7 PopOpc bug
+// >>chng 03 may 23, from 52.7 to 55.7, H excit escp prob
+// >>chng 03 oct 16, from 55.7 to 51.0, feii cooling, ots cleanup
+// >>chng 04 apr 28, from 51.0 to 47.8, He+ - H ct rate update
+// >>chng 04 jun 01, from 47.8 to 54.6, unified calc of Lya line width
+// >>chng 05 mar 12, from 54.6 to 56.9 RP merge He-like code
+// >>chng 06 jul 18, from 56.9 to 51.9, RP major upgrade VS coll strengths
+// >>chng 07 jul 25, from 51.9 to 49.5 bugfix pvh FeII tau r1290
+// >>chng 07 jul 27, from 49.5 to 52.1, repair common error in several collision routines
+// >>chng 07 oct 26, from 52.1 to 55.1, due to changes in r1472
+// >>chng 08 apr 03, from 55.1 to 59.7 include 10830 in fine opacity array
+// >>chng 08 apr 10, from 59.7 to 63.3, change default h-like levels, other minor changes
+monitor line "Ba C"    0    63.3
+//
+// >>chng 01 aug 17, from 37.6 to 35.7, slow drift in results
+// >>chng 02 may 07, from 35.7 to 37.5, slow drift up
+// >>chng 02 jul 23, from 37.5 to 35.6, slow drift, add error
+// >>chng 04 apr 28, from 35.6 to 31.7, He+ - H ct rate update
+// >>chng 04 jul 17, from 31.7 to 34.8, drift up
+// >>chng 06 dec 10, from 34.8 to 31.7, drift down
+// >>chng 07 oct 27, from 31.7 to 35.8, add up lev opac to WNW FeII model
+monitor line "Pa C"    0    35.8 error 0.1
+//
+// >>chng 01 apr 03, from 2.82 to 3.12 convergence criteria, feii bug
+// >>chng 03 may 22, from 3.103 to 3.408, Lya dest prob DEST0
+// >>chng 04 jun 01, from 3.408 to 2.31 unified calc of Lya line width
+// >>chng 06 jul 18, from 2.31 to 2.66, RP major upgrade VS coll strengths
+// >>chng 07 oct 22, from 2.66 to 2.31, resolve l-levels of h-like sequence
+// >>chng 08 apr 03, from 2.31 to 2.10 include 10830 in fine opacity array
+// >>chng 09 feb 23, from 2.1 to 1.896, remove otslin, otscon dampers (PR #84, r2758)
+monitor line "H  1"    0     1.896 error 0.1
+//
+// >>chng 01 aug 26, from 2.93 to 2.781 con res 2x better
+// >>chng 03 jun 10, from 2.79 to 2.933, larger H atom, top topoff
+// >>chng 04 apr 28, from 2.933 to 2.743 He+ - H ct rate update
+// >>chng 04 jul 03, from 2.743 to 2.888, NA update H, CO chem net
+monitor line "H-FB"    0     2.888
+//
+// >>chng 01 aug 26, from 1.456 to 1.383 con res 2x better
+// >>chng 03 jun 02, from 1.383 to 1.457, larger default H atom
+// >>chng 04 apr 28, from 1.457 to 1.363 He+ - H ct rate update
+// >>chng 05 oct 01, from 1.363 to 1.414, drift
+// >>chng 08 oct 18, from 1.414 to 1.48, include Badnell UTA data
+// >>chng 09 jun 17, from 1.48 to 1.41 adjust approach to outer eduge
+monitor line "H2+ "    0     1.41
+//
+// >>chng 00 oct 03, from 39.2 to 43.9 cont rebin, H- opac bug
+// >>chng 01 apr 10, from 43.9 to 41.6, better convergence
+// >>chng 02 may 27, from 40.7 to 43.8, improved gaunt factors
+// >>chng 02 jun 21, from 43.8 to 39.7, improved gaunt factors
+// >>chng 03 apr 11, from 39.7 to 37.4 PopOpc bug
+// >>chng 03 may 22, from 37.4 to 39.4 Lya dest prob DEST0
+// >>chng 03 nov 08, from 39.4 to 36.7, diff reset bugincr error
+// >>chng 08 aug 04, from 36.7 to 40.0, speed hack bug fix
+monitor line "H FF"    0    40.0 error 0.1 
+//
+// >>chng 01 jul 04, from 4.015 to 3.754, change in diffuse fields
+// >>chng 02 may 09, from 3.754 to 5.014, e scat escap prob
+// >>chng 02 jun 13, from 5.014 to 3.65, increase error
+// >>chng 04 may 13, from 3.65 to 3.160, dest albedo chng
+// >>chng 04 jun 01, from 3.160 to 6.18 unified calc of Lya line width
+// >>chng 04 jul 17, from 6.18 to 5.61, drift down
+// >>chng 07 jul 27, from 5.61 to 6.23, repair common error in several collision routines
+// >>chng 07 oct 26, from 6.23 to 5.47, due to changes in r1472
+// >>chng 08 mar 22, from 5.47 to 4.97, changed deltan=0 yrare A's
+// >>chng 08 apr 10, from 4.97 to 5.69, change default h-like levels, other minor changes
+// >>chng 09 feb 23, from 5.69 to 5.06, remove otslin, otscon dampers (PR #84, r2758)
+monitor line "H- H" 0 5.06 error 0.1 
+//
+// >>chng 01 dec 21, inner shell yields, 239 to 226 to 7.801
+// >>chng 03 may 06, Lya pesc bug, 226.3 to 237.8
+// >>chng 03 nov 08, from 237.8 to 224.6 diff reset bug
+// >>chng 06 nov 29, from 224.6 to 214.0 Badnell DR turned on
+// >>chng 08 apr 30, from 214 to 225 H, He topoff change
+monitor line "totm" 0 225 error 0.1
+//
+// >>chng 00 oct 03, from 2.955 to 3.301 cont rebin, H- opac bug
+// >>chng 01 aug 17, from 3.301 to 3.627, scattering part of escap prob
+// >>chng 02 jan 19, from 3.627 to 3.441, slow drift down
+// >>chng 02 dec 11, from 3.441 to 5.354, new hei
+// >>chng 03 apr 11, from 5.35 to 5.02 PopOpc bug
+// >>chng 04 may 19, from 5.02 to 4.50, RP update helike sequence
+// >>chng 04 jul 03, from 4.50 to 5.28 NA update H, CO chem net
+// >>chng 05 mar 12, from 5.28 to 5.68 RP merge He-like code
+// >>chng 05 dec 20, from 5.68 to 5.97, RP change default helium levels
+// >>chng 08 mar 22, from 5.97 to 5.28 bugfix r1879
+// >>chng 08 apr 03, from 5.28 to 4.47 include 10830 in fine opacity array
+// >>chng 08 apr 10, from 4.47 to 4.72, change default h-like levels, other minor changes
+monitor line "TOTL" 10830    4.72
+//
+// >>chng 00 dec 01, from .6368 to .690, change in sec ioniz effic
+// >>chng 01 mar 09, from 0.69 to 0.75 H redis function
+// >>chng 02 dec 11, from 0.75 to 1.273, new hei
+// >>chng 03 apr 11, from 1.27 to 1.17 PopOpc bug
+// >>chng 03 may 02, from 1.17 to 1.11 improved conv
+// >>chng 03 jun 02, from 1.11 to 1.171, larger default H atom
+// >>chng 03 aug 22, from 1.17 to 1.11, line overlap
+// >>chng 04 mar 04, from 1.11 to 1.05, slow drift
+// >>chng 04 jul 03, from 1.05 to 1.36 NA update H, CO chem net
+// >>chng 05 mar 12, from 1.36 to 1.21 RP merge He-like code
+// >>chng 05 oct 01, from 1.210 to 1.333, RP update levels
+// >>chng 08 mar 22, from 1.330 to 0.940, bugfix r1879
+// >>chng 08 apr 03, from 0.940 to 0.996, include 10830 in fine opacity array
+// >>chng 08 apr 10, from 0.996 to 1.063, change default h-like levels, other minor changes
+// >>chng 08 dec 13, from 1.063 to 1.001, merging newsolvers branch
+// >>chng 09 jun 15, from 1.001 to 1.076, gradual approach to outer edge
+monitor line "he 1" 5876     1.076
+//
+// >>chng 01 mar 09, from 0.272 to 0.293 H redis function
+// >>chng 01 jul 04, from 0.293 to 0.328 change in diffuse fields
+// >>chng 02 jan 09, from .328 to .348, interate to convergence
+// >>chng 04 sep 06, from 0.348 to 0.321, bug nej Auger
+// >>chng 07 oct 22, from 0.321 to 0.274, resolve l-levels of h-like sequence
+// >>chng 07 dec 02 from 0.274 to 0.287, changes in H-like seq
+// >>chng 08 mar 17, from 0.287 to 0.364, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+monitor line "He 2" 4686     0.364
+//
+// >>chng 01 jul 04, from 2.293 to 2.653 change in diffuse fields
+// >>chng 02 jan 09, from 2.653 to 2.799 interate to convergence
+// >>chng 05 feb 06, from 2.799 to 2.672, slow drift
+// >>chng 07 oct 22, from 2.672 to 2.506, resolve l-levels of h-like sequence
+// >>chng 08 mar 17, from 2.506 to 2.872, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+monitor line "He 2" 1640     2.872
+//
+// >>chng 00 aug 18, from 3.705 to 4.831 as result of breaking out bo seq
+// >>chng 01 jul 04, from 4.87 to 4.598 change in diffuse fields
+// >>chng 03 apr 30, from 4.598 to 4.94, csupra logic change
+// >>chng 04 jun 01, from 4.94 to 6.78 unified calc of Lya line width
+// >>chng 05 mar 12, from 6.78 to 6.42 RP merge He-like code
+// >>chng 06 jul 18, from 6.42 to 7.19, RP major upgrade VS coll strengths
+// >>chng 07 jul 27, from 7.19 to 6.59, repair common error in several collision routines
+// >>chng 07 nov 17, from 6.59 to 6.17, changes in r1512
+// >>chng 08 mar 17, from 6.17 to 5.84, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 10, from 5.84 to 5.32, change default h-like levels, other minor changes
+monitor line "totl" 2326     5.32
+//
+// >>chng 00 aug 18, from 0.713 to 0.559 as result of breaking out bo seq
+// >>chng 00 dec 20, from 0.559 to 0.587, improved pumping algorithm
+// >>chng 01 mar 09, from 0.587 to 0.621 H redis function
+// >>chng 01 sep 12, from 0.621 to 0.587 ?
+// >>chng 02 jun 15, from 0.587 to 0.546, slow drift
+// >>chng 03 apr 11, from 0.55 to 0.51 PopOpc bug
+// >>chng 03 aug 15, from 0.51 to 0.54, add low-T fe DR, incr error
+// >>chng 04 jun 01, from 0.54 to 0.62 unified calc of Lya line width
+// >>chng 04 jun 12, from 0.62 to 0.71 chng cont shield fcn
+// >>chng 06 nov 29, from 0.71 to 0.79 Badnell DR turned on
+monitor line "C  2" 1335     0.79 error 0.1
+//
+// >>chng 00 oct 19, increase error due to sensitivity to cont mesh
+// >>chng 02 jan 09, from 5.76 to 5.40 ?? */
+// >>chng 03 nov 23, from 5.40 to 5.068, Kraemer et al. guess of dr
+// >>chng 04 sep 12, from 5.068 to 5.36, drift up
+// >>chng 06 nov 29, from 5.36 to 8.74 Badnell DR turned on
+monitor line "C  3"  977     8.74 error 0.06
+//
+// >>chng 01 mar 09, from 13.24 to 14.3 H redis function
+// >>chng 01 dec 21, inner shell yields, 14.3 to 13.1
+// >>chng 03 apr 11, from 13.1 to 11.9 PopOpc bug
+// >>chng 04 sep 06, from 11.9 to 12.7 bug nej Auger
+// >>chng 06 nov 29, from 12.7 to 17.2 Badnell DR turned on
+// >>chng 08 apr 10, from 17.2 to 18.1, change default h-like levels, other minor changes
+monitor line "TOTL" 1909    18.1
+//
+// >>chng 02 aug 20, from 68.11 to 64.66, slow drift
+// >>chng 06 nov 29, from 64.66 to 50.77 Badnell DR turned on
+monitor line "TOTL" 1549    50.77
+//
+// >>chng 00 aug 18, from 4.165 to 3.665 as result of breaking out bo seq
+// >>chng 01 mar 09, from 3.67 to 3.91 H redis function
+// >>chng 01 dec 21, inner shell yields, 3.91 to 3.62
+// >>chng 03 apr 11, from 3.62 to 3.35 PopOpc bug
+// >>chng 05 oct 01, from 3.35 to 3.48, drift
+// >>chng 07 jan 20, from 3.48 to 3.66 e2 bug
+// >>chng 08 apr 10, from 3.66 to 3.85, change default h-like levels, other minor changes
+monitor line "totl" 1750     3.85
+//
+// >>chng 01 mar 09, from 1.35 to 1.44 H redis function
+// >>chng 01 dec 21, inner shell yields, 1.44 to 1.338
+// >>chng 03 apr 11, from 1.34 to 1.26 PopOpc bug
+// >>chng 06 nov 29, from 1.26 to 1.43 Badnell DR turned on
+// >>chng 08 apr 10, from 1.43 to 1.51, change default h-like levels, other minor changes
+monitor line "N  3"  991.0A     1.51
+//
+// >>chng 03 nov 23, from 5.130 to 4.863, Kraemer et al. guess of dr
+// >>chng 06 nov 29, from 4.864 to 5.999 Badnell DR turned on
+monitor line "N  4" 1486A     5.9995
+//
+// >>chng 01 mar 09, from 3.72 to 3.94 H redis function
+// >>chng 01 dec 21, inner shell yields, 3.94 to 4.35
+// >>chng 04 sep 06, from 4.35 to 3.76 bug nej Auger
+// >>chng 06 nov 29, from 3.766 to 3.06 Badnell DR turned on
+// >>chng 08 aug 04, from 3.06 to 3.20, speed hack bug fix
+monitor line "TOTL" 1240     3.20
+//
+// >>chng 00 oct 03, from 8.21 to 3.301 cont rebin, H- opac bug
+// >>chng 01 mar 09, from 6.44 to 6.80 H redis function
+// >>chng 01 jun 15, from 6.306 to 6.06 CT rates update
+// >>chng 01 jul 04, from 6.06 to 5.586 change in diffuse fields
+// >>chgn 01 jul 12, from 5.585 to 5.76, the average of the
+// answers on the ncx and pc - don't know why they do not agree
+// >>chng 01 jul 21, from 5.76 to 6.06, very sensitive
+// >>chng 03 nov 06, from 6.06 to 5.43, drift down
+// >>chng 04 jun 02, from 5.43 to 4.86, drift down
+// >>chng 06 jul 18, from 4.86 to 5.74, RP major upgrade VS coll strengths
+// >>chng 07 oct 22, from 5.74 to 4.60, resolve l-levels of h-like sequence
+// >>chng 08 mar 17, from 4.60 to 5.35, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 03, from 5.35 to 4.79 include 10830 in fine opacity array
+// >>chng 08 apr 30, from 4.79 to 4.23 H, He topoff change
+// >>chng 09 feb 10, from 4.23 to 4.816, add forbidden component of N IV] 1498 to continuum (r2669)
+// >>chng 09 jun 17, from 4.82 to 4.82 adjust approach to outer eduge
+// >>chng 09 jun 26, from 4.816 to 6.86, remove several dampers
+// >>chng 09 jun 28, from 6.86 to 5.284, check convergence of outward Hb
+// >>chng 09 jul 15, from 5.284 to 7.488, autocv from 0.1 back to 0.2
+// >>chng 09 jul 28, from 7.49 to 5.97 mean vs08+gcc bcx
+// >>chng 09 oct 12, from 5.97 to 4.764, extend fine continuum to lower limit of code by default
+// >>chng 10 jan 12, from 4.76 to 5.86 mean gcc mac/bcx
+// >>chng 10 jan 27, from 5.86 to 4.742, gradual change
+monitor line "6lev" 1304     4.742 error 0.20
+//
+// >>chng 01 mar 09, from 18.26 to 19.3 H redis function
+// >>chng 02 may 09, from 19.3 to 18.3 e scat escap prob
+// >>chng 03 nov 23, from 18.3 to 17.4 Kraemer et al. guess of dr
+// >>chng 06 jul 25, from 17.4 to 15.1, HN update OIII collision data
+// >>chng 07 jul 27, from 15.1 to 15.9, repair common error in several collision routines
+monitor line "TOTL" 1665    15.9
+//
+// >>chng 00 aug 18, from 6.05 to 5.154 as result of breaking out bo seq
+// >>chng 06 jul 18, from 5.154 to 4.916, RP major upgrade VS coll strengths
+// >>chng 06 nov 29, from 4.916 to 6.87 Badnell DR turned on
+// >>chng 08 aug 04, from 6.87 to 7.18, speed hack bug fix
+monitor line "totl" 1402     7.18
+//
+// >>chng 01 mar 09, from 3.15 to 3.33 H redis function
+// >>chng 01 dec 21, inner shell yields, 3.33 to 3.88
+// >>chng 04 sep 06, from 3.88 to 3.32 bug nej Auger
+// >>chng 06 nov 29, from 3.32 to 3.54 Badnell DR turned on
+monitor line "TOTL" 1218     3.54 
+//
+// >>chng 01 mar 09, from 2.85 to 3.06 H redis function
+// >>chng 01 dec 21, inner shell yields, 3.06 to 3.99
+// >>chng 03 feb 05, from 3.99 to 4.19, slow drift
+// >>chng 03 dec 07, from 4.19 to 3.94, incr dr resol metals edges
+// >>chng 04 sep 06, from 3.94 to 3.04 bug nej Auger
+// >>chng 06 nov 29, from 3.04 to 2.84 Badnell DR turned on
+monitor line "TOTL" 1035     2.84
+//
+// >>chng 01 apr 03, from 33.85 to 35.85 convergence criteria, feii bug
+// >>chng 01 may 18, from 35.85 to 34.05 CT rates update
+// >>chng 02 may 09, from 34.05 to 32.303 e scat escap prob
+// >>chng 03 apr 30, from 32.30 to 34.03 csupra logic change
+// >>chng 04 jun 01, from 34.03 to 41.99 unified calc of Lya line width
+// >>chng 06 nov 29, from 41.99 to 39.94 Badnell DR turned on
+// >>chng 07 nov 17, from 39.94 to 37.70, changes in r1512
+// >>chng 08 apr 10, from 37.70 to 35.39, change default h-like levels, other minor changes
+monitor line "TOTL" 2798    35.39 
+//
+// >>chng 01 mar 09, from 12.2 to 13.6 H redis function
+// >>chng 01 jul 04, from 13.6 to 12.8 change in diffuse fields
+// >>chng 01 dec 21, inner shell yields, 12.8 to 12.11
+// >>chng 02 nov 20, from 12.11 to 11.39 new he ots dif
+// >>chng 03 apr 11, from 11.39 to 10.5 PopOpc bug
+// >>chng 03 nov 23, from 10.5 to 11.3 Kraemer et al. guess of dr
+// >>chng 05 mar 12, from 11.3 to 11.9 RP merge He-like code
+// >>chng 06 nov 24, from 11.9 to 11.3, turn on Badnell RR
+// >>chng 06 nov 29, from 11.3 to 13.1 Badnell DR turned on
+// >>chng 08 apr 10, from 13.1 to 14.2, change default h-like levels, other minor changes
+// >>chng 09 feb 23, from 14.2 to 14.91, remove otslin, otscon dampers (PR #84, r2758)
+monitor line "TOTL" 1888    14.91
+//
+// >>chng 01 jul 04, from 7.604 to 8.14 change in diffuse fields
+// >>chng 01 dec 21, inner shell yields, 8.14 to 7.68
+// >>chng 03 apr 11, from 7.68 to 7.24 PopOpc bug
+// >>chng 03 nov 23, from 7.24 to 8.28 Kraemer et al. guess of dr
+// >>chng 04 sep 06, from 8.28 to 8.72 bug nej Auger
+// >>chng 06 feb 09, from 8.72 to 9.13, add exp to low-T DR 
+// >>chng 06 nov 29, from 9.13 to 7.89 Badnell DR turned on
+monitor line "TOTL" 1397     7.89
+//
+// >>chng 00 oct 03, from 15.5 to 3.301 cont rebin, H- opac bug
+// >>chng 01 apr 03, from 12.91 to 13.6 convergence criteria, feii bug
+// >>chng 01 aug 04, from 12.9 to 12.1, very sensitive, error 0.1
+// >>chng 03 aug 15, from 12.1 to 10.3, add low-T fe dr
+// >>chng 03 oct 16, from 10.3 to 6.80 feii cooling, ots cleanup
+// >>chng 04 may 13, from 6.80 to 7.910, dest albedo chng
+// >>chng 04 jun 01, from 7.91 to 1.81 unified calc of Lya line width
+// >>chng 05 feb 06, from 1.81 to 1.95, slow drift
+// >>chng 06 aug 09, from 1.95 to 1.75 Meudon 06, Bowen change
+// >>chng 07 jul 25, from 1.75 to 1.95 bugfix pvh FeII tau r1290
+// >>chng 08 apr 10, from 1.95 to 2.33, change default h-like levels, other minor changes
+// >>chng 09 oct 12, from 2.33 to 2.563, extend fine continuum to lower limit of code by default
+monitor line "Fe2c"    0    2.563 error 0.1
+//
+// amount of Lya lost into FeII
+// >>chng 03 aug 15, from 10.351 to 16.14, add low-T fe dr
+// >>chng 04 jun 01, from 16.14 to 103.3 unified calc of Lya line width
+// >>chng 05 feb 06, from 103.3 to 99.3 slow drift
+// >>chng 05 mar 12, from 99.3 to 92.1 RP merge He-like code
+// >>chng 06 jul 18, from 92.1 to 117.7 RP major upgrade VS coll strengths
+// >>chng 07 jan 25, from 111.7 to 117.7 use only Gu UTA data file, inc err
+// >>chng 07 jul 27, from 117.7 to 98.6, repair common error in several collision routines
+// >>chng 07 dec 19, from 98.6 to 87.5, changes in r1698
+// >>chng 08 apr 03, from 87.5 to 75.6 include 10830 in fine opacity array
+// >>chng 08 apr 10, from 75.6 to 65.0, change default h-like levels, other minor changes
+// >>chng 09 oct 12, from 65 to 58.24, extend fine continuum to lower limit of code by default
+monitor line "Fe 2" 1216 58.24 error 0.1
+//
+// >>chng 03 oct 16, from 10.97 to 5.25 feii cooling, ots cleanup
+// >>chng 04 jun 01, from 5.25 to 6.78 unified calc of Lya line width
+// >>chng 07 oct 27, from 6.78 to 6.46, add up lev opac to WNW FeII model
+// >>chng 08 feb 15, from 6.46 to 6.15, turn off FeII pump on first iter
+// >>chng 08 apr 30, from 6.15 to 5.87 H, He topoff change
+monitor line "Fe 2" 6200 5.87 error 0.1
+//
+// >>chng 03 aug 15, from 2.666 to 2.873 add low-T fe dr
+// >>chng 04 jun 01, from 2.873 to 3.96 unified calc of Lya line width
+// >>chng 05 mar 12, from 3.96 to 3.70 RP merge He-like code
+// >>chng 06 jul 18, from 3.70 to 4.25, RP major upgrade VS coll strengths
+// >>chng 06 nov 29, from 4.25 to 4.05 Badnell DR turned on
+// >>chng 07 jul 27, from 4.05 to 3.69, repair common error in several collision routines
+// >>chng 08 feb 13, from 3.69 to 3.39, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+// >>chng 08 apr 10, from 3.39 to 2.96, change default h-like levels, other minor changes
+// >>chng 09 feb 23, from 2.96 to 2.765, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jun 15, from 2.765 to 3.181, gradual approach to outer edge
+// >>chng 09 jun 28, from 3.181 to 3.008, check convergence of outward Hb
+monitor line "Fe 2" 2400 3.008
+//
+// >>chng 01 aug 26, from 1.8101 to 1.691 con res 2x better
+monitor line "FeKa"    1.78     1.691
+//
+// ionization fractions
+// >>chng 01 jun 15, from -0.474 to -0.574, H ct network upgrade
+// >>chng 03 nov 08, from -0.574 to -0.5974 diff reset bug
+// >>chng 07 oct 27, from -0.597 to -0.571 add up lev opac to WNW FeII model
+// >>chng 08 mar 17, from 0.571 to -0.597, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+monitor ionization fraction hydrogen 2 -0.597
+//
+// >>chng 01 jul 04, from -1.381 to -1.347 change in diffuse fields
+// >>chng 02 nov 20, from -1.347 to -1.373 new he ots dif
+// >>chng 03 apr 11, from -1.37 to -1.40 PopOpc bug
+// >>chng 03 may 06, Lya pesc bug, -1.400 to -1.422
+// >>chng 04 apr 23, drift down, -1.422 to -1.400
+// >>chng 04 jun 01, from -1.400 to -1.370 unified calc of Lya line width
+// >>chng 04 jul 03, from -1.37 to -1.16 NA update H, CO chem net
+// >>chng 05 oct 01, from -1.16 to -1.20 RP update levels
+// >>chng 08 mar 22, from -1.20 to -1.39 bugfix r1879
+// >>chng 08 apr 30, from -1.39 to -1.37 H, He topoff change
+monitor ionization fraction helium   2 -1.37 error 0.1
+//
+// >>chng 01 jul 04, from -2.206 to -2.149 change in diffuse fields
+// >>chng 01 dec 21, inner shell yields, -2.149 to -2.125
+// >>chng 04 sep 06, from -2.125 to -2.157 bug nej Auger
+// >>chng 06 nov 29, from -2.157 to -2.128 Badnell DR turned on
+monitor ionization fraction helium   3 -2.128
+//
+// >>chng 00 may 11, from -3.239 to -3.212, ??
+// >>chng 00 oct 03, from -3.212 to -3.281 cont rebin, H- opac bug
+// >>chng 01 feb 06, from -3.281 to -3.328, change ct rate
+// >>chng 01 jun 15, from -3.328 to -3.313 CT rates update
+// >>chng 01 sep 12, from -3.313 to -3.163 ? ?
+// >>chng 02 may 09, from -3.163 to -3.119 e scat escap prob
+// >>chng 03 apr 11, from -3.12 to -3.17 PopOpc bug
+// >>chng 03 may 22, from -3.17 to -2.985 Lya dest prob DEST0
+// >>chng 03 aug 15, from -2.985 to -3.107 add low-T fe dr
+// >>chng 04 jun 01, from -3.107 to -4.08 unified calc of Lya line width
+// >>chng 04 jul 03, from -4.08 to -4.02 NA update H, CO chem net
+// >>chng 06 nov 24, from -4.02 to -4.14, turn on Badnell RR
+// >>chng 07 jul 27, from -4.14 to -4.08, repair common error in several collision routines
+// >>chng 07 oct 27, from -4.08 to -4.03 add up lev opac to WNW FeII model
+// >>chng 08 apr 10, from -4.03 to -3.98, change default h-like levels, other minor changes
+// >>chng 09 oct 12, from -3.98 to -3.933, extend fine continuum to lower limit of code by default
+monitor ionization fraction sodium 1 -3.933 error 0.1
+//
+// >>chng 00 may 11, from -3.319 to -3.291, ??
+// >>chng 00 oct 03, from -3.291 to -3.379 cont rebin, H- opac bug
+// >>chng 01 sep 12, from -3.410 to -3.223 ? ?
+// >>chng 02 may 09, from -3.223 to -3.154 e scat escap prob
+// >>chng 02 jun 13, from -3.154 to -3.203, zoning?
+// >>chng 03 may 22, from -3.203 to -2.953 Lya dest prob DEST0
+// >>chng 03 aug 15, from -2.953 to -3.151 add low-T fe dr
+// >>chng 04 jun 01, from -3.151 to -4.10 unified calc of Lya line width
+// >>chng 05 oct 01, from -4.10 to -4.04, drift
+// >>chng 07 jul 25, from -4.04 to -3.97 bugfix pvh FeII tau r1290
+// >>chng 07 oct 27, from -3.97 to -3.91 add up lev opac to WNW FeII model
+// >>chng 08 apr 10, from -3.91 to -3.83, change default h-like levels, other minor changes
+monitor ionization fraction calcium 2 -3.83 error 0.15
+//
+// >>chng 08 dec 08, from 5 to 4, upper limit -> equals (r2515)
+// >>chng 09 jun 28, from 4 to 9, check convergence outward Hb
+// >>chng 09 jul 14, from 9 to 5, reset autocv to 0.2 since 0.1 developed 32/64 bit distinction
+// >>chng 09 jul 15, from 5 to 4, set autocv from 0.1 to 0.2
+monitor niter 4
+//
+// >>chng 03 jun 10, from 13.5 to 11, finer zoning
+// >>chng 04 feb 15, from 11 to 10, conv ioniz loop auger
+// >>chng 04 feb 27, from 10 to 9, conv ioniz loop auger
+// >>chng 04 sep 30, from 10 to 12, conv_base conv heat cool
+// >>chng 05 feb 06, from 12 to 15 slow drift, actually 12.6
+// >>chng 08 dec 08, from 15 to 13.87, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 13.87 to 34.16, merging newsolvers branch
+// >>chng 09 jan 16, from 34.16 to 34.2, average of 10 runs
+// >>chng 09 jan 22, from 34.2 to 32.91, some minor botches as a result of r2655
+// >>chng 09 jun 15, from 32.91 to 33.78, gradual approach to outer edge
+// >>chng 10 mar 05, from 33.78 to 35.47, one that changed slightly - phase of the moon???  itrz changes for lots of reasons
+monitor itrzn 35.47
+//
+// >>chng 02 jun 13, from 250 to 320, finer griding
+// >>chng 03 jun 08, from 320 to 370, add n0 zoning
+// >>chng 03 dec 07, from 370 to 390, incr dr resol metals
+// >>chng 04 feb 27, from 390 to 410, dr on chng in eden
+// >>chng 04 mar 24, from 410 to 460
+// >>chng 08 dec 08, from 460 to 356, upper limit -> equals (r2515)
+// >>chng 09 jun 15, from 356 to 375, gradual approach to outer edge
+monitor nzone 375 
+c
+c blr_kk81.in
+c class blr 
+c ========================================
+c 
+
+This is the "standard" BLR model presented by Kwan and Krolik (1981).
+
+>>refer	blr	cloud	Kwan, J.,  & Krolik, J. 1981, ApJ, 250, 478
+
+Compare line intensities to previous versions of CLOUDY
+by entering into table on page Error! Bookmark not defined..
+
+The code caution that the resulting total pressure was not constant
+is to be expected.  The KK calculation assumed constant gas pressure,
+but internally generature line radiation pressure is significant.  
+Because of this the sum
+of gas plus radiation pressure was not constant although 
+the gas pressure was. 
+

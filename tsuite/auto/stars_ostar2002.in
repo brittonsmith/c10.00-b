@@ -1,0 +1,112 @@
+title tlusty O star grid
+c
+c commands controlling continuum =========
+c Approximate model of a hot star ionizing its surroundings.
+c Assume H density of 1e+6 per cc.  This run tests the new Tlusty model option.
+c I choose the T_eff and log(g) values arbitrarily.  It implies a star
+c with luminosity 32300 L_sun, radius 6.4745 R_sun, and mass 3.745 M_sun.
+table star tlusty ostar 30400.0 4.2
+luminosity 4.509202522 solar
+c
+c commands for density & abundances =========
+abundances old solar 84 
+hden 6.0
+grains ism
+c
+c commands controlling geometry  =========
+radius -3.0 parsec
+sphere
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+c
+c in this model the Lyman lines are pumped significantly by the stellar continuum;
+c disable this process to avoid critical dependence on the precise shape of the continuum.
+no induced processes
+constant temperature 4
+c
+c commands controlling output    =========
+c
+save overview last "stars_ostar2002.ovr"
+save results last "stars_ostar2002.rlt"
+save monitors last "stars_ostar2002.asr"
+save transmitted continuum last "stars_ostar2002.trn" no header
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 22.49 to 22.54, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  22.54
+monitor line luminosity "nInu" 122.4m  29.887
+monitor line luminosity "nInu" 60.83m  30.810
+monitor line luminosity "nInu" 41.22m  31.322
+monitor line luminosity "nInu" 30.87m  31.702
+monitor line luminosity "nInu" 24.78m  31.990
+monitor line luminosity "nInu" 24.30m  32.009
+monitor line luminosity "nInu" 22.83m  32.094
+monitor line luminosity "nInu" 21.42m  32.179
+monitor line luminosity "nInu" 21.12m  32.192
+monitor line luminosity "nInu" 19.62m  32.290
+monitor line luminosity "nInu" 17.65m  32.427
+monitor line luminosity "nInu" 17.37m  32.453
+monitor line luminosity "nInu" 15.69m  32.584
+monitor line luminosity "nInu" 14.60m  32.675
+monitor line luminosity "nInu" 12.43m  32.893
+monitor line luminosity "nInu" 11.40m  33.000
+monitor line luminosity "nInu" 10.46m  33.110
+monitor line luminosity "nInu" 9.480m  33.240
+monitor line luminosity "nInu" 9.325m  33.259
+monitor line luminosity "nInu" 8.210m  33.427
+monitor line luminosity "nInu" 7.580m  33.524
+monitor line luminosity "nInu" 7.050m  33.621
+monitor line luminosity "nInu" 4.114m  34.317
+monitor line luminosity "nInu" 2.324m  35.046
+monitor line luminosity "nInu" 1.643m  35.483
+monitor line luminosity "nInu" 1.480m  35.616
+monitor line luminosity "nInu" 1.436m  35.650
+monitor line luminosity "nInu" 1.119m  35.964
+monitor line luminosity "nInu"  8330A  36.331
+monitor line luminosity "nInu"  8079A  36.353
+monitor line luminosity "nInu"  6210A  36.672
+monitor line luminosity "nInu"  4885A  36.956
+monitor line luminosity "nInu"  3704A  37.203
+monitor line luminosity "nInu"  3588A  37.240
+monitor line luminosity "nInu"  2430A  37.650
+monitor line luminosity "nInu"  2392A  37.655
+monitor line luminosity "nInu"  2071A  37.784
+monitor line luminosity "nInu"  2053A  37.757
+monitor line luminosity "nInu"  1793A  37.880
+monitor line luminosity "nInu"  1585A  37.920
+monitor line luminosity "nInu"  1458A  37.988
+monitor line luminosity "nInu"  1357A  38.110
+monitor line luminosity "nInu"  1297A  38.137
+monitor line luminosity "nInu"  1263A  38.135
+monitor line luminosity "nInu"  1218A  37.897
+monitor line luminosity "nInu"  1196A  38.105
+monitor line luminosity "nInu"  1175A  37.909
+// >>chng 10 aug 12, from 38.2 to 38.17, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu"  1144A  38.17
+monitor line luminosity "nInu"  1113A  38.224
+monitor line luminosity "nInu"  1103A  38.226
+monitor line luminosity "nInu"  1074A  38.223
+monitor line luminosity "nInu"  1064A  38.221
+monitor line luminosity "nInu"  1036A  38.225
+monitor line luminosity "nInu"  1000A  38.256
+monitor line luminosity "nInu" 925.1A  37.807
+monitor line luminosity "nInu" 897.8A  37.342
+monitor line luminosity "nInu" 760.0A  37.202
+monitor line luminosity "nInu" 701.5A  37.095
+monitor line luminosity "nInu" 608.2A  36.841
+monitor line luminosity "nInu" 575.1A  36.796
+monitor line luminosity "nInu" 511.9A  36.622
+monitor line luminosity "nInu" 496.9A  35.604
+monitor line luminosity "nInu" 399.2A  34.676
+c stars_ostar2002.in
+c class stars 
+c ========================================
+
+This is a test that the code can correctly access the
+large block of Tlusty O-star model atmosphere continua. 
+
+Checks:
+table star tlusty ostar command works.
+

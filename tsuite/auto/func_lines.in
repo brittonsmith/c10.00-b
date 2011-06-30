@@ -1,0 +1,38 @@
+title create output file with list of func_lines
+atom h2 levels large 
+atom feii 
+test
+c
+c commands controlling continuum =========
+c commands for density & abundances =========
+c commands controlling geometry  =========
+c other commands for details     =========
+c
+c commands controlling output    =========
+c this creates the file "func_lines.lab that contains a list
+c of all emission labels
+save line labels "func_lines.lab"
+c this creates the file "func_lines.lis" that contains a list
+c of the emission func_lines that are transported. 
+save line data "func_lines.lis"
+c 
+c There is nothing extra to assert, since test does include many asserts
+c commands giving the monitors    =========
+c 
+c func_lines.in
+c class function 
+c ========================================
+c 
+
+This runs the standard "test" case, and then creates
+the line data and labels files.	 Test by itself includes
+many asserts, so no further asserts are needed here.
+
+The file func_lines.lab is a useful list of all lines predicted by the code.
+Cut and paste this into other places when you need to find a particular
+emission line.
+
+The func_lines lines.dat gives atomic data for all the lines, and their
+critical density at 10000 K.
+The large H2 and Fe II model atoms are turned on to include their lines. 
+

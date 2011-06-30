@@ -1,0 +1,114 @@
+title H2 populations in H- dominated limit
+c this is one of a pair with h2_solomon.in 
+c
+c commands controlling continuum =========
+c this is hot star continuum
+black 30000
+intensity  -5. range  0.4412 to 1 Ryd
+c this will remove all ionizing radiation
+extinguish 24 0
+c background CR ionization rate should be 2.5e-17 s^-1,
+c Tielens & Hollenbach 1985; McKee AstroPH 9901370
+cosmic rays, background
+c
+c commands for density & abundances =========
+c no grains in this sim so H2 forms by H- route
+abundances ism no grains 
+hden 5
+c
+c commands controlling geometry  =========
+set dr 0 
+stop zone 5 
+stop temperature 400 
+c
+c other commands for details     =========
+c default is Takahashi 2001 - test thermal distribution here
+set h2 grain formation thermal pump 
+atom h2 
+iterate
+constant temperature 500K
+c
+c commands controlling output    =========
+print column density 
+print ages
+save overview "h2_hminus.ovr" last
+save h2 lines "h2_hminus.lin" last all 
+save h2 rates "h2_hminus.rat" last
+save h2 column density "h2_hminus.col" last
+save monitors "h2_hminus.asr" last
+c
+c commands giving the monitors    =========
+//
+// >>chng 06 mar 02, add this assert
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 0.221 to 0.535
+// >>chng 07 apr 30, from 0.535 to 0.497, log DR average, use mix S DR
+// >>chng 08 sep 19, from 0.497 to 0.5227, new method for average Badnell DR
+monitor eden 0.5227
+// 
+// >>chng 05 feb 12, reset abundances to ism with no grains, to be
+// matched pair with h2_solomon, much changed
+// >>chng 05 aug 03, from 3.16 to 3.12, NA update CO, H chem net
+// >>chng 05 aug 09, from 3.12 to 3.18, NA update CO, H chem net
+// >>chng 06 mar 02, from 3.18 to 4.40, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 4.40 to 3.21
+monitor H2 column 3.21 error 0.1
+//
+// >>chng 05 aug 03, from 1.85 to 1.71, NA update CO, H chem net
+// >>chng 05 aug 09, from 1.71 to 1.75, NA update CO, H chem net
+// >>chng 06 mar 02, from 1.75 to 2.08, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 2.08 to 1.82
+monitor CO column 1.82 error 0.1
+//
+monitor H2 ortho 3.0
+// 
+// >>chng 05 aug 03, from 2.06 to 2.02, NA update CO, H chem net
+// >>chng 05 aug 09, from 2.02 to 2.09, NA update CO, H chem net
+// >>chng 06 mar 02, from 2.09 to 3.31, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 3.31 to 2.11
+monitor H2 column density level v=0 J=0 N=2.11 error 0.1
+// 
+// >>chng 05 aug 03, from 2.87 to 2.83, NA update CO, H chem net
+// >>chng 05 aug 09, from 2.83 to 2.90, NA update CO, H chem net
+// >>chng 06 mar 02, from 2.90 to 4.11, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 4.11 to 2.92
+monitor H2 column density level v=0 J=1 N=2.92 error 0.1
+// 
+// >>chng 05 aug 03, from 2.32 to 2.28, NA update CO, H chem net
+// >>chng 05 aug 09, from 2.28 to 2.34, NA update CO, H chem net
+// >>chng 06 mar 02, from 2.34 to 3.56, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 3.56 to 2.37
+monitor H2 column density level v=0 J=2 N=2.37 error 0.1
+// 
+// >>chng 05 aug 03, from 2.50 to 2.46, NA update CO, H chem net
+// >>chng 05 aug 09, from 2.46 to 2.53, NA update CO, H chem net
+// >>chng 06 mar 02, from 2.53 to 3.75, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 3.75 to 2.55
+monitor H2 column density level v=0 J=3 N=2.55 error 0.1
+// 
+// >>chng 05 aug 03, from 1.54 to 1.50, NA update CO, H chem net
+// >>chng 05 aug 09, from 1.50 to 1.56, NA update CO, H chem net
+// >>chng 06 mar 02, from 1.56 to 2.78, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 2.78 to 1.59
+monitor H2 column density level v=0 J=4 N=1.59 error 0.1
+// 
+// >>chng 05 aug 03, from 1.31 to 1.27, NA update CO, H chem net
+// >>chng 05 aug 09, from 1.27 to 1.34, NA update CO, H chem net
+// >>chng 06 mar 02, from 1.34 to 2.55, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 may 30, NA refactor CO, fix H+CH=>C+H2 rate, from 2.55 to 1.36
+monitor H2 column density level v=0 J=5 N=1.36 error 0.1
+// 
+c h2_hminus.in
+c class limit  
+c ========================================
+c 
+
+This tests large H2 model in limit of H- formation and Solomon destruction.
+

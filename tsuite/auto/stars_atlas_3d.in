@@ -1,0 +1,110 @@
+title Atlas stellar atmosphere, 3D interpolation
+c
+c commands controlling continuum =========
+c Approximate model of a hot star ionizing its surroundings.
+c Assume H density of 1e+6 per cc. This run tests the atlas 3dim model option.
+c I choose the T_eff and log(g) values arbitrarily.
+table star atlas 3-dim 38400.0 4.82 -1.42
+luminosity 4.509202522 solar
+table star atlas odfnew 3-dim 38400.0 4.82 0.42
+luminosity 4.509202522 solar
+c
+c commands for density & abundances =========
+abundances old solar 84 
+hden 6.0
+grains ism
+c
+c commands controlling geometry  =========
+radius -3.0 parsec
+sphere
+stop zone 1
+set dr 0
+c
+c other commands for details     =========
+constant temperature 4
+c
+c commands controlling output    =========
+c
+save overview last "stars_atlas_3d.ovr"
+save results last "stars_atlas_3d.rlt"
+save monitors last "stars_atlas_3d.asr"
+save transmitted continuum last "stars_atlas_3d.trn" no header
+save continuum last "stars_atlas_3d.con" units microns
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 22.47 to 22.53, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  22.53
+monitor line luminosity "nInu" 122.4m  29.859
+monitor line luminosity "nInu" 60.83m  30.786
+monitor line luminosity "nInu" 41.22m  31.302
+monitor line luminosity "nInu" 30.87m  31.685
+monitor line luminosity "nInu" 24.78m  31.976
+monitor line luminosity "nInu" 24.30m  31.996
+monitor line luminosity "nInu" 22.83m  32.081
+monitor line luminosity "nInu" 21.42m  32.167
+monitor line luminosity "nInu" 21.12m  32.181
+monitor line luminosity "nInu" 19.62m  32.280
+monitor line luminosity "nInu" 17.65m  32.418
+monitor line luminosity "nInu" 17.37m  32.444
+monitor line luminosity "nInu" 15.69m  32.576
+monitor line luminosity "nInu" 14.60m  32.668
+monitor line luminosity "nInu" 12.43m  32.886
+monitor line luminosity "nInu" 11.40m  32.998
+monitor line luminosity "nInu" 10.46m  33.109
+monitor line luminosity "nInu" 9.480m  33.241
+monitor line luminosity "nInu" 9.325m  33.261
+monitor line luminosity "nInu" 8.210m  33.431
+monitor line luminosity "nInu" 7.580m  33.530
+monitor line luminosity "nInu" 7.050m  33.628
+monitor line luminosity "nInu" 4.114m  34.333
+monitor line luminosity "nInu" 2.324m  35.072
+monitor line luminosity "nInu" 1.643m  35.510
+monitor line luminosity "nInu" 1.480m  35.646
+monitor line luminosity "nInu" 1.436m  35.685
+monitor line luminosity "nInu" 1.119m  36.003
+monitor line luminosity "nInu"  8330A  36.355
+monitor line luminosity "nInu"  8079A  36.404
+monitor line luminosity "nInu"  6210A  36.731
+monitor line luminosity "nInu"  4885A  37.006
+monitor line luminosity "nInu"  3704A  37.286
+monitor line luminosity "nInu"  3588A  37.349
+monitor line luminosity "nInu"  2430A  37.777
+monitor line luminosity "nInu"  2392A  37.779
+monitor line luminosity "nInu"  2071A  37.842
+// >>chng 10 aug 12, from 37.83 to 37.91, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu"  2053A  37.91
+monitor line luminosity "nInu"  1793A  38.049
+monitor line luminosity "nInu"  1585A  38.143
+monitor line luminosity "nInu"  1458A  38.221
+monitor line luminosity "nInu"  1357A  38.294
+monitor line luminosity "nInu"  1297A  38.326
+monitor line luminosity "nInu"  1263A  38.335
+monitor line luminosity "nInu"  1218A  38.268
+monitor line luminosity "nInu"  1196A  38.354
+monitor line luminosity "nInu"  1175A  38.324
+monitor line luminosity "nInu"  1144A  38.424
+monitor line luminosity "nInu"  1113A  38.443
+monitor line luminosity "nInu"  1103A  38.451
+monitor line luminosity "nInu"  1074A  38.469
+monitor line luminosity "nInu"  1064A  38.472
+monitor line luminosity "nInu"  1036A  38.489
+monitor line luminosity "nInu"  1000A  38.468
+monitor line luminosity "nInu" 925.1A  38.183
+monitor line luminosity "nInu" 897.8A  38.013
+monitor line luminosity "nInu" 760.0A  37.990
+monitor line luminosity "nInu" 701.5A  37.947
+monitor line luminosity "nInu" 608.2A  37.873
+monitor line luminosity "nInu" 575.1A  37.924
+monitor line luminosity "nInu" 511.9A  37.864
+monitor line luminosity "nInu" 496.9A  37.368
+monitor line luminosity "nInu" 399.2A  37.146
+c stars_atlas_3d.in
+c class stars 
+c ========================================
+
+This is a test that the code can correctly access the
+large 3-dim block of Atlas model atmosphere continua. 
+
+Checks:
+table star atlas 3dim command works.
+

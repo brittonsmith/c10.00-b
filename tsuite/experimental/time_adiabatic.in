@@ -1,0 +1,54 @@
+title adiabatically expanding cloud
+c
+c commands controlling continuum =========
+c 3 keV
+blackbody 1.0e5 K
+ionization parameter -10 time
+coronal 1.0e5 K init time 
+c
+c commands for density & abundances =========
+hden 1 linear
+c thermal timescale is 9e10, this is much shorter so will
+c approximate an adiabatic epansion
+constant pressure time scale=1e8 power=-1
+c
+c commands controlling geometry  =========
+set dr 0 
+set nend 1
+stop zone 1
+c
+c other commands for details     =========
+c the time dependent calculations will start on iteration 3
+c first two are to relax the calculation
+set dynamics relax 2
+c number of time steps, should stop due to end of time, not this
+iterate 60
+c thermal timescale is 9e10 s so want this much sorter
+time first timestep 7.0 end 10
+time 8 scale 0    
+time 9 scale=0  recombination
+time 20 scale=0  
+end of times
+cosmic rays background
+c
+c commands controlling output    =========
+print line faint 2 log 
+print line cumulative
+print ages
+save time dependent "time_adiabatic.tim" no hash
+save overview "time_adiabatic.ovr" no hash
+save cooling "time_adiabatic.col" no hash
+save heating "time_adiabatic.het" no hash
+save continuum units Angstroms "time_adiabatic.con"
+save cumulative continuum units Angstroms last "time_adiabatic.concum"
+c
+c commands giving the asserts    =========
+c
+c time_adiabatic.in 
+c class dynamics 
+c ========================================
+c 
+
+test time dependent adiabatic expansion
+Cooling time is 9e10 s, this test occurs over 1e10 s so should
+be nearly adiabatic

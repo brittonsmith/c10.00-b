@@ -1,0 +1,201 @@
+% these are font styles for different types of names within the text
+\newcommand{\Cloudy}{\textsc{Cloudy}}
+\newcommand{\Hazy}{\textsc{Hazy}}
+\newcommand{\cdCommand}[1]{\textbf{#1}}
+\newcommand{\cdVariable}[1]{\emph{#1}}
+\newcommand{\cdSectionTitle}[1]{\emph{#1}}
+\newcommand{\cdFilename}[1]{\texttt{#1}}
+\newcommand{\cdRoutine}[1]{\emph{#1}}
+\newcommand{\cdTerm}[1]{\textbf{\emph{#1}}}
+\newcommand{\cdMono}[1]{\texttt{#1}}
+\newcommand{\fixit}[1]{\textbf{FIXIT: #1}}
+\font\manual=manfnt at 7pt \def\dbend{\hbox{\raise0.9ex\hbox{\manual\char127\hspace{0.6em}}}}
+\newcommand{\experimental}{\texorpdfstring{\dbend}{??}}
+
+% or symbol provided by Will H
+\newcommand\OR{\texorpdfstring{\ensuremath{\vert}}{|}}
+
+% set paragraph styles
+\raggedright
+\setlength{\parindent}{4mm}
+% background color for shaded boxes
+\definecolor{shadecolor}{gray}{0.9}
+
+% Customize contents details from book.cls
+\makeatletter
+
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{3.1em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{4.6em}{4.1em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{8.7em}{5.1em}}
+\renewcommand*\l@paragraph{\@dottedtocline{4}{10em}{6em}}
+\renewcommand*\l@subparagraph{\@dottedtocline{5}{12em}{7em}}
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.3em}}
+
+% extract name of target of reference (e.g. chapter titles)
+\long\def\@thirdoffive#1#2#3#4#5{#3}%
+\def\refname#1{\expandafter\@setref\csname r@#1\endcsname\@thirdoffive{#1}}
+
+% create ruler underneath page header
+\advance\headheight1.2pt
+\def\@oddhead{\vbox{\parindent=0pt%
+\setbox0=\hbox to\textwidth{{\slshape\rightmark}\hfil\thepage}%
+\dimen0=4.5pt \advance\dimen0 by-\dp0 \box0\kern\dimen0\hrule}}
+\def\@evenhead{\vbox{\parindent=0pt%
+\setbox0=\hbox to\textwidth{\thepage\hfil\slshape\leftmark}%
+\dimen0=4.5pt \advance\dimen0 by-\dp0 \box0\kern\dimen0\hrule}}
+
+% modify font size for verbatim environment
+\newcommand{\setverbatimfontsize}[1]{\renewcommand*\verbatim@font{#1\ttfamily}}
+\renewcommand*\verbatim@font{\footnotesize\ttfamily}
+
+% Change title of bibliography
+\renewcommand\bibname{REFERENCES}
+\renewcommand\contentsname{CONTENTS}
+\renewcommand\listfigurename{LIST OF FIGURES}
+\renewcommand\listtablename{LIST OF TABLES}
+% tweak bibliograpy environment to be more like old Hazy
+\def\thebibliography#1{%
+\bibsection
+\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+\list{}{\setlength\labelwidth{2.5em}\leftmargin\labelwidth
+\setlength\parsep{0pt}\setlength\itemsep{0.7mm plus1pt}
+\setlength{\itemindent}{-\leftmargin}
+\small}
+\def\newblock{\hskip .11em plus .33em minus -.07em}
+\sloppy
+\sfcode`\.=1000\relax}
+\def\endthebibliography{\endlist}
+
+\makeatother
+% End of contents customization
+
+\def\gtsim{\mathrel{\hbox{\rlap{\hbox{\lower4pt\hbox{$\sim$}}}\hbox{$>$}}}}
+\def\lesssim{\mathrel{\hbox{\rlap{\hbox{\lower4pt\hbox{$\sim$}}}\hbox{$<$}}}}
+\def\Msunpyr{M$_{\odot}\,$yr$^{-1}$}
+\def\Msun{M$_{\odot}$}
+%       Based on PATs UNITS.TEX with some additions
+%
+%       Simple units
+%
+\def\A{{\rm\thinspace \AA}}
+\def\cm{{\rm\thinspace cm}}
+\def\as{{\rm\thinspace arcsec}}
+\def\erg{{\rm\thinspace erg}}
+\def\eV{{\rm\thinspace eV}}
+\def\g{{\rm\thinspace g}}
+\def\ga{{\rm\thinspace gauss}}
+\def\hr{{\rm\thinspace hr}}
+\def\Hz{{\rm\thinspace Hz}}
+\def\K{{\rm\thinspace K}}
+\def\keV{{\rm\thinspace keV}}
+\def\km{{\rm\thinspace km}}
+\def\kpc{{\rm\thinspace kpc}}
+\def\Lsun{\mbox{$\rm\thinspace L_{\odot}$}}
+\def\m{{\rm\thinspace m}}
+\def\MeV{{\rm\thinspace MeV}}
+\def\mJy{{\rm\thinspace mJy}}
+\def\micron{\hbox{$\mu$m}}
+\def\Mpc{{\rm\thinspace Mpc}}
+\def\Msun{\mbox{$\rm\thinspace M_{\odot}$}}
+\def\nm{{\rm\thinspace nm}}
+\def\pc{{\rm\thinspace pc}}
+\def\ps{{\rm\thinspace s^{-1}}}
+\def\pcc{{\rm\thinspace cm^{-3}}}
+\def\Ryd{{\rm\thinspace Ryd}}
+\def\s{{\rm\thinspace s}}
+\def\sr{{\rm\thinspace sr}}
+\def\W{{\rm\thinspace W}}
+\def\yr{{\rm\thinspace yr}}
+%
+%       Compound units
+%
+\def\keVscm{\mbox{$\keV\cm^{2}\,$}}
+\def\cmps{\mbox{$\cm\s^{-1}\,$}}
+\def\cmpss{\mbox{$\cm\s^{-2}\,$}}
+\def\ergpccmps{\mbox{$\erg\cm^{-3}\s^{-1}\,$}}
+\def\ergpscm{\mbox{$\erg\cm^{-2}\,$}}
+\def\ergpscmps{\mbox{$\erg\cm^{-2}\s^{-1}\,$}}
+\def\ergpscmpspsas{\mbox{$\erg\cm^{-2}\s^{-1}\as^{-2}\,$}}
+\def\ergpscmpspa{\mbox{$\erg\cm^{-2}\s^{-1}\A^{-1}\,$}}
+\def\ergps{\mbox{$\erg\s^{-1}\,$}}
+\def\gpcm{\mbox{$\g\cm^{-3}\,$}}
+\def\gpcmps{\mbox{$\g\cm^{-3}\s^{-1}\,$}}
+\def\gps{\mbox{$\g\s^{-1}\,$}}
+\def\uJy{\mbox{$\mu${\rm Jy}}}
+\def\kmps{\mbox{$\km\ps\,$}}
+\def\kmpspMpc{\mbox{$\kmps\Mpc^{-1}\,$}}
+\def\Lsunppc{\mbox{$\Lsun\pc^{-3}\,$}}
+\def\Msunpc{\mbox{$\Msun\pc^{-3}\,$}}
+\def\Msunpkpc{\mbox{$\Msun\kpc^{-1}\,$}}
+\def\Msunppc{\mbox{$\Msun\pc^{-3}\,$}}
+\def\Msunppcpyr{\mbox{$\Msun\pc^{-3}\yr^{-1}\,$}}
+\def\Msunpyr{\mbox{$\Msun\yr^{-1}\,$}}
+\def\Msunpyrpkpc{\mbox{$\Msun\yr^{-1}\kpc^{-1}\,$}}
+\def\pscm{\mbox{$\cm^{-2}\,$}}
+\def\psm{\mbox{$\m^{-2}\,$}}
+\def\pccm{\mbox{$\cm^{-3}\,$}}
+\def\pscm{\mbox{$\cm^{-2}\,$}}
+\def\pscmps{\mbox{$\cm^{-2}\, \s^{-1}\,$}}
+\def\pcm{\mbox{$\m^{-3}\,$}}
+\def\pccmK{\mbox{$\cm^{-3}\K$}}
+\def\pcmK{\mbox{$\m^{-3}\K$}}
+\def\pyr{\mbox{$\yr^{-1}\,$}}
+\def\pyrppc{\mbox{$\yr^{-1}\pc^{-1}\,$}}
+\def\scm{\mbox{$\cm^{2}\,$}}
+\def\Wpsm{\mbox{$\W\psm\,$}}
+\def\Wpscm{\mbox{$\W\pscm\,$}}
+\def\WHz{\mbox{$\W\Hz\,$}}
+%
+% spectral lines
+%
+\def\la{\mbox{{\rm L}$\alpha$}}
+\def\pa{\mbox{{\rm P}$\alpha$}}
+\def\ha{\mbox{{\rm H}$\alpha$}}
+\def\hb{\mbox{{\rm H}$\beta$}}
+\def\hi{\mbox{{\rm H~{\sc i}}}}
+\def\hii{\mbox{{\rm H~{\sc ii}}}}
+\def\hei{\mbox{{\rm He~{\sc i}}}}
+\def\heii{\mbox{{\rm He~{\sc ii}}}}
+\def\ci{\mbox{{\rm C~{\sc i}}}}
+\def\cii{\mbox{{\rm C~{\sc ii}}}}
+\def\ciii{\mbox{{\rm C~{\sc iii}}}}
+\def\civ{\mbox{{\rm C~{\sc iv}}}}
+\def\ni{\mbox{{\rm N~{\sc i}}}}
+\def\nii{\mbox{{\rm N~{\sc ii}}}}
+\def\oi{\mbox{{\rm O~{\sc i}}}}
+\def\oii{\mbox{{\rm O~{\sc ii}}}}
+\def\oiii{\mbox{{\rm O~{\sc iii}}}}
+\def\neii{\mbox{{\rm Ne~{\sc ii}}}}
+\def\neiii{\mbox{{\rm Ne~{\sc iii}}}}
+\def\mgii{\mbox{{\rm Mg~{\sc ii}}}}
+\def\cliii{\mbox{{\rm Cl~{\sc iii}}}}
+\def\sii{\mbox{{\rm S~{\sc ii}}}}
+\def\siii{\mbox{{\rm S~{\sc iii}}}}
+\def\ariii{\mbox{{\rm Ar~{\sc iii}}}}
+\def\caii{\mbox{{\rm Ca~{\sc ii}}}}
+\def\feii{\mbox{{\rm Fe~{\sc ii}}}}
+%
+% types of baryons
+\def\CO{\mbox{{\rm CO}}}
+\def\htwo{\mbox{{\rm H}$_2$}}
+\def\hplus{\mbox{{\rm H}$^+$}}
+\def\hminus{\mbox{{\rm H}$^-$}}
+\def\h0{\mbox{{\rm H}$^0$}}
+\def\he0{\mbox{{\rm He}$^0$}}
+\def\heplus{\mbox{{\rm He}$^+$}}
+%
+\def\Hrec{\mbox{${\rm H}_{rec}$}}
+%\def\Hrec{\mbox{$H_{rec}$}}
+\def\centreline{\centerline}
+%
+% Nina
+\DeclareMathAlphabet{\vib}{OML}{cmm}{m}{it}
+% From Glenn
+\newcommand*{\satellite}[1]{\textit{#1}}
+\newcommand*{\xmm}{\satellite{XMM-Newton}}
+\newcommand*{\chandra}{\satellite{Chandra}}
+\newcommand*{\asca}{\satellite{ASCA}}
+\newcommand*{\rosat}{\satellite{ROSAT}}
+\newcommand*{\prog}[1]{\textsc{#1}}
+%% For kb, mH. etc. Italic with non-italic subscript.
+\newcommand*{\mysub}[2]{\ensuremath{#1_{\mathrm{#2}}}}

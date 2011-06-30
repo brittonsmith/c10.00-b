@@ -1,0 +1,119 @@
+title spherical conservation and H-like emission for H, He
+c
+c commands controlling continuum =========
+ionization -2
+blackbody 40000
+c
+c commands for density & abundances =========
+hden 5
+init file "hheonly.ini"  
+c
+c commands controlling geometry  =========
+radius 13
+stop efrac 0.05 %stop when 5 percent ionized
+sphere static
+c
+c other commands for details     =========
+iterate
+diffuse outward only
+constant temper 7500
+no level2
+no induced processes (OK)
+atom h-like element hydrogen levels resolved 10
+c
+c commands controlling output    =========
+normalize to "Ca B" 4861 = 1 % normalize to exact result 
+save overview "hhe_outsp.ovr"  last
+save monitors "hhe_outsp.asr"  last
+save dr "hhe_outsp.dr"  last
+c
+c commands giving the monitors    =========
+// >>chng 08 apr 19. incr error to default, nl atom less accurate
+monitor line "totl" 4861 = 1. % should be within 1 percent of precise
+//
+// >>chng 04 apr 28, from 1 to 1.050, update He+ - H ct rate 
+monitor line "Q(H)" 4861 = 1.050
+//
+// >>chng 07 oct 22, from 0.3512 to 0.3235, resolve l-levels of h-like sequence
+monitor line "H  1" 1.875m = 0.3235 %Paschen alpha
+//
+// >>chng 07 oct 22, from 0.1693 to 0.1623, resolve l-levels of h-like sequence
+monitor line "H  1" 1.282m = 0.1623 %Paschen beta
+// 
+// for following really need larger atom for better accurary
+// >>chng 07 oct 22, from 0.0835 to 0.0738, resolve l-levels of h-like sequence
+// >>chng 08 apr 30, from 0.0738 to 0.0778 H, He topoff change
+monitor line "H  1" 4.051m = 0.0778 %Bracket alpha
+//
+// >>chng 07 oct 22, from 0.0477 to 0.0440, resolve l-levels of h-like sequence
+monitor line "H  1" 2.625m = 0.0440 %Bracket beta
+monitor line "BaC " 3646 = 18.26 %Balmer continuum rel to h-beta
+//
+c helium lines
+// >>chng 02 dec 11, from 0.983 to 0.903, move to new hei
+// >>chng 03 may 22, from 0.903 to 0.950, Lya dest prob
+monitor line "totl" 10830 0.950
+//
+// assert line "TOTL" 5 876  0.1040
+// >>chng 03 feb 28, from 0.0953 to 0.1025, better hei coll
+// >>chng 05 mar 12, from 0.103 to 0.0961, RP merge He-like code
+// >>chng 05 oct 01, from 0.0961 to 0.0880, RP udate levels
+// >>chng 05 dec 22, from 0.0880 to 0.0923, RP incr levels he
+// >>chng 08 apr 30, from 0.0923 to 0.103 H, He topoff change
+monitor line "He 1" 5876  0.103
+//
+// >>chng 04 may 19, from 0.034 to 0.0362, RP update helike sequence
+// >>chng 08 apr 30, from 0.0362 to 0.0345 H, He topoff change
+monitor line "Ca B" 4471  0.0345
+//
+// >>chng 05 mar 12, from 0.0353 to 0.0336, RP merge He-like code
+// >>chng 08 apr 30, from 0.0336 to 0.0349 H, He topoff change
+monitor line "He 1" 4471  0.0349
+//
+// >>chng 08 apr 30, from 0.077 to 0.0719 H, He topoff change
+monitor line "He 1" 3889  0.0719
+//
+// >>chng 08 apr 30, from 0.306 to 0.0285 H, He topoff change
+monitor line "He 1" 7065  0.0285
+//
+// >>chng 02 jan 05, from 0.026 to 0.024, HeI Lya redis fcn
+// assert line "TOTL"  20580  0.024
+// >>chng 05 oct 01, from 0.0235 to 0.0225, RP udate levels
+// >>chng 05 dec 20, from 0.0225 to 0.0237, RP change default helium levels
+monitor line "He 1"  20580  0.0237
+//
+// >>chng 00 apr 01 vol aver bug, from 0.655 to 0.526
+monitor hydrogen 2 ionization fraction 0.526 volume weighted
+//
+// >>chng 00 apr 01 vol aver bug, from 0.431 to 0.346
+// >>chng01 apr 11, from 0.346 to 0.363, better convergence
+// >>chng 09 feb 24, from 0.363 to 0.3466, botches due to r2763
+monitor helium 2 ionization fraction 0.3466 volume weighted
+//
+// >>chng 03 may 21, from 0.1604 to 0.1721, cng in Lya transport
+// chng 04 jul 03, from 0.1721 to 0.1620, NA update H, CO chem net
+// >>chng 05 mar 12, from 0.1620 to 0.1498, RP merge He-like code
+// >>chng 05 dec 20, from 0.1498 to 0.1607, RP change default helium levels
+// >>chng 08 apr 07, from 0.1607 to 0.1707, a number of mostly minor iso changes
+// >>chng 08 apr 30, from 0.1706 to 0.1809 H, He topoff change
+monitor HHeicf 0.1809 error 0.01
+//
+// >>chng 08 dec 08, from 5 to 3.764, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 3.764 to 4.806, merging newsolvers branch
+// >>chng 09 jan 16, from 4.806 to 4.798, average of 10 runs
+// >>chng 09 jan 22, from 4.798 to 5.214, some minor botches as a result of r2655
+// >>chng 09 feb 23, from 5.214 to 4.965, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 jun 26, from 4.965 to 4.333, remove several dampers
+monitor itrzn 4.333 error 0.02
+c 
+c hhe_outsp.in
+c class limit 
+c ========================================
+c 
+
+
+This tests a spherical cloud with only hydrogen and helium.
+Diffuse fields are transferred with the outward only approximation.
+The asserts check that the ionizing radiation is conserved.
+
+

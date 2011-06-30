@@ -1,0 +1,158 @@
+title low density and flux model 1 
+atom H2 He collisions new 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+c the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 5
+c this is to insure that no H-ionizing radiation strikes the cloud
+extinguish 24 
+c
+c commands for density & abundances =========
+c  hydrogen density 
+hden 3.
+grains ism 1.16 no qheat
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+c turn on the large H2 model
+atom h2 
+c turn down the number of convergence failures - there should be none
+failures 3
+c use leiden initialization file
+init file="pdr_leiden.ini"
+c This command defines the grain temperature to be a constant 20 Kelvin
+constant grain temperature 20 
+c This sets the gas kinetic temperature to a constant 50 Kelvin
+constant temperature 50 linear
+c
+c commands controlling output    =========
+c default normalization line is Hbeta, which is not produced by this gas
+normalize to "C  2" 157.6m
+print line faint -4 
+save overview "h2_pdr_leiden_f1.ovr"
+// show how emission varies across structure
+save line emissivity "h2_pdr_leiden_f1.ems" 
+H2   2.121m
+CO   650.1m
+C  2 157.6m
+O  1 63.17m
+Si 2 34.81m
+end of lines
+// 
+save leiden lines "h2_pdr_leiden_f1.lin"
+save leiden "h2_pdr_leiden_f1.lei"
+save dr "h2_pdr_leiden_f1.dr" 
+save molecules "h2_pdr_leiden_f1.mol"
+save grain physical conditions "h2_pdr_leiden_f1.grn"
+save overview "h2_pdr_leiden_f1.ovr"
+save monitors "h2_pdr_leiden_f1.asr"
+save H2 lines "h2_pdr_leiden_f1.h2lin" all
+save H2 column density "h2_pdr_leiden_f1.h2col"
+save H2 populations matrix zone "h2_pdr_leiden_f1.pop"
+save H2 rates "h2_pdr_leiden_f1.rat"
+c
+c commands giving the monitors    =========
+monitor H2 column density 21.90 error 0.1
+//
+// >>chng 05 jul 02, from 18.01 to 17.96, stop AV was not exact
+// >>chng 05 nov 22, from 17.96 to 16.35, NA add freeze out onto grains
+// >>chng 05 dec 17, from 16.35 to 16.54, NA increase C chemistry
+// >>chng 06 jan 04, from 16.54 to 16.65, NA C chem restore missed block reacts
+// >>chng 06 mar 02, from 16.65 to 17.42, NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 06 mar 06, from 17.42 to 17.29, PvH grain freeze out
+monitor CO column density 17.29 error 0.2
+// 
+// >>chng 08 dec 08, from 5 to 2.396, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 2.396 to 3.936, merging newsolvers branch
+// >>chng 09 jan 16, from 3.936 to 3.944, average of 10 runs
+// >>chng 09 feb 23, from 3.944 to 4.064, remove otslin, otscon dampers (PR #84, r2758)
+// >>chng 09 mar 27, from 4.064 to 4.149 improve rigor esc prob & pop defns
+// >>chng 09 apr 19, from 4.149 o 4.07, refactor p esc dest and cooling
+monitor itrzn 4.07 error 0.05
+// 
+// >>chng 05 jun 26, from 450 to 583 make Federman chem the default
+// >>chng 05 aug 18, from 620 to 700, ? ?
+// >>chng 06 mar 02, from 700 to 770 (737) NA Fe0, Mg0, <-> Si+, S+, C+ ct,
+// also energy barrier for H + (CH and CH2) reactions
+// >>chng 07 oct 29, from 770 to 619, change from "<" to "="
+// >>chng 09 jan 16, from 619 to 622, average of 10 runs
+monitor nzone 622
+// 
+// these added 05 jan 22
+monitor H2 column density level 0  0  21.79 error 0.1
+// 
+// >>chng 05 jun 21, from 21.26 to 21.29, chng cr, grn deex
+monitor H2 column density level 0  1  21.29 error 0.1
+// 
+monitor H2 column density level 0  2  18.04 error 0.1
+// 
+// >>chng 05 jun 21, from 15.94 to 16.06, chng cr, grn deex
+// >>chng 05 aug 03, from 16.06 to 15.98, NA update CO, H chem net
+// >>chng 07 apr 07, from 15.98 to 15.91, update H2 cr to trip
+// >>chng 07 apr 07, from 15.91 to 15.95, use ORNL H2-He collision set
+// >>chng 11 apr 19, from 15.95 to 16, due to factor of 2 changes in some H2-H2 collisions.  Eq. 2 of Lee et al. 2008 (ApJ, 689, 1105)
+monitor H2 column density level 0  3  16 error 0.1
+// 
+// >>chng 05 jun 21, from 15.01 to 15.17, chng cr, grn deex
+// >>chng 07 apr 07, from 15.17 to 15.07, update H2 cr to trip
+monitor H2 column density level 0  4  15.07 error 0.1
+// 
+// >>chng 05 jun 21, from 14.59 to 14.72, chng cr, grn deex
+// >>chng 05 aug 03, from 14.72 to 14.58, NA update CO, H chem net
+// >>chng 07 apr 09, from 14.58 to 14.53, H2-He coll to ORNL data
+// >>chng 07 apr 07, from 14.53 to 14.59, use ORNL H2-He collision set
+monitor H2 column density level 0  5  14.59 error 0.1
+// 
+// >>chng 05 jun 21, from 13.70 to 13.84, chng cr, grn deex
+// >>chng 05 aug 03, from 13.84 to 13.74, NA update CO, H chem net
+// >>chng 07 apr 07, from 13.74 to 13.69, H2-He coll to ORNL data
+// >>chng 07 apr 07, from 13.69 to 13.74, use ORNL H2-He collision set
+monitor H2 column density level 0  6  13.74 error 0.1
+// 
+// >>chng 05 jun 21, from 13.70 to 13.78, chng cr, grn deex
+// >>chng 05 aug 03, from 13.78 to 13.60, NA update CO, H chem net
+// >>chng 07 apr 07, from 13.60 to 13.65, use ORNL H2-He collision set
+monitor H2 column density level 0  7  13.65 error 0.15
+// 
+// >>chng 05 jun 21, from 12.84 to 12.98, chng cr, grn deex
+// >>chng 05 aug 03, from 12.98 to 12.82, NA update CO, H chem net
+// >>chng 07 apr 07, from 12.82 to 12.78, H2-He coll to ORNL data
+// >>chng 07 apr 07, from 12.78 to 12.88, use ORNL H2-He collision set
+monitor H2 column density level 0  8  12.88 error 0.1
+// 
+// >>chng 05 jun 21, from 13.01 to 13.11, chng cr, grn deex
+// >>chng 05 aug 03, from 13.11 to 12.93, NA update CO, H chem net
+// >>chng 07 apr 07, from 12.93 to 12.99, use ORNL H2-He collision set
+monitor H2 column density level 0  9  12.99 error 0.15
+// 
+// >>chng 05 jun 21, from 12.10 to 12.25, chng cr, grn deex
+// >>chng 05 aug 03, from 12.25 to 12.28, NA update CO, H chem net
+// >>chng 07 apr 07, from 12.28 to 12.21, H2-He coll to ORNL data
+// >>chng 07 apr 07, from 12.21 to 12.17, use ORNL H2-He collision set
+monitor H2 column density level 1  0  12.17 error 0.1
+// 
+// >>chng 05 jun 21, from 12.43 to 12.53, chng cr, grn deex
+// >>chng 07 apr 07, from 12.53 to 12.44, update H2 cr to trip
+// >>chng 08 sep 25, from 12.44 to 12.39, remove damper on line pump (r2367)
+monitor H2 column density level 1  1  12.39 error 0.1
+// 
+// >>chng 05 jun 21, from 12.51 to 12.66, chng cr, grn deex
+// >>chng 05 aug 03, from 12.66 to 12.69, NA update CO, H chem net
+// >>chng 07 apr 07, from 12.69 to 12.62, H2-He coll to ORNL data
+// >>chng 08 mar 17, from 12.62 to 12.57, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+monitor H2 column density level 1  2  12.57 error 0.1
+// 
+// >>chng 05 jun 21, from 12.40 to 12.51, chng cr, grn deex
+// >>chng 07 apr 07, from 12.51 to 12.41, update H2 cr to trip
+monitor H2 column density level 1  3  12.41 error 0.1
+c
+c h2_pdr_leiden_f1.in
+c class pdr  
+c ========================================
+c 
+
+This is one of the tests in Rollig et al. 2007, A&A, 467, 187 

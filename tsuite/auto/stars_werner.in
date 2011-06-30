@@ -1,0 +1,106 @@
+title Werner stars grid
+c
+c commands controlling continuum =========
+table star werner 190000 g=7.5
+luminosity total 38
+c
+c commands for density & abundances =========
+hden 4
+abundances planetary no grains
+grains agm no qheat single 
+c
+c commands controlling geometry  =========
+radius 17
+sphere
+set dr 0
+stop zone 1
+c
+c other commands for details     =========
+* >>chng 06 jul 01, add this to stars set since want to test shape
+* of continuum and resulting ion dist, not thermal equilibrium of nebula
+constant temperature 4.373
+c
+c commands controlling output    =========
+c
+save overview last "stars_werner.ovr"
+save results last "stars_werner.rlt"
+save monitors last "stars_werner.asr"
+save transmitted continuumlast "stars_werner.trn"
+c
+c commands giving the monitors    =========
+// >>chng 10 aug 12, from 20.03 to 20.09, fix botches related to r4125; star botches from recent continuum mesh changes
+monitor line luminosity "nInu" 3.400c  20.09
+monitor line luminosity "nInu" 122.4m  27.409
+monitor line luminosity "nInu" 60.83m  28.319
+monitor line luminosity "nInu" 41.22m  28.827
+monitor line luminosity "nInu" 30.87m  29.204
+monitor line luminosity "nInu" 24.78m  29.490
+monitor line luminosity "nInu" 24.30m  29.510
+monitor line luminosity "nInu" 22.83m  29.594
+monitor line luminosity "nInu" 21.42m  29.679
+monitor line luminosity "nInu" 21.12m  29.692
+monitor line luminosity "nInu" 19.62m  29.789
+monitor line luminosity "nInu" 17.65m  29.926
+monitor line luminosity "nInu" 17.37m  29.952
+monitor line luminosity "nInu" 15.69m  30.082
+monitor line luminosity "nInu" 14.60m  30.173
+monitor line luminosity "nInu" 12.43m  30.388
+monitor line luminosity "nInu" 11.40m  30.499
+monitor line luminosity "nInu" 10.46m  30.610
+monitor line luminosity "nInu" 9.480m  30.741
+monitor line luminosity "nInu" 9.325m  30.760
+monitor line luminosity "nInu" 8.210m  30.930
+monitor line luminosity "nInu" 7.580m  31.028
+monitor line luminosity "nInu" 7.050m  31.125
+monitor line luminosity "nInu" 4.114m  31.831
+monitor line luminosity "nInu" 2.324m  32.576
+monitor line luminosity "nInu" 1.643m  33.026
+monitor line luminosity "nInu" 1.480m  33.163
+monitor line luminosity "nInu" 1.436m  33.202
+monitor line luminosity "nInu" 1.119m  33.528
+monitor line luminosity "nInu"  8330A  33.912
+monitor line luminosity "nInu"  8079A  33.950
+monitor line luminosity "nInu"  6210A  34.293
+monitor line luminosity "nInu"  4885A  34.601
+monitor line luminosity "nInu"  3704A  34.953
+monitor line luminosity "nInu"  3588A  34.994
+monitor line luminosity "nInu"  2430A  35.486
+monitor line luminosity "nInu"  2392A  35.505
+monitor line luminosity "nInu"  2071A  35.685
+monitor line luminosity "nInu"  2053A  35.691
+monitor line luminosity "nInu"  1793A  35.856
+monitor line luminosity "nInu"  1585A  36.009
+monitor line luminosity "nInu"  1458A  36.112
+monitor line luminosity "nInu"  1357A  36.197
+monitor line luminosity "nInu"  1297A  36.251
+monitor line luminosity "nInu"  1263A  36.287
+monitor line luminosity "nInu"  1218A  36.328
+monitor line luminosity "nInu"  1196A  36.346
+monitor line luminosity "nInu"  1175A  36.370
+monitor line luminosity "nInu"  1144A  36.399
+monitor line luminosity "nInu"  1113A  36.435
+monitor line luminosity "nInu"  1103A  36.447
+monitor line luminosity "nInu"  1074A  36.476
+monitor line luminosity "nInu"  1064A  36.488
+monitor line luminosity "nInu"  1036A  36.517
+monitor line luminosity "nInu"  1000A  36.558
+monitor line luminosity "nInu" 925.1A  36.651
+monitor line luminosity "nInu" 897.8A  36.613
+monitor line luminosity "nInu" 760.0A  36.802
+monitor line luminosity "nInu" 701.5A  36.893
+monitor line luminosity "nInu" 608.2A  37.051
+monitor line luminosity "nInu" 575.1A  37.110
+monitor line luminosity "nInu" 511.9A  37.230
+monitor line luminosity "nInu" 496.9A  37.260
+monitor line luminosity "nInu" 399.2A  37.474
+//
+c stars_werner.in
+c class stars 
+c ========================================
+c 
+
+This checks that the code can access Kevin Volk39s Werner atmospheres. 
+
+Checks:
+-	table star Werner atmosphere works.
+constant temperature is set to that this tests shape of stellar continuum

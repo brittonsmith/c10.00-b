@@ -1,0 +1,19 @@
+title this runs the standard, one command, test, which contains many asserts
+c commands controlling continuum =========
+test mole 
+c 
+c commands for density & abundances =========
+c commands controlling geometry  =========
+c other commands for details     =========
+c commands giving the monitors    =========
+c
+c commands controlling output    =========
+save monitors "func_testmole.asr"
+save overview "func_testmole.ovr"
+c func_testmole.in
+c class function 
+c ========================================
+c 
+
+This runs the "test mole" command, which include several asserts.
+

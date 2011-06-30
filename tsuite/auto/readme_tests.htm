@@ -1,0 +1,154 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Cloudy tests readme file</title>
+</head>
+
+<body background="clouds.jpg">
+
+<h1>Read me file for the standard tests directory</h1>
+<p><b>For more information visit the Cloudy web site,
+<a href="http://www.nublado.org">www.nublado.org</a> </b></p>
+<hr>
+<h2><a name="The standard tests">The standard tests</a></h2>
+<p>The standard test cases that are computed every night in Lexington are the 
+set of&nbsp; files with names ending in &quot;.in&quot;.  Each contains the 
+commands needed to compute a particular model.&nbsp; When they are computed they produce output files with the same name
+but ending in &quot;.out&quot;.  Additional files are created too -&nbsp; these mostly results of all the assert
+commands, ending in &quot;.asr&quot;, and overviews of the
+model results &quot;.ovr&quot;.</p>
+<p>The file <a href="doc_tsuite.html">doc_tsuite.htm</a> gives a list of all 
+test cases, the commands contained in each, and a description of its purpose.&nbsp; 
+This file is automatically created by <i>doc_tsuite.pl</i></p>
+<p>The purpose of each test case is given in the documentation that follows the 
+input commands. Cloudy stops reading input commands if the end of file or a 
+blank line is encountered. Each *.in file begins with the commands, followed by 
+the blank line to tell the code to stop reading, then followed by a description 
+of the purpose of the test.&nbsp; This description is totally ignored - the 
+command parser stops when it encounters the first empty line.</p>
+<p>The first part of the name of many test scripts indicate its purpose.&nbsp; 
+For instance, all PDR models start with &quot;pdr_&quot; and all quasar BLR models start 
+with &quot;blr_&quot;.&nbsp; The file class.txt contains a complete list of the classes of 
+the tests.</p>
+<p>The input scripts follow a particular order of commands although this is not 
+necessary.&nbsp; The file template_scripts.txt describes the various groups of 
+commands and gives the overall format for an input script.&nbsp; New scripts 
+should follow this format.</p>
+<hr>
+<h2><a name="Asserts - reliability in the face of complexity">Asserts - 
+reliability in the face of complexity</a> </h2>
+<p>Cloudy is designed to be autonomous and self-aware.&nbsp; The code uses 
+extensive self-checking to insure that the results are valid.&nbsp; This&nbsp; 
+philosophy is described in Ferland 2001, ASP Conference Series, Vol 
+247, <i>Spectroscopic Challenges of Photoionized Plasmas</i>, G Ferland &amp; D 
+Savin, editors (<a href="http://xxx.lanl.gov/ftp/astro-ph/papers/0210/0210161.pdf">astro-ph/0210161</a>).&nbsp; </p>
+<p>Asserts provide the ability to automatically validate complex results.&nbsp; 
+There are two types of asserts here - the first are a set of commands that are 
+included in the input files and tell the code what 
+answer to expect, and the second are C++ language macros that are part of the 
+source and confirm the internal decisions made 
+by the code.</p>
+<p>All of the files in the test suite include <b>assert</b> commands.&nbsp; The <font size="3"><b><kbd> assert</kbd></b></font> command is described in the <b>Miscellaneous Commands</b> section of
+<b>Hazy I</b>, and
+provides the infrastructure needed for
+complete automatic testing of the code.&nbsp; This command tells the code what answer to
+expect.&nbsp; If the computed results do not agree then the code prints a 
+standard comment and exits with an
+error condition.&nbsp; These <b>assert</b> commands have nothing to do with the 
+simulation itself, and would not be included in an actual calculation.&nbsp; You 
+should ignore them, or even delete all of them (a Perl script, 
+tests_remove_asserts.pl, is provided is provided as part of the test suite to do 
+this).</p>
+<p>The source code also includes many C++ <font size="3"><b><kbd>assert</kbd></b></font> macros that are designed to validate the code's
+internal decisions.&nbsp; The <font size="3"><b><kbd>assert</kbd></b></font> macro only exists if the NDEBUG macro is
+not set when the code is compiled.&nbsp; (If the NDEBUG macro is set then 
+<font size="3"><b><kbd>assert</kbd></b></font>
+macros within the source are ignored by the compiler.)&nbsp; The test cases
+should be run at least once with the <font size="3"><b><kbd>assert</kbd></b></font> macro active, that is, do not
+include a compiler option to define the NDEBUG macro.&nbsp; In most compilers
+the NDEBUG macro is set when compiler optimization is set to a high level.&nbsp;
+In practice this means that the entire code should be compiled with only low
+optimization and the tests computed to validate the platform.&nbsp; Then
+recompile with higher optimization for production runs, and recompute the test
+cases.</p>
+<hr>
+<h2><a name="The &quot;run&quot; command">The &quot;run&quot; command</a></h2>
+<p>When executed as a stand-alone program the code expects to read commands from
+standard input and write results to standard output.&nbsp; I compute single models by defining a shell script  called &quot;<font size="3"><b><kbd>run</kbd></b></font><code>&quot;.</code>&nbsp;
+It contains the following line</p>
+<pre><kbd><font size="3">cloudy.exe &lt; $1.in &gt; $1.out</font></kbd></pre>
+<p>The Cloudy commands needed to compute a model are placed in a text file with a name
+like &quot;<font size="3"><code>orion.in</code></font>&quot;, indicating that it
+is the input file to compute a model of Orion.&nbsp; Then the shell command line</p>
+<pre><kbd><font size="3">run orion</font></kbd></pre>
+<p>will read the contents of orion.in, compute the model, and write the results 
+out to orion.out.</p>
+<hr>
+<h2><a name="The Perl scripts">The Perl scripts</a></h2>
+<p>The test suite includes a series of Perl scripts that compute all test cases and then check for errors.&nbsp;
+These provide an automatic way to validate the code.&nbsp;&nbsp;</p>
+<p>Each Perl script will need to be changed before it can be used since it
+needs to know the names of directories where files are located, and how to find
+the Cloudy executable.&nbsp;&nbsp;Each script explains which variables need to
+be set for the script to run.</p>
+<h3>Notes on Perl</h3>
+<p>Perl comments start with a sharp sign &quot;#&quot; and end with the end of
+line.&nbsp;&nbsp;<br>
+Perl variable names begin with a dollar sign &quot;$&quot;.<br>
+A Perl script is executed by typing <font size="3"><b><kbd>perl</kbd></b></font>
+followed by the name of the script, as in <b><code>perl runall.pl</code></b></p>
+<h3>runall.pl</h3>
+<p>The <font size="3"><b><kbd>runall.pl</kbd></b></font> script will compute all 
+the models, the files *.in, in the current directory. You need to change the 
+variable $exe to point to the Cloudy executable on your system and the script 
+must be executed from the directory where the tests suite is located.</p>
+<h3>checkall.pl</h3>
+<p>This script searches for problems in all of the test cases (the *.out files) 
+in the current directory. &nbsp;
+It first looks for botched asserts and warnings.&nbsp; These indicate very 
+serious problems.&nbsp; A list of any models with these problems is placed in 
+the file <font size="3"><b><kbd>serious.txt</kbd></b></font>.&nbsp; Next it 
+whether the string PROBLEM was printed in any of the models, and writes a list 
+of these to the file <font size="3"><b><kbd>minor.txt</kbd></b></font>.&nbsp; A 
+few of these can occur in a normal series of models and they do not, by 
+themselves, indicate a serious problem.&nbsp; Finally it looks for all models 
+that did not end..&nbsp; </p>
+<h3>runbotched.pl</h3>
+<p>This script will rerun all models that had botched asserts.&nbsp; This is 
+mostly used while developing the code.</p>
+<h3>run_parallel.pl</h3>
+<p>This script was written by Peter van Hoof and will run the test suite using a 
+number of processors.&nbsp; The beginning of the script says how to use it.</p>
+<h3>runcrash.pl</h3>
+<p>This script will rerun all models that crashed - the did not end at all.&nbsp; 
+This is mostly used while developing the code.</p>
+<h3>runsome.pl</h3>
+<p>This script will rerun some of the models - those listed in <font size="3">
+<b><kbd>runsome.da</kbd></b></font>t.</p>
+<h3>backup.pl</h3>
+<p>This backs up some files onto a CDRW and sends email announcing results.</p>
+<h3>doc_tsuite.pl</h3>
+<p>This script creates two files that document the test suite.&nbsp; The file
+<b><font size="3"><kbd>doc_tsuite.html</kbd></font></b> is an html representation of the set of tests, while <b>
+<font size="3"><kbd>doc_tsuite.txt</kbd></font></b> is a comma delimited table 
+that can be incorporated into a word processor.</p>
+<hr>
+<h2><a name="If you find a problem">If you find a problem</a></h2>
+<p>  Cloudy should run on all platforms without errors.&nbsp; Botched asserts or
+outright crashes should never happen. I can't fix it if I don't know it's
+broken.&nbsp; Please let me know of any problems.  My email address is <a href="mailto:gary@cloud9.pa.uky.edu"> gary@pa.uky.edu</a></p>
+
+<hr>
+<p>Visit <a href="http://www.nublado.org">http://www.nublado.org</a>
+for details and latest updates.&nbsp; </p>
+
+<p>Good luck,<br>
+Gary J. Ferland</p>
+<p><!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%B %d, %Y" startspan -->April 20, 2008<!--webbot bot="Timestamp" endspan i-checksum="16933" --></p>
+
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+title BLR model, density 1e09 cm-3, flux of H-ion phots 1e18 cm2 s-1
+c
+c commands controlling continuum =========
+table agn
+phi(h) 18
+c
+c commands for density & abundances =========
+hden 9
+c
+c commands controlling geometry  =========
+stop column density 23
+c
+c other commands for details     =========
+init "c84.ini"
+iterate convergence 
+c these are to try to speed things up
+no level2 lines
+c
+c commands controlling output    =========
+normalize to "totl" 1216 100 
+print line faint 1  // get rid of lots of faint lines 
+save monitors "blr_n09_p18.asr" last
+save overview "blr_n09_p18.ovr" last
+save dr "blr_n09_p18.dr" last 
+save convergence reason "blr_n09_p18.cvr"
+c
+c commands giving the monitors    =========
+// strong blr lines
+// >>chng 06 aug 09, from 4.913 to 4.943 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 4.943 to 4.857, Badnell DR turned on
+monitor line luminosity "totl"  1035 4.857 //total of sum of both O VI comp
+// 
+// >>chng 06 aug 09, from 7.195 to 7.215 Meudon 06, Bowen change
+monitor line luminosity "totl"  1216 7.215 //total Hydrogen Lyman-alpha 1215.67 
+// 
+// >>chng 06 aug 09, from 5.420 to 5.449 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 5.449 to 5.370, Badnell DR turned on
+monitor line luminosity "totl"  1240 5.370 //total of sum of both N V comp
+//
+// >>chng 03 nov 23, from 5.813 to 5.836, Kraemer et al. guess of dr
+// >>chng 06 jul 25, from 5.836 to 5.856 HN update OIII collision data
+// >>chng 07 jan 20, from 5.856 to 5.860, e2 bug
+monitor line luminosity "totl"  1397 5.860 //total of sum of both Si IV comp
+//
+// >>chng 06 aug 09, from 5.498 to 5.518 Meudon 06, Bowen change
+// >>chng 06 nov 29, from 5.518 to 5.573, Badnell DR turned on
+monitor line luminosity "totl"  1402 5.573 //total O IV] 1402 
+//
+// >>chng 06 nov 29, from 6.908 to 6.883, Badnell DR turned on
+monitor line luminosity "totl"  1549 6.883 //total of sum of both C IV comp
+//
+// >>chng 09 jun 28, from 1 to 6.68, check convergence of outward Hb
+monitor line luminosity "Inwd" 1549 6.68
+//
+// >>chng 09 jun 28, from 1 to 5.351, check convergence of outward Hb
+// >>chng 09 oct 12, from 5.351 to 5.441, extend fine continuum to lower limit of code by default
+monitor line luminosity "H  1" 4861 5.441
+//
+// >>chng 09 jun 28, from 1 to 5.33, check convergence of outward Hb
+// >>chng 09 oct 12, from 5.33 to 5.41, extend fine continuum to lower limit of code by default
+monitor line luminosity "Inwd" 4861 5.41
+//
+// >>chng 08 mar 17, from 5.738 to 5.777, r1844 - mostly iso PopOpc and rt_line_one_tauinc changes
+monitor line luminosity "he 2"  1640 5.777 //total He II Balmer-alpha 1640
+//
+// >>chng 06 jul 25, from 5.756 to 5.698 HN update OIII collision data
+// >>chng 09 feb 23, from 5.698 to 5.725, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "o  3"  1666 5.725 //total O III] 1666
+//
+// >>chng 06 nov 29, from 6.178 to 6.314, Badnell DR turned on
+// >>chng 09 feb 23, from 6.314 to 6.337, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1909 6.337 //total of sum of CIII] 1908.73+
+//
+// >>chng 06 nov 29, from 5.734 to 5.766, Badnell DR turned on
+// >>chng 09 feb 23, from 5.766 to 5.789, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1888 5.789 //total of sum of Si III] 1892+
+// 
+//total sum of both Al III comp
+// >>chng 06 nov 24, from 4.619 to 4.586, turn on Badnell RR
+// >>chng 06 nov 29, from 4.586 to 4.544, Badnell DR turned on
+// >>chng 09 feb 23, from 4.544 to 4.571, remove otslin, otscon dampers (PR #84, r2758)
+monitor line luminosity "totl"  1860 4.571
+//
+//total C II] 2324.69 + 2328.12
+// >>chng 04 jun 01, from 5.126 to 5.095, unified calc of Lya line width
+// >>chng 04 jun 12, from 5.096 to 5.164 chng cont shield fcn
+// >>chng 04 jul 02, from 5.164 to 5.295, O H ct
+// >>chng 04 jul 03, from 5.295 to 5.171, O H ct, incr error
+// >>chng 04 jul 07, from 5.17 to 5.31, oh ct integt
+// >>chng 04 dec 08, from 5.31 to 5.17, co-ion feedback, check converg
+// >>chng 07 oct 22, from 5.17 to 5.21, resolve l-levels of h-like sequence
+// >>chng 08 jul 08, from 5.21 to 5.16 damping wing pump rates
+monitor line luminosity "totl"  2326 5.16 error 0.1
+//
+//total of sum of both Mg II comp
+// >>chng 04 jun 01, from 6.215 to 6.185, unified calc of Lya line width
+// >>chng 04 jun 12, from 6.185 to 6.237 chng cont shield fcn
+// >>chng 04 jul 02, from 6.237 to 6.334, O H ct
+// >>chng 04 jul 03, from 6.334 to 6.241, O H ct, incr error
+// >>chng 04 jul 07, from 6.24 to 6.35, oh ct integt
+// >>chng 04 dec 08, from 6.35 to 6.24, co-ion feedback, check converg
+// >>chng 05 mar 25, from 6.24 to 6.27 renorm H pops in level solver
+// >>chng 08 jul 08, from 6.27 to 6.22 damping wing pump rates
+// >>chng 08 nov 13, from 6.22 to 6.175, fix Boltzmann factor in CT rates (r2455)
+monitor line luminosity "totl"  2798 6.175 error 0.1
+//
+// >>chng 04 sep 25, from 6 to 8 incr temp toler 0.02 to 0.005
+// >>chng 04 sep 30, from 8 to 10, conv_base conv heat cool
+// >>chng 08 dec 08, from 10 to 7.338, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 7.338 to 15.3, merging newsolvers branch
+// >>chng 09 jan 16, from 15.3 to 15.36, average of 10 runs
+// >>chng 09 feb 24, from 15.36 to 15.65, botches due to r2763
+// >>chng 09 may 28, from 15.65 to 15.50, inc err, mean 32/64
+// >>chng 09 jun 26, from 15.5 to 15.98, remove several dampers
+// >>chng 09 jul 14, from 15.98 to 17.83, reset autocv to 0.2 since 0.1 developed 32/64 bit distinction
+monitor itrzn 17.83
+//
+// >>chng 08 dec 08, from 4 to 3, upper limit -> equals (r2515)
+// >>chng 09 jun 28, from 3 to 5, check convergence outward Hb
+// >>chng 09 jul 14, from 5 to 4, reset autocv to 0.2 since 0.1 developed 32/64 bit distinction
+// >>chng 09 jul 27, from 4 to 3, rm test on outward Hb - will create ticket on problems
+monitor niter 3
+//
+// >>chng 03 dec 07, from 280 to 330, dr resolve metal changes
+// >>chng 08 dec 08, from 330 to 320, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 320 to 314, merging newsolvers branch
+// >>chng 09 jan 16, from 314 to 315, average of 10 runs
+// >>chng 09 jun 15, from 315 to 330, gradual approach to outer edge
+monitor nzone 330 
+//
+c blr_n09_p18.in 
+c class blr 
+c ========================================
+
+This is one of the 5 models that sample the LOC plane.

@@ -1,0 +1,125 @@
+title Leiden meeting model 6 with hacks
+c This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+c
+c commands controlling continuum =========
+c Use the Draine 1978 field, for a semi-infinite slab we have to use half
+c the requested value, so the actual value
+c they want for the model is actually twice the value below
+table draine 50000
+extinguish 24
+c
+c commands for density & abundances =========
+c  Define the abundance of PAHs so we can reproduce the same photoelectric
+c heating curve as BT94 
+c  We have also scaled the grain abundance to achieve the desired AV/NH ratio 
+* grains PAH no qheat 40
+grains ism 1.16 no qheat
+c  hydrogen density 
+hden 3.
+c
+c commands controlling geometry  =========
+c
+c other commands for details     =========
+c  use leiden initialization file
+init file="pdr_leiden_hack.ini"
+c
+c commands controlling output    =========
+save leiden lines "pdr_leiden_hack_v2.lin"
+save leiden "pdr_leiden_hack_v2.lei"
+save dr "pdr_leiden_hack_v2.dr" 
+save grain temperature "pdr_leiden_hack_v2.grn"
+save overview "pdr_leiden_hack_v2.ovr"
+save monitors "pdr_leiden_hack_v2.asr"
+save heating "pdr_leiden_hack_v2.het"
+save cooling "pdr_leiden_hack_v2.col"
+save h2 rates "pdr_leiden_hack_v2.h2rat"
+c
+c commands giving the monitors    =========
+monitor H2 column density 21.769 error 0.1
+//
+// >>chng 04 sep 19, from 17.14 to 17.30, NA rm 1 CO dest UMIST reaction
+// >>chng 05 mar 22, from 17.30 to 17.52, NA update CO chem net
+// >>chng 05 aug 18, from 17.60 to 17.29, NA add hack to not use C+ - OH rate
+// >>chng 05 dec 17, from 17.29 to 17.52, NA increase C chemistry
+// >>chng 06 jun 02, from 17.52 to 17.42, NA refactor chem, bug fix
+monitor CO column density 17.42 error 0.1
+//
+// >>chng 05 aug 03, from 15.86 to 15.62, NA update CO, H chem net
+// >>chng 05 aug 08, from 15.62 to 15.82, readd grain-gas coll energy exchange
+// >>chng 05 aug 18, from 15.82 to 15.60, NA add hack to not use C+ - OH rate
+// >>chng 05 sep 27, from 15.60 to 15.55, NA break apart CO network
+// >>chng 05 dec 17, from 15.55 to 15.69, NA increase C chemistry
+// >>chng 06 jun 02, from 15.69 to 15.62, NA refactor chem, bug fix
+// >>chng 10 mar 02, from 15.62 to 15.66, fix botches after CO model switch
+// >>chng 10 jun 17, from 15.66 to 15.2, fix botches due to recent dBase cooling changes
+monitor O2 column density 15.2 error 0.1
+//
+// >>chng 05 aug 03, from 15.40 to 15.61, NA update CO, H chem net
+// >>chng 05 aug 08, from 15.61 to 15.39, readd grain-gas coll energy exchange
+// >>chng 05 aug 18, from 15.39 to 15.44, NA further leiden hacks
+// >>chng 05 sep 27, from 15.44 to 15.37, NA break apart CO network
+// >>chng 05 dec 17, from 15.37 to 15.42, NA increase C chemistry
+// >>chng 06 jun 02, from 15.42 to 15.38, NA refactor chem, bug fix
+// >>chng 10 jun 17, from 15.38 to 15.57, fix botches due to recent dBase cooling changes
+monitor OH column density 15.57 error 0.1
+// 
+// >>chng 04 dec 08, from 258 to 282, co-ion feedback, check converg
+// >>chng 05 mar 25, from 282 to 264 renorm H pops in level solver
+// >>chng 05 jun 23, from 264 to 252, update C2 Si2 cs to ApJ, 620, 537
+// >>chng 05 aug 03, from 252 to 272 NA update CO, H chem net
+// >>chng 05 aug 04, from 272 to 314, bug in table draine, 1 cell into H-ion
+// >>chng 05 aug 08, from 314 to 281 readd grain-gas coll energy exchange
+// >>chng 05 aug 11, from 281 to 311 use UMIST C0 photo for hack
+// >>chng 05 aug 18, from 311 to 1180 NA further leiden hacks
+// >>chng 06 nov 28, from 1180 to 1273, small change in solver, inc err
+// >>chng 08 apr 10, from 1273 to 1079, change default h-like levels, other minor changes
+// >>chng 08 dec 03, from 1079 to 1189, iterate on initial electron density until convergence
+// >>chng 08 dec 13, from 1189 to 909.9, merging newsolvers branch
+monitor hydrogen 2 temperature 909.9 error 0.1
+//
+// >>chng 04 sep 19, from 31.8 to 29.9 NA rm 1 CO dest UMIST reaction
+// >>chng 05 jul 05, from 29.9 to 23.7 cdsqte err
+// >>chng 05 aug 03, from 29.9 to 27.6 NA update CO, H chem net
+// >>chng 05 aug 08, from 27.6 to 29.8 readd grain-gas coll energy exchange
+// >>chng 05 aug 11, from 29.8 to 32.2 use UMIST C0 photo for hack
+// >>chng 05 aug 18, from 32.2 to 79.4 NA further leiden hacks
+monitor H2 temperature 79.4 
+// 
+// >>chng 06 nov 28, add these lines
+// >>chng 08 dec 13, from -3.43 to -3.455, merging newsolvers branch
+monitor line luminosity "C  2" 157.6m -3.455
+// 
+// >>chng 06 nov 29, from -5.432 to -5.372, Badnell DR turned on
+monitor line luminosity "C  1" 369.7m -5.372
+// 
+// >>chng 06 nov 29, from -5.727 to -5.687, Badnell DR turned on
+monitor line luminosity "C  1" 609.2m -5.687
+// 
+// >>chng 08 apr 10, from -3.087 to -3.151, change default h-like levels, other minor changes
+// >>chng 08 dec 13, from -3.151 to -3.194, merging newsolvers branch
+monitor line luminosity "O  1" 63.17m -3.194
+// 
+// >>chng 08 apr 10, from -4.201 to -4.279, change default h-like levels, other minor changes
+// >>chng 08 dec 03, from -4.279 to -4.258, iterate on initial electron density until convergence
+// >>chng 08 dec 13, from -4.258 to -4.332, merging newsolvers branch
+monitor line luminosity "O  1" 145.5m -4.332
+// 
+// >>chng 04 sep 19, from 10 to 13  chk mole conver better
+// >>chng 08 dec 08, from 13 to 12.26, upper limit -> equals (r2515)
+// >>chng 08 dec 13, from 12.26 to 22.24, merging newsolvers branch
+// >>chng 09 jan 16, from 22.24 to 22.1, average of 10 runs
+// >>chng 09 mar 27, from 22.1 to 21.5 improve rigor esc prob & pop defns
+// >>chng 10 jan 27, from 21.5 to 22.71, gradual change
+monitor itrzn 22.71
+//
+// >>chng 08 dec 08, from 550 to 500, upper limit -> equals (r2515)
+// >>chng 09 jan 16, from 500 to 494 (error 0.05), average of 10 runs
+monitor nzone 494
+c
+c pdr_leiden_hack_v2.in
+c class pdr  
+c ========================================
+c 
+
+This is one of the tests in Rollig et al. 2007, A&A, 467, 187 
+includes hacks to get standard answer.
