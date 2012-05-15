@@ -288,6 +288,9 @@ int ConvBase(
 		/* we need to redo ALL photoionization rates */
 		opac.lgRedoStatic = true;
 	}
+		
+	/* deduce dielectronic suppression factors */
+	atmdat_DielSupres();
 
 	/* calculate radiative and dielectronic recombination rate coefficients */
 	ion_recom_calculate();
