@@ -81,7 +81,12 @@ void ParseCoronal(Parser &p)
 	 * this was close to a 'no photoionization' case, but lower further to insure
 	 * no photo contribution 
 	 * chang from -15 to -20 */
+	/* 
+	   8-29-2012 - Britton changed the heating value to so runs with no 
+	   external radiation don't crash at low temperatures.
 	rfield.totpow[p.m_nqh] = -20.f;
+	*/
+	rfield.totpow[p.m_nqh] = -13.f;
 
 	++rfield.nShape;
 	if( rfield.nShape >= LIMSPC )
