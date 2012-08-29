@@ -104,7 +104,9 @@ TRAP_FPE_FILTER = -fnonstd -ftrap=common -Ktrap=fp
 
 SVNVER := ${shell which svnversion 2> /dev/null}
 ifneq ($(SVNVER),)
-  REVISION := ${shell $(SVNVER) $(SRCDIR)}
+#  REVISION := ${shell $(SVNVER) $(SRCDIR)}
+# Use mercurial revision
+  REVISION := ${shell hg id -i}
 else
   REVISION = exported
 endif
