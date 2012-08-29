@@ -96,7 +96,12 @@ void SaveHeat(FILE* io)
 			{
 				ipsave[ipnt] = i;
 				jpsave[ipnt] = j;
+				/*
+				  8-29-2012 - Britton changed this so heating rates
+				  are saved instead of fractions of the total.
 				SaveVal[ipnt] = (realnum)(thermal.heating[i][j]/SDIV(heat_total));
+				*/
+				SaveVal[ipnt] = (realnum)(thermal.heating[i][j]);
 				ipnt++;
 			}
 		}
@@ -308,7 +313,11 @@ void SaveHeat(FILE* io)
 	/*>>chng 06 jun 06, change start of save to give same info as cooling 
 	 * as per comment by Yumihiko Tsuzuki */
 	/* begin the print out with zone number, total heating and cooling */
+	/*
+	  8-29-2012 - Britton changed the output precision to six digits.
 	fprintf( io, "%.5e\t%.4e\t%.4e\t%.4e", 
+	 */
+	fprintf( io, "%.5e\t%.4e\t%.6e\t%.6e", 
 		radius.depth_mid_zone, 
 		phycon.te, 
 		heat_total, 
@@ -325,7 +334,12 @@ void SaveHeat(FILE* io)
 		ASSERT( i<LIMELM && j<LIMELM );
 		if(k > 4 && thermal.heating[i][j]/SDIV(heat_total) < save.WeakHeatCool )
 			break;
+		/*
+		  8-29-2012 - Britton changed this so heating rates are written out 
+		  instead of fractions of the total heating rate.
 		fprintf( io, "\t%s\t%.7f ", 
+		*/
+		fprintf( io, "\t%s\t%.6e ", 
 			chLabel[ip], SaveVal[ip] );
 	}
 	fprintf( io, " \n" );

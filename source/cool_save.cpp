@@ -25,7 +25,11 @@ void CoolSave(FILE * io)
 		cool_total,
 		heat_total;
 
+	/*
+	  8-29-2012 - Britton changed precision to double.
 	realnum
+	*/
+	double
 		*csav,
 		*sgnsav;
 	long int *index;
@@ -34,8 +38,13 @@ void CoolSave(FILE * io)
 
 	/* cannot do one-time init since thermal.ncltot can change */
 	index = (long int *)CALLOC((size_t)thermal.ncltot,sizeof(long int));
+	/*
+	  8-29-2012 - Britton changed precision to double.
 	csav = (realnum *)CALLOC((size_t)thermal.ncltot,sizeof(realnum));
 	sgnsav = (realnum *)CALLOC((size_t)thermal.ncltot,sizeof(realnum));
+	*/
+	csav = (double *)CALLOC((size_t)thermal.ncltot,sizeof(double));
+	sgnsav = (double *)CALLOC((size_t)thermal.ncltot,sizeof(double));
 
 	cool_total = thermal.ctot;
 	heat_total = thermal.htot;
@@ -70,8 +79,13 @@ void CoolSave(FILE * io)
 
 	for( i=0; i < ip; i++ )
 	{
+	  /* 
+	     8-29-2012 - Britton changed this so cooling rates are printed 
+	     instead of fractions of the total cooling rate.
 		csav[i] = (realnum)(MAX2(thermal.cooling[i],thermal.heatnt[i])/
 			SDIV(cool_total));
+	  */
+	        csav[i] = (double)(MAX2(thermal.cooling[i],thermal.heatnt[i]));
 
 		/* save sign to remember if heating or cooling line */
 		if( thermal.heatnt[i] == 0. )
@@ -87,7 +101,7 @@ void CoolSave(FILE * io)
 	/* order strongest to weakest */
 	/* now sort by decreasing importance */
 	/*spsort netlib routine to sort array returning sorted indices */
-	spsort(
+	spsort_double(
 		  /* input array to be sorted */
 		  csav, 
 		  /* number of values in x */
@@ -121,7 +135,12 @@ void CoolSave(FILE * io)
 	/*>>chng 06 jun 06, change start of save to give same info as heating 
 	 * as per comment by Yumihiko Tsuzuki */
 	/* begin the print out with zone number, total heating and cooling */
+	/* 
+	   8-29-2012 - Britton changed the heating and cooling output 
+	   precision to six digits.
 	fprintf( io, "%.5e\t%.4e\t%.4e\t%.4e", 
+	*/
+	fprintf( io, "%.5e\t%.4e\t%.6e\t%.6e", 
 		radius.depth_mid_zone, 
 		phycon.te, 
 		heat_total, 
@@ -137,7 +156,12 @@ void CoolSave(FILE * io)
 	{
 		if(is > 4 && (thermal.cooling[index[is]] < cset && thermal.heatnt[index[is]] < cset))
 			break;
+		/*
+		  8-29-2012 - Britton changed this so cooling rates are output
+		  instead of fractions of the total cooling rate.
 		fprintf( io, "\t%s %.1f\t%.7f", 
+		*/
+		fprintf( io, "\t%s %.1f\t%.6e", 
 			thermal.chClntLab[index[is]], 
 			thermal.collam[index[is]], 
 			sign(csav[index[is]],sgnsav[index[is]]) );

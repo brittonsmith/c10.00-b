@@ -1765,6 +1765,8 @@ double qg32( double, double, double(*)(double) );
    \param  *ier error condition, should be 0
  */ 
 void spsort( realnum x[], long int n, long int iperm[], int kflag, int *ier);
+/* 8-29-2012 - Britton added version of spsort that accepts a double. */
+void spsort_double( double x[], long int n, long int iperm[], int kflag, int *ier);
 
 /*vfun approximate form of Voigt function */
 inline double vfun(double damp, double x)
