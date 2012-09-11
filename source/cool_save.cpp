@@ -140,7 +140,7 @@ void CoolSave(FILE * io)
 	   precision to six digits.
 	fprintf( io, "%.5e\t%.4e\t%.4e\t%.4e", 
 	*/
-	fprintf( io, "%.5e\t%.4e\t%.6e\t%.6e", 
+	fprintf( io, "%.5e\t%.6e\t%.6e\t%.6e", 
 		radius.depth_mid_zone, 
 		phycon.te, 
 		heat_total, 

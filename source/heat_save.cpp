@@ -317,7 +317,7 @@ void SaveHeat(FILE* io)
 	  8-29-2012 - Britton changed the output precision to six digits.
 	fprintf( io, "%.5e\t%.4e\t%.4e\t%.4e", 
 	 */
-	fprintf( io, "%.5e\t%.4e\t%.6e\t%.6e", 
+	fprintf( io, "%.5e\t%.6e\t%.6e\t%.6e", 
 		radius.depth_mid_zone, 
 		phycon.te, 
 		heat_total, 
