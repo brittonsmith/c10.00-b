@@ -4,6 +4,8 @@
 #ifndef H2_PRIV_H_
 #define H2_PRIV_H_
 
+#include "transition.h"
+
 /*H2_Read_Cosmicray_distribution read distribution function for H2 population following cosmic ray collisional excitation
 void H2_Read_Cosmicray_distribution(void); */
 
